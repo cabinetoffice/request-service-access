@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    container_name: web-node-prototype
+    container_name: github-requests-app
     build:
       context: .
       dockerfile: ./infrastructure/docker/${NODE_ENV}/Dockerfile

@@ -1,7 +1,7 @@
 {
-  "name": "poc_node_protoype",
+  "name": "github_requests_app",
   "version": "1.0.0",
-  "description": "POC Node Prototype",
+  "description": "Github requests app",
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc && cp -r src/views dist/",
