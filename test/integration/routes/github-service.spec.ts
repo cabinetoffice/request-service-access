@@ -7,31 +7,31 @@ import request from 'supertest';
 import app from '../../../src/app';
 import * as config from '../../../src/config';
 import { logger } from '../../../src/middleware/logger.middleware';
-import { MOCK_GET_INFO_RESPONSE, MOCK_POST_INFO_RESPONSE } from '../../mock/text.mock';
+import { MOCK_GET_LANDING_RESPONSE, MOCK_POST_LANDING_RESPONSE } from '../../mock/text.mock';
 
 const mockedLogger = logger as jest.Mock<typeof logger>;
 mockedLogger.mockImplementation((req: Request, res: Response, next: NextFunction) => next());
 
-describe('Info endpoint integration tests', () => {
+describe('Landing page integration tests', () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
 
     describe('GET tests', () => {
-        test('renders the info page', async () => {
-            const res = await request(app).get(config.INFO_URL);
+        test('renders the landing page', async () => {
+            const res = await request(app).get(config.LANDING_URL);
 
             expect(res.status).toEqual(200);
-            expect(res.text).toContain(MOCK_GET_INFO_RESPONSE);
+            expect(res.text).toContain(MOCK_GET_LANDING_RESPONSE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
         });
     });
     describe('POST tests', () => {
         test('Sends post request test', async () => {
-            const res = await request(app).post(config.INFO_URL);
+            const res = await request(app).post(config.LANDING_URL);
 
             expect(res.status).toEqual(200);
-            expect(res.text).toContain(MOCK_POST_INFO_RESPONSE);
+            expect(res.text).toContain(MOCK_POST_LANDING_RESPONSE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
         });
     });

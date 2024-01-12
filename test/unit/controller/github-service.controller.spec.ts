@@ -1,8 +1,8 @@
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 import { Request, Response } from 'express';
 
-import { get, post } from '../../../src/controller/info.controller';
-import { MOCK_POST_INFO_RESPONSE } from '../../mock/text.mock';
+import { get, post } from '../../../src/controller/github-service.controller';
+import { MOCK_POST_LANDING_RESPONSE } from '../../mock/text.mock';
 import * as config from '../../../src/config';
 
 const req = {} as Request;
@@ -34,6 +34,6 @@ describe('Info controller tests', () => {
         post(req, res);
 
         expect(res.send).toBeCalledTimes(1);
-        expect(res.send).toHaveBeenCalledWith(MOCK_POST_INFO_RESPONSE);
+        expect(res.send).toHaveBeenCalledWith(MOCK_POST_LANDING_RESPONSE);
     });
 });
