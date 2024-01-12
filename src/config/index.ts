@@ -6,16 +6,16 @@ export const NODE_SSL_ENABLED = process.env['NODE_SSL_ENABLED'];
 export const PATH_SSL_PRIVATE_KEY = process.env['PATH_SSL_PRIVATE_KEY'] || '';
 export const PATH_SSL_CERTIFICATE = process.env['PATH_SSL_CERTIFICATE'] || '';
 
-export const SERVICE_NAME = 'Node Prototype';
+export const SERVICE_NAME = 'GitHub Requests Service';
 
 // Template
-export const LANDING_PAGE = 'info';
+export const LANDING_PAGE = 'github-service';
 export const NOT_FOUND = 'page-not-found';
 export const ERROR_PAGE = 'error';
 
 // Routing paths
-export const LANDING_URL = '/info';
+export const LANDING_URL = '/github-service';
 
-export const INFO_URL = '/info';
+export const GITHUB_SERIVCE_URL = '/github-service';
 export const HEALTHCHECK_URL = '/healthcheck';
 export const SERVICE_URL = `${BASE_URL}${LANDING_URL}`;
