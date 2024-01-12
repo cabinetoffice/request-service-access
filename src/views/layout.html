@@ -1,6 +1,7 @@
 {% extends "govuk/template.njk" %}
 
 {% from "govuk/components/footer/macro.njk"           import govukFooter %}
+{% from "govuk/components/phase-banner/macro.njk"     import govukPhaseBanner %}
 {% from "govuk/components/header/macro.njk"           import govukHeader %}
 
 {% block head %}
@@ -10,6 +11,15 @@
   <link rel="SHORTCUT ICON" href="//{{CDN_HOST}}/images/favicon.ico"/>
   <link rel="icon" href="//{{CDN_HOST}}/images/favicon.ico" type="image/x-icon"/>
 
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Alpha"
+    },
+    html: 'This is a new service'
+  }) }}
 {% endblock %}
 
 {% block header %}
