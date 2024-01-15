@@ -6,7 +6,7 @@ export const NODE_SSL_ENABLED = process.env['NODE_SSL_ENABLED'];
 export const PATH_SSL_PRIVATE_KEY = process.env['PATH_SSL_PRIVATE_KEY'] || '';
 export const PATH_SSL_CERTIFICATE = process.env['PATH_SSL_CERTIFICATE'] || '';
 
-export const SERVICE_NAME = 'Node Prototype';
+export const SERVICE_NAME = 'GitHub Requests Application ';
 
 // Template
 export const LANDING_PAGE = 'info';
