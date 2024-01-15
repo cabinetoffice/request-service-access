@@ -1,19 +1,15 @@
-# Node Webapp Template
+# GitHub requests app
 ![Static Badge](https://img.shields.io/badge/test_coverage-%E2%89%A595%25-green)
 
 ## Overview
 
-The following repo allows us to quickly bootstrap Node projects, using this allows us to ensure consistency across our Node repositories. It can be a starting point for the creation of RESTfull API ​or for the creation of web application with GDS GovUK frontend best practice.
+The GitHub request application is a tool designed to streamline and automate the process of managing and tracking request for GitHub. This includes the  adding, removal or editing of members.
 
-In the context of a web application, each page or user interface, defined by an endpoint, is devided into three components (MVC) and as a best practice the names for the model, view and controller have, when possible, the same start name of the endpoints (es. for the `/info` page we have the: `info.controller.ts` and `info.html` files if model present we will have had `info.model.ts`)
-
-### The Model
-
-In the model we define the interface, the data structure used to represent the data for that particular page and an array used to map back and forth information between the data saved and the `nunjucks` html view data.
+Each page or user interface, defined by an endpoint, is devided into three components (MVC) and as a best practice the names for the model, view and controller have, when possible, the same start name of the endpoints (es. for the `/info` page we have the: `info.controller.ts` and `info.html` files if model present we will have had `info.model.ts`)
 
 ### The View
 
-We use `Nunjucks` and `GDS` style/components, we could use the prototype if an UX team is present in loco.
+We use `Nunjucks` and `GDS` style/components.
 
 ### The controller
 
@@ -75,11 +71,3 @@ This will then download the necessary dependencies, build the Docker image, and 
 You will be able to access it on [Localhost:3000](localhost:3000).
 
 
-## ToDo
-
-- Add API service module
-- Add logging service
-- Add Validation and Navigation MW
-- Add Authentication MW and Session handler logic
-- Update CDN origin
-- Publishes the SDK on npm package registry
