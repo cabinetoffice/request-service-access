@@ -1,4 +1,5 @@
 jest.mock('../../../src/middleware/logger.middleware');
+jest.mock('../../../src/utils/logger');
 
 import { jest, beforeEach, describe, expect, test } from '@jest/globals';
 import { Request, Response, NextFunction } from 'express';
