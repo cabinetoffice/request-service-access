@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="govuk-width-container">
+        
+  <main class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        
+        <h1 class="govuk-heading-l">Overview</h1>
+        <p class="govuk-body">This application has been designed to streamline and enhance the management of GitHub member requests. This tool will allow GitHub administrators to efficiently handle member-related tasks, including adding, deleting, and amending user permissions.</p>
+        <h1 class="govuk-heading-m">
+          Please choose from one of the following options:
+      </h1>
+        <h2 class="govuk-heading-s">Member requests</h2>
+        <ul class="govuk-list--bullet govuk-list--spaced govuk-link">
+          <li>
+            <a class="govuk-link" href="#">Add member</a>
+          </li>
+          <li>
+            <a class="govuk-link" href="#">Edit member</a>
+          </li>
+          <li>
+            <a class="govuk-link" href="#">Delete member</a>
+          </li>
+          <li>
+            <a class="govuk-link" href="#">Additional  member request</a>
+          </li>
+        </ul>
+        <br>
+        <h2 class="govuk-heading-s">Team requests</h2>
+        <ul class="govuk-list--bullet govuk-list--spaced govuk-link">
+          <li>
+            <a class="govuk-link" href="#">Add team</a>
+          </li>
+          <li>
+            <a class="govuk-link" href="#">Edit team</a>
+          </li>
+          <li>
+            <a class="govuk-link" href="#">Delete team</a>
+          </li>
+          <li>
+            <a class="govuk-link" href="#">Additonal team request</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}
