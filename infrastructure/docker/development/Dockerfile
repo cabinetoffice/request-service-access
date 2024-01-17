@@ -7,4 +7,4 @@ WORKDIR /app
 COPY . .
 RUN npm ci --silent && npm run build
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "start:dev"]

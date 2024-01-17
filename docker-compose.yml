@@ -7,6 +7,8 @@ services:
       dockerfile: ./infrastructure/docker/${NODE_ENV}/Dockerfile
     ports:
       - "${PORT}:3000"
+    volumes:
+      - ./:/app
     environment:
       - NODE_ENV=${NODE_ENV}
       - PATH_SSL_PRIVATE_KEY=${PATH_SSL_PRIVATE_KEY}
