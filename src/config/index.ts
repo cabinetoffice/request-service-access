@@ -17,5 +17,5 @@ export const CONFIRMATION = 'confirmation';
 
 export const HEALTHCHECK_URL = '/healthcheck';
 export const CONFIRMATION_URL = '/confirmation';
-export const SERVICE_URL = `${BASE_URL}`;
+export const SERVICE_URL = `${BASE_URL}${CONFIRMATION_URL}`;
 
