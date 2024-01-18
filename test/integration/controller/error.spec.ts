@@ -1,4 +1,5 @@
 jest.mock('../../../src/controller/info.controller');
+jest.mock('../../../src/utils/logger');
 
 import { jest, beforeEach, describe, expect, test } from '@jest/globals';
 import request from 'supertest';
