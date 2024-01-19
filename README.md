@@ -4,6 +4,9 @@
 ## Overview
 
 The GitHub request application is a tool designed to streamline and automate the process of managing and tracking request for GitHub. This includes the  adding, removal or editing of members.
+Each page or user interface, defined by an endpoint, is divided into three components (MVC) and as a best practice the names for the model, view and controller have, when possible, the same start name of the endpoints (e.g. for the `/confirmation` page we have the: `confirmation.controller.ts` and `confirmation.html` files. If models were present, we would have `confirmation.model.ts`)
+
+
 
 ### The View
 
