@@ -9,16 +9,13 @@ export const PATH_SSL_CERTIFICATE = process.env['PATH_SSL_CERTIFICATE'] || '';
 export const SERVICE_NAME = 'Node Prototype';
 
 // Template
-export const LANDING_PAGE = 'info';
 export const NOT_FOUND = 'page-not-found';
 export const ERROR_PAGE = 'error';
 export const CONFIRMATION = 'confirmation';
 
 // Routing paths
-export const LANDING_URL = '/info';
 
-export const INFO_URL = '/info';
 export const HEALTHCHECK_URL = '/healthcheck';
 export const CONFIRMATION_URL = '/confirmation';
-export const SERVICE_URL = `${BASE_URL}${LANDING_URL}`;
+export const SERVICE_URL = `${BASE_URL}${CONFIRMATION_URL}`;
 

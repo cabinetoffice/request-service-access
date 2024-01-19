@@ -1,5 +1,3 @@
-export const MOCK_GET_INFO_RESPONSE = 'Placeholder - Info Page';
-export const MOCK_POST_INFO_RESPONSE = 'post request test';
 export const MOCK_OK_RESPONSE = 'OK';
 export const MOCK_GET_CONFIRMATION_RESPONSE = 'GitHub request complete';
 export const MOCK_NOT_FOUND_RESPONSE = 'Page not found';
