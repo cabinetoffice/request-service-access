@@ -18,3 +18,4 @@ services:
       - BASE_URL=${BASE_URL}
       - HUMAN=${HUMAN}
       - LOG_LEVEL=${LOG_LEVEL}
+      - FEATURE_FLAG_ENABLE_AUTH=${FEATURE_FLAG_ENABLE_AUTH}
