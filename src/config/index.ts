@@ -12,10 +12,12 @@ export const SERVICE_NAME = 'GitHub Requests Application ';
 export const NOT_FOUND = 'page-not-found';
 export const ERROR_PAGE = 'error';
 export const CONFIRMATION = 'confirmation';
+export const LANDING = 'landing-page';
 
 // Routing paths
 
 export const HEALTHCHECK_URL = '/healthcheck';
 export const CONFIRMATION_URL = '/confirmation';
+export const LANDING_URL = '/landing';
 export const SERVICE_URL = `${BASE_URL}${CONFIRMATION_URL}`;
 
