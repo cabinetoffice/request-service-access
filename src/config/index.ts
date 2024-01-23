@@ -20,7 +20,7 @@ export const LANDING = 'landing-page';
 
 export const HEALTHCHECK_URL = '/healthcheck';
 export const CONFIRMATION_URL = '/confirmation';
-export const LANDING_URL = '/landing';
+export const LANDING_URL = '/landing-page';
 export const SERVICE_URL = `${BASE_URL}${CONFIRMATION_URL}`;
 
 // Feature Flags
