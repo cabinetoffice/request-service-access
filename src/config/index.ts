@@ -1,3 +1,5 @@
+import { getEnvironmentValue } from '../utils/getEnvironmentValue';
+
 export const PORT = process.env['PORT'] || '3000';
 export const BASE_URL = process.env['BASE_URL'] || `http://localhost:${PORT}`;
 export const CDN_HOST = process.env['CDN_HOST'] || 'd6nh3dxv55e16.cloudfront.net';
@@ -20,4 +22,7 @@ export const HEALTHCHECK_URL = '/healthcheck';
 export const CONFIRMATION_URL = '/confirmation';
 export const LANDING_URL = '/landing';
 export const SERVICE_URL = `${BASE_URL}${CONFIRMATION_URL}`;
+
+// Feature Flags
+export const FEATURE_FLAG_ENABLE_AUTH = getEnvironmentValue('FEATURE_FLAG_ENABLE_AUTH', 'false');
 
