@@ -15,12 +15,14 @@ export const NOT_FOUND = 'page-not-found';
 export const ERROR_PAGE = 'error';
 export const CONFIRMATION = 'confirmation';
 export const LANDING = 'landing-page';
+export const ADD_MEMBER = 'add-member';
 
 // Routing paths
 
 export const HEALTHCHECK_URL = '/healthcheck';
 export const CONFIRMATION_URL = '/confirmation';
 export const LANDING_URL = '/landing-page';
+export const ADD_MEMBER_URL = '/add-member';
 export const SERVICE_URL = `${BASE_URL}${CONFIRMATION_URL}`;
 
 // Feature Flags
