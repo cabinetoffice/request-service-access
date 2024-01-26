@@ -12,6 +12,7 @@ export const SERVICE_NAME = 'GitHub Requests Application ';
 
 // Template
 export const NOT_FOUND = 'page-not-found';
+export const NOT_AVAILABLE = 'not-available';
 export const ERROR_PAGE = 'error';
 export const CONFIRMATION = 'confirmation';
 export const LANDING = 'landing-page';
