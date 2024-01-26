@@ -1,11 +1,13 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<h1 class="govuk-heading-l">Member details</h1>
+
 <p class="govuk-body">To join a team on GitHub, users first need to become members.<br>Once a user is a member, they must be assigned a specific role to determine their level of access within the team.</p>
 <div class="govuk-form-group">
-  <label class="govuk-label" for="git-handle">
-    Git handle(s)
-  </label>
+  <h1 class="govuk-fieldset__heading">
+    Member details
+  </h1>
   <input class="govuk-input" id="git-handle" name="gitHandle" type="text" spellcheck="false" autocomplete="name">
 </div>
 <div class="govuk-form-group">
@@ -16,7 +18,10 @@
     We will use this to send a confirmation email
   </div!-->
   <input class="govuk-input" id="email" name="email" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
-</div>
+</div>  
+<h1 class="govuk-fieldset__heading">
+  Member details
+</h1>
 <div class="govuk-form-group">
   <label class="govuk-label" for="first-name">
     First name
@@ -118,8 +123,8 @@
   </fieldset>
 </div>
 <button type="submit" class="govuk-button" data-module="govuk-button">
-  Submit
+  Save
 </button>
 
 
-{% endcall %}
+{% endblock %}
