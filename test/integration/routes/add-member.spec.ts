@@ -20,7 +20,7 @@ describe('Confirmation endpoint integration tests', () => {
     });
 
     describe('GET tests', () => {
-        test('should render confirmation template', async () => {
+        test('should render add member page', async () => {
             const res = await request(app).get(config.ADD_MEMBER_URL);
 
             expect(res.status).toEqual(200);
