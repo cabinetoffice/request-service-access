@@ -6,3 +6,4 @@ export const MOCK_SERVICE_UNAVAILABLE = 'Sorry, there is a problem with the serv
 export const MOCK_SERVER_ERROR = 'Pipe 3000 requires elevated privileges';
 export const MOCK_ERROR_MESSAGE = 'Something has went wrong';
 export const MOCK_WRONG_URL = '/infooo';
+export const MOCK_GET_ADD_MEMBER_RESPONSE = 'Member has been added';
