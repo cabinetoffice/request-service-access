@@ -6,7 +6,6 @@ import landingPageRouter from './landing-page';
 import healthcheckRouter from './healthcheck';
 import confirmationRouter from './confirmation';
 import addMemberRouter from './add-member';
-main
 
 const router = Router();
 
@@ -18,6 +17,5 @@ router.use(landingPageRouter);
 router.use(addMemberRouter);
 router.use(confirmationRouter);
 router.use(healthcheckRouter);
-
 
 export default router;
