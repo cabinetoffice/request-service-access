@@ -1,130 +1,137 @@
 {% extends "layout.html" %}
 
-{% block content %}
-<h1 class="govuk-heading-l">Member details</h1>
-
-<p class="govuk-body">To join a team on GitHub, users first need to become members</p>
-<div class="govuk-form-group">
-  <h1 class="govuk-fieldset__heading">
-    Member details
-  </h1>
-  <input class="govuk-input" id="git-handle" name="gitHandle" type="text" spellcheck="false" autocomplete="name">
-</div>
-<div class="govuk-form-group">
-  <label class="govuk-label" for="email">
-    Email address
-  </label>
-  <!--div id="email-hint" class="govuk-hint">
-    We will use this to send a confirmation email
-  </div!-->
-  <input class="govuk-input" id="email" name="email" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
-</div>  
-<h1 class="govuk-fieldset__heading">
-  Member details
-</h1>
-<div class="govuk-form-group">
-  <label class="govuk-label" for="first-name">
-    First name
-  </label>
-  <input class="govuk-input" id="first-name" name="firstName" type="text" spellcheck="false" autocomplete="name">
-</div>
-  <div class="govuk-form-group">
-  <label class="govuk-label" for="last-name">
-    Last name
-  </label>
-  <input class="govuk-input" id="last-name" name="lastName" type="text" spellcheck="false" autocomplete="name">
-</div>
-<div class="govuk-form-group">
-  <fieldset class="govuk-fieldset" aria-describedby="signIn-hint">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Which role would you like to assign to the member?
-      </h1>
-    </legend>
-
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="signIn" name="signIn" type="radio" value="government-gateway" aria-describedby="signIn-item-hint">
-        <label class="govuk-label govuk-radios__label" for="signIn">
-          Read
-        </label>
-        <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
-         this gives the member permission to view
-        </div>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="signIn-2" name="signIn" type="radio" value="govuk-one-login" aria-describedby="signIn-2-item-hint">
-        <label class="govuk-label govuk-radios__label" for="signIn-2">
-          Write
-        </label>
-        <div id="signIn-2-item-hint" class="govuk-hint govuk-radios__hint">
-          this gives the member permission to view, link repositories and interact with project
-        </div>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="signIn-2" name="signIn" type="radio" value="govuk-one-login" aria-describedby="signIn-2-item-hint">
-        <label class="govuk-label govuk-radios__label" for="signIn-2">
-          Admin
-        </label>
-        <div id="signIn-2-item-hint" class="govuk-hint govuk-radios__hint">
-          this gives the member permission to view, link repositories, interact, manage settings and members
-    </div>
-  </fieldset>
-</div>
-<div class="govuk-form-group">
-  <h1 class="govuk-label-wrapper">
-    <label class="govuk-label govuk-label--l" for="more-detail">
-      Can you provide any additional detail?
-    </label>
-  </h1>
-  
-  <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
-</div>
-<div class="govuk-form-group">
-  <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-       Contract type of the member?
-      </h1>
-    </legend>
-    <div id="contact-hint" class="govuk-hint">
-      Select one option.
-    </div>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-2">
-        <label class="govuk-label govuk-radios__label" for="contact-2">
-          Permanent
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" checked data-aria-controls="conditional-contact">
-        <label class="govuk-label govuk-radios__label" for="contact">
-         Contract
-        </label>
-      </div>
-      <div class="govuk-radios__conditional" id="conditional-contact">
-        <div class="govuk-form-group govuk-form-group--error">
-          <label class="govuk-label" for="contract-type">
-            Enter start date
-          </label>
-          <p id="contract-type class="govuk-error-message">
-            <span class="govuk-visually-hidden">Error:</span>
-          </p>
-          <input class="govuk-input govuk-!-width-one-half govuk-input--error" id="contact-by-email" name="contactByEmail" type="date" spellcheck="false" aria-describedby="contact-by-email-error" autocomplete="email">
-        </div>
-      </div>
-      
-      <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
-       
-      </div>
-    
-    </div>
-  </fieldset>
-</div>
-<button type="submit" class="govuk-button" data-module="govuk-button">
-  Save
-</button>
-
-
+ {% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/landing-page"
+  }) }}
 {% endblock %}
+
+{% block content %}
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-two-thirds">
+      
+    {% call govukFieldset({
+      legend: {
+        text: "Add GitHub member",
+        classes: "govuk-fieldset__legend--l",
+        isPageHeading: true
+      }
+  	}) %}
+
+      <p class="govuk-body">
+        When a user requires access to our GitHub organisations (e.g they have joined The Cabinet Office) they should be added to the Cabinet Office GitHub organisation.
+      </p>
+
+      <form method="post" novalidate>
+
+        
+  
+    {{ govukInput({
+      label: {
+        text: "First Name"
+      },
+      classes: "govuk-!-width-two-thirds",
+      id: "first-name",
+      name: "firstName",
+      autocomplete: "first-name"
+    }) }}
+  
+    {{ govukInput({
+      label: {
+        text: "Last Name"
+      },
+      classes: "govuk-!-width-two-thirds",
+      id: "last-name",
+      name: "lastName",
+      autocomplete: "last-name"
+    }) }}
+  
+    {{ govukInput({
+      label: {
+        text: "GitHub Handle"
+      },
+      classes: "govuk-!-width-two-thirds",
+      id: "git-handle",
+      name: "gitHandle",
+      autocomplete: "git-handle"
+    }) }}
+
+		{{ govukInput({
+			label: {
+				text: "Email Address"
+			},
+			classes: "govuk-!-width-two-thirds",
+			id: "email",
+			name: "email",
+			type: "email",
+			autocomplete: "email",
+			spellcheck: false
+		}) }}
+
+		{% set dateHtml %}
+			{{ govukInput({
+				id: "contractor",
+				name: "contractor",
+				type: "date",
+				autocomplete: "date",
+				classes: "govuk-!-width-one-third",
+				label: {
+				text: "Contract start date"
+  		}
+			}) }}
+		{% endset -%}
+
+		{{ govukRadios({
+			name: "contactor",
+			fieldset: {
+				legend: {
+					text: "What is the contract type of the GitHub member?",
+					isPageHeading: true,
+					classes: "govuk-fieldset__legend--l"
+				}
+			},
+  
+  items: [ 
+		{
+      value: "permanent",
+      text: "Permanent", 
+			checked: true,
+      conditional: {
+      }
+    },
+    {
+      value: "contractor",
+      text: "Contractor",
+      conditional: {
+        html: dateHtml
+      }
+    }
+		
+
+  ]
+}) }}
+{{ govukTextarea({
+	name: "moreDetail",
+	id: "more-detail",
+	label: {
+		text: "Additional details (optional)",
+		classes: "govuk-label--m",
+		isPageHeading: true
+	},
+	hint: {
+		text: "Include any additional information that we may require"
+	}
+}) }}
+
+{{ govukButton({
+	text: "Save"
+}) }}
+
+</form>
+</div>
+</div>
+
+  {% endcall %}
+
+{%endblock%}
