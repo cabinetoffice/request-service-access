@@ -1,10 +1,5 @@
 {% extends "layout.html" %}
 
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-{% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
@@ -18,7 +13,7 @@
       <h1 class="govuk-heading-l">Remove a GitHub Member</h1>
 
       <p class="govuk-body">
-        When a user no longer requires access to our GitHub orgnizations(e.g they have left The Cabinet Office) they should be removed from the Cabinet Office GitHub orgnization.
+        When a user no longer requires access to our GitHub organisations(e.g they have left The Cabinet Office) they should be removed from the Cabinet Office GitHub organisation.
       </p>
 
       <form method="post" novalidate>
@@ -30,25 +25,26 @@
           },
           classes: "govuk-input--width-10",
           id: "github-handle",
-          name: "gitHubHandle"
+          name: "githubHandle"
         }) }}
 
         {{ govukTextarea({
-            name: "moreDetail",
-            id: "more-detail",
+            name: "description",
+            id: "description",
             label: {
-              text: "Details (optional)",
+              text: "Description (optional)",
               classes: "govuk-label--m",
               isPageHeading: true
             },
             hint: {
-              text: "Include more details to why this user is getting removed."
+              text: "Include a description on why this user is getting removed."
             }
           }) }}
+
         {{ govukButton({
           text: "Save"
         }) }}
-
+        
       </form>
     </div>
   </div>
