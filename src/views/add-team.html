@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/landing-page"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Add a GitHub Team</h1>
+
+      <p class="govuk-body">
+        Github Teams can be used to manage repository permissions and mentions for groups of members.
+      </p>
+
+      <form method="post" novalidate>
+
+        {{ govukInput({
+          label: {
+            text: "Team name",
+            classes: "govuk-label--m"
+          },
+          classes: "govuk-input--width-10",
+          id: "team-name",
+          name: "team_name"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Team maintainer GitHub handle",
+            classes: "govuk-label--m"
+          },
+          classes: "govuk-input--width-10",
+          id: "team-maintainer-github-handle",
+          name: "team_maintainer_github_handle"
+        }) }}
+
+        {{ govukTextarea({
+            name: "description",
+            id: "description",
+            label: {
+              text: "Description (optional)",
+              classes: "govuk-label--m",
+              isPageHeading: true
+            },
+            hint: {
+              text: "Include more details to why this GitHub team needs to be
+              added."
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Save"
+        }) }}
+        
+      </form>
+    </div>
+  </div>
+{% endblock %}
