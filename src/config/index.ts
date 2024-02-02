@@ -20,6 +20,7 @@ export const ERROR_PAGE = 'error';
 export const CONFIRMATION = 'confirmation';
 export const ADD_TEAM = 'add-team';
 export const TEAM_REQUEST = 'team-request';
+export const ADD_TEAM_MEMBER = 'add-team-member';
 
 // Routing paths
 
@@ -30,6 +31,8 @@ export const HEALTHCHECK_URL = '/healthcheck';
 export const CONFIRMATION_URL = '/confirmation';
 export const ADD_TEAM_URL = '/add-team';
 export const TEAM_REQUEST_URL = '/team-request';
+export const ADD_TEAM_MEMBER_URL = '/add-team-member';
+
 export const SERVICE_URL = `${BASE_URL}${CONFIRMATION_URL}`;
 
 // Feature Flags
