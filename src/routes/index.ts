@@ -9,6 +9,7 @@ import addMemberRouter from './add-member';
 import addTeamRouter from './add-team';
 import removeMemberRouter from './remove-member';
 import teamRequestRouter from './team-request';
+import addTeamMemberRouter from './add-team-member';
 
 const router = Router();
 
@@ -23,5 +24,6 @@ router.use(healthcheckRouter);
 router.use(addTeamRouter);
 router.use(removeMemberRouter);
 router.use(teamRequestRouter);
+router.use(addTeamMemberRouter);
 
 export default router;
