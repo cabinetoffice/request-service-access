@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/landing-page"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Remove a GitHub Member</h1>
+
+      <p class="govuk-body">
+        When a user no longer requires access to our GitHub organisations(e.g they have left The Cabinet Office) they should be removed from the Cabinet Office GitHub organisation.
+      </p>
+
+      <form method="post" novalidate>
+
+        {{ govukInput({
+          label: {
+            text: "GitHub Handle",
+            classes: "govuk-label--m"
+          },
+          classes: "govuk-input--width-10",
+          id: "github-handle",
+          name: "github_handle"
+        }) }}
+
+        {{ govukTextarea({
+            name: "description",
+            id: "description",
+            label: {
+              text: "Description (optional)",
+              classes: "govuk-label--m",
+              isPageHeading: true
+            },
+            hint: {
+              text: "Include a description on why this user is getting removed."
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Save"
+        }) }}
+        
+      </form>
+    </div>
+  </div>
+{% endblock %}
