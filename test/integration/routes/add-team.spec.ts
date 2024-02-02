@@ -50,7 +50,7 @@ describe('add-team endpoint integration tests', () => {
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
 
-        test('Should log the Team Name, Team Maintainer GitHub handle and Description on POST request.', async () => {
+        test('Should log the Team Name and Team Maintainer GitHub handle on POST request.', async () => {
             const res = await request(app).post(config.ADD_TEAM_URL).send(MOCK_POST_ADD_TEAM);
 
             const mockLog = log.info as jest.Mock;

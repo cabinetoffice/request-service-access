@@ -50,7 +50,7 @@ describe('add-team controller test suites', () => {
 
             expect(res.redirect).toBeCalledWith(config.LANDING);
         });
-        test('should log Team Name, Team Maintainer GitHub handle and Description on POST request', () => {
+        test('should log Team Name and Team Maintainer GitHub handle on POST request', () => {
             const res = mockResponse();
 
             const mockLogInfo = log.info as jest.Mock;

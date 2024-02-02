@@ -10,11 +10,10 @@ export const post = (req: Request, res: Response) => {
 
     const teamName = req.body.team_name;
     const teamMaintainerGithubHandle = req.body.team_maintainer_github_handle;
-    const description = req.body.description;
 
     // validation middleware and data assignment to be implemented
 
-    log.info(`Team Name: ${teamName}, Team Maintainer GitHub Handle: ${teamMaintainerGithubHandle}, Description: ${description}`);
+    log.info(`Team Name: ${teamName}, Team Maintainer GitHub Handle: ${teamMaintainerGithubHandle}`);
 
     return res.redirect(config.LANDING);
 };
