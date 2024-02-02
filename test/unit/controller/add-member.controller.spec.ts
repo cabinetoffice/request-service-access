@@ -25,7 +25,7 @@ const mockResponse = () => {
     return res;
 };
 
-describe('Add member controller test suites', () => {
+describe('add member controller test suites', () => {
     afterEach(() => {
         jest.resetAllMocks();
     });
@@ -39,7 +39,7 @@ describe('Add member controller test suites', () => {
     });
 });
 
-describe('remove-member POST tests', () => {
+describe('add-member POST tests', () => {
 
     test('should redirect to landing-page on POST request', () => {
         const res = mockResponse();
@@ -48,7 +48,7 @@ describe('remove-member POST tests', () => {
 
         expect(res.redirect).toBeCalledWith(config.LANDING);
     });
-    test('should log GitHub member details and description on POST request', () => {
+    test('should log member details and description on POST request', () => {
         const res = mockResponse();
 
         const mockLogInfo = log.info as jest.Mock;

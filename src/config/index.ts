@@ -12,20 +12,20 @@ export const SERVICE_NAME = 'GitHub Requests Application ';
 
 // Template
 export const LANDING = 'landing-page';
+export const ADD_MEMBER = 'add-member';
+export const REMOVE_MEMBER = 'remove-member';
 export const NOT_FOUND = 'page-not-found';
 export const NOT_AVAILABLE = 'not-available';
 export const ERROR_PAGE = 'error';
 export const CONFIRMATION = 'confirmation';
-export const ADD_MEMBER = 'add-member';
-export const REMOVE_MEMBER = 'remove-member';
 
 // Routing paths
 
 export const LANDING_URL = '/landing-page';
-export const HEALTHCHECK_URL = '/healthcheck';
-export const CONFIRMATION_URL = '/confirmation';
 export const ADD_MEMBER_URL = '/add-member';
 export const REMOVE_MEMBER_URL = '/remove-member';
+export const HEALTHCHECK_URL = '/healthcheck';
+export const CONFIRMATION_URL = '/confirmation';
 
 export const SERVICE_URL = `${BASE_URL}${CONFIRMATION_URL}`;
 

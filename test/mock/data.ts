@@ -1,8 +1,7 @@
 import * as config from '../../src/config';
 
 export const GET_REQUEST_MOCK = { method: 'GET', path: '/test' };
-export const MOCK_POST_ADD_MEMBER = { firstName: 'example', lastName: 'example' } ;
-
+export const MOCK_POST_ADD_MEMBER = { first_name: 'example', last_name: 'example', github_handle: 'example', email_address: 'email', description: 'description' };
 export const MOCK_POST_REMOVE_MEMBER = { github_handle: 'example', description: 'description' };
 
 export const MOCK_CORS_VALUE = {
