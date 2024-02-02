@@ -28,4 +28,3 @@ export const SERVICE_URL = `${BASE_URL}${CONFIRMATION_URL}`;
 
 // Feature Flags
 export const FEATURE_FLAG_ENABLE_AUTH = getEnvironmentValue('FEATURE_FLAG_ENABLE_AUTH', 'false');
-

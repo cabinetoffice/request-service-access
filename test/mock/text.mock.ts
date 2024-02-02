@@ -8,4 +8,4 @@ export const MOCK_ERROR_MESSAGE = 'Something has went wrong';
 export const MOCK_WRONG_URL = '/infooo';
 export const MOCK_REDIRECT_MESSAGE = 'Found. Redirecting to landing-page';
 export const MOCK_GET_ADD_MEMBER_RESPONSE = 'Add GitHub member';
-export const MOCK_POST_ADD_MEMBER_RESPONSE = 'Add GitHub member';
+export const MOCK_POST_ADD_MEMBER_RESPONSE = 'firstName: example lastName: example, Github Handle: undefined, emailAddress: undefined, description : undefined ';
