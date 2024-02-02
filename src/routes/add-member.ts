@@ -1,11 +1,11 @@
 import { Router } from 'express';
-
-import { get } from '../controller/add-member.controller';
+import { authentication } from '../middleware/authentication.middleware';
+import { get, post } from '../controller/add-member.controller';
 import * as config from '../config';
 
 const addMemberRouter = Router();
 
-addMemberRouter.get(config.ADD_MEMBER_URL, get);
-// addMemberRouter.post(config.ADD_MEMBER_URL, post);
+addMemberRouter.get(config.ADD_MEMBER_URL, authentication, get);
+addMemberRouter.post(config.ADD_MEMBER_URL, authentication, post);
 
 export default addMemberRouter;

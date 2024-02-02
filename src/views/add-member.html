@@ -25,80 +25,76 @@
 
       <form method="post" novalidate>
 
-        
-  
-    {{ govukInput({
-      label: {
-        text: "First Name"
-      },
-      classes: "govuk-!-width-two-thirds",
-      id: "first-name",
-      name: "firstName",
-      autocomplete: "first-name"
-    }) }}
-  
-    {{ govukInput({
-      label: {
-        text: "Last Name"
-      },
-      classes: "govuk-!-width-two-thirds",
-      id: "last-name",
-      name: "lastName",
-      autocomplete: "last-name"
-    }) }}
-  
-    {{ govukInput({
-      label: {
-        text: "GitHub Handle"
-      },
-      classes: "govuk-!-width-two-thirds",
-      id: "git-handle",
-      name: "gitHandle",
-      autocomplete: "git-handle"
-    }) }}
+{{ govukInput({
+  label: {
+    text: "First Name"
+  },
+  classes: "govuk-!-width-two-thirds",
+  id: "first-name",
+  name: "firstName",
+  autocomplete: "first-name"
+}) }}
 
-		{{ govukInput({
-			label: {
-				text: "Email Address"
-			},
-			classes: "govuk-!-width-two-thirds",
-			id: "email",
-			name: "email",
-			type: "email",
-			autocomplete: "email",
-			spellcheck: false
-		}) }}
+{{ govukInput({
+  label: {
+    text: "Last Name"
+  },
+  classes: "govuk-!-width-two-thirds",
+  id: "last-name",
+  name: "lastName",
+  autocomplete: "last-name"
+}) }}
 
-		{% set dateHtml %}
-			{{ govukInput({
-				id: "contractor",
-				name: "contractor",
-				type: "date",
-				autocomplete: "date",
-				classes: "govuk-!-width-one-third",
-				label: {
-				text: "Contract start date"
-  		}
-			}) }}
-		{% endset -%}
+{{ govukInput({
+  label: {
+    text: "GitHub Handle"
+  },
+  classes: "govuk-!-width-two-thirds",
+  id: "git-handle",
+  name: "gitHandle",
+  autocomplete: "git-handle"
+}) }}
 
-		{{ govukRadios({
-			name: "contactor",
-			fieldset: {
-				legend: {
-					text: "What is the contract type of the GitHub member?",
-					isPageHeading: true,
-					classes: "govuk-fieldset__legend--l"
-				}
-			},
-  
+{{ govukInput({
+  label: {
+    text: "Email Address"
+  },
+  classes: "govuk-!-width-two-thirds",
+  id: "email",
+  name: "email",
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false
+}) }}
+
+{% set dateHtml %}
+  {{ govukInput({
+    id: "contractor",
+    name: "contractor",
+    type: "date",
+    autocomplete: "date",
+    classes: "govuk-!-width-one-third",
+    label: {
+      text: "Contract start date"
+    }
+  }) }}
+{% endset -%}
+
+{{ govukRadios({
+  name: "contactor",
+  fieldset: {
+    legend: {
+      text: "What is the contract type of the GitHub member?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
   items: [ 
-		{
+    {
       value: "permanent",
       text: "Permanent", 
-			checked: true,
-      conditional: {
-      }
+      checked: true,
+      conditional: {}
     },
     {
       value: "contractor",
@@ -107,25 +103,24 @@
         html: dateHtml
       }
     }
-		
-
   ]
 }) }}
+
 {{ govukTextarea({
-	name: "moreDetail",
-	id: "more-detail",
-	label: {
-		text: "Additional details (optional)",
-		classes: "govuk-label--m",
-		isPageHeading: true
-	},
-	hint: {
-		text: "Include any additional information that we may require"
-	}
+  name: "description",
+  id: "description",
+  label: {
+    text: "Description (optional)",
+    classes: "govuk-label--m",
+    isPageHeading: true
+  },
+  hint: {
+    text: "Include any additional information that we may require"
+  }
 }) }}
 
 {{ govukButton({
-	text: "Save"
+  text: "Save"
 }) }}
 
 </form>
