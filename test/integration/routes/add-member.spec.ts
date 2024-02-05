@@ -49,7 +49,7 @@ describe('Add-member endpoint integration tests', () => {
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
-        test('Should log the member details and details on POST request.', async () => {
+        test('Should log the add-member details on POST request.', async () => {
             const res = await request(app).post(config.ADD_MEMBER_URL).send(MOCK_POST_ADD_MEMBER);
 
             const mockLog = log.info as jest.Mock;

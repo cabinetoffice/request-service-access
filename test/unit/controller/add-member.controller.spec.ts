@@ -48,7 +48,7 @@ describe('add-member POST tests', () => {
 
         expect(res.redirect).toBeCalledWith(config.LANDING);
     });
-    test('should log member details and description on POST request', () => {
+    test('should log add-member details on POST request', () => {
         const res = mockResponse();
 
         const mockLogInfo = log.info as jest.Mock;
