@@ -4,6 +4,8 @@ export const GET_REQUEST_MOCK = { method: 'GET', path: '/test' };
 
 export const MOCK_POST_REMOVE_MEMBER = { github_handle: 'example', description: 'description' };
 
+export const MOCK_POST_TEAM_REQUEST = { team_name: 'team1', description: 'description' };
+
 export const MOCK_CORS_VALUE = {
     origin: [config.CDN_HOST, config.BASE_URL],
     credentials: true
