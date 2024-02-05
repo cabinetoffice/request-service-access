@@ -3,7 +3,7 @@ export const MOCK_GET_CONFIRMATION_RESPONSE = 'GitHub request complete';
 export const MOCK_GET_LANDING_RESPONSE = 'GitHub request application';
 
 export const MOCK_GET_REMOVE_MEMBER_RESPONSE = 'Remove a GitHub Member';
-export const MOCK_POST_REMOVE_MEMBER_RESPONSE = 'Github Handle: example, Description: description';
+export const MOCK_POST_REMOVE_MEMBER_RESPONSE = 'Github Handle: example';
 
 export const MOCK_NOT_FOUND_RESPONSE = 'Page not found';
 export const MOCK_SERVICE_UNAVAILABLE = 'Sorry, there is a problem with the service';
