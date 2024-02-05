@@ -1,6 +1,8 @@
 import * as config from '../../src/config';
 
 export const GET_REQUEST_MOCK = { method: 'GET', path: '/test' };
+
+export const MOCK_POST_ADD_REPO = { repo_name: 'repo1', visibility: 'public' };
 export const MOCK_POST_ADD_MEMBER = { first_name: 'example', last_name: 'example', github_handle: 'example', email_address: 'email', description: 'description' };
 export const MOCK_POST_ADD_TEAM = { team_name: 'team1', team_maintainer_github_handle: 'bob' };
 export const MOCK_POST_REMOVE_MEMBER = { github_handle: 'example' };
