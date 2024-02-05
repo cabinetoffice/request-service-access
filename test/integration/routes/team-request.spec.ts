@@ -25,7 +25,7 @@ mockedLogger.mockImplementation((req: Request, res: Response, next: NextFunction
 const mockedAuth = authentication as jest.Mock<typeof authentication>;
 mockedAuth.mockImplementation((_req: Request, _res: Response, next: NextFunction) => next());
 
-describe('Remove-member endpoint integration tests', () => {
+describe('Team-request endpoint integration tests', () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
