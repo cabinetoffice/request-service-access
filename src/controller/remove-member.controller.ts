@@ -9,11 +9,10 @@ export const get = (_req: Request, res: Response) => {
 export const post = (req: Request, res: Response) => {
 
     const githubHandle = req.body.github_handle;
-    const description = req.body.description;
 
     // validation middleware and data assignment to be implemented
 
-    log.info(`Github Handle: ${githubHandle}, Description: ${description}`);
+    log.info(`Github Handle: ${githubHandle}`);
 
     return res.redirect(config.LANDING);
 };
