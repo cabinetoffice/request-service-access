@@ -11,7 +11,7 @@ import { logger } from '../../../src/middleware/logger.middleware';
 import { log } from '../../../src/utils/logger';
 import { authentication } from '../../../src/middleware/authentication.middleware';
 
-import { MOCK_REDIRECT_MESSSAGE, MOCK_POST_ADD_TEAM_RESPONSE, MOCK_GET_ADD_TEAM_RESPONSE } from '../../mock/text.mock';
+import { MOCK_REDIRECT_MESSAGE as MOCK_REDIRECT_MESSAGE, MOCK_POST_ADD_TEAM_RESPONSE, MOCK_GET_ADD_TEAM_RESPONSE } from '../../mock/text.mock';
 import { MOCK_POST_ADD_TEAM } from '../../mock/data';
 
 jest.mock('../../../src/utils/logger', () => ({
@@ -45,7 +45,7 @@ describe('add-team endpoint integration tests', () => {
             const res = await request(app).post(config.ADD_TEAM_URL).send(MOCK_POST_ADD_TEAM);
 
             expect(res.status).toEqual(302);
-            expect(res.text).toContain(MOCK_REDIRECT_MESSSAGE);
+            expect(res.text).toContain(MOCK_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
@@ -55,7 +55,7 @@ describe('add-team endpoint integration tests', () => {
 
             const mockLog = log.info as jest.Mock;
 
-            expect(res.text).toContain(MOCK_REDIRECT_MESSSAGE);
+            expect(res.text).toContain(MOCK_REDIRECT_MESSAGE);
             expect(mockLog).toBeCalledWith(MOCK_POST_ADD_TEAM_RESPONSE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
