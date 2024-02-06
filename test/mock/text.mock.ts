@@ -12,7 +12,7 @@ export const MOCK_POST_REMOVE_MEMBER_RESPONSE = 'Github Handle: example';
 export const MOCK_GET_TEAM_REQUEST_RESPONSE = 'Additional Team Request';
 export const MOCK_POST_TEAM_REQUEST_RESPONSE = 'Team Name: team1';
 
-export const MOCK_GET_ADD_TEAM_MEMBER_RESPONSE = 'Add a GitHub Member to a team';
+export const MOCK_GET_ADD_TEAM_MEMBER_RESPONSE = 'Add a GitHub member to a team';
 export const MOCK_POST_ADD_TEAM_MEMBER_RESPONSE = 'Team Name: team1, Team Member GitHub Handle: joe';
 
 export const MOCK_NOT_FOUND_RESPONSE = 'Page not found';

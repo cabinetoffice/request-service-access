@@ -10,7 +10,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Add a GitHub Member to a team</h1>
+      <h1 class="govuk-heading-l">Add a GitHub member to a team</h1>
 
       <p class="govuk-body">
         When a user has access to our GitHub organisations and they wish to be added to a team within the Cabinet Office GitHub organisation.
@@ -30,12 +30,12 @@
 
         {{ govukInput({
           label: {
-            text: "Team maintainer GitHub handle",
+            text: "Member GitHub handle ",
             classes: "govuk-label--m"
           },
           classes: "govuk-input--width-10",
-          id: "team-maintainer-github-handle",
-          name: "team_maintainer_github_handle"
+          id: "team-member-github-handle",
+          name: "team_member_github_handle"
         }) }}
 
         {{ govukButton({
