@@ -29,17 +29,17 @@
         }) }}
 
         {{ govukTextarea({
-            name: "description",
-            id: "description",
-            label: {
-              text: "Description (optional)",
-              classes: "govuk-label--m",
-              isPageHeading: true
-            },
-            hint: {
-              text: "Include a description on why this user is getting removed."
-            }
-          }) }}
+          name: "description",
+          id: "description",
+          label: {
+            text: "Description (optional)",
+            classes: "govuk-label--m",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Include a description on why this user is getting removed."
+          }
+        }) }}
 
         {{ govukButton({
           text: "Save"
