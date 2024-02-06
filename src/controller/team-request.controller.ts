@@ -9,11 +9,10 @@ export const get = (_req: Request, res: Response) => {
 export const post = (req: Request, res: Response) => {
 
     const teamName = req.body.team_name;
-    const description = req.body.description;
 
     // validation middleware and data assignment to be implemented
 
-    log.info(`Team Name: ${teamName}, Description: ${description}`);
+    log.info(`Team Name: ${teamName}`);
 
     return res.redirect(config.LANDING);
 };
