@@ -2,7 +2,7 @@ export const MOCK_OK_RESPONSE = 'OK';
 export const MOCK_GET_CONFIRMATION_RESPONSE = 'GitHub request complete';
 export const MOCK_GET_LANDING_RESPONSE = 'GitHub request application';
 export const MOCK_GET_ADD_MEMBER_RESPONSE = 'Add GitHub member';
-export const MOCK_POST_ADD_MEMBER_RESPONSE = 'first_name: example, last_name: example, github_handle: example, email_address: email, description: description';
+export const MOCK_POST_ADD_MEMBER_RESPONSE = 'first_name: example, last_name: example, github_handle: example, email_address: email';
 export const MOCK_GET_ADD_TEAM_RESPONSE = 'Add a GitHub Team';
 export const MOCK_POST_ADD_TEAM_RESPONSE = 'Team Name: team1, Team Maintainer GitHub Handle: bob';
 
