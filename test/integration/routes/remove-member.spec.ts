@@ -12,7 +12,7 @@ import { logger } from '../../../src/middleware/logger.middleware';
 import { log } from '../../../src/utils/logger';
 import { authentication } from '../../../src/middleware/authentication.middleware';
 
-import { MOCK_REDIRECT_MESSSAGE, MOCK_GET_REMOVE_MEMBER_RESPONSE, MOCK_POST_REMOVE_MEMBER_RESPONSE } from '../../mock/text.mock';
+import { MOCK_REDIRECT_MESSAGE, MOCK_GET_REMOVE_MEMBER_RESPONSE, MOCK_POST_REMOVE_MEMBER_RESPONSE } from '../../mock/text.mock';
 import { MOCK_POST_REMOVE_MEMBER } from '../../mock/data';
 
 const mockedLogger = logger as jest.Mock<typeof logger>;
@@ -40,7 +40,7 @@ describe('Remove-member endpoint integration tests', () => {
             const res = await request(app).post(config.REMOVE_MEMBER_URL).send(MOCK_POST_REMOVE_MEMBER);
 
             expect(res.status).toEqual(302);
-            expect(res.text).toContain(MOCK_REDIRECT_MESSSAGE);
+            expect(res.text).toContain(MOCK_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
@@ -50,7 +50,7 @@ describe('Remove-member endpoint integration tests', () => {
             const mockLog = log.info as jest.Mock;
 
             expect(mockLog).toBeCalledWith(MOCK_POST_REMOVE_MEMBER_RESPONSE);
-            expect(res.text).toContain(MOCK_REDIRECT_MESSSAGE);
+            expect(res.text).toContain(MOCK_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
