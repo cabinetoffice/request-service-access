@@ -1,5 +1,6 @@
 jest.mock('../../../src/middleware/logger.middleware');
 jest.mock('../../../src/middleware/authentication.middleware');
+jest.mock('../../../src/utils/logger');
 
 import { jest, beforeEach, describe, expect, test } from '@jest/globals';
 import { Request, Response, NextFunction } from 'express';
@@ -14,12 +15,6 @@ import { authentication } from '../../../src/middleware/authentication.middlewar
 import { MOCK_REDIRECT_MESSSAGE, MOCK_GET_REMOVE_MEMBER_RESPONSE, MOCK_POST_REMOVE_MEMBER_RESPONSE } from '../../mock/text.mock';
 import { MOCK_POST_REMOVE_MEMBER } from '../../mock/data';
 import { ErrorMessages } from '../../../src/validation/error.messages';
-
-jest.mock('../../../src/utils/logger', () => ({
-    log: {
-        info: jest.fn()
-    }
-}));
 
 const mockedLogger = logger as jest.Mock<typeof logger>;
 mockedLogger.mockImplementation((req: Request, res: Response, next: NextFunction) => next());
@@ -58,10 +53,10 @@ describe('Remove-member endpoint integration tests', () => {
                 description: '1000chars.'.repeat(100) + ':)'
             });
 
-            expect(res.text).toContain(ErrorMessages.GIT_HANDLE);
             expect(res.status).toEqual(200);
             expect(res.text).toContain(ErrorMessages.GIT_HANDLE);
             expect(res.text).toContain(ErrorMessages.DESCRIPTION_LENGTH);
+            expect(res.text).toContain(MOCK_GET_REMOVE_MEMBER_RESPONSE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });

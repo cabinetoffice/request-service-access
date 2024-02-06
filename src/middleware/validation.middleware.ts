@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { validationResult, FieldValidationError } from 'express-validator';
 
 import { log } from '../utils/logger';
+import { FormattedValidationErrors } from '../model/validation.model';
 
 export const checkValidations = (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -24,7 +25,7 @@ export const checkValidations = (req: Request, res: Response, next: NextFunction
 };
 
 const formatValidationError = (errorList: FieldValidationError[]) => {
-    const errors = { 'errorList': [] } as any;
+    const errors = { 'errorList': [] } as FormattedValidationErrors;
     errorList.forEach( (e: FieldValidationError) => {
         errors.errorList.push({ href: `#${e.path}`, text: e.msg });
         errors[e.path] = { text: e.msg };
