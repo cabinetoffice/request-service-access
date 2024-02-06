@@ -3,16 +3,16 @@ import { log } from '../utils/logger';
 import * as config from '../config';
 
 export const get = (_req: Request, res: Response) => {
-    return res.render(config.REMOVE_MEMBER);
+    return res.render(config.TEAM_REQUEST);
 };
 
 export const post = (req: Request, res: Response) => {
 
-    const githubHandle = req.body.github_handle;
+    const teamName = req.body.team_name;
 
     // validation middleware and data assignment to be implemented
 
-    log.info(`Github Handle: ${githubHandle}`);
+    log.info(`Team Name: ${teamName}`);
 
     return res.redirect(config.LANDING);
 };

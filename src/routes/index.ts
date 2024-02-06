@@ -8,6 +8,7 @@ import confirmationRouter from './confirmation';
 import addMemberRouter from './add-member';
 import addTeamRouter from './add-team';
 import removeMemberRouter from './remove-member';
+import teamRequestRouter from './team-request';
 
 const router = Router();
 
@@ -21,5 +22,6 @@ router.use(confirmationRouter);
 router.use(healthcheckRouter);
 router.use(addTeamRouter);
 router.use(removeMemberRouter);
+router.use(teamRequestRouter);
 
 export default router;

@@ -7,7 +7,10 @@ export const MOCK_GET_ADD_TEAM_RESPONSE = 'Add a GitHub Team';
 export const MOCK_POST_ADD_TEAM_RESPONSE = 'Team Name: team1, Team Maintainer GitHub Handle: bob';
 
 export const MOCK_GET_REMOVE_MEMBER_RESPONSE = 'Remove a GitHub Member';
-export const MOCK_POST_REMOVE_MEMBER_RESPONSE = 'Github Handle: example, Description: description';
+export const MOCK_POST_REMOVE_MEMBER_RESPONSE = 'Github Handle: example';
+
+export const MOCK_GET_TEAM_REQUEST_RESPONSE = 'Additional Team Request';
+export const MOCK_POST_TEAM_REQUEST_RESPONSE = 'Team Name: team1';
 
 export const MOCK_NOT_FOUND_RESPONSE = 'Page not found';
 export const MOCK_SERVICE_UNAVAILABLE = 'Sorry, there is a problem with the service';

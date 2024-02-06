@@ -3,15 +3,15 @@ jest.mock('../../../src/utils/logger');
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 import { Request, Response } from 'express';
 
-import { get, post } from '../../../src/controller/remove-member.controller';
+import { get, post } from '../../../src/controller/team-request.controller';
 import * as config from '../../../src/config';
 import { log } from '../../../src/utils/logger';
 
-import { MOCK_POST_REMOVE_MEMBER } from '../../mock/data';
-import { MOCK_POST_REMOVE_MEMBER_RESPONSE } from '../../mock/text.mock';
+import { MOCK_POST_TEAM_REQUEST } from '../../mock/data';
+import { MOCK_POST_TEAM_REQUEST_RESPONSE } from '../../mock/text.mock';
 
 const req = {
-    body: MOCK_POST_REMOVE_MEMBER
+    body: MOCK_POST_TEAM_REQUEST
 } as Request;
 
 const mockResponse = () => {
@@ -21,23 +21,23 @@ const mockResponse = () => {
     return res;
 };
 
-describe('Remove-member controller test suites', () => {
+describe('Team-request controller test suites', () => {
     afterEach(() => {
         jest.resetAllMocks();
     });
 
-    describe('remove-member GET tests', () => {
+    describe('team-request GET tests', () => {
 
-        test('should render remove-member page', () => {
+        test('should render team-request page', () => {
             const res = mockResponse();
 
             get(req, res);
 
-            expect(res.render).toHaveBeenCalledWith(config.REMOVE_MEMBER);
+            expect(res.render).toHaveBeenCalledWith(config.TEAM_REQUEST);
         });
     });
 
-    describe('remove-member POST tests', () => {
+    describe('team-request POST tests', () => {
 
         test('should redirect to landing-page on POST request', () => {
             const res = mockResponse();
@@ -46,14 +46,14 @@ describe('Remove-member controller test suites', () => {
 
             expect(res.redirect).toBeCalledWith(config.LANDING);
         });
-        test('should log GitHub handle and More Details on POST request', () => {
+        test('Should log the team name and description on POST request.', () => {
             const res = mockResponse();
 
             const mockLogInfo = log.info as jest.Mock;
 
             post(req, res);
 
-            expect(mockLogInfo).toHaveBeenCalledWith(MOCK_POST_REMOVE_MEMBER_RESPONSE);
+            expect(mockLogInfo).toHaveBeenCalledWith(MOCK_POST_TEAM_REQUEST_RESPONSE);
 
         });
     });
