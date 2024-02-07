@@ -21,6 +21,7 @@ export const CONFIRMATION = 'confirmation';
 export const ADD_TEAM = 'add-team';
 export const TEAM_REQUEST = 'team-request';
 export const ADD_TEAM_MEMBER = 'add-team-member';
+export const ADD_REPO_REQUEST = 'add-repo-request';
 
 // Routing paths
 
@@ -32,6 +33,7 @@ export const CONFIRMATION_URL = '/confirmation';
 export const ADD_TEAM_URL = '/add-team';
 export const TEAM_REQUEST_URL = '/team-request';
 export const ADD_TEAM_MEMBER_URL = '/add-team-member';
+export const ADD_REPO_REQUEST_URL = '/add-repo-request';
 
 export const SERVICE_URL = `${BASE_URL}${CONFIRMATION_URL}`;
 
