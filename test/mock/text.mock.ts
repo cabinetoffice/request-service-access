@@ -15,6 +15,9 @@ export const MOCK_POST_TEAM_REQUEST_RESPONSE = 'Team Name: team1';
 export const MOCK_GET_ADD_TEAM_MEMBER_RESPONSE = 'Add a GitHub member to a team';
 export const MOCK_POST_ADD_TEAM_MEMBER_RESPONSE = 'Team Name: team1, Team Member GitHub Handle: joe';
 
+export const MOCK_GET_ADD_REPO_REQUEST_RESPONSE = 'Add a GitHub Repository Request';
+export const MOCK_POST_ADD_REPO_REQUEST_RESPONSE = 'Repository Name: repo1';
+
 export const MOCK_NOT_FOUND_RESPONSE = 'Page not found';
 export const MOCK_SERVICE_UNAVAILABLE = 'Sorry, there is a problem with the service';
 export const MOCK_SERVER_ERROR = 'Pipe 3000 requires elevated privileges';

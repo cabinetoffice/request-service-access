@@ -10,6 +10,7 @@ import addTeamRouter from './add-team';
 import removeMemberRouter from './remove-member';
 import teamRequestRouter from './team-request';
 import addTeamMemberRouter from './add-team-member';
+import addRepoRequestRouter from './add-repo-request';
 
 const router = Router();
 
@@ -25,5 +26,6 @@ router.use(addTeamRouter);
 router.use(removeMemberRouter);
 router.use(teamRequestRouter);
 router.use(addTeamMemberRouter);
+router.use(addRepoRequestRouter);
 
 export default router;
