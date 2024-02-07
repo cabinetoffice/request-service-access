@@ -14,6 +14,7 @@ import { authentication } from '../../../src/middleware/authentication.middlewar
 
 import { MOCK_REDIRECT_MESSAGE, MOCK_GET_REMOVE_MEMBER_RESPONSE, MOCK_POST_REMOVE_MEMBER_RESPONSE } from '../../mock/text.mock';
 import { MOCK_POST_REMOVE_MEMBER } from '../../mock/data';
+import { ErrorMessages } from '../../../src/validation/error.messages';
 
 const mockedLogger = logger as jest.Mock<typeof logger>;
 mockedLogger.mockImplementation((req: Request, res: Response, next: NextFunction) => next());
@@ -35,6 +36,7 @@ describe('Remove-member endpoint integration tests', () => {
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
     });
+
     describe('POST tests', () => {
         test('Should redirect to landing page after POST request', async () => {
             const res = await request(app).post(config.REMOVE_MEMBER_URL).send(MOCK_POST_REMOVE_MEMBER);
@@ -44,6 +46,21 @@ describe('Remove-member endpoint integration tests', () => {
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
+
+        test('Should render the same page with error messages after POST request', async () => {
+            const res = await request(app).post(config.REMOVE_MEMBER_URL).send({
+                github_handle: '',
+                description: '1000chars.'.repeat(100) + ':)'
+            });
+
+            expect(res.status).toEqual(200);
+            expect(res.text).toContain(ErrorMessages.GIT_HANDLE);
+            expect(res.text).toContain(ErrorMessages.DESCRIPTION_LENGTH);
+            expect(res.text).toContain(MOCK_GET_REMOVE_MEMBER_RESPONSE);
+            expect(mockedLogger).toHaveBeenCalledTimes(1);
+            expect(mockedAuth).toHaveBeenCalledTimes(1);
+        });
+
         test('Should log the GitHub Handle and More Details on POST request.', async () => {
             const res = await request(app).post(config.REMOVE_MEMBER_URL).send(MOCK_POST_REMOVE_MEMBER);
 

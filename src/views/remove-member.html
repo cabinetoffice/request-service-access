@@ -1,10 +1,7 @@
 {% extends "layout.html" %}
 
 {% block beforeContent %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/landing-page"
-  }) }}
+  {% include "include/back-link.html" %}
 {% endblock %}
 
 {% block content %}
@@ -16,19 +13,25 @@
         When a user no longer requires access to our GitHub organisations(e.g they have left The Cabinet Office) they should be removed from the Cabinet Office GitHub organisation.
       </p>
 
-      <form method="post" novalidate>
+      {% include "include/error-list.html" %}
+
+      <form method="post">
 
         {{ govukInput({
+          errorMessage: errors.github_handle if errors,
           label: {
             text: "GitHub Handle",
             classes: "govuk-label--m"
           },
           classes: "govuk-input--width-10",
-          id: "github-handle",
-          name: "github_handle"
+          id: "github_handle",
+          name: "github_handle",
+          value: github_handle
         }) }}
 
         {{ govukTextarea({
+          errorMessage: errors.description if errors,
+          value: description,
           name: "description",
           id: "description",
           label: {
@@ -41,10 +44,8 @@
           }
         }) }}
 
-        {{ govukButton({
-          text: "Save"
-        }) }}
-        
+        {% include "include/save-button.html" %}
+
       </form>
     </div>
   </div>
