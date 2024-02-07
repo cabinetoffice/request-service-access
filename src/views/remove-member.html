@@ -31,9 +31,9 @@
 
         {{ govukTextarea({
           errorMessage: errors.description if errors,
+          value: description,
           name: "description",
           id: "description",
-          value: description,
           label: {
             text: "Description (optional)",
             classes: "govuk-label--m",
