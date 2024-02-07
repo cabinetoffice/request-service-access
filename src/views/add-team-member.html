@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/landing-page"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Add a GitHub member to a team</h1>
+
+      <p class="govuk-body">
+        When a user has access to our GitHub organisations and they wish to be added to a team within the Cabinet Office GitHub organisation.
+      </p>
+
+      <form method="post" novalidate>
+
+        {{ govukInput({
+          label: {
+            text: "Team name",
+            classes: "govuk-label--m"
+          },
+          classes: "govuk-input--width-10",
+          id: "team-name",
+          name: "team_name"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Member GitHub handle ",
+            classes: "govuk-label--m"
+          },
+          classes: "govuk-input--width-10",
+          id: "team-member-github-handle",
+          name: "team_member_github_handle"
+        }) }}
+
+        {{ govukButton({
+          text: "Save"
+        }) }}
+        
+      </form>
+    </div>
+  </div>
+{% endblock %}
