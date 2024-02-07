@@ -1,3 +1,4 @@
+jest.mock('../../../src/utils/logger');
 jest.mock('../../../src/middleware/logger.middleware');
 jest.mock('../../../src/middleware/authentication.middleware');
 
@@ -13,12 +14,6 @@ import { authentication } from '../../../src/middleware/authentication.middlewar
 
 import { MOCK_REDIRECT_MESSAGE, MOCK_POST_ADD_TEAM_MEMBER_RESPONSE, MOCK_GET_ADD_TEAM_MEMBER_RESPONSE as MOCK_GET_ADD_TEAM_MEMBER_RESPONSE } from '../../mock/text.mock';
 import { MOCK_POST_ADD_TEAM_MEMBER } from '../../mock/data';
-
-jest.mock('../../../src/utils/logger', () => ({
-    log: {
-        info: jest.fn()
-    }
-}));
 
 const mockedLogger = logger as jest.Mock<typeof logger>;
 mockedLogger.mockImplementation((_req: Request, _res: Response, next: NextFunction) => next());

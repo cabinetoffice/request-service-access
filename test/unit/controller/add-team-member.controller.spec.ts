@@ -1,3 +1,5 @@
+jest.mock('../../../src/utils/logger');
+
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 import { Request, Response } from 'express';
 
@@ -7,12 +9,6 @@ import { log } from '../../../src/utils/logger';
 
 import { MOCK_POST_ADD_TEAM_MEMBER } from '../../mock/data';
 import { MOCK_POST_ADD_TEAM_MEMBER_RESPONSE } from '../../mock/text.mock';
-
-jest.mock('../../../src/utils/logger', () => ({
-    log: {
-        info: jest.fn()
-    }
-}));
 
 const req = {
     body: MOCK_POST_ADD_TEAM_MEMBER
