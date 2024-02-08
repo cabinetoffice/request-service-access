@@ -7,6 +7,7 @@ export const MOCK_POST_ADD_MEMBER = { first_name: 'example', last_name: 'example
 export const MOCK_POST_ADD_TEAM = { team_name: 'team1', team_maintainer_github_handle: 'bob' };
 export const MOCK_POST_REMOVE_MEMBER = { github_handle: 'example' };
 export const MOCK_POST_TEAM_REQUEST = { team_name: 'team1' };
+export const MOCK_POST_MEMBER_REQUEST = { github_handle: 'example' };
 
 export const MOCK_POST_ADD_TEAM_MEMBER = { team_name: 'team1', team_member_github_handle: 'joe' };
 
