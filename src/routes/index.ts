@@ -10,7 +10,7 @@ import addTeamRouter from './add-team';
 import removeMemberRouter from './remove-member';
 import teamRequestRouter from './team-request';
 import addTeamMemberRouter from './add-team-member';
-import addRepoRequestRouter from './add-repo-request';
+import addRepoRequestRouter from './repo-request';
 
 const router = Router();
 

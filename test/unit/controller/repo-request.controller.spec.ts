@@ -2,15 +2,15 @@ jest.mock('../../../src/utils/logger');
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 import { Request, Response } from 'express';
 
-import { get, post } from '../../../src/controller/add-repo-request.controller';
+import { get, post } from '../../../src/controller/repo-request.controller';
 import * as config from '../../../src/config';
 import { log } from '../../../src/utils/logger';
 
-import { MOCK_POST_ADD_REPO_REQUEST } from '../../mock/data';
-import { MOCK_POST_ADD_REPO_REQUEST_RESPONSE } from '../../mock/text.mock';
+import { MOCK_POST_REPO_REQUEST } from '../../mock/data';
+import { MOCK_POST_REPO_REQUEST_RESPONSE } from '../../mock/text.mock';
 
 const req = {
-    body: MOCK_POST_ADD_REPO_REQUEST
+    body: MOCK_POST_REPO_REQUEST
 } as Request;
 
 const mockResponse = () => {
@@ -20,23 +20,23 @@ const mockResponse = () => {
     return res;
 };
 
-describe('Add-repo-request controller test suites', () => {
+describe('repo-request controller test suites', () => {
     afterEach(() => {
         jest.resetAllMocks();
     });
 
-    describe('add-repo-request GET tests', () => {
+    describe('repo-request GET tests', () => {
 
-        test('should render add-repo page', () => {
+        test('should render repo request page', () => {
             const res = mockResponse();
 
             get(req, res);
 
-            expect(res.render).toHaveBeenCalledWith(config.ADD_REPO_REQUEST);
+            expect(res.render).toHaveBeenCalledWith(config.REPO_REQUEST);
         });
     });
 
-    describe('add-repo-request POST tests', () => {
+    describe('repo-request POST tests', () => {
 
         test('should redirect to landing-page on POST request', () => {
             const res = mockResponse();
@@ -52,7 +52,7 @@ describe('Add-repo-request controller test suites', () => {
 
             post(req, res);
 
-            expect(mockLogInfo).toHaveBeenCalledWith(MOCK_POST_ADD_REPO_REQUEST_RESPONSE);
+            expect(mockLogInfo).toHaveBeenCalledWith(MOCK_POST_REPO_REQUEST_RESPONSE);
         });
     });
 });

@@ -7,7 +7,7 @@ export const MOCK_POST_REMOVE_MEMBER = { github_handle: 'example' };
 export const MOCK_POST_TEAM_REQUEST = { team_name: 'team1' };
 
 export const MOCK_POST_ADD_TEAM_MEMBER = { team_name: 'team1', team_member_github_handle: 'joe' };
-export const MOCK_POST_ADD_REPO_REQUEST = { repo_name: 'repo1' };
+export const MOCK_POST_REPO_REQUEST = { repo_name: 'repo1' };
 
 export const MOCK_CORS_VALUE = {
     origin: [config.CDN_HOST, config.BASE_URL],
