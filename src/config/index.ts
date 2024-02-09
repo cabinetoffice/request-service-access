@@ -23,6 +23,7 @@ export const ADD_TEAM = 'add-team';
 export const TEAM_REQUEST = 'team-request';
 export const ADD_TEAM_MEMBER = 'add-team-member';
 export const ADD_REPO = 'add-repo';
+export const REPO_REQUEST = 'repo-request';
 
 // Routing paths
 
@@ -36,6 +37,7 @@ export const ADD_TEAM_URL = '/add-team';
 export const TEAM_REQUEST_URL = '/team-request';
 export const ADD_TEAM_MEMBER_URL = '/add-team-member';
 export const ADD_REPO_URL = '/add-repo';
+export const REPO_REQUEST_URL = '/repo-request';
 
 export const SERVICE_URL = `${BASE_URL}${CONFIRMATION_URL}`;
 
