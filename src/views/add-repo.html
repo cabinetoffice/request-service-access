@@ -13,19 +13,24 @@
         GitHub repositories contains all of your code, your files, and each file's revision history. You can discuss and manage your work within the repository.
       </p>
 
+      {% include "include/error-list.html" %}
+
       <form method="post" novalidate>
 
         {{ govukInput({
+          errorMessage: errors.repo_name if errors,
           label: {
             text: "Repository name",
             classes: "govuk-label--m"
           },
           classes: "govuk-input--width-10",
-          id: "repo-name",
-          name: "repo_name"
+          id: "repo_name",
+          name: "repo_name",
+          value: repo_name
         }) }}
 
         {{ govukRadios({
+          errorMessage: errors.visibility if errors,
           name: "visibility",
           fieldset: {
             legend: {
@@ -47,20 +52,22 @@
         }) }}
 
         {{ govukTextarea({
-            name: "description",
-            id: "description",
-            label: {
-              text: "Description (optional)",
-              classes: "govuk-label--m",
-              isPageHeading: true
-            },
-            hint: {
-              text: "Include more details to why this GitHub repository needs to be
-              added."
-            }
-          }) }}
+          errorMessage: errors.description if errors,
+          value: description,
+          name: "description",
+          id: "description",
+          label: {
+            text: "Description (optional)",
+            classes: "govuk-label--m",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Include more details to why this GitHub repository needs to be
+            added."
+          }
+        }) }}
 
-          {% include "include/save-button.html" %}
+        {% include "include/save-button.html" %}
 
       </form>
     </div>
