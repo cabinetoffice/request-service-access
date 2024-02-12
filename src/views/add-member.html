@@ -1,132 +1,132 @@
 {% extends "layout.html" %}
 
- {% block beforeContent %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/landing-page"
-  }) }}
+{% block beforeContent %}
+  {% include "include/back-link.html" %}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Add a GitHub Member</h1>
       
-      {% call govukFieldset({
-        legend: {
-          text: "Add GitHub member",
-          classes: "govuk-fieldset__legend--l",
-          isPageHeading: true
-      }
-  	  }) %}
-
       <p class="govuk-body">
         When a user requires access to our GitHub organisations (e.g they have joined The Cabinet Office) they should be added to the Cabinet Office GitHub organisation.
       </p>
 
+      {% include "include/error-list.html" %}
+
       <form method="post" novalidate>
 
-          {{ govukInput({
-            label: {
-              text: "First Name"
-            },
-            classes: "govuk-!-width-two-thirds",
-            id: "first-name",
-            name: "first_name",
-            autocomplete: "first-name"
-          }) }}
+        {{ govukInput({
+          errorMessage: errors.first_name if errors,
+          label: {
+            text: "First Name"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "first-name",
+          name: "first_name",
+          value: first_name,
+          autocomplete: "first-name"
+        }) }}
 
-          {{ govukInput({
-            label: {
-              text: "Last Name"
-            },
-            classes: "govuk-!-width-two-thirds",
-            id: "last-name",
-            name: "last_name",
-            autocomplete: "last-name"
-          }) }}
+        {{ govukInput({
+          errorMessage: errors.last_name if errors,
+          label: {
+            text: "Last Name"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "last-name",
+          name: "last_name",
+          value: last_name,
+          autocomplete: "last-name"
+        }) }}
 
-          {{ govukInput({
-            label: {
-              text: "GitHub Handle"
-            },
-            classes: "govuk-!-width-two-thirds",
-            id: "github-handle",
-            name: "github_handle",
-            autocomplete: "github-handle"
-          }) }}
+        {{ govukInput({
+          errorMessage: errors.github_handle if errors,
+          label: {
+            text: "GitHub Handle"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "github-handle",
+          name: "github_handle",
+          value: github_handle,
+          autocomplete: "github-handle"
+        }) }}
 
-          {{ govukInput({
-            label: {
-              text: "Email Address"
-            },
-            classes: "govuk-!-width-two-thirds",
-            id: "email-address",
-            name: "email_address",
-            type: "email",
-            autocomplete: "email",
-            spellcheck: false
-          }) }}
+        {{ govukInput({
+          errorMessage: errors.email_address if errors,
+          label: {
+            text: "Email Address"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "email-address",
+          name: "email_address",
+          value: email_address,
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false
+        }) }}
 
-          {% set dateHtml %}
-            {{ govukInput({
-              id: "contractor",
-              name: "contractor",
-              type: "date",
-              autocomplete: "date",
-              classes: "govuk-!-width-one-third",
-              label: {
-                text: "Contract start date"
+        {% set dateHtml %}
+          {{ govukInput({
+            errorMessage: errors.contractor_date if errors,
+            label: {
+              text: "Contract start date"
+            },
+            id: "contractor-date",
+            name: "contractor_date",
+            value: contractor_date,
+            type: "date",
+            autocomplete: "date",
+            classes: "govuk-!-width-one-third"
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          errorMessage: errors.contract_type if errors,
+          name: "contract_type",
+          fieldset: {
+            legend: {
+              text: "What is the contract type of the GitHub member?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [ 
+            {
+              value: "permanent",
+              text: "Permanent", 
+              checked: (contract_type == "permanent"),
+              conditional: {}
+            },
+            {
+              value: "contractor",
+              text: "Contractor",
+              checked: (contract_type == "contractor"),
+              conditional: {
+                html: dateHtml
               }
-            }) }}
-          {% endset -%}
+            }
+          ]
+        }) }}
 
-            {{ govukRadios({
-              name: "contactor",
-              fieldset: {
-                legend: {
-                  text: "What is the contract type of the GitHub member?",
-                  isPageHeading: true,
-                  classes: "govuk-fieldset__legend--l"
-                }
-              },
-              items: [ 
-                {
-                  value: "permanent",
-                  text: "Permanent", 
-                  checked: true,
-                  conditional: {}
-                },
-                {
-                  value: "contractor",
-                  text: "Contractor",
-                  conditional: {
-                    html: dateHtml
-                  }
-                }
-              ]
-            }) }}
+        {{ govukTextarea({
+          name: "description",
+          id: "description",
+          value: description,
+          label: {
+            text: "Description (optional)",
+            classes: "govuk-label--m",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Include any additional information that we may require"
+          }
+        }) }}
 
-            {{ govukTextarea({
-              name: "description",
-              id: "description",
-              label: {
-                text: "Description (optional)",
-                classes: "govuk-label--m",
-                isPageHeading: true
-              },
-              hint: {
-                text: "Include any additional information that we may require"
-              }
-              }) }}
-
-            {{ govukButton({
-              text: "Save"
-            }) }}
+        {% include "include/save-button.html" %}
 
       </form>
     </div>
   </div>
-
-{% endcall %}
-
 {%endblock%}
