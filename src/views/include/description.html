@@ -1,0 +1,13 @@
+{{ govukTextarea({
+  errorMessage: errors.description if errors,
+  name: "description",
+  id: "description",
+  label: {
+    text: descriptionText,
+    classes: "govuk-label--m",
+    isPageHeading: true
+  },
+  hint: {
+    text: descriptionHint
+  }
+}) }}
