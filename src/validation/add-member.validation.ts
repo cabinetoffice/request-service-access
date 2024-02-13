@@ -2,6 +2,7 @@ import { body } from 'express-validator';
 
 import { ErrorMessages } from './error.messages';
 import { descriptionValidation } from './fields/description.validation';
+import { checkDateFieldIfRadioButtonSelected } from './fields/helper/date.validation.helper';
 
 export const addMember = [
     body('first_name').not().isEmpty({ ignore_whitespace: true }).withMessage(ErrorMessages.FIRST_NAME),
@@ -9,6 +10,6 @@ export const addMember = [
     body('github_handle').not().isEmpty({ ignore_whitespace: true }).withMessage(ErrorMessages.GIT_HANDLE),
     body('email_address').not().isEmpty({ ignore_whitespace: true }).withMessage(ErrorMessages.EMAIL_ADDRESS),
     body('contract_type').notEmpty().withMessage(ErrorMessages.CONTRACT_TYPE),
-    body('contractor_date').if(body('contract_type').equals('contractor')).notEmpty().withMessage(ErrorMessages.CONTRACTOR_DATE).bail().isDate().withMessage(ErrorMessages.CONTRACTOR_DATE_FORMAT),
+    body('contractor_date').custom((value, { req }) => checkDateFieldIfRadioButtonSelected(req.body.contract_type === 'contractor', ErrorMessages.CONTRACTOR_DATE, ErrorMessages.CONTRACTOR_DATE_TIME, value)),
     ...descriptionValidation
 ];
