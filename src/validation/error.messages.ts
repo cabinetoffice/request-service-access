@@ -8,5 +8,7 @@ export enum ErrorMessages {
   CONTRACTOR_DATE= 'Enter the GitHub account holders contract start date in the correct format',
   CONTRACTOR_DATE_TIME= 'The contract start date cannot be more than one year in the future',
   REPO_NAME = 'Enter the repository name',
-  VISIBILITY = 'Select a visibility option'
+  VISIBILITY = 'Select a visibility option',
+  TEAM_MAINTAINER_GITHUB_HANDLE = 'Enter the team maintainer GitHub handle',
+  TEAM_NAME = 'Enter the team name',
 }
