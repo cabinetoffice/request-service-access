@@ -12,8 +12,9 @@ import { logger } from '../../../src/middleware/logger.middleware';
 import { log } from '../../../src/utils/logger';
 import { authentication } from '../../../src/middleware/authentication.middleware';
 
-import { MOCK_REDIRECT_MESSAGE as MOCK_REDIRECT_MESSAGE, MOCK_POST_ADD_TEAM_RESPONSE, MOCK_GET_ADD_TEAM_RESPONSE } from '../../mock/text.mock';
+import { MOCK_REDIRECT_MESSAGE, MOCK_GET_ADD_TEAM_RESPONSE, MOCK_POST_ADD_TEAM_RESPONSE } from '../../mock/text.mock';
 import { MOCK_POST_ADD_TEAM } from '../../mock/data';
+import { ErrorMessages } from '../../../src/validation/error.messages';
 
 const mockedLogger = logger as jest.Mock<typeof logger>;
 mockedLogger.mockImplementation((_req: Request, _res: Response, next: NextFunction) => next());
@@ -45,13 +46,27 @@ describe('add-team endpoint integration tests', () => {
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
 
-        test('Should log the Team Name and Team Maintainer GitHub handle on POST request.', async () => {
+        test('Should render the same page with error messages after POST request', async () => {
+            const res = await request(app).post(config.ADD_TEAM_URL).send({
+                repo_name: '',
+                team_maintainer_github_handle: '',
+            });
+
+            expect(res.status).toEqual(200);
+            expect(res.text).toContain(ErrorMessages.TEAM_NAME);
+            expect(res.text).toContain(ErrorMessages.TEAM_MAINTAINER_GITHUB_HANDLE);
+            expect(res.text).toContain(MOCK_GET_ADD_TEAM_RESPONSE);
+            expect(mockedLogger).toHaveBeenCalledTimes(1);
+            expect(mockedAuth).toHaveBeenCalledTimes(1);
+        });
+
+        test('Should log the add team details POST request', async () => {
             const res = await request(app).post(config.ADD_TEAM_URL).send(MOCK_POST_ADD_TEAM);
 
             const mockLog = log.info as jest.Mock;
 
-            expect(res.text).toContain(MOCK_REDIRECT_MESSAGE);
             expect(mockLog).toBeCalledWith(MOCK_POST_ADD_TEAM_RESPONSE);
+            expect(res.text).toContain(MOCK_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
