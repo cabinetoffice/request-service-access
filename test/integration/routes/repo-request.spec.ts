@@ -14,6 +14,7 @@ import { authentication } from '../../../src/middleware/authentication.middlewar
 
 import { MOCK_REDIRECT_MESSAGE, MOCK_GET_REPO_REQUEST_RESPONSE, MOCK_POST_REPO_REQUEST_RESPONSE } from '../../mock/text.mock';
 import { MOCK_POST_REPO_REQUEST } from '../../mock/data';
+import { ErrorMessages } from '../../../src/validation/error.messages';
 
 const mockedLogger = logger as jest.Mock<typeof logger>;
 mockedLogger.mockImplementation((_req: Request, _res: Response, next: NextFunction) => next());
@@ -44,6 +45,21 @@ describe('repo-request endpoint integration tests', () => {
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
+
+        test('Should render the same page with error messages after POST request', async () => {
+            const res = await request(app).post(config.REPO_REQUEST_URL).send({
+                repo_name: '',
+                description: '1000chars.'.repeat(100) + ':)'
+            });
+
+            expect(res.status).toEqual(200);
+            expect(res.text).toContain(ErrorMessages.REPO_NAME);
+            expect(res.text).toContain(ErrorMessages.DESCRIPTION_LENGTH);
+            expect(res.text).toContain(MOCK_GET_REPO_REQUEST_RESPONSE);
+            expect(mockedLogger).toHaveBeenCalledTimes(1);
+            expect(mockedAuth).toHaveBeenCalledTimes(1);
+        });
+
         test('Should log the repository name and description on POST request', async () => {
             const res = await request(app).post(config.REPO_REQUEST_URL).send(MOCK_POST_REPO_REQUEST);
 
