@@ -1,10 +1,7 @@
 {% extends "layout.html" %}
 
 {% block beforeContent %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/landing-page"
-  }) }}
+  {% include "include/back-link.html" %}
 {% endblock %}
 
 {% block content %}
@@ -15,10 +12,11 @@
       <p class="govuk-body">
         Use this page to request a more specific request that is not covered by the other options.
       </p>
-
+      {% include "include/error-list.html" %}
       <form method="post" novalidate>
 
         {{ govukInput({
+          errorMessage: errors.team_name if errors,
           label: {
             text: "Team Name",
             classes: "govuk-label--m"
@@ -26,11 +24,14 @@
           classes: "govuk-input--width-10",
           id: "team-name",
           name: "team_name"
+          value: team_name,
         }) }}
 
         {{ govukTextarea({
+          errorMessage: errors.description if errors,
           name: "description",
           id: "description",
+          value: description,
           label: {
             text: "Description - Permission changes",
             classes: "govuk-label--m",
@@ -41,9 +42,7 @@
           }
         }) }}
 
-        {{ govukButton({
-          text: "Save"
-        }) }}
+        {% include "include/save-button.html" %}
         
       </form>
     </div>
