@@ -5,8 +5,8 @@ import { ErrorMessages } from '../../../../../src/validation/error.messages';
 
 describe('checkDateFieldIfRadioButtonSelected unit test suite', () => {
 
-    const errMsgDate = ErrorMessages.CONTRACTOR_DATE;
-    const errMsgDateTime = ErrorMessages.CONTRACTOR_DATE_TIME;
+    const errMsgDate = ErrorMessages.CONTRACT_START_DATE;
+    const errMsgDateTime = ErrorMessages.CONTRACT_DATE_TIME;
 
     test('returns true when radio button is not selected', () => {
         expect(checkDateFieldIfRadioButtonSelected(false, errMsgDate, errMsgDateTime)).toBe(true);

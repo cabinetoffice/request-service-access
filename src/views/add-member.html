@@ -69,16 +69,16 @@
 
         {% set dateHtml %}
           {{ govukInput({
-            errorMessage: errors.contractor_date if errors,
+            errorMessage: errors.contract_start_date if errors,
             label: {
               text: "Contract start date"
             },
             hint: {
               text: "Enter the contract start date in the format dd/mm/yyyy. For example: '01/01/2024'"
             },
-            id: "contractor-date",
-            name: "contractor_date",
-            value: contractor_date,
+            id: "contract-start-date",
+            name: "contract_start_date",
+            value: contract_start_date,
             type: "date",
             autocomplete: "date",
             classes: "govuk-!-width-one-third"
@@ -103,9 +103,9 @@
               conditional: {}
             },
             {
-              value: "contractor",
-              text: "Contractor",
-              checked: (contract_type == "contractor"),
+              value: "non_permanent",
+              text: "Non-permanent (e.g. contractor/secondment)",
+              checked: (contract_type == "non_permanent"),
               conditional: {
                 html: dateHtml
               }
