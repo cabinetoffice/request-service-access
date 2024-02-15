@@ -14,6 +14,7 @@ import { authentication } from '../../../src/middleware/authentication.middlewar
 
 import { MOCK_REDIRECT_MESSAGE, MOCK_GET_TEAM_REQUEST_RESPONSE, MOCK_POST_TEAM_REQUEST_RESPONSE } from '../../mock/text.mock';
 import { MOCK_POST_TEAM_REQUEST } from '../../mock/data';
+import { ErrorMessages } from '../../../src/validation/error.messages';
 
 const mockedLogger = logger as jest.Mock<typeof logger>;
 mockedLogger.mockImplementation((req: Request, res: Response, next: NextFunction) => next());
@@ -41,6 +42,19 @@ describe('Team-request endpoint integration tests', () => {
 
             expect(res.status).toEqual(302);
             expect(res.text).toContain(MOCK_REDIRECT_MESSAGE);
+            expect(mockedLogger).toHaveBeenCalledTimes(1);
+            expect(mockedAuth).toHaveBeenCalledTimes(1);
+        });
+        test('Should render the same page with error messages after POST request', async () => {
+            const res = await request(app).post(config.TEAM_REQUEST_URL).send({
+                team_name: '',
+                description: '1000chars.'.repeat(100) + ':)'
+            });
+
+            expect(res.status).toEqual(200);
+            expect(res.text).toContain(ErrorMessages.TEAM_NAME);
+            expect(res.text).toContain(ErrorMessages.DESCRIPTION_LENGTH);
+            expect(res.text).toContain(MOCK_GET_TEAM_REQUEST_RESPONSE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
