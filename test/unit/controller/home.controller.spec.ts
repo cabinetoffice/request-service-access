@@ -1,7 +1,7 @@
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 import { Request, Response } from 'express';
 
-import { get } from '../../../src/controller/landing-page.controller';
+import { get } from '../../../src/controller/home.controller';
 import * as config from '../../../src/config';
 
 const req = {} as Request;
@@ -12,16 +12,16 @@ const mockResponse = () => {
     return res;
 };
 
-describe('Landing controller test suites', () => {
+describe('Home controller test suites', () => {
     afterEach(() => {
         jest.resetAllMocks();
     });
 
-    test('should render landing template', () => {
+    test('should render home template', () => {
         const res = mockResponse();
 
         get(req, res);
 
-        expect(res.render).toHaveBeenCalledWith(config.LANDING);
+        expect(res.render).toHaveBeenCalledWith(config.HOME);
     });
 });

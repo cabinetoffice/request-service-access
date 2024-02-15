@@ -12,24 +12,24 @@ import * as config from '../../../src/config';
 import { logger } from '../../../src/middleware/logger.middleware';
 import { authentication } from '../../../src/middleware/authentication.middleware';
 
-import { MOCK_GET_LANDING_RESPONSE } from '../../mock/text.mock';
+import { MOCK_GET_HOME_RESPONSE } from '../../mock/text.mock';
 
 const mockedLogger = logger as jest.Mock<typeof logger>;
-mockedLogger.mockImplementation((req: Request, res: Response, next: NextFunction) => next());
+mockedLogger.mockImplementation((_req: Request, _res: Response, next: NextFunction) => next());
 const mockedAuth = authentication as jest.Mock<typeof authentication>;
 mockedAuth.mockImplementation((_req: Request, _res: Response, next: NextFunction) => next());
 
-describe('Confirmation endpoint integration tests', () => {
+describe('Home endpoint integration tests', () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
 
     describe('GET tests', () => {
-        test('should render confirmation template', async () => {
-            const res = await request(app).get(config.LANDING_URL);
+        test('should render home template', async () => {
+            const res = await request(app).get(config.HOME_URL);
 
             expect(res.status).toEqual(200);
-            expect(res.text).toContain(MOCK_GET_LANDING_RESPONSE);
+            expect(res.text).toContain(MOCK_GET_HOME_RESPONSE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
