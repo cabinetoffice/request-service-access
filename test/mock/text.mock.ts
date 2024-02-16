@@ -6,7 +6,7 @@ export const MOCK_GET_ADD_REPO_RESPONSE = 'Add a GitHub Repository';
 export const MOCK_POST_ADD_REPO_RESPONSE = 'Repository Name: repo1, Visibility: public';
 
 export const MOCK_GET_ADD_MEMBER_RESPONSE = 'Add a GitHub Member';
-export const MOCK_POST_ADD_MEMBER_RESPONSE = 'first_name: example, last_name: example, github_handle: example, email_address: email, contract_type: permanent';
+export const MOCK_POST_ADD_MEMBER_RESPONSE = 'first_name: example, last_name: example, github_handle: example, email_address: email@hotmail.com, contract_type: permanent';
 
 export const MOCK_GET_ADD_TEAM_RESPONSE = 'Add a GitHub Team';
 export const MOCK_POST_ADD_TEAM_RESPONSE = 'Team Name: team1, Team Maintainer GitHub Handle: bob';

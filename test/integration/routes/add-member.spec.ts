@@ -59,7 +59,7 @@ describe('Add-member endpoint integration tests', () => {
             expect(res.text).toContain(ErrorMessages.FIRST_NAME);
             expect(res.text).toContain(ErrorMessages.LAST_NAME);
             expect(res.text).toContain(ErrorMessages.GIT_HANDLE);
-            expect(res.text).toContain(ErrorMessages.EMAIL_ADDRESS);
+            expect(res.text).toContain(ErrorMessages.EMAIL_ADDRESS_EMPTY);
             expect(res.text).toContain(ErrorMessages.CONTRACT_TYPE);
             expect(res.text).toContain(MOCK_GET_ADD_MEMBER_RESPONSE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
