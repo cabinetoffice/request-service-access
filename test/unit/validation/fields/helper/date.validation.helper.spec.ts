@@ -5,7 +5,7 @@ import { ErrorMessages } from '../../../../../src/validation/error.messages';
 
 describe('checkDateFieldIfRadioButtonSelected unit test suite', () => {
 
-    const errMsgDate = ErrorMessages.CONTRACT_START_DATE;
+    const errMsgDate = ErrorMessages.CONTRACT_END_DATE;
     const errMsgDateTime = ErrorMessages.CONTRACT_DATE_TIME;
 
     test('returns true when radio button is not selected', () => {
@@ -23,13 +23,13 @@ describe('checkDateFieldIfRadioButtonSelected unit test suite', () => {
             .toThrow(errMsgDate);
     });
 
-    test('throws error for a date more than one year from now', () => {
-        const futureDate = DateTime.now().plus({ years: 1, days: 1 }).toISO();
+    test('throws error for a date in the past', () => {
+        const futureDate = DateTime.now().minus({ years: 1, days: 1 }).toISO();
         expect(() => checkDateFieldIfRadioButtonSelected(true, errMsgDate, errMsgDateTime, futureDate))
             .toThrow(errMsgDateTime);
     });
 
-    test('returns true for a valid date within the next year', () => {
+    test('returns true for a valid date in the future', () => {
         const validDate = DateTime.now().plus({ months: 6 }).toISO();
         expect(checkDateFieldIfRadioButtonSelected(true, errMsgDate, errMsgDateTime, validDate)).toBe(true);
     });

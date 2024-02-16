@@ -13,13 +13,12 @@ export const checkDateFieldIfRadioButtonSelected = (selected: boolean, errMsgDat
     const inputDate = DateTime.fromISO(value, { zone: 'utc' });
 
     const now = DateTime.now();
-    const oneYearFromNow = now.plus({ years: 1 });
 
     if (!inputDate.isValid) {
         throw new Error(errMsgDate);
     }
 
-    if (inputDate > oneYearFromNow) {
+    if (inputDate < now) {
         throw new Error(errMsgTime);
     }
 
