@@ -13,19 +13,25 @@
         To request a more specific member request that is not covered by the other options, such as permission changes.
       </p>
 
+      {% include "include/error-list.html" %}
+
       <form method="post" novalidate>
 
         {{ govukInput({
+          errorMessage: errors.github_handle if errors,
           label: {
             text: "GitHub Handle",
             classes: "govuk-label--m"
           },
           classes: "govuk-input--width-10",
-          id: "github-handle",
-          name: "github_handle"
+          id: "github_handle",
+          name: "github_handle",
+          value: github_handle
         }) }}
 
         {{ govukTextarea({
+          errorMessage: errors.description if erros,
+          value: description,
           name: "description",
           id: "description",
           label: {
