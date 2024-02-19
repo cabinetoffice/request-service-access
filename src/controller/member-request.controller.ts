@@ -14,5 +14,5 @@ export const post = (req: Request, res: Response) => {
 
     log.info(`GitHub Handle: ${githubHandle}`);
 
-    return res.redirect(config.LANDING);
+    return res.redirect(config.HOME);
 };

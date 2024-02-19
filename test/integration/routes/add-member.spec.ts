@@ -37,7 +37,7 @@ describe('Add-member endpoint integration tests', () => {
         });
     });
     describe('Add member POST tests', () => {
-        test('Should redirect to landing page after POST request', async () => {
+        test('Should redirect to home page after POST request', async () => {
             const res = await request(app).post(config.ADD_MEMBER_URL).send(MOCK_POST_ADD_MEMBER);
 
             expect(res.status).toEqual(302);

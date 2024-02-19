@@ -15,5 +15,5 @@ export const post = (req: Request, res: Response) => {
 
     log.info(`Repository Name: ${repoName}, Visibility: ${visibility}`);
 
-    return res.redirect(config.LANDING);
+    return res.redirect(config.HOME);
 };
