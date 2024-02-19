@@ -10,6 +10,6 @@ import { checkValidations } from '../middleware/validation.middleware';
 const memberRequestRouter = Router();
 
 memberRequestRouter.get(config.MEMBER_REQUST_URL, authentication, get);
-memberRequestRouter.post(config.MEMBER_REQUST_URL, ...memberRequest, checkValidations, authentication, post);
+memberRequestRouter.post(config.MEMBER_REQUST_URL, authentication, ...memberRequest, checkValidations, post);
 
 export default memberRequestRouter;
