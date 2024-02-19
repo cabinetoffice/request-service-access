@@ -12,20 +12,12 @@
       <p class="govuk-body">
         Use this page to request a more specific request that is not covered by the other options.
       </p>
+
       {% include "include/error-list.html" %}
+
       <form method="post" novalidate>
 
-        {{ govukInput({
-          errorMessage: errors.team_name if errors,
-          label: {
-            text: "Team Name",
-            classes: "govuk-label--m"
-          },
-          classes: "govuk-input--width-10",
-          id: "team_name",
-          name: "team_name",
-          value: team_name
-        }) }}
+        {% include "include/inputs/team-name.html" %}
 
         {% set descriptionText = "Description - Permission changes (required)" %}
         {% set descriptionHint = "Explain the reason for making this team request (e.g. parent team changes)." %}
