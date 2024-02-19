@@ -17,17 +17,7 @@
 
       <form method="post" novalidate>
 
-        {{ govukInput({
-          errorMessage: errors.repo_name if errors,
-          label: {
-            text: "Repository name",
-            classes: "govuk-label--m"
-          },
-          classes: "govuk-input--width-10",
-          id: "repo_name",
-          name: "repo_name",
-          value: repo_name
-        }) }}
+        {% include "include/inputs/repo-name.html" %}
 
         {{ govukRadios({
           errorMessage: errors.visibility if errors,
