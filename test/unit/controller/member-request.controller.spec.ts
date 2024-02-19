@@ -39,12 +39,12 @@ describe('Member-request controller test suites', () => {
 
     describe('member-request POST tests', () => {
 
-        test('should redirect to landing-page on POST request', () => {
+        test('should redirect to home page on POST request', () => {
             const res = mockResponse();
 
             post(req, res);
 
-            expect(res.redirect).toBeCalledWith(config.LANDING);
+            expect(res.redirect).toBeCalledWith(config.HOME);
         });
         test('Should log the github handle on POST request.', () => {
             const res = mockResponse();

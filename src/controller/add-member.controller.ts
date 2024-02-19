@@ -18,5 +18,5 @@ export const post = (req: Request, res: Response) => {
 
     log.info(`first_name: ${firstName}, last_name: ${lastName}, github_handle: ${gitHubHandle}, email_address: ${emailAddress}, contract_type: ${contractType}`);
 
-    return res.redirect(config.LANDING);
+    return res.redirect(config.HOME);
 };

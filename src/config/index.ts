@@ -11,7 +11,8 @@ export const PATH_SSL_CERTIFICATE = process.env['PATH_SSL_CERTIFICATE'] || '';
 export const SERVICE_NAME = 'GitHub Requests Application ';
 
 // Template
-export const LANDING = 'landing-page';
+export const START = 'start';
+export const HOME = 'home';
 export const ADD_MEMBER = 'add-member';
 export const REMOVE_MEMBER = 'remove-member';
 export const MEMBER_REQUST = 'member-request';
@@ -27,7 +28,8 @@ export const REPO_REQUEST = 'repo-request';
 
 // Routing paths
 
-export const LANDING_URL = '/landing-page';
+export const START_URL = '/start';
+export const HOME_URL = '/home';
 export const ADD_MEMBER_URL = '/add-member';
 export const REMOVE_MEMBER_URL = '/remove-member';
 export const MEMBER_REQUST_URL = '/member-request';

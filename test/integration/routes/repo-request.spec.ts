@@ -37,7 +37,7 @@ describe('repo-request endpoint integration tests', () => {
         });
     });
     describe('POST tests', () => {
-        test('Should redirect to landing page after POST request', async () => {
+        test('Should redirect to home page after POST request', async () => {
             const res = await request(app).post(config.REPO_REQUEST_URL).send(MOCK_POST_REPO_REQUEST);
 
             expect(res.status).toEqual(302);

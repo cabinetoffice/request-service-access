@@ -15,5 +15,5 @@ export const post = (req: Request, res: Response) => {
 
     log.info(`Team Name: ${teamName}, Team Member GitHub Handle: ${teamMemberGithubHandle}`);
 
-    return res.redirect(config.LANDING);
+    return res.redirect(config.HOME);
 };
