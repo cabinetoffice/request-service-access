@@ -20,9 +20,10 @@
         {{ govukInput({
           errorMessage: errors.first_name if errors,
           label: {
-            text: "First Name"
+            text: "First Name",
+            classes: "govuk-label--m"
           },
-          classes: "govuk-!-width-two-thirds",
+          classes: "govuk-input--width-10",
           id: "first_name",
           name: "first_name",
           value: first_name
@@ -31,9 +32,10 @@
         {{ govukInput({
           errorMessage: errors.last_name if errors,
           label: {
-            text: "Last Name"
+            text: "Last Name",
+            classes: "govuk-label--m"
           },
-          classes: "govuk-!-width-two-thirds",
+          classes: "govuk-input--width-10",
           id: "last_name",
           name: "last_name",
           value: last_name
@@ -44,9 +46,10 @@
         {{ govukInput({
           errorMessage: errors.email_address if errors,
           label: {
-            text: "Email Address"
+            text: "Email Address",
+            classes: "govuk-label--m"
           },
-          classes: "govuk-!-width-two-thirds",
+          classes: "govuk-input--width-10",
           id: "email_address",
           name: "email_address",
           value: email_address,
@@ -58,7 +61,8 @@
           {{ govukInput({
             errorMessage: errors.contract_end_date if errors,
             label: {
-              text: "Contract end date"
+              text: "Contract end date",
+              classes: "govuk-label--m"
             },
             hint: {
               text: "Enter the contract end date in the format dd/mm/yyyy. For example: '01/01/2024'"
@@ -67,7 +71,7 @@
             name: "contract_end_date",
             value: contract_end_date,
             type: "date",
-            classes: "govuk-!-width-one-third"
+            classes: "govuk-input--width-10"
           }) }}
         {% endset -%}
 
