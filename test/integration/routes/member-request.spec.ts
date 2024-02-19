@@ -14,6 +14,7 @@ import { authentication } from '../../../src/middleware/authentication.middlewar
 
 import { MOCK_REDIRECT_MESSAGE, MOCK_GET_MEMBER_REQUEST_RESPONSE, MOCK_POST_MEMBER_REQUEST_RESPONSE } from '../../mock/text.mock';
 import { MOCK_POST_MEMBER_REQUEST } from '../../mock/data';
+import { ErrorMessages } from '../../../src/validation/error.messages';
 
 const mockedLogger = logger as jest.Mock<typeof logger>;
 mockedLogger.mockImplementation((req: Request, res: Response, next: NextFunction) => next());
@@ -44,6 +45,20 @@ describe('Member-request endpoint integration tests', () => {
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
+        test('Should render the same page with error messages after POST request', async () => {
+            const res = await request(app).post(config.MEMBER_REQUST_URL).send({
+                github_handle: '',
+                description: '1000chars.'.repeat(100) + ':)'
+            });
+
+            expect(res.status).toEqual(200);
+            expect(res.text).toContain(ErrorMessages.GIT_HANDLE);
+            expect(res.text).toContain(ErrorMessages.DESCRIPTION_LENGTH);
+            expect(res.text).toContain(MOCK_GET_MEMBER_REQUEST_RESPONSE);
+            expect(mockedLogger).toHaveBeenCalledTimes(1);
+            expect(mockedAuth).toHaveBeenCalledTimes(1);
+        });
+
         test('Should log the github handle and on POST request.', async () => {
             const res = await request(app).post(config.MEMBER_REQUST_URL).send(MOCK_POST_MEMBER_REQUEST);
 
