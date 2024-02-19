@@ -30,10 +30,10 @@
         }) }}
 
         {{ govukTextarea({
-          errorMessage: errors.description if erros,
-          value: description,
+          errorMessage: errors.description if errors,
           name: "description",
           id: "description",
+          value: description,
           label: {
             text: "Description - (e.g. Permission changes)",
             classes: "govuk-label--m",
