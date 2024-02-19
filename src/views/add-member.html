@@ -39,16 +39,7 @@
           value: last_name
         }) }}
 
-        {{ govukInput({
-          errorMessage: errors.github_handle if errors,
-          label: {
-            text: "GitHub Handle"
-          },
-          classes: "govuk-!-width-two-thirds",
-          id: "github_handle",
-          name: "github_handle",
-          value: github_handle
-        }) }}
+        {% include "include/inputs/github-handle.html" %}
 
         {{ govukInput({
           errorMessage: errors.email_address if errors,

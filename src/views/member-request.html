@@ -17,17 +17,7 @@
 
       <form method="post" novalidate>
 
-        {{ govukInput({
-          errorMessage: errors.github_handle if errors,
-          label: {
-            text: "GitHub Handle",
-            classes: "govuk-label--m"
-          },
-          classes: "govuk-input--width-10",
-          id: "github_handle",
-          name: "github_handle",
-          value: github_handle
-        }) }}
+        {% include "include/inputs/github-handle.html" %}
 
         {% set descriptionText = "Description - Permission changes (required)" %}
         {% set descriptionHint = "Explain the reason for making this member request." %}
