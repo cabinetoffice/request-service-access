@@ -108,20 +108,10 @@
           ]
         }) }}
 
-        {{ govukTextarea({
-          errorMessage: errors.description if errors,
-          name: "description",
-          id: "description",
-          value: description,
-          label: {
-            text: "Description (optional)",
-            classes: "govuk-label--m",
-            isPageHeading: true
-          },
-          hint: {
-            text: "Include any additional information that we may require"
-          }
-        }) }}
+        {% set descriptionText = "Description (optional)" %}
+        {% set descriptionHint = "Explain the reason for adding this member." %}
+
+        {% include "include/description.html" %}
 
         {% include "include/save-button.html" %}
 

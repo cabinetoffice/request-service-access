@@ -29,20 +29,10 @@
           value: repo_name
         }) }}
 
-        {{ govukTextarea({
-          errorMessage: errors.description if errors,
-          value: description,
-          name: "description",
-          id: "description",
-          label: {
-            text: "Description - (e.g. Permission changes)",
-            classes: "govuk-label--m",
-            isPageHeading: true
-          },
-          hint: {
-            text: "Include a description of the request you would like to have completed."
-          }
-        }) }}
+        {% set descriptionText = "Description - Permission changes (required)" %}
+        {% set descriptionHint = "Explain the reason for making this repository request." %}
+
+        {% include "include/description.html" %}
 
         {% include "include/save-button.html" %}
 

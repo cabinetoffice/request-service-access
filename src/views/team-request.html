@@ -27,20 +27,10 @@
           value: team_name
         }) }}
 
-        {{ govukTextarea({
-          errorMessage: errors.description if errors,
-          name: "description",
-          id: "description",
-          value: description,
-          label: {
-            text: "Description - Permission changes",
-            classes: "govuk-label--m",
-            isPageHeading: true
-          },
-          hint: {
-            text: "Include a description on what request you would like completed."
-          }
-        }) }}
+        {% set descriptionText = "Description - Permission changes (required)" %}
+        {% set descriptionHint = "Explain the reason for making this team request (e.g. parent team changes)." %}
+
+        {% include "include/description.html" %}
 
         {% include "include/save-button.html" %}
         

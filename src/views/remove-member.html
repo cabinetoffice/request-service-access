@@ -29,20 +29,10 @@
           value: github_handle
         }) }}
 
-        {{ govukTextarea({
-          errorMessage: errors.description if errors,
-          value: description,
-          name: "description",
-          id: "description",
-          label: {
-            text: "Description (optional)",
-            classes: "govuk-label--m",
-            isPageHeading: true
-          },
-          hint: {
-            text: "Include a description on why this user is getting removed."
-          }
-        }) }}
+        {% set descriptionText = "Description (optional)" %}
+        {% set descriptionHint = "Explain the reason for removing this member." %}
+
+        {% include "include/description.html" %}
 
         {% include "include/save-button.html" %}
 
