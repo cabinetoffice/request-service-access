@@ -1,10 +1,10 @@
 jest.mock('cors');
 
 import { describe, expect, test, jest, afterEach } from '@jest/globals';
-import { Request, Response, NextFunction } from 'express';
+import express from 'express';
 import cors from 'cors';
 
-import { setCors } from '../../../src/middleware/cors.middleware';
+import { configureCors } from '../../../src/middleware/cors.middleware';
 import { MOCK_CORS_VALUE } from '../../mock/data';
 
 describe('CORS Middleware test suites', () => {
@@ -14,12 +14,13 @@ describe('CORS Middleware test suites', () => {
 
     test('Should call cors methos and next middleware', () => {
         const mockCors = cors as jest.Mock;
-        const next = jest.fn() as NextFunction;
+        const mockApp = {
+            use: jest.fn()
+        } as unknown as express.Application;
 
-        setCors({} as Request, {} as Response, next);
+        configureCors(mockApp);
 
         expect(mockCors).toHaveBeenCalledTimes(1);
         expect(mockCors).toHaveBeenCalledWith(MOCK_CORS_VALUE);
-        expect(next).toBeCalledTimes(1);
     });
 });
