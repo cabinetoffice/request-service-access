@@ -7,7 +7,7 @@ import cors from 'cors';
 import { configureCors } from '../../../src/config/cors';
 import { MOCK_CORS_VALUE } from '../../mock/data';
 
-describe('CORS Middleware test suites', () => {
+describe('CORS Config test suites', () => {
     afterEach(() => {
         jest.resetAllMocks();
     });

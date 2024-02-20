@@ -7,12 +7,12 @@ import helmet from 'helmet';
 import { configureHelmet } from '../../../src/config/helmet';
 import { MOCK_HELMET_VALUE } from '../../mock/data';
 
-describe('Helmet Middleware test suites', () => {
+describe('Helmet Config test suites', () => {
     afterEach(() => {
         jest.resetAllMocks();
     });
 
-    test('Should call helmet methos and express app.use method', () => {
+    test('Should call helmet method and express app.use method', () => {
         const mockHelmet = helmet as unknown as jest.Mock;
         const mockApp = {
             use: jest.fn()
