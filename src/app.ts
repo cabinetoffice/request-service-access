@@ -4,12 +4,12 @@ import path from 'path';
 
 import router from './routes/index';
 import { configureNunjucks } from './config/nunjucks';
+import { configureHelmet } from './config/helmet';
+import { configureCors } from './config/cors';
 
 import { errorHandler, errorNotFound } from './controller/error.controller';
 
 import { setNonce } from './middleware/nonce.middleware';
-import { configureHelmet } from './middleware/helmet.middleware';
-import { configureCors } from './middleware/cors.middleware';
 
 const app = express();
 

@@ -4,7 +4,7 @@ import { describe, expect, test, jest, afterEach } from '@jest/globals';
 import express from 'express';
 import helmet from 'helmet';
 
-import { configureHelmet } from '../../../src/middleware/helmet.middleware';
+import { configureHelmet } from '../../../src/config/helmet';
 import { MOCK_HELMET_VALUE } from '../../mock/data';
 
 describe('Helmet Middleware test suites', () => {
@@ -12,7 +12,7 @@ describe('Helmet Middleware test suites', () => {
         jest.resetAllMocks();
     });
 
-    test('Should call helmet methos and next middleware', () => {
+    test('Should call helmet methos and express app.use method', () => {
         const mockHelmet = helmet as unknown as jest.Mock;
         const mockApp = {
             use: jest.fn()
@@ -22,5 +22,6 @@ describe('Helmet Middleware test suites', () => {
 
         expect(mockHelmet).toHaveBeenCalledTimes(1);
         expect(mockHelmet).toHaveBeenCalledWith(MOCK_HELMET_VALUE);
+        expect(mockApp.use).toHaveBeenCalled();
     });
 });
