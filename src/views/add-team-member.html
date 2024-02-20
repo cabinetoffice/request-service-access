@@ -13,23 +13,25 @@
         When a user has access to our GitHub organisations and they wish to be added to a team within the cabinetoffice GitHub organisation.
       </p>
 
+      {% include "include/error-list.html" %}
+
       <form method="post" novalidate>
 
         {% include "include/inputs/team-name.html" %}
 
         {{ govukInput({
+          errorMessage: errors.team_member_github_handle if errors,
           label: {
-            text: "Member GitHub handle ",
+            text: "Member GitHub handle",
             classes: "govuk-label--m"
           },
           classes: "govuk-input--width-10",
-          id: "team-member-github-handle",
-          name: "team_member_github_handle"
+          id: "team_member_github_handle",
+          name: "team_member_github_handle",
+          value: team_member_github_handle
         }) }}
 
-        {{ govukButton({
-          text: "Save"
-        }) }}
+        {% include "include/save-button.html" %}
         
       </form>
     </div>
