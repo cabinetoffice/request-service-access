@@ -4,12 +4,12 @@ import path from 'path';
 
 import router from './routes/index';
 import { configureNunjucks } from './config/nunjucks';
+import { configureHelmet } from './config/helmet';
+import { configureCors } from './config/cors';
 
 import { errorHandler, errorNotFound } from './controller/error.controller';
 
-import { setHelmet } from './middleware/helmet.middleware';
 import { setNonce } from './middleware/nonce.middleware';
-import { setCors } from './middleware/cors.middleware';
 
 const app = express();
 
@@ -20,8 +20,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(setNonce);
-app.use(setHelmet);
-app.use(setCors);
+configureHelmet(app);
+configureCors(app);
 
 const viewPath = path.join(__dirname, 'views');
 configureNunjucks(app, viewPath);
