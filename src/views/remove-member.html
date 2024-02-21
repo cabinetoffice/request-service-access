@@ -10,39 +10,19 @@
       <h1 class="govuk-heading-l">Remove a GitHub Member</h1>
 
       <p class="govuk-body">
-        When a user no longer requires access to our GitHub organisations(e.g they have left The Cabinet Office) they should be removed from the Cabinet Office GitHub organisation.
+        When a user no longer requires access to our GitHub organisations(e.g they have left The Cabinet Office) they should be removed from the cabinetoffice GitHub organisation.
       </p>
 
       {% include "include/error-list.html" %}
 
       <form method="post">
 
-        {{ govukInput({
-          errorMessage: errors.github_handle if errors,
-          label: {
-            text: "GitHub Handle",
-            classes: "govuk-label--m"
-          },
-          classes: "govuk-input--width-10",
-          id: "github_handle",
-          name: "github_handle",
-          value: github_handle
-        }) }}
+        {% include "include/inputs/github-handle.html" %}
 
-        {{ govukTextarea({
-          errorMessage: errors.description if errors,
-          value: description,
-          name: "description",
-          id: "description",
-          label: {
-            text: "Description (optional)",
-            classes: "govuk-label--m",
-            isPageHeading: true
-          },
-          hint: {
-            text: "Include a description on why this user is getting removed."
-          }
-        }) }}
+        {% set descriptionText = "Description (optional)" %}
+        {% set descriptionHint = "Explain the reason for removing this member." %}
+
+        {% include "include/description.html" %}
 
         {% include "include/save-button.html" %}
 

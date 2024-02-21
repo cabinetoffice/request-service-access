@@ -1,10 +1,10 @@
-import { NextFunction, Request, Response } from 'express';
+import express from 'express';
 import helmet from 'helmet';
 
 import * as config from '../config';
 
-export const setHelmet = (_req: Request, _res: Response, next: NextFunction) => {
-    helmet({
+export const configureHelmet = (app: express.Application) => {
+    app.use(helmet({
         contentSecurityPolicy: {
             useDefaults: true,
             directives: {
@@ -25,7 +25,5 @@ export const setHelmet = (_req: Request, _res: Response, next: NextFunction) => 
             },
             reportOnly: false
         }
-    });
-
-    next();
+    }));
 };

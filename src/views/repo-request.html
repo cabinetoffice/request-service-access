@@ -17,32 +17,12 @@
 
       <form method="post" novalidate>
 
-        {{ govukInput({
-          errorMessage: errors.repo_name if errors,
-          label: {
-            text: "Repository name",
-            classes: "govuk-label--m"
-          },
-          classes: "govuk-input--width-10",
-          id: "repo_name",
-          name: "repo_name",
-          value: repo_name
-        }) }}
+        {% include "include/inputs/repo-name.html" %}
 
-        {{ govukTextarea({
-          errorMessage: errors.description if errors,
-          value: description,
-          name: "description",
-          id: "description",
-          label: {
-            text: "Description - (e.g. Permission changes)",
-            classes: "govuk-label--m",
-            isPageHeading: true
-          },
-          hint: {
-            text: "Include a description of the request you would like to have completed."
-          }
-        }) }}
+        {% set descriptionText = "Description - Permission changes (required)" %}
+        {% set descriptionHint = "Explain the reason for making this repository request." %}
+
+        {% include "include/description.html" %}
 
         {% include "include/save-button.html" %}
 

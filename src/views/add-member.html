@@ -10,7 +10,7 @@
       <h1 class="govuk-heading-l">Add a GitHub Member</h1>
       
       <p class="govuk-body">
-        When a user requires access to our GitHub organisations (e.g they have joined The Cabinet Office) they should be added to the Cabinet Office GitHub organisation.
+        When a user requires access to our GitHub organisations (e.g they have joined The Cabinet Office) they should be added to the cabinetoffice GitHub organisation.
       </p>
 
       {% include "include/error-list.html" %}
@@ -20,9 +20,10 @@
         {{ govukInput({
           errorMessage: errors.first_name if errors,
           label: {
-            text: "First Name"
+            text: "First Name",
+            classes: "govuk-label--m"
           },
-          classes: "govuk-!-width-two-thirds",
+          classes: "govuk-input--width-10",
           id: "first_name",
           name: "first_name",
           value: first_name
@@ -31,31 +32,24 @@
         {{ govukInput({
           errorMessage: errors.last_name if errors,
           label: {
-            text: "Last Name"
+            text: "Last Name",
+            classes: "govuk-label--m"
           },
-          classes: "govuk-!-width-two-thirds",
+          classes: "govuk-input--width-10",
           id: "last_name",
           name: "last_name",
           value: last_name
         }) }}
 
-        {{ govukInput({
-          errorMessage: errors.github_handle if errors,
-          label: {
-            text: "GitHub Handle"
-          },
-          classes: "govuk-!-width-two-thirds",
-          id: "github_handle",
-          name: "github_handle",
-          value: github_handle
-        }) }}
+        {% include "include/inputs/github-handle.html" %}
 
         {{ govukInput({
           errorMessage: errors.email_address if errors,
           label: {
-            text: "Email Address"
+            text: "Email Address",
+            classes: "govuk-label--m"
           },
-          classes: "govuk-!-width-two-thirds",
+          classes: "govuk-input--width-10",
           id: "email_address",
           name: "email_address",
           value: email_address,
@@ -67,7 +61,8 @@
           {{ govukInput({
             errorMessage: errors.contract_end_date if errors,
             label: {
-              text: "Contract end date"
+              text: "Contract end date",
+              classes: "govuk-label--m"
             },
             hint: {
               text: "Enter the contract end date in the format dd/mm/yyyy. For example: '01/01/2024'"
@@ -76,7 +71,7 @@
             name: "contract_end_date",
             value: contract_end_date,
             type: "date",
-            classes: "govuk-!-width-one-third"
+            classes: "govuk-input--width-10"
           }) }}
         {% endset -%}
 
@@ -108,20 +103,10 @@
           ]
         }) }}
 
-        {{ govukTextarea({
-          errorMessage: errors.description if errors,
-          name: "description",
-          id: "description",
-          value: description,
-          label: {
-            text: "Description (optional)",
-            classes: "govuk-label--m",
-            isPageHeading: true
-          },
-          hint: {
-            text: "Include any additional information that we may require"
-          }
-        }) }}
+        {% set descriptionText = "Description (optional)" %}
+        {% set descriptionHint = "Explain the reason for adding this member." %}
+
+        {% include "include/description.html" %}
 
         {% include "include/save-button.html" %}
 

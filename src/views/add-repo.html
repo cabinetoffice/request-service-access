@@ -17,17 +17,7 @@
 
       <form method="post" novalidate>
 
-        {{ govukInput({
-          errorMessage: errors.repo_name if errors,
-          label: {
-            text: "Repository name",
-            classes: "govuk-label--m"
-          },
-          classes: "govuk-input--width-10",
-          id: "repo_name",
-          name: "repo_name",
-          value: repo_name
-        }) }}
+        {% include "include/inputs/repo-name.html" %}
 
         {{ govukRadios({
           errorMessage: errors.visibility if errors,
@@ -51,21 +41,10 @@
           ]
         }) }}
 
-        {{ govukTextarea({
-          errorMessage: errors.description if errors,
-          value: description,
-          name: "description",
-          id: "description",
-          label: {
-            text: "Description (optional)",
-            classes: "govuk-label--m",
-            isPageHeading: true
-          },
-          hint: {
-            text: "Include more details to why this GitHub repository needs to be
-            added."
-          }
-        }) }}
+        {% set descriptionText = "Description (optional)" %}
+        {% set descriptionHint = "Explain the reason for adding this repository." %}
+
+        {% include "include/description.html" %}
 
         {% include "include/save-button.html" %}
 

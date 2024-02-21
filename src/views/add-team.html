@@ -10,24 +10,14 @@
       <h1 class="govuk-heading-l">Add a GitHub Team</h1>
 
       <p class="govuk-body">
-        Github Teams can be used to manage repository permissions and mentions for groups of members.
+        GitHub Teams can be used to manage repository permissions and mentions for groups of members.
       </p>
 
       {% include "include/error-list.html" %}
 
-      <form method="post"  novalidate>
+      <form method="post" novalidate>
 
-        {{ govukInput({
-          errorMessage: errors.team_name if errors,
-          label: {
-            text: "Team name",
-            classes: "govuk-label--m"
-          },
-          classes: "govuk-input--width-10",
-          id: "team_name",
-          name: "team_name",
-          value: team_name
-        }) }}
+        {% include "include/inputs/team-name.html" %}
 
         {{ govukInput({
           errorMessage: errors.team_maintainer_github_handle if errors,
@@ -41,22 +31,11 @@
           value: team_maintainer_github_handle
         }) }}
 
-        {{ govukTextarea({
-          errorMessage: errors.description if errors,
-          value: description,
-          name: "description",
-          id: "description",
-          label: {
-            text: "Description (optional)",
-            classes: "govuk-label--m",
-            isPageHeading: true
-          },
-          hint: {
-            text: "Include more details to why this GitHub repository needs to be
-            added."
-          }
-        }) }}
-        
+        {% set descriptionText = "Description (optional)" %}
+        {% set descriptionHint = "Explain the reason for adding this team." %}
+
+        {% include "include/description.html" %}
+
         {% include "include/save-button.html" %}
 
         

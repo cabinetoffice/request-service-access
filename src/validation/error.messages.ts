@@ -12,4 +12,5 @@ export enum ErrorMessages {
   VISIBILITY = 'Select a visibility option',
   TEAM_MAINTAINER_GITHUB_HANDLE = 'Enter the team maintainer GitHub handle',
   TEAM_NAME = 'Enter the team name',
+  TEAM_MEMBER_GIT_HANDLE = 'Enter the username of the member GitHub handle (aka GitHub account)'
 }
