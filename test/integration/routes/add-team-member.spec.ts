@@ -50,12 +50,12 @@ describe('add-team-member endpoint integration tests', () => {
         test('Should render the same page with error messages after POST request', async () => {
             const res = await request(app).post(config.ADD_TEAM_MEMBER_URL).send({
                 team_name: '',
-                team_member_github_handle: ''
+                github_handle: ''
             });
 
             expect(res.status).toEqual(200);
             expect(res.text).toContain(ErrorMessages.TEAM_NAME);
-            expect(res.text).toContain(ErrorMessages.TEAM_MEMBER_GIT_HANDLE);
+            expect(res.text).toContain(ErrorMessages.GIT_HANDLE);
             expect(res.text).toContain(MOCK_GET_ADD_TEAM_MEMBER_RESPONSE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);

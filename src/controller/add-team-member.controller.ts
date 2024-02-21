@@ -9,11 +9,11 @@ export const get = (_req: Request, res: Response) => {
 export const post = (req: Request, res: Response) => {
 
     const teamName = req.body.team_name;
-    const teamMemberGithubHandle = req.body.team_member_github_handle;
+    const githubHandle = req.body.github_handle;
 
     // validation middleware and data assignment to be implemented
 
-    log.info(`Team Name: ${teamName}, Team Member GitHub Handle: ${teamMemberGithubHandle}`);
+    log.info(`Team Name: ${teamName}, Team Member GitHub Handle: ${githubHandle}`);
 
     return res.redirect(config.HOME);
 };
