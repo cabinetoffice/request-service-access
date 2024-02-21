@@ -2,7 +2,7 @@
 
 ![Static Badge](https://img.shields.io/badge/test_coverage-%E2%89%A595%25-green)
 
-The GitHub request application is a tool designed to streamline and automate the process of managing and tracking request for GitHub. This includes the adding, removal or editing of members.
+The GitHub request application is a tool designed to streamline and automate the process of managing and tracking request for GitHub. This includes the adding, removal or editing of members. Further documentation can be found [here](./docs/).
 
 ## Overview
 
