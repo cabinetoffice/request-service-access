@@ -10,6 +10,5 @@ export enum ErrorMessages {
   CONTRACT_DATE_TIME= 'The contract end date cannot be in the past',
   REPO_NAME = 'Enter the repository name',
   VISIBILITY = 'Select a visibility option',
-  TEAM_MAINTAINER_GITHUB_HANDLE = 'Enter the team maintainer GitHub handle',
   TEAM_NAME = 'Enter the team name',
 }
