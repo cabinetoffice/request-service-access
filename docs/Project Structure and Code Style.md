@@ -44,7 +44,7 @@ In the model we define the interface, the data structure used to represent the d
 // Remove Member Page Model
 export const RemoveMemberKey = "remove-member";
 
-export const RemoveMemberKeys: (keyof RemoveMember)[] = ["github_handle", "description"];
+export const RemoveMemberMappedKeys: (keyof RemoveMember)[] = ["github_handle", "description"];
 
 export interface RemoveMember {
     github_handle?: string
@@ -57,7 +57,7 @@ For each interface we have a key used to represent the object on the application
 ```js
 // Github Request Application Data model
 export interface ApplicationData {
-    remove-member?: RemoveMember;
+    remove_member?: RemoveMember;
     ​...​
 }
 ```
