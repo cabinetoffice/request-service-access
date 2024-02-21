@@ -6,9 +6,9 @@ Github Request App is a simple app with a few endpoints, each endpoint represent
 All information filled by the user will be saved on a browser cookie which is configured to sign the cookie with the `COOKIE_SESSION_SECRET` environment variable. The payload stored in the cookie is also protected by the `crypto` module meaning the client side data is both encrypted and signed.
 
 Generally we will fetch information from the session, on the GET controller, to be used to populate data on the view. Instead the saving of user data into the session is done on the POST controller of each page.
-It is important to remember that there is a mapping between the saved data on the session and the user data passed to the view for visualization.
+It is important to remember that there is a mapping between the saved data on the session and the user data passed to the view for visualisation.
 
-The compiled/transpiled project is copied into the dist folder used later to bootstrap the application from `dist/server.js`. All static files will be fetched from a CDN on aws cloudfront service.
+The compiled/transpiled project is copied into the dist folder used later to bootstrap the application from `dist/server.js`. All static files will be fetched from a CDN on AWS CloudFront service.
 
 ## Files Structure
 
@@ -44,9 +44,9 @@ In the model we define the interface, the data structure used to represent the d
 // Remove Member Page Model
 export const RemoveMemberKey = "remove-member";
 
-export const RemoveMemberKeys: string[] = ["github_handle", "description"];
+export const RemoveMemberKeys: (keyof RemoveMember)[] = ["github_handle", "description"];
 
-export interface Presenter {
+export interface RemoveMember {
     github_handle?: string
     description?: string
 }
@@ -64,7 +64,7 @@ export interface ApplicationData {
 
 ### View
 
-We utilize both `Nunjucks` and `GDS` style/components. To streamline the construction of pages, we employ common components that are utilized across the UI, which are stored in an includes directory within the `view` directory. This directory contains all the useful shared chunks of HTML code. This approach ensures consistency in error messaging, input formats, and other aspects.
+We utilise both `Nunjucks` and `GDS` style/components. To streamline the construction of pages, we employ common components that are utilised across the UI, which are stored in an includes directory within the `view` directory. This directory contains all the useful shared chunks of HTML code. This approach ensures consistency in error messaging, input formats, and other aspects.
 
 The data value is passed by the `GET` controller using the `res.render(templateUrl, {...data})` method. If the value is not set, the input field will remain empty. Additionally, if specificity is required, we can include a variable using the `set` command, as demonstrated in the example below.
 
@@ -126,7 +126,7 @@ export const get = (req: Request, res: Response, next: NextFunction) => {
 and in the `post` method we save the user data every time that a page is submitted.
 
 ```js
-// Post controller for the Presenter page
+// Post controller for the Remove Member page
 export const post = async (req: Request, res: Response, next: NextFunction) => {
   try {
     ...
@@ -177,7 +177,7 @@ export default removeMemberRouter;
 
 ## Validation
 
-In each `POST` endpoints for every page we have a sets of middlewares used to validate each fields submitted by the user, if one of the validation middlewares fails the `validationResult` [here](https://github.com/cabinetoffice/github-requests-app/blob/c1923314f23897a809624a8ec208648cab228b4e/src/middleware/validation.middleware.ts#L7) will extracts the validation errors from a request (`req` object) and it will be formatted as an `errors` object [here](https://github.com/cabinetoffice/github-requests-app/blob/c1923314f23897a809624a8ec208648cab228b4e/src/middleware/validation.middleware.ts#L27) and it will be passed to the render page for the correct error visualization.
+In each `POST` endpoints for every page we have a sets of middlewares used to validate each fields submitted by the user, if one of the validation middlewares fails the `validationResult` [here](https://github.com/cabinetoffice/github-requests-app/blob/c1923314f23897a809624a8ec208648cab228b4e/src/middleware/validation.middleware.ts#L7) will extracts the validation errors from a request (`req` object) and it will be formatted as an `errors` object [here](https://github.com/cabinetoffice/github-requests-app/blob/c1923314f23897a809624a8ec208648cab228b4e/src/middleware/validation.middleware.ts#L27) and it will be passed to the render page for the correct error visualisation.
 
 ```js
 // Middlewares validation checks for the remove-member page
