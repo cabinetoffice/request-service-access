@@ -28,7 +28,7 @@ describe('Member-request endpoint integration tests', () => {
 
     describe('GET tests', () => {
         test('renders the member-request page', async () => {
-            const res = await request(app).get(config.MEMBER_REQUST_URL);
+            const res = await request(app).get(config.MEMBER_REQUEST_URL);
 
             expect(res.status).toEqual(200);
             expect(res.text).toContain(MOCK_GET_MEMBER_REQUEST_RESPONSE);
@@ -38,7 +38,7 @@ describe('Member-request endpoint integration tests', () => {
     });
     describe('POST tests', () => {
         test('Should redirect to home page after POST request', async () => {
-            const res = await request(app).post(config.MEMBER_REQUST_URL).send(MOCK_POST_MEMBER_REQUEST);
+            const res = await request(app).post(config.MEMBER_REQUEST_URL).send(MOCK_POST_MEMBER_REQUEST);
 
             expect(res.status).toEqual(302);
             expect(res.text).toContain(MOCK_REDIRECT_MESSAGE);
@@ -46,7 +46,7 @@ describe('Member-request endpoint integration tests', () => {
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
         test('Should render the same page with error messages after POST request', async () => {
-            const res = await request(app).post(config.MEMBER_REQUST_URL).send({
+            const res = await request(app).post(config.MEMBER_REQUEST_URL).send({
                 github_handle: '',
                 description: '1000chars.'.repeat(100) + ':)'
             });
@@ -60,7 +60,7 @@ describe('Member-request endpoint integration tests', () => {
         });
 
         test('Should log the github handle and on POST request.', async () => {
-            const res = await request(app).post(config.MEMBER_REQUST_URL).send(MOCK_POST_MEMBER_REQUEST);
+            const res = await request(app).post(config.MEMBER_REQUEST_URL).send(MOCK_POST_MEMBER_REQUEST);
 
             const mockLog = log.info as jest.Mock;
 

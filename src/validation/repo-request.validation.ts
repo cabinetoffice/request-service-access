@@ -1,6 +1,6 @@
-import { descriptionValidation } from './fields/description.validation';
+import { descriptionValidationNotOptional } from './fields/description-not-optional.validation';
 import { repoNameValidation } from './fields/repo-name.validation';
 
 export const repoRequest = [
-    ...repoNameValidation, ...descriptionValidation,
+    ...repoNameValidation, ...descriptionValidationNotOptional
 ];
