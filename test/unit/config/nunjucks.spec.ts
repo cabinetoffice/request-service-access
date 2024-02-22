@@ -23,7 +23,9 @@ describe('Nunjucks Configuration test suites', () => {
             addGlobal: jest.fn()
         };
 
-        (nunjucks.configure as jest.Mock).mockReturnValue(mockNunjucksEnv);
+        const nunjucksConfigureMock = nunjucks.configure as jest.Mock;
+
+        nunjucksConfigureMock.mockReturnValue(mockNunjucksEnv);
 
         const mockLogInfo = log.info as jest.Mock;
 
