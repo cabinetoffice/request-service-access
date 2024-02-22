@@ -3,7 +3,7 @@ import { log } from '../utils/logger';
 import * as config from '../config';
 
 export const get = (_req: Request, res: Response) => {
-    return res.render(config.MEMBER_REQUST);
+    return res.render(config.MEMBER_REQUEST);
 };
 
 export const post = (req: Request, res: Response) => {
