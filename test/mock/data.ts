@@ -1,14 +1,14 @@
 import * as config from '../../src/config';
+import express from 'express';
 
 export const GET_REQUEST_MOCK = { method: 'GET', path: '/test' };
 
 export const MOCK_POST_ADD_REPO = { repo_name: 'repo1', visibility: 'public' };
 export const MOCK_POST_ADD_MEMBER = { first_name: 'example', last_name: 'example', github_handle: 'example', email_address: 'email@hotmail.com', description: 'description', contract_type: 'permanent' };
-export const MOCK_POST_ADD_TEAM = { team_name: 'team1', team_maintainer_github_handle: 'bob' };
+export const MOCK_POST_ADD_TEAM = { team_name: 'team1', github_handle: 'bob' };
 export const MOCK_POST_REMOVE_MEMBER = { github_handle: 'example' };
 export const MOCK_POST_TEAM_REQUEST = { team_name: 'team1', description: 'information' };
 export const MOCK_POST_MEMBER_REQUEST = { github_handle: 'example' };
-
 export const MOCK_POST_ADD_TEAM_MEMBER = { team_name: 'team1', team_member_github_handle: 'joe' };
 export const MOCK_POST_REPO_REQUEST = { repo_name: 'repo1', description: 'information' };
 
@@ -42,3 +42,7 @@ export const MOCK_HELMET_VALUE = {
         reportOnly: false
     }
 };
+
+export const MOCK_EXPRESS_APP = {
+    use: jest.fn()
+} as unknown as express.Application;

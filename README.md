@@ -1,81 +1,96 @@
-# GitHub requests app
+# GitHub Requests App
+
 ![Static Badge](https://img.shields.io/badge/test_coverage-%E2%89%A595%25-green)
+
+The GitHub request application is a tool designed to streamline and automate the process of managing and tracking request for GitHub. This includes the adding, removal or editing of members. Further documentation can be found [here](./docs/).
 
 ## Overview
 
-The GitHub request application is a tool designed to streamline and automate the process of managing and tracking request for GitHub. This includes the  adding, removal or editing of members.
-Each page or user interface, defined by an endpoint, is divided into three components (MVC) and as a best practice the names for the model, view and controller have, when possible, the same start name of the endpoints (e.g. for the `/confirmation` page we have the: `confirmation.controller.ts` and `confirmation.html` files. If models were present, we would have `confirmation.model.ts`)
+The GitHub Requests Application is a Node.js-based web application that provides a simple interface. Internal users (members of the Cognito user pool) fill in forms with requested details. When a request is submitted, an issue is created on the dedicated terraform repository, and an email is sent to the user from our `github-request.idp` email address. The email includes a message containing the user's filled-in information.
 
+The issue is then reviewed by the team, and further comments may be requested if necessary. Approval must be granted by two members of the team to avoid misconfigurations.
 
+## Frontend Technologies and Utils
 
-### The View
+- [NodeJS](https://nodejs.org/)
+- [ExpressJS](https://expressjs.com/)
+- [Typescript](https://www.typescriptlang.org/)
+- [NunJucks](https://mozilla.github.io/nunjucks)
+- [GOV.UK Design System](https://design-system.service.gov.uk/)
+- [Jest](https://jestjs.io)
+- [SuperTest](https://www.npmjs.com/package/supertest)
+- [Docker](https://www.docker.com/)
+- [Git](https://git-scm.com/downloads)
+- [Terraform](https://www.terraform.io/)
+- [AWS](https://aws.amazon.com/)
 
-We use `Nunjucks` and `GDS` style/components.
+### Config variables
 
-### The controller
-
-Generally only POST and GET http methods are allowed, and therefore we will have mainly just the get and post controllers, and it is literally the last successful middleware of the chain that has the duty to respond to the user.
-In the `get` method we fetch possible data and pass it to the view/template to be visualized to the user and in the `post` method we save the user data everytime that a page is submitted
-
-## Files Structure
-
-Directory Path | Description
---- | ---
-`./.github` | Github folder, includes `PULL_REQUEST_TEMPLATE.md` on how to make a pull request to the project and `dependabot.yml` configuration options for dependency updates.
-`./.husky` | Add pre check script, includes `pre-commit` and `pre-push` checks
-`./src` | Contains all Typescript code
-`./src/app.ts` | Application entry point
-`./src/bin/www.ts` | Server configuration
-`./src/config/index.ts` | Contains all the application's configurations
-`./src/controller` | Business logic and handlers
-`./src/middleware` | Middleware functions (Authentication, validation ...)
-`./src/model` | OE Session and View Data Model
-`./src/routes` | Paths and routes controller (Only GET and POST enabled)
-`./src/service` | Interface to the API through SDK
-`./src/utils` | Facade for CO services (e.g. logging) and other application utils (navigation, application data ...)
-`./src/validation` | Sets of express validator middlewares for each page
-`./test` | Jest Test files (`*.spec.ts`, `setup.ts`, and `*.mocks.ts`)
-`./view` | Contains all the html nunjucks structure files
-`./docs` | Contains documentation files
-Others files | Other files related to modules dependency, CI/CD, *git, dockerization, lint, test/typescript configs …
-
-## ESlint
-
-We use ESlint as both a formatter and code quality assurance. Eslint can also be setup to format on save using a VScode extension:
-
-1. Install the [ESlint VScode extenstion](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
-2. Open your user settings (JSON) inside VScode and add the following:
-```
-    "editor.formatOnSave": true, 
-    "editor.codeActionsOnSave": { "source.fixAll.eslint": true }
-```
-
-3. Reload VScode.
-
-## Running local development environment with Docker
-
-Docker is used run the application in development mode, with tooling setup to detect changes in local `src` directory and reload the container's node server.
-
-Follow the steps in [Launching-the-web-app](#Launching-the-web-app), and ensure that `NODE_ENV=development` is set in the `.env` file.
+Key             |  Description               | Example Value
+----------------|--------------------------- |-------------------------
+PATH_SSL_PRIVATE_KEY | Path to ssl private key | `./infrastructure/host/test.key`
+PATH_SSL_CERTIFICATE | Path to ssl certificate | `./infrastructure/host/test.cert`
+BASE_URL | Base application URL | `http://localhost:3000` (dev mode)
+NODE_ENV | Node environment | `development` (or `production`)
+PORT | Server port number | `3000`
+CDN_HOST | CDN host | `cdn domain`
+USER_POOL_ID | ID of the user pool in Amazon Cognito | `secret`
+USER_POOL_CLIENT_ID | Client ID of an app registered with the user pool in Amazon Cognito | `secret`
+AUTH_SIGN_IN_URL | Authentication sign in URL | `https://cola.service.cabinetoffice.gov.uk/v2/<YOUR_SERVICE>/login`
+COOKIE_ID_NAME | The name of the cookie | `github-requests`
+COOKIE_PARSER_SECRET | Secret used in validating/calculating the cookie signature | `secret`
+COOKIE_SESSION_SECRET | Secret key for signing the session cookie | `secret`
+LANDING_PAGE_URL | Github Requests landing Page | `/home/`
+LOG_LEVEL | Logging levels | `/home/`
+HUMAN | Formatting messages form (default JSON) | `true` (Enable human formatting for log messages)
 
 ## Launching the web-app
 
 ### Prerequisites
 
 1. Install [NodeJS V20.8](https://nodejs.org/en)
-
 2. Install [Docker](https://www.docker.com/get-started)
+
+### Running local development environment with Docker
+
+Docker is used to run the application in **development** mode, with tooling setup to detect changes in local `src` directory and reload the container's node server. Ensure that `NODE_ENV=development` is set in the `.env` file.
 
 ### Building the Docker Image
 
-1. Create a copy of the ``.env.example`` file and name it `.env`:
+1. Create a copy of the `.env.example` file and name it `.env`:
+Then run:
 
- Then run:
+```sh
+make docker-build
+make docker-up
+```
 
-    make docker-build
+This will then download the necessary dependencies, build the Docker image, and start the application. You will be able to access it on [localhost:3000](localhost:3000).
 
-    make docker-up
+## ESlint
 
-This will then download the necessary dependencies, build the Docker image, and start the application.
-You will be able to access it on [localhost:3000](localhost:3000).
+We use ESlint as both a formatter and code quality assurance. Eslint can also be setup to format on save using a VScode extension:
 
+1. Install the [ESlint VScode extenstion](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
+
+2. Open your user settings (JSON) inside VScode and add the following:
+
+    ```js
+    "editor.formatOnSave": true, 
+    "editor.codeActionsOnSave": { "source.fixAll.eslint": true }
+    ```
+
+3. Reload VScode.
+
+## Recommendations
+
+1. Use the [Visual Studio Code](https://code.visualstudio.com/) IDE for development.
+2. Use the preformatted `PULL_REQUEST_TEMPLATE` by adding meaningful description
+3. Make sure test coverage is above `95%`
+4. Do not disable husky pre checks locally
+5. Use MVC pattern when adding a new page/endpoint, including validation and authentication. Example can be found on the following doc description [here](./docs/Project%20Structure%20and%20Code%20Style.md)
+6. **Happy coding**
+
+## License
+
+This code is open source software licensed under the [MIT License]("https://opensource.org/licenses/MIT").

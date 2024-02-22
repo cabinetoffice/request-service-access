@@ -15,6 +15,8 @@ import { authentication } from '../../../src/middleware/authentication.middlewar
 import { MOCK_REDIRECT_MESSAGE, MOCK_POST_ADD_TEAM_MEMBER_RESPONSE, MOCK_GET_ADD_TEAM_MEMBER_RESPONSE as MOCK_GET_ADD_TEAM_MEMBER_RESPONSE } from '../../mock/text.mock';
 import { MOCK_POST_ADD_TEAM_MEMBER } from '../../mock/data';
 
+import { ErrorMessages } from '../../../src/validation/error.messages';
+
 const mockedLogger = logger as jest.Mock<typeof logger>;
 mockedLogger.mockImplementation((_req: Request, _res: Response, next: NextFunction) => next());
 const mockedAuth = authentication as jest.Mock<typeof authentication>;
@@ -41,6 +43,20 @@ describe('add-team-member endpoint integration tests', () => {
 
             expect(res.status).toEqual(302);
             expect(res.text).toContain(MOCK_REDIRECT_MESSAGE);
+            expect(mockedLogger).toHaveBeenCalledTimes(1);
+            expect(mockedAuth).toHaveBeenCalledTimes(1);
+        });
+
+        test('Should render the same page with error messages after POST request', async () => {
+            const res = await request(app).post(config.ADD_TEAM_MEMBER_URL).send({
+                team_name: '',
+                github_handle: ''
+            });
+
+            expect(res.status).toEqual(200);
+            expect(res.text).toContain(ErrorMessages.TEAM_NAME);
+            expect(res.text).toContain(ErrorMessages.GIT_HANDLE);
+            expect(res.text).toContain(MOCK_GET_ADD_TEAM_MEMBER_RESPONSE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
