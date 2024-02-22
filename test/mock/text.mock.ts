@@ -33,3 +33,5 @@ export const MOCK_SERVER_ERROR = 'Pipe 3000 requires elevated privileges';
 export const MOCK_ERROR_MESSAGE = 'Something has went wrong';
 export const MOCK_WRONG_URL = '/infooo';
 export const MOCK_REDIRECT_MESSAGE = 'Found. Redirecting to home';
+
+export const MOCK_VIEWS_PATH = '/path/to/views';
