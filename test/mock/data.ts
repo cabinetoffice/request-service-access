@@ -1,4 +1,5 @@
 import * as config from '../../src/config';
+import express from 'express';
 
 export const GET_REQUEST_MOCK = { method: 'GET', path: '/test' };
 
@@ -42,3 +43,7 @@ export const MOCK_HELMET_VALUE = {
         reportOnly: false
     }
 };
+
+export const MOCK_EXPRESS_APP = {
+    use: jest.fn()
+} as unknown as express.Application;
