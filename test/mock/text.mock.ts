@@ -22,7 +22,7 @@ export const MOCK_GET_MEMBER_REQUEST_RESPONSE = 'Additional Member Request';
 export const MOCK_POST_MEMBER_REQUEST_RESPONSE = 'GitHub Handle: example';
 
 export const MOCK_GET_ADD_TEAM_MEMBER_RESPONSE = 'Add a GitHub member to a team';
-export const MOCK_POST_ADD_TEAM_MEMBER_RESPONSE = 'Team Name: team1, Team Member GitHub Handle: joe';
+export const MOCK_POST_ADD_TEAM_MEMBER_RESPONSE = 'Team Name: team1, Team Member GitHub Handle: bob';
 
 export const MOCK_GET_REPO_REQUEST_RESPONSE = 'Additional Repository Requests';
 export const MOCK_POST_REPO_REQUEST_RESPONSE = 'Repository Name: repo1';

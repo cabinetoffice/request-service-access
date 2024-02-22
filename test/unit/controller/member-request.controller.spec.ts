@@ -33,7 +33,7 @@ describe('Member-request controller test suites', () => {
 
             get(req, res);
 
-            expect(res.render).toHaveBeenCalledWith(config.MEMBER_REQUST);
+            expect(res.render).toHaveBeenCalledWith(config.MEMBER_REQUEST);
         });
     });
 

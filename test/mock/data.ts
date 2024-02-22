@@ -9,7 +9,7 @@ export const MOCK_POST_ADD_TEAM = { team_name: 'team1', github_handle: 'bob' };
 export const MOCK_POST_REMOVE_MEMBER = { github_handle: 'example' };
 export const MOCK_POST_TEAM_REQUEST = { team_name: 'team1', description: 'information' };
 export const MOCK_POST_MEMBER_REQUEST = { github_handle: 'example' };
-export const MOCK_POST_ADD_TEAM_MEMBER = { team_name: 'team1', team_member_github_handle: 'joe' };
+export const MOCK_POST_ADD_TEAM_MEMBER = { team_name: 'team1', github_handle: 'bob' };
 export const MOCK_POST_REPO_REQUEST = { repo_name: 'repo1', description: 'information' };
 
 export const MOCK_CORS_VALUE = {
