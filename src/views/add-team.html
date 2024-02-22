@@ -19,17 +19,8 @@
 
         {% include "include/inputs/team-name.html" %}
 
-        {{ govukInput({
-          errorMessage: errors.team_maintainer_github_handle if errors,
-          label: {
-            text: "Team maintainer GitHub handle",
-            classes: "govuk-label--m"
-          },
-          classes: "govuk-input--width-10",
-          id: "team_maintainer_github_handle",
-          name: "team_maintainer_github_handle",
-          value: team_maintainer_github_handle
-        }) }}
+        {% set githubHandleText = "Team maintainer GitHub handle" %}
+        {% include "include/inputs/github-handle.html" %}
 
         {% set descriptionText = "Description (optional)" %}
         {% set descriptionHint = "Explain the reason for adding this team." %}

@@ -1,5 +1,5 @@
 export enum ErrorMessages {
-  GIT_HANDLE = 'Enter the username of your GitHub handle (aka GitHub account)',
+  GIT_HANDLE = 'Enter the username of the GitHub handle (aka GitHub account)',
   DESCRIPTION_LENGTH = 'Description must be 1000 characters or less',
   FIRST_NAME = 'Enter the first name of the GitHub account holder',
   LAST_NAME = 'Enter the last name of the GitHub account holder',
@@ -10,7 +10,5 @@ export enum ErrorMessages {
   CONTRACT_DATE_TIME= 'The contract end date cannot be in the past',
   REPO_NAME = 'Enter the repository name',
   VISIBILITY = 'Select a visibility option',
-  TEAM_MAINTAINER_GITHUB_HANDLE = 'Enter the team maintainer GitHub handle',
   TEAM_NAME = 'Enter the team name',
-  TEAM_MEMBER_GIT_HANDLE = 'Enter the username of the member GitHub handle (aka GitHub account)'
 }

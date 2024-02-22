@@ -49,12 +49,12 @@ describe('add-team endpoint integration tests', () => {
         test('Should render the same page with error messages after POST request', async () => {
             const res = await request(app).post(config.ADD_TEAM_URL).send({
                 repo_name: '',
-                team_maintainer_github_handle: '',
+                github_handle: '',
             });
 
             expect(res.status).toEqual(200);
             expect(res.text).toContain(ErrorMessages.TEAM_NAME);
-            expect(res.text).toContain(ErrorMessages.TEAM_MAINTAINER_GITHUB_HANDLE);
+            expect(res.text).toContain(ErrorMessages.GIT_HANDLE);
             expect(res.text).toContain(MOCK_GET_ADD_TEAM_RESPONSE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
