@@ -12,5 +12,5 @@ export enum ErrorMessages {
   VISIBILITY = 'Select a visibility option',
   TEAM_MAINTAINER_GITHUB_HANDLE = 'Enter the team maintainer GitHub handle',
   TEAM_NAME = 'Enter the team name',
-  DESCRIPTION = 'Enter a description of the permission changes'
+  DESCRIPTION = 'Enter a description of your request'
 }
