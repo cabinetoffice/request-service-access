@@ -11,5 +11,5 @@ export enum ErrorMessages {
   REPO_NAME = 'Enter the repository name',
   VISIBILITY = 'Select a visibility option',
   TEAM_NAME = 'Enter the team name',
-  DESCRIPTION = 'Enter a description of your request'
+  DESCRIPTION = 'Enter a description for your request',
 }

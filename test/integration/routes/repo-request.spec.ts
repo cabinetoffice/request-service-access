@@ -55,6 +55,7 @@ describe('repo-request endpoint integration tests', () => {
             expect(res.status).toEqual(200);
             expect(res.text).toContain(ErrorMessages.REPO_NAME);
             expect(res.text).toContain(ErrorMessages.DESCRIPTION_LENGTH);
+            expect(res.text).toContain(ErrorMessages.DESCRIPTION);
             expect(res.text).toContain(MOCK_GET_REPO_REQUEST_RESPONSE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
