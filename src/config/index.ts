@@ -1,14 +1,18 @@
 import { getEnvironmentValue } from '../utils/getEnvironmentValue';
 
-export const PORT = process.env['PORT'] || '3000';
-export const BASE_URL = process.env['BASE_URL'] || `http://localhost:${PORT}`;
-export const CDN_HOST = process.env['CDN_HOST'] || 'd6nh3dxv55e16.cloudfront.net';
-export const NODE_SSL_ENABLED = process.env['NODE_SSL_ENABLED'];
-
-export const PATH_SSL_PRIVATE_KEY = process.env['PATH_SSL_PRIVATE_KEY'] || '';
-export const PATH_SSL_CERTIFICATE = process.env['PATH_SSL_CERTIFICATE'] || '';
-
 export const SERVICE_NAME = 'GitHub Requests Application ';
+
+export const PATH_SSL_PRIVATE_KEY = getEnvironmentValue('PATH_SSL_PRIVATE_KEY', 'false');
+export const PATH_SSL_CERTIFICATE = getEnvironmentValue('PATH_SSL_CERTIFICATE', 'false');
+
+export const PORT = getEnvironmentValue('PORT', '3000');
+export const BASE_URL = getEnvironmentValue('BASE_URL', `http://localhost:${PORT}`);
+export const NODE_SSL_ENABLED = getEnvironmentValue('NODE_SSL_ENABLED', 'false');
+
+export const CDN_HOST = getEnvironmentValue('CDN_HOST');
+
+export const COOKIE_PARSER_SECRET = getEnvironmentValue('COOKIE_PARSER_SECRET');
+export const COOKIE_SESSION_SECRET = getEnvironmentValue('COOKIE_SESSION_SECRET');
 
 // Template
 export const START = 'start';
