@@ -1,4 +1,4 @@
-.PHONY: clean build lint test coverage docker-up docker-build
+.PHONY: clean build lint test coverage docker-up docker-build security-check
 
 NODE_VERSION_SUPPORTED := >=20.0.0
 NODE_VERSION=$(shell node -v)
@@ -19,6 +19,9 @@ docker-build:
 docker-up:
 	$(info webapp starting)
 	docker compose -f docker-compose.yml up
+
+security-check:
+	npm audit
 
 lint:
 	npm run lint
