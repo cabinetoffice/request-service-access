@@ -13,19 +13,6 @@ import { MOCK_POST_ADD_MEMBER } from '../../mock/data';
 import { MOCK_POST_ADD_MEMBER_RESPONSE, MOCK_POST_LOG_ERROR_REQUEST } from '../../mock/text.mock';
 import { mockBadRequest, mockRequest, mockResponse, mockNext } from '../../mock/express.mock';
 
-// const req = {
-//     body: MOCK_POST_ADD_MEMBER
-// } as Request;
-
-// const mockResponse = () => {
-//     const res = {} as Response;
-//     res.render = jest.fn().mockReturnValue(res) as any;
-//     res.redirect = jest.fn().mockReturnValue(res) as any;
-//     return res;
-// };
-
-// const next = jest.fn() as NextFunction;
-
 const mockSetSessionData = setSessionData as jest.Mock;
 const mockGetSessionData = getSessionData as jest.Mock;
 
