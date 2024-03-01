@@ -17,16 +17,16 @@ export const post = (req: Request, res: Response, next: NextFunction ) => {
         const gitHubHandle = req.body.github_handle;
         const emailAddress = req.body.email_address;
         const contractType = req.body.contract_type;
-        const contract_end_date = req.body.contract_end_date;
+        const contractEndDate = req.body.contract_end_date;
 
         const msg = `First name: ${firstName}, Last name: ${lastName}, GitHub handle: ${gitHubHandle}`;
-        log.info(`${msg}, email: ${emailAddress}, Contract end date: ${contract_end_date}`);
+        log.info(`${msg}, email: ${emailAddress}, Contract end date: ${contractEndDate}`);
 
         setSessionData(req.session, {
             ...getSessionData(req.session),
             [AddMemberKey]: {
                 ...req.body,
-                contract_end_date: (contractType === `permanent`) ? '' : contract_end_date
+                contract_end_date: (contractType === `permanent`) ? '' : contractEndDate
             }
         });
 
