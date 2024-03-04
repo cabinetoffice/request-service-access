@@ -1,7 +1,7 @@
 export const MOCK_OK_RESPONSE = 'OK';
 export const MOCK_GET_CONFIRMATION_RESPONSE = 'GitHub request complete';
 export const MOCK_GET_START_RESPONSE = 'GitHub Requests';
-export const MOCK_GET_HOME_RESPONSE = 'GitHub request application';
+export const MOCK_GET_HOME_RESPONSE = 'GitHub Requests';
 
 export const MOCK_GET_ADD_REPO_RESPONSE = 'Add a GitHub Repository';
 export const MOCK_POST_ADD_REPO_RESPONSE = 'Repository Name: repo1, Visibility: public';
