@@ -4,15 +4,17 @@
 
 <div class="govuk-width-container">
         
-  <main class="govuk-main-wrapper">
+  <!-- <main class="govuk-main-wrapper"> -->
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        
+
         <h1 class="govuk-heading-l">GitHub request application</h1>
         <p class="govuk-body">This application has been designed to streamline and enhance the management of GitHub member requests. This tool will allow GitHub administrators to efficiently handle member-related tasks, including adding, deleting, and amending user permissions.</p>
+
         <h1 class="govuk-heading-m">
           Please choose from one of the following options:
-      </h1>
+        </h1>
+
         <h2 class="govuk-heading-s">Member Requests</h2>
         <ul class="govuk-list--bullet govuk-list--spaced govuk-link">
           <li>
@@ -48,8 +50,32 @@
             <a class="govuk-link" href="/repo-request">Additional Repository Requests (e.g permission changes)</a>
           </li>
         </ul>
+
+        <form method="post">
+          {% if (add_team and add_team.length > 0)
+            or (add_repo and add_repo.length > 0)
+            or (add_member and add_member.length > 0) %}
+  
+            <br>
+            <br>
+            <h2 class="govuk-heading-l govuk-!-margin-0">What you have added so far:</h2>
+            <br>
+
+            {% include "include/list/added.html" %}
+
+            {{ govukButton({
+              text: "No more to add",
+              attributes: {
+                "id": "submit"
+              },
+              classes: "govuk-button--secondary govuk-!-margin-top-6",
+              href: "/check-your-answers"
+            }) }}
+
+          {% endif %}
+        </form>
       </div>
     </div>
-  </main>
+  <!-- </main> -->
 </div>
 {% endblock %}
