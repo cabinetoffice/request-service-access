@@ -29,6 +29,7 @@
     "@types/node": "^20.6.2",
     "@types/nunjucks": "^3.2.4",
     "@types/supertest": "^2.0.14",
+    "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
     "eslint": "^8.49.0",
@@ -41,8 +42,9 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@co-digital/api-sdk": "^1.0.6",
     "@co-digital/logging": "^1.0.1",
-    "@co-digital/login": "^1.0.0",
+    "@co-digital/login": "^1.0.1",
     "cookie-parser": "^1.4.6",
     "cookie-session": "^2.1.0",
     "cors": "^2.8.5",
@@ -52,6 +54,7 @@
     "govuk-frontend": "^4.7.0",
     "helmet": "^7.0.0",
     "luxon": "^3.4.4",
-    "nunjucks": "^3.2.4"
+    "nunjucks": "^3.2.4",
+    "uuid": "^9.0.1"
   }
 }
