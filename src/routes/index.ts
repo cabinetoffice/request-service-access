@@ -14,6 +14,7 @@ import teamRequestRouter from './team-request';
 import addTeamMemberRouter from './add-team-member';
 import memberRequestRouter from './member-request';
 import repoRequestRouter from './repo-request';
+import checkYourAnswersRouter from './check-your-answers';
 
 const router = Router();
 
@@ -33,5 +34,6 @@ router.use(teamRequestRouter);
 router.use(addTeamMemberRouter);
 router.use(memberRequestRouter);
 router.use(repoRequestRouter);
+router.use(checkYourAnswersRouter);
 
 export default router;
