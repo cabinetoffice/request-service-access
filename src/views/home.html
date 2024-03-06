@@ -3,51 +3,37 @@
 {% block content %}
 
 <div class="govuk-width-container">
-        
-  <!-- <main class="govuk-main-wrapper"> -->
+  <main class="govuk-main-wrapper">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-
-        <h1 class="govuk-heading-l">GitHub request application</h1>
-        <p class="govuk-body">This application has been designed to streamline and enhance the management of GitHub member requests. This tool will allow GitHub administrators to efficiently handle member-related tasks, including adding, deleting, and amending user permissions.</p>
-
-        <h1 class="govuk-heading-m">
-          Please choose from one of the following options:
-        </h1>
-
-        <h2 class="govuk-heading-s">Member Requests</h2>
-        <ul class="govuk-list--bullet govuk-list--spaced govuk-link">
+        <h1 class="govuk-heading-l">GitHub Requests</h1>
+        <p class="govuk-body">You can use this service to make requests to your GitHub organisation. You can make multiple requests at once, with all requests displayed in a summary table at the bottom of this page.</p>
+        <h2 class="govuk-heading-m">General requests</h2>
+        <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
           <li>
-            <a class="govuk-link" href="/add-member">Add Member</a>
+            <a class="govuk-link" href="/add-member">Add a new member</a>
           </li>
           <li>
-            <a class="govuk-link" href="/remove-member">Remove Member</a>
+            <a class="govuk-link" href="/add-team">Add a new team</a>
           </li>
           <li>
-            <a class="govuk-link" href="/member-request">Additional Member Requests (e.g permission change)</a>
-          </li>
-        </ul>
-        <br>
-        <h2 class="govuk-heading-s">Team Requests</h2>
-        <ul class="govuk-list--bullet govuk-list--spaced govuk-link">
-          <li>
-            <a class="govuk-link" href="/add-team">Add Team</a>
+            <a class="govuk-link" href="/add-team-member">Add existing member(s) to a team</a>
           </li>
           <li>
-            <a class="govuk-link" href="/add-team-member">Add Member Per Team</a>
+            <a class="govuk-link" href="/add-repo">Add a new repository</a>
           </li>
           <li>
-            <a class="govuk-link" href="/team-request">Additional Team Requests (e.g parent team)</a>
+            <a class="govuk-link" href="/add-collaborator">Add a new collaborator to a repository</a>
           </li>
         </ul>
-        <br>
-        <h2 class="govuk-heading-s">Repository requests</h2>
-        <ul class="govuk-list--bullet govuk-list--spaced govuk-link">
+        <h2 class="govuk-heading-m">Additional requests</h2>
+        <p class="govuk-body">
+          Make additional requests that are not covered by the other options,
+          for example, removal requests or permission changes.
+        </p>
+        <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
           <li>
-            <a class="govuk-link" href="/add-repo">Add Repository</a>
-          </li>
-          <li>
-            <a class="govuk-link" href="/repo-request">Additional Repository Requests (e.g permission changes)</a>
+            <a class="govuk-link" href="/additional-requests">Additional requests</a>
           </li>
         </ul>
 
@@ -74,8 +60,10 @@
 
           {% endif %}
         </form>
+
       </div>
     </div>
-  <!-- </main> -->
+  </main>
 </div>
+
 {% endblock %}
