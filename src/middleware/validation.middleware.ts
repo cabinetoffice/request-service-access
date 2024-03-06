@@ -23,7 +23,7 @@ export const checkValidations = (req: Request, res: Response, next: NextFunction
 
         return next();
     } catch (err: any) {
-        log.error(err.message);
+        log.errorRequest(req, err.message);
         next(err);
     }
 };
