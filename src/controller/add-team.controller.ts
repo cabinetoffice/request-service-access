@@ -1,16 +1,16 @@
 import { NextFunction, Request, Response } from 'express';
-import { v4 as uuidv4 } from 'uuid';
-
-import * as config from '../config';
-import { log } from '../utils/logger';
-
-import { AddTeam, AddTeamKey } from '../model/add-team.model';
 import {
     removeApplicationDataByID,
     getApplicationDataByID,
     setApplicationDataByID,
     setApplicationDataKey
 } from '@co-digital/login';
+import { v4 as uuidv4 } from 'uuid';
+
+import * as config from '../config';
+import { log } from '../utils/logger';
+
+import { AddTeam, AddTeamKey } from '../model/add-team.model';
 
 export const get = (_req: Request, res: Response) => {
     return res.render(config.ADD_TEAM);
@@ -22,7 +22,7 @@ export const post = (req: Request, res: Response, next: NextFunction) => {
         const teamName = req.body.team_name;
         const githubHandle = req.body.github_handle;
 
-        log.info(`Team Name: ${teamName}, Team ID: ${teamID}, Team Maintainer GitHub Handle: ${githubHandle}`);
+        log.info(`Team Name: ${teamName}, Team Maintainer GitHub Handle: ${githubHandle}, Team ID: ${teamID}`);
 
         setApplicationDataKey(req.session, { ...req.body, [config.ID]: teamID }, AddTeamKey);
 
@@ -65,7 +65,7 @@ export const postById = (req: Request, res: Response, next: NextFunction) => {
 
 export const removeById = (req: Request, res: Response, next: NextFunction) => {
     try {
-        log.debug(`Team ID: ${req.params.id}`);
+        log.info(`Team ID: ${req.params.id}`);
 
         removeApplicationDataByID(req.session, AddTeamKey, req.params[config.ID]);
 
