@@ -1,20 +1,29 @@
-jest.mock('@co-digital/login');
 jest.mock('../../../src/utils/logger');
+jest.mock('@co-digital/login');
+jest.mock('uuid');
 
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
-import { getSessionData, setSessionData } from '@co-digital/login';
 
-import { get, post } from '../../../src/controller/add-repo.controller';
+import { get, getById, post, postById, removeById } from '../../../src/controller/add-repo.controller';
 import { AddRepoKey } from '../../../src/model/add-repo.model';
 import * as config from '../../../src/config';
-import { log } from '../../../src/utils/logger';
 
 import { MOCK_POST_ADD_REPO } from '../../mock/data';
-import { MOCK_POST_LOG_ERROR_REQUEST, MOCK_POST_ADD_REPO_RESPONSE } from '../../mock/text.mock';
+import { MOCK_LOG_ERROR_REQUEST, MOCK_ADD_REPO_RESPONSE, MOCK_BY_ID_REPO_RESPONSE } from '../../mock/text.mock';
 import { mockBadRequest, mockRequest, mockResponse, mockNext } from '../../mock/express.mock';
 
-const mockSetSessionData = setSessionData as jest.Mock;
-const mockGetSessionData = getSessionData as jest.Mock;
+import {
+    mockGetApplicationDataByID,
+    mockID,
+    mockRemoveApplicationDataByID,
+    mockSetApplicationDataByID,
+    mockSetApplicationDataKey,
+    mockUuidv4
+} from '../../mock/session.mock';
+import {
+    mockLogInfo,
+    mockLogErrorRequest
+} from '../../mock/log.mock';
 
 describe('Add-repo controller test suites', () => {
     afterEach(() => {
@@ -36,43 +45,170 @@ describe('Add-repo controller test suites', () => {
     describe('add-repo POST tests', () => {
 
         test('should redirect to home page on POST request', () => {
+            mockUuidv4.mockImplementation(_ => mockID);
             const res = mockResponse();
             const req = { ...mockRequest(MOCK_POST_ADD_REPO), session: {} } as any;
 
             post(req, res, mockNext);
 
-            expect(mockSetSessionData).toHaveBeenCalledWith(req.session, {
-                [AddRepoKey]: { ...MOCK_POST_ADD_REPO }
-            });
-            expect(mockGetSessionData).toHaveBeenCalledWith(req.session);
-            expect(res.redirect).toBeCalledWith(config.HOME);
+            expect(mockSetApplicationDataKey).toHaveBeenCalledWith(req.session, {
+                id: mockID,
+                ...MOCK_POST_ADD_REPO
+            }, AddRepoKey);
+
+            expect(res.redirect).toBeCalledWith(config.HOME_URL);
             expect(mockNext).not.toHaveBeenCalled();
         });
 
         test('should log Repository Name, Visibility and Description on POST request', () => {
+            mockUuidv4.mockImplementation(_ => mockID);
             const res = mockResponse();
             const req = mockRequest(MOCK_POST_ADD_REPO);
 
-            const mockLogInfo = log.info as jest.Mock;
-
             post(req, res, mockNext);
-            expect(mockSetSessionData).toHaveBeenCalledTimes(1);
-            expect(mockGetSessionData).toHaveBeenCalledTimes(1);
-            expect(mockLogInfo).toHaveBeenCalledWith(MOCK_POST_ADD_REPO_RESPONSE);
+
+            expect(mockSetApplicationDataKey).toHaveBeenCalledTimes(1);
+            expect(mockLogInfo).toHaveBeenCalledWith(MOCK_ADD_REPO_RESPONSE);
             expect(mockNext).not.toHaveBeenCalled();
         });
 
         test('should log error request and call next', () => {
             const res = mockResponse();
 
-            const mockLogErrorRequest = log.errorRequest as jest.Mock;
-
             post(mockBadRequest, res, mockNext);
 
             expect(mockLogErrorRequest).toHaveBeenCalledWith(
                 mockBadRequest,
-                `${MOCK_POST_LOG_ERROR_REQUEST} (reading 'repo_name')`);
+                `${MOCK_LOG_ERROR_REQUEST} (reading 'repo_name')`);
             expect(mockNext).toBeCalledTimes(1);
         });
     });
+
+    describe('add-repo POST ById tests', () => {
+
+        test('should redirect to home page on POST ById request', () => {
+            const res = mockResponse();
+            const req = {
+                ...mockRequest(MOCK_POST_ADD_REPO),
+                session: {},
+                params: { id: mockID }
+            } as any;
+
+            postById(req, res, mockNext);
+
+            expect(mockSetApplicationDataByID).toHaveBeenCalledWith(req.session, {
+                id: mockID,
+                ...MOCK_POST_ADD_REPO
+            }, AddRepoKey, mockID);
+
+            expect(res.redirect).toBeCalledWith(config.HOME_URL);
+            expect(mockNext).not.toHaveBeenCalled();
+        });
+
+        test('should log add-repo details on POST ById request', () => {
+            const res = mockResponse();
+            const req = {
+                ...mockRequest(MOCK_POST_ADD_REPO),
+                params: { id: mockID }
+            } as any;
+
+            postById(req, res, mockNext);
+
+            expect(mockSetApplicationDataByID).toHaveBeenCalledTimes(1);
+            expect(mockLogInfo).toHaveBeenCalledWith(`${MOCK_BY_ID_REPO_RESPONSE}${mockID}`);
+            expect(mockNext).not.toHaveBeenCalled();
+        });
+
+        test('should log error request and call next', () => {
+            const res = mockResponse();
+
+            postById(mockBadRequest, res, mockNext);
+
+            expect(mockLogErrorRequest).toHaveBeenCalledWith(
+                mockBadRequest,
+                `${MOCK_LOG_ERROR_REQUEST} (reading 'repo_name')`);
+            expect(mockNext).toBeCalledTimes(1);
+        });
+    });
+
+    describe('add-repo GET ById tests', () => {
+
+        test('should render add-repo template', () => {
+            const res = mockResponse();
+            const req = { params: { id: mockID } } as any;
+            mockGetApplicationDataByID.mockImplementationOnce( _ => MOCK_POST_ADD_REPO);
+
+            getById(req, res, mockNext);
+
+            expect(mockGetApplicationDataByID).toHaveBeenCalledWith(req.session, AddRepoKey, mockID);
+
+            expect(res.render).toBeCalledWith(
+                config.ADD_REPO,
+                { ...MOCK_POST_ADD_REPO, [config.ID]: mockID }
+            );
+            expect(mockNext).not.toHaveBeenCalled();
+        });
+
+        test('should log add-repo details on GET ById request', () => {
+            const res = mockResponse();
+            const req = {
+                params: { id: mockID }
+            } as any;
+            mockGetApplicationDataByID.mockImplementationOnce( _ => MOCK_POST_ADD_REPO);
+
+            getById(req, res, mockNext);
+            expect(mockGetApplicationDataByID).toHaveBeenCalledTimes(1);
+            expect(mockLogInfo).toHaveBeenCalledWith(`${MOCK_BY_ID_REPO_RESPONSE}${mockID}`);
+            expect(mockNext).not.toHaveBeenCalled();
+        });
+
+        test('should log error request and call next', () => {
+            const res = mockResponse();
+
+            getById(mockBadRequest, res, mockNext);
+
+            expect(mockLogErrorRequest).toHaveBeenCalledWith(
+                mockBadRequest,
+                `${MOCK_LOG_ERROR_REQUEST} (reading 'id')`);
+            expect(mockNext).toBeCalledTimes(1);
+        });
+    });
+
+    describe('add-repo REMOVE ById tests', () => {
+
+        test('should redirect to home page', () => {
+            const res = mockResponse();
+            const req = { params: { id: mockID } } as any;
+
+            removeById(req, res, mockNext);
+
+            expect(mockRemoveApplicationDataByID).toHaveBeenCalledWith(req.session, AddRepoKey, mockID);
+
+            expect(res.redirect).toBeCalledWith(config.HOME_URL);
+            expect(mockNext).not.toHaveBeenCalled();
+        });
+
+        test('should log add-repo details on Remove ById request', () => {
+            const res = mockResponse();
+            const req = { params: { id: mockID } } as any;
+
+            removeById(req, res, mockNext);
+
+            expect(mockRemoveApplicationDataByID).toHaveBeenCalledTimes(1);
+            expect(mockLogInfo).toHaveBeenCalledWith(`Repository ID: ${mockID}`);
+            expect(mockNext).not.toHaveBeenCalled();
+        });
+
+        test('should log error request and call next', () => {
+            const res = mockResponse();
+
+            removeById(mockBadRequest, res, mockNext);
+
+            expect(mockLogErrorRequest).toHaveBeenCalledWith(
+                mockBadRequest,
+                `${MOCK_LOG_ERROR_REQUEST} (reading 'id')`);
+            expect(mockNext).toBeCalledTimes(1);
+        });
+    });
+
 });
