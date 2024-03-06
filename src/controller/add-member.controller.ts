@@ -1,16 +1,16 @@
 import { NextFunction, Request, Response } from 'express';
-import { v4 as uuidv4 } from 'uuid';
-
-import * as config from '../config';
-import { log } from '../utils/logger';
-
-import { AddMember, AddMemberKey } from '../model/add-member.model';
 import {
     getApplicationDataByID,
     removeApplicationDataByID,
     setApplicationDataByID,
     setApplicationDataKey
 } from '@co-digital/login';
+import { v4 as uuidv4 } from 'uuid';
+
+import * as config from '../config';
+import { log } from '../utils/logger';
+
+import { AddMember, AddMemberKey } from '../model/add-member.model';
 
 export const get = (_req: Request, res: Response) => {
     return res.render(config.ADD_MEMBER);
@@ -47,7 +47,7 @@ export const getById = (req: Request, res: Response, next: NextFunction ) => {
         const memberID = req.params[config.ID];
         const addMemberData: AddMember = getApplicationDataByID(req.session, AddMemberKey, memberID);
 
-        log.info(`Github Handle: ${addMemberData.github_handle}, Member ID: ${memberID}`);
+        log.info(`GitHub handle: ${addMemberData.github_handle}, Member ID: ${memberID}`);
 
         return res.render(config.ADD_MEMBER, { ...addMemberData, [config.ID]: memberID });
     } catch (err: any) {
@@ -63,7 +63,7 @@ export const postById = (req: Request, res: Response, next: NextFunction) => {
         const githubHandleName = req.body.github_handle;
         const contractEndDate = req.body.contract_end_date;
 
-        log.info(`Github Handle: ${githubHandleName}, Member ID: ${memberID}`);
+        log.info(`GitHub handle: ${githubHandleName}, Member ID: ${memberID}`);
 
         setApplicationDataByID(
             req.session,
@@ -80,7 +80,7 @@ export const postById = (req: Request, res: Response, next: NextFunction) => {
 
 export const removeById = (req: Request, res: Response, next: NextFunction) => {
     try {
-        log.debug(`Member ID: ${req.params.id}`);
+        log.info(`Member ID: ${req.params.id}`);
 
         removeApplicationDataByID(req.session, AddMemberKey, req.params[config.ID]);
 

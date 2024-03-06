@@ -1,98 +1,236 @@
-jest.mock('@co-digital/login');
 jest.mock('../../../src/utils/logger');
+jest.mock('@co-digital/login');
+jest.mock('uuid');
 
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
-import { getSessionData, setSessionData } from '@co-digital/login';
 
-import { get, post } from '../../../src/controller/add-member.controller';
+import { get, getById, post, postById, removeById } from '../../../src/controller/add-member.controller';
 import { AddMemberKey } from '../../../src/model/add-member.model';
 import * as config from '../../../src/config';
-import { log } from '../../../src/utils/logger';
 
 import { MOCK_POST_ADD_MEMBER } from '../../mock/data';
-import { MOCK_POST_ADD_MEMBER_RESPONSE, MOCK_POST_LOG_ERROR_REQUEST } from '../../mock/text.mock';
-import { mockBadRequest, mockRequest, mockResponse, mockNext } from '../../mock/express.mock';
+import {
+    MOCK_POST_ADD_MEMBER_RESPONSE,
+    MOCK_BY_ID_ADD_MEMBER_RESPONSE,
+    MOCK_LOG_ERROR_REQUEST
+} from '../../mock/text.mock';
+import {
+    mockBadRequest,
+    mockRequest,
+    mockResponse,
+    mockNext
+} from '../../mock/express.mock';
+import {
+    mockGetApplicationDataByID,
+    mockID,
+    mockRemoveApplicationDataByID,
+    mockSetApplicationDataByID,
+    mockSetApplicationDataKey,
+    mockUuidv4
+} from '../../mock/session.mock';
+import {
+    mockLogInfo,
+    mockLogErrorRequest
+} from '../../mock/log.mock';
 
-const mockSetSessionData = setSessionData as jest.Mock;
-const mockGetSessionData = getSessionData as jest.Mock;
+describe('add-member controller test suites', () => {
 
-describe('add member controller test suites', () => {
     afterEach(() => {
         jest.resetAllMocks();
     });
 
-    test('should render add member template', () => {
-        const res = mockResponse();
-        const req = mockRequest();
+    describe('add-member GET tests', () => {
 
-        get(req, res);
+        test('should render add member template', () => {
+            const res = mockResponse();
+            const req = mockRequest();
 
-        expect(res.render).toHaveBeenCalledWith(config.ADD_MEMBER);
-    });
-});
+            get(req, res);
 
-describe('add-member POST tests', () => {
-
-    afterEach(() => {
-        jest.resetAllMocks();
-    });
-
-    test('should redirect to home page on POST request', () => {
-        const res = mockResponse();
-        const req = { ...mockRequest(MOCK_POST_ADD_MEMBER), session: {} } as any;
-
-        post(req, res, mockNext);
-
-        expect(mockSetSessionData).toHaveBeenCalledWith(req.session, {
-            [AddMemberKey]: { ...MOCK_POST_ADD_MEMBER }
+            expect(res.render).toHaveBeenCalledWith(config.ADD_MEMBER);
         });
-        expect(mockGetSessionData).toHaveBeenCalledWith(req.session);
-        expect(res.redirect).toBeCalledWith(config.HOME);
-        expect(mockNext).not.toHaveBeenCalled();
     });
 
-    test('should log add-member details on POST request', () => {
-        const res = mockResponse();
-        const req = mockRequest(MOCK_POST_ADD_MEMBER);
+    describe('add-member POST tests', () => {
 
-        const mockLogInfo = log.info as jest.Mock;
+        test('should redirect to home page on POST request', () => {
+            mockUuidv4.mockImplementation(_ => mockID);
+            const res = mockResponse();
+            const req = { ...mockRequest(MOCK_POST_ADD_MEMBER), session: {} } as any;
 
-        post(req, res, mockNext);
-        expect(mockSetSessionData).toHaveBeenCalledTimes(1);
-        expect(mockGetSessionData).toHaveBeenCalledTimes(1);
-        expect(mockLogInfo).toHaveBeenCalledWith(MOCK_POST_ADD_MEMBER_RESPONSE);
-        expect(mockNext).not.toHaveBeenCalled();
-    });
+            post(req, res, mockNext);
 
-    test('should log add-member details with date on POST request', () => {
-        const mockDate = '9999-12-31';
-        const res = mockResponse();
-        const req = mockRequest({
-            ...MOCK_POST_ADD_MEMBER,
-            contract_type: 'non_permanent',
-            contract_end_date: mockDate
+            expect(mockSetApplicationDataKey).toHaveBeenCalledWith(req.session, {
+                id: mockID,
+                ...MOCK_POST_ADD_MEMBER
+            }, AddMemberKey);
+
+            expect(res.redirect).toBeCalledWith(config.HOME_URL);
+            expect(mockNext).not.toHaveBeenCalled();
         });
 
-        const mockLogInfo = log.info as jest.Mock;
+        test('should log add-member details on POST request', () => {
+            mockUuidv4.mockImplementation(_ => mockID);
+            const res = mockResponse();
+            const req = mockRequest(MOCK_POST_ADD_MEMBER);
 
-        post(req, res, mockNext);
-        expect(mockSetSessionData).toHaveBeenCalledTimes(1);
-        expect(mockGetSessionData).toHaveBeenCalledTimes(1);
-        expect(mockLogInfo).toHaveBeenCalledWith(`${MOCK_POST_ADD_MEMBER_RESPONSE}${mockDate}`);
-        expect(mockNext).not.toHaveBeenCalled();
+            post(req, res, mockNext);
+            expect(mockSetApplicationDataKey).toHaveBeenCalledTimes(1);
+            expect(mockLogInfo).toHaveBeenCalledWith(MOCK_POST_ADD_MEMBER_RESPONSE);
+            expect(mockNext).not.toHaveBeenCalled();
+        });
+
+        test('should log add-member details with date on POST request', () => {
+            mockUuidv4.mockImplementation(_ => mockID);
+            const mockDate = '9999-12-31';
+            const res = mockResponse();
+            const req = mockRequest({
+                ...MOCK_POST_ADD_MEMBER,
+                contract_type: 'non_permanent',
+                contract_end_date: mockDate
+            });
+
+            post(req, res, mockNext);
+            expect(mockSetApplicationDataKey).toHaveBeenCalledTimes(1);
+            expect(mockLogInfo).toHaveBeenCalledWith(`${MOCK_POST_ADD_MEMBER_RESPONSE}${mockDate}`);
+            expect(mockNext).not.toHaveBeenCalled();
+        });
+
+        test('should log error request and call next', () => {
+            const res = mockResponse();
+
+            post(mockBadRequest, res, mockNext);
+
+            expect(mockLogErrorRequest).toHaveBeenCalledWith(
+                mockBadRequest,
+                `${MOCK_LOG_ERROR_REQUEST} (reading 'first_name')`);
+            expect(mockNext).toBeCalledTimes(1);
+        });
     });
 
-    test('should log error request and call next', () => {
-        const res = mockResponse();
+    describe('add-member POST ById tests', () => {
 
-        const mockLogErrorRequest = log.errorRequest as jest.Mock;
+        test('should redirect to home page on POST ById request', () => {
+            const res = mockResponse();
+            const req = {
+                ...mockRequest(MOCK_POST_ADD_MEMBER),
+                session: {},
+                params: { id: mockID }
+            } as any;
 
-        post(mockBadRequest, res, mockNext);
+            postById(req, res, mockNext);
 
-        expect(mockLogErrorRequest).toHaveBeenCalledWith(
-            mockBadRequest,
-            `${MOCK_POST_LOG_ERROR_REQUEST} (reading 'first_name')`);
-        expect(mockNext).toBeCalledTimes(1);
+            expect(mockSetApplicationDataByID).toHaveBeenCalledWith(req.session, {
+                id: mockID,
+                ...MOCK_POST_ADD_MEMBER
+            }, AddMemberKey, mockID);
+
+            expect(res.redirect).toBeCalledWith(config.HOME_URL);
+            expect(mockNext).not.toHaveBeenCalled();
+        });
+
+        test('should log add-member details on POST ById request', () => {
+            const res = mockResponse();
+            const req = {
+                ...mockRequest(MOCK_POST_ADD_MEMBER),
+                params: { id: mockID }
+            } as any;
+
+            postById(req, res, mockNext);
+            expect(mockSetApplicationDataByID).toHaveBeenCalledTimes(1);
+            expect(mockLogInfo).toHaveBeenCalledWith(`${MOCK_BY_ID_ADD_MEMBER_RESPONSE}${mockID}`);
+            expect(mockNext).not.toHaveBeenCalled();
+        });
+
+        test('should log error request and call next', () => {
+            const res = mockResponse();
+
+            postById(mockBadRequest, res, mockNext);
+
+            expect(mockLogErrorRequest).toHaveBeenCalledWith(
+                mockBadRequest,
+                `${MOCK_LOG_ERROR_REQUEST} (reading 'id')`);
+            expect(mockNext).toBeCalledTimes(1);
+        });
+    });
+
+    describe('add-member GET ById tests', () => {
+
+        test('should render add-member template', () => {
+            const res = mockResponse();
+            const req = { params: { id: mockID } } as any;
+            mockGetApplicationDataByID.mockImplementationOnce( _ => MOCK_POST_ADD_MEMBER);
+
+            getById(req, res, mockNext);
+
+            expect(mockGetApplicationDataByID).toHaveBeenCalledWith(req.session, AddMemberKey, mockID);
+
+            expect(res.render).toBeCalledWith(
+                config.ADD_MEMBER,
+                { ...MOCK_POST_ADD_MEMBER, [config.ID]: mockID }
+            );
+            expect(mockNext).not.toHaveBeenCalled();
+        });
+
+        test('should log add-member details on GET ById request', () => {
+            const res = mockResponse();
+            const req = {
+                params: { id: mockID }
+            } as any;
+            mockGetApplicationDataByID.mockImplementationOnce( _ => MOCK_POST_ADD_MEMBER);
+
+            getById(req, res, mockNext);
+            expect(mockGetApplicationDataByID).toHaveBeenCalledTimes(1);
+            expect(mockLogInfo).toHaveBeenCalledWith(`${MOCK_BY_ID_ADD_MEMBER_RESPONSE}${mockID}`);
+            expect(mockNext).not.toHaveBeenCalled();
+        });
+
+        test('should log error request and call next', () => {
+            const res = mockResponse();
+
+            getById(mockBadRequest, res, mockNext);
+
+            expect(mockLogErrorRequest).toHaveBeenCalledWith(
+                mockBadRequest,
+                `${MOCK_LOG_ERROR_REQUEST} (reading 'id')`);
+            expect(mockNext).toBeCalledTimes(1);
+        });
+    });
+
+    describe('add-member REMOVE ById tests', () => {
+
+        test('should redirect to home page', () => {
+            const res = mockResponse();
+            const req = { params: { id: mockID } } as any;
+
+            removeById(req, res, mockNext);
+
+            expect(mockRemoveApplicationDataByID).toHaveBeenCalledWith(req.session, AddMemberKey, mockID);
+
+            expect(res.redirect).toBeCalledWith(config.HOME_URL);
+            expect(mockNext).not.toHaveBeenCalled();
+        });
+
+        test('should log add-member details on Remove ById request', () => {
+            const res = mockResponse();
+            const req = { params: { id: mockID } } as any;
+
+            removeById(req, res, mockNext);
+
+            expect(mockRemoveApplicationDataByID).toHaveBeenCalledTimes(1);
+            expect(mockLogInfo).toHaveBeenCalledWith(`Member ID: ${mockID}`);
+            expect(mockNext).not.toHaveBeenCalled();
+        });
+
+        test('should log error request and call next', () => {
+            const res = mockResponse();
+
+            removeById(mockBadRequest, res, mockNext);
+
+            expect(mockLogErrorRequest).toHaveBeenCalledWith(
+                mockBadRequest,
+                `${MOCK_LOG_ERROR_REQUEST} (reading 'id')`);
+            expect(mockNext).toBeCalledTimes(1);
+        });
     });
 });
-
