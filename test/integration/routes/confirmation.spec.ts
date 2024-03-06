@@ -13,6 +13,7 @@ import { logger } from '../../../src/middleware/logger.middleware';
 import { authentication } from '../../../src/middleware/authentication.middleware';
 
 import { MOCK_GET_CONFIRMATION_RESPONSE } from '../../mock/text.mock';
+import { mockID } from '../../mock/session.mock';
 
 const mockedLogger = logger as jest.Mock<typeof logger>;
 mockedLogger.mockImplementation((req: Request, res: Response, next: NextFunction) => next());
@@ -26,10 +27,11 @@ describe('Confirmation endpoint integration tests', () => {
 
     describe('GET tests', () => {
         test('should render confirmation template', async () => {
-            const res = await request(app).get(config.CONFIRMATION_URL);
+            const res = await request(app).get(`${config.CONFIRMATION_URL}/${mockID}`);
 
             expect(res.status).toEqual(200);
             expect(res.text).toContain(MOCK_GET_CONFIRMATION_RESPONSE);
+
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });

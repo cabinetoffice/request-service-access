@@ -1,16 +1,9 @@
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
-import { Request, Response } from 'express';
 
 import { get } from '../../../src/controller/confirmation.controller';
 import * as config from '../../../src/config';
-
-const req = {} as Request;
-
-const mockResponse = () => {
-    const res = {} as Response;
-    res.render = jest.fn().mockReturnValue(res) as any;
-    return res;
-};
+import { mockID } from '../../mock/session.mock';
+import { mockResponse } from '../../mock/express.mock';
 
 describe('Confirmation controller test suites', () => {
     afterEach(() => {
@@ -19,9 +12,10 @@ describe('Confirmation controller test suites', () => {
 
     test('should render confirmation template', () => {
         const res = mockResponse();
+        const req = { params: { id: mockID } } as any;
 
         get(req, res);
 
-        expect(res.render).toHaveBeenCalledWith(config.CONFIRMATION);
+        expect(res.render).toHaveBeenCalledWith(config.CONFIRMATION, { id: mockID });
     });
 });
