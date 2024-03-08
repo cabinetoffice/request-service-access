@@ -1,5 +1,8 @@
 import * as config from '../../src/config';
 import express from 'express';
+import { AddMemberKey } from '../../src/model/add-member.model';
+
+export const MOCK_POST_ISSUE_URL = `https://api.github.com/repos/secret/test/issues`;
 
 export const GET_REQUEST_MOCK = { method: 'GET', path: '/test' };
 
@@ -12,6 +15,9 @@ export const MOCK_POST_ADD_MEMBER = {
     description: 'description',
     contract_type: 'permanent',
     contract_end_date: ''
+};
+export const APP_DATA = {
+    [AddMemberKey]: MOCK_POST_ADD_MEMBER
 };
 export const MOCK_POST_ADD_TEAM = { team_name: 'team1', github_handle: 'bob' };
 export const MOCK_POST_REMOVE_MEMBER = { github_handle: 'example' };

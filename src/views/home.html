@@ -36,6 +36,31 @@
             <a class="govuk-link" href="/additional-requests">Additional requests</a>
           </li>
         </ul>
+
+        <form method="post">
+          {% if (add_team and add_team.length > 0)
+            or (add_repo and add_repo.length > 0)
+            or (add_member and add_member.length > 0) %}
+  
+            <br>
+            <br>
+            <h2 class="govuk-heading-l govuk-!-margin-0">What you have added so far:</h2>
+            <br>
+
+            {% include "include/list/added.html" %}
+
+            {{ govukButton({
+              text: "Continue",
+              attributes: {
+                "id": "submit"
+              },
+              classes: "govuk-button--secondary govuk-!-margin-top-6",
+              href: "/check-your-answers"
+            }) }}
+
+          {% endif %}
+        </form>
+
       </div>
     </div>
   </main>

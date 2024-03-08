@@ -1,16 +1,12 @@
+jest.mock('../../../src/utils/logger');
+
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
-import { Request, Response } from 'express';
 
 import { get } from '../../../src/controller/home.controller';
 import * as config from '../../../src/config';
-
-const req = {} as Request;
-
-const mockResponse = () => {
-    const res = {} as Response;
-    res.render = jest.fn().mockReturnValue(res) as any;
-    return res;
-};
+import { mockNext, mockRequest, mockResponse } from '../../mock/express.mock';
+import { mockLogErrorRequest } from '../../mock/log.mock';
+import { MOCK_LOG_ERROR_REQUEST } from '../../mock/text.mock';
 
 describe('Home controller test suites', () => {
     afterEach(() => {
@@ -19,9 +15,22 @@ describe('Home controller test suites', () => {
 
     test('should render home template', () => {
         const res = mockResponse();
+        const req = mockRequest();
 
-        get(req, res);
+        get(req, res, mockNext);
 
-        expect(res.render).toHaveBeenCalledWith(config.HOME);
+        expect(res.render).toHaveBeenCalledWith(config.HOME, expect.anything());
+    });
+
+    test('should log error request and call next', () => {
+        const res = mockResponse();
+        const req = undefined as any;
+
+        get(req, res, mockNext);
+
+        expect(mockLogErrorRequest).toHaveBeenCalledWith(
+            req,
+            `${MOCK_LOG_ERROR_REQUEST} (reading 'session')`);
+        expect(mockNext).toBeCalledTimes(1);
     });
 });

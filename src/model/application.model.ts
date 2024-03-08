@@ -7,8 +7,8 @@ All the field names in the page models must exactly match the `name` attributes 
 */
 
 export interface ApplicationData {
-  add_member?: AddMember
-  add_team?: AddTeam
-  add_repo?: AddRepo
+  add_member?: AddMember[]
+  add_team?: AddTeam[]
+  add_repo?: AddRepo[]
 }
 

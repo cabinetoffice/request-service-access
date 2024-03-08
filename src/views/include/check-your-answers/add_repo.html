@@ -1,0 +1,63 @@
+{% for repo in add_repo %}
+
+{% set repoHref = "/add-repo/" + repo.id + "#repo_name" %}
+{% set visibilityHref = "/add-repo/" + repo.id + "#visibility" %}
+{% set descriptionHref = "/add-repo/" + repo.id + "#description" %}
+
+<br>
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Repository name"
+      },
+      value: {
+        text: repo.repo_name
+      },
+      actions: {
+        items: [
+          {
+            href: repoHref,
+            text: "Change",
+            visuallyHiddenText: "Repository name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Repository visibility"
+      },
+      value: {
+        text: repo.visibility
+      },
+      actions: {
+        items: [
+          {
+            href: visibilityHref,
+            text: "Change",
+            visuallyHiddenText: "Repository visibility"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Description"
+      },
+      value: {
+        html: repo.description
+      },
+      actions: {
+        items: [
+          {
+            href: descriptionHref,
+            text: "Change",
+            visuallyHiddenText: "description"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+{% endfor %}

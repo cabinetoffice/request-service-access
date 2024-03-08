@@ -1,0 +1,117 @@
+{% for member in add_member %}
+
+{% set firstNameHref = "/add-member/" + member.id + "#first_name" %}
+{% set lastNameHref = "/add-member/" + member.id + "#last_name" %}
+{% set githubHandleHref = "/add-member/" + member.id + "#github_handle" %}
+{% set emailAddressHref = "/add-member/" + member.id + "#email_address" %}
+{% set contractTypeHref = "/add-member/" + member.id + "#contract_type" %}
+{% set descriptionHref = "/add-member/" + member.id + "#description" %}
+
+<br>
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "First Name"
+      },
+      value: {
+        text: member.first_name
+      },
+      actions: {
+        items: [
+          {
+            href: firstNameHref,
+            text: "Change",
+            visuallyHiddenText: "First Name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Last Name"
+      },
+      value: {
+        text: member.last_name
+      },
+      actions: {
+        items: [
+          {
+            href: lastNameHref,
+            text: "Change",
+            visuallyHiddenText: "Last Name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Github Handle"
+      },
+      value: {
+        text: member.github_handle
+      },
+      actions: {
+        items: [
+          {
+            href: githubHandleHref,
+            text: "Change",
+            visuallyHiddenText: "Github Handle"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Email Address"
+      },
+      value: {
+        text: member.email_address
+      },
+      actions: {
+        items: [
+          {
+            href: emailAddressHref,
+            text: "Change",
+            visuallyHiddenText: "Email Address"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Contract type"
+      },
+      value: {
+        text: member.contract_type
+      },
+      actions: {
+        items: [
+          {
+            href: contractTypeHref,
+            text: "Change",
+            visuallyHiddenText: "Contract type"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Description"
+      },
+      value: {
+        html: member.description
+      },
+      actions: {
+        items: [
+          {
+            href: descriptionHref,
+            text: "Change",
+            visuallyHiddenText: "description"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+{% endfor %}

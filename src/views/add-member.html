@@ -8,7 +8,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">Add a GitHub Member</h1>
-      
+
       <p class="govuk-body">
         When a user requires access to our GitHub organisations (e.g they have joined The Cabinet Office) they should be added to the cabinetoffice GitHub organisation.
       </p>
@@ -110,6 +110,9 @@
         {% include "include/description.html" %}
 
         {% include "include/save-button.html" %}
+
+        {% set removePathURL = "/add-member/remove/" + id %}
+        {% include "include/remove-button.html" %}
 
       </form>
     </div>
