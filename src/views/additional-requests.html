@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {% include "include/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Additional Requests</h1>
+
+      <p class="govuk-body">
+        Make an additional request that is not covered by the other options. For example, removal requests or permission changes.
+      </p>
+
+      {% include "include/error-list.html" %}
+
+      <form method="post" novalidate>
+
+        {{ govukSelect({
+          id: "context",
+          name: "context",
+          label: {
+            text: "Select context"
+          },
+          items: [
+            {
+              value: "context",
+              text: "Select context",
+              selected: true
+            },
+            {
+              value: "member",
+              text: "Member"
+            },
+            {
+              value: "team",
+              text: "Team"
+            },
+            {
+              value: "repository",
+              text: "Repository"
+            },
+            {
+              value: "collaborator",
+              text: "Collaborator"
+            },
+            {
+              value: "other",
+              text: "Other"
+            }
+          ]
+        }) }}
+
+        {% set descriptionText = "Description" %}
+        {% set descriptionHint = "Provide specific details regarding the additional request." %}
+
+        {% include "include/description.html" %}
+
+        {% include "include/save-button.html" %}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

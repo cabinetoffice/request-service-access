@@ -12,6 +12,7 @@ import addTeamRouter from './add-team';
 import removeMemberRouter from './remove-member';
 import addTeamMemberRouter from './add-team-member';
 import checkYourAnswersRouter from './check-your-answers';
+import additionalRequestsRouter from './additional-requests.controller';
 
 const router = Router();
 
@@ -29,5 +30,6 @@ router.use(addTeamRouter);
 router.use(removeMemberRouter);
 router.use(addTeamMemberRouter);
 router.use(checkYourAnswersRouter);
+router.use(additionalRequestsRouter);
 
 export default router;
