@@ -11,6 +11,7 @@ import addMemberRouter from './add-member';
 import addTeamRouter from './add-team';
 import removeMemberRouter from './remove-member';
 import addTeamMemberRouter from './add-team-member';
+import checkYourAnswersRouter from './check-your-answers';
 
 const router = Router();
 
@@ -27,5 +28,6 @@ router.use(addRepoRouter);
 router.use(addTeamRouter);
 router.use(removeMemberRouter);
 router.use(addTeamMemberRouter);
+router.use(checkYourAnswersRouter);
 
 export default router;

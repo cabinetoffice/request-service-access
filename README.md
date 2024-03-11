@@ -41,7 +41,11 @@ COOKIE_ID_NAME | The name of the cookie | `github-requests`
 COOKIE_PARSER_SECRET | Secret used in validating/calculating the cookie signature | `secret`
 COOKIE_SESSION_SECRET | Secret key for signing the session cookie | `secret`
 LANDING_PAGE_URL | Github Requests landing Page | `/home/`
-LOG_LEVEL | Logging levels | `/home/`
+GITHUB_OWNER | Github organization name | `cabinetoffice`
+GITHUB_TERRAFORM_REPO | Github private repo with terraform configurations with members, repos and teams files | `github-requests-terraform`
+GITHUB_REPO_ISSUE_ASSIGNEE | Github team responsible to solve issues and update configs files | (eg. `IDP_TEAM`)
+GITHUB_REPO_ISSUE_LABEL | Github label to categorize the related issues | (eg. `github-requests-app`)
+LOG_LEVEL | Logging levels | `info`
 HUMAN | Formatting messages form (default JSON) | `true` (Enable human formatting for log messages)
 
 ## Launching the web-app

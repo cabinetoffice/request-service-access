@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {% include "include/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds-from-desktop">
+
+            <h1 class="govuk-heading-xl">Check your requests before sending your application</h1>
+
+            {% if (add_team and add_team.length > 0) %}
+                <h2 class="govuk-heading-l">Added Teams details</h2>
+                {% include "include/check-your-answers/add_team.html" %}
+                <br>
+            {% endif %}
+            {% if (add_repo and add_repo.length > 0) %}
+                <h2 class="govuk-heading-l">Added Repositories details</h2>
+                {% include "include/check-your-answers/add_repo.html" %}
+                <br>
+            {% endif %}
+            {% if (add_member and add_member.length > 0) %}
+                <h2 class="govuk-heading-l">Added Members details</h2>
+                {% include "include/check-your-answers/add_member.html" %}
+                <br>
+            {% endif %}
+
+            <form method="post">
+                <div class="govuk-button-group">
+                    {{ govukButton({
+                        text: "Submit",
+                        attributes: {
+                            "id": "submit"
+                        }
+                    }) }}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

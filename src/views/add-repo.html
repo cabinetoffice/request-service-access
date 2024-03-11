@@ -32,11 +32,13 @@
           items: [
             {
               value: "public",
-              text: "Public"
+              text: "Public", 
+              checked: (visibility == "public")
             },
             {
               value: "private",
-              text: "Private"
+              text: "Private", 
+              checked: (visibility == "private")
             }
           ]
         }) }}
@@ -47,6 +49,9 @@
         {% include "include/description.html" %}
 
         {% include "include/save-button.html" %}
+
+        {% set removePathURL = "/add-repo/remove/" + id %}
+        {% include "include/remove-button.html" %}
 
       </form>
     </div>

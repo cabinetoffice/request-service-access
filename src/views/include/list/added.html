@@ -1,0 +1,44 @@
+{% if (add_team and add_team.length > 0)
+    or (add_repo and add_repo.length > 0)
+    or (add_member and add_member.length > 0) %}
+
+    <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Requests summary</caption>
+        <tbody class="govuk-table__body">
+            {% for team in add_team %}
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">New team</th>
+                    <td class="govuk-table__cell">{{ team.team_name }}</td>
+                    <td class="govuk-table__cell">
+                        <a class="govuk-link" href="/add-team/{{ team.id }}">
+                            Change or remove
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% for repo in add_repo %}
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">New repo</th>
+                    <td class="govuk-table__cell">{{ repo.repo_name }}</td>
+                    <td class="govuk-table__cell">
+                        <a class="govuk-link" href="/add-repo/{{ repo.id }}">
+                            Change or remove
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% for member in add_member %}
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">New member</th>
+                    <td class="govuk-table__cell">{{ member.first_name }} {{ member.last_name }}</td>
+                    <td class="govuk-table__cell">
+                        <a class="govuk-link" href="/add-member/{{ member.id }}">
+                            Change or remove
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endif %}

@@ -10,5 +10,11 @@ export default () => {
     process.env.COOKIE_ID_NAME = 'test';
     process.env.AUTH_SIGN_IN_URL = 'test';
     process.env.SESSION_ID_NAME = 'test';
+    process.env.GITHUB_OWNER = 'secret';
+    process.env.GITHUB_TERRAFORM_REPO = 'test';
+    process.env.GITHUB_REPO_ISSUE_ASSIGNEE = 'test';
+    process.env.GITHUB_REPO_ISSUE_LABEL = 'test';
+    process.env.SESSION_APP_KEY = 'test';
+    process.env.GITHUB_KEY = 'key';
     process.env.UNSANITISED_TEST_KEY = '   test      ';
 };

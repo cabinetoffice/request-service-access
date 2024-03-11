@@ -1,6 +1,7 @@
 export const AddMemberKey = 'add_member';
 
 export const AddMemberMappingKeys: (keyof AddMember)[] = [
+    'id',
     'first_name',
     'last_name',
     'github_handle',
@@ -10,6 +11,7 @@ export const AddMemberMappingKeys: (keyof AddMember)[] = [
 ];
 
 export interface AddMember {
+  id?: string
   first_name?: string
   last_name?: string
   github_handle?: string
