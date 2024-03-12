@@ -1,6 +1,7 @@
 {% if (add_team and add_team.length > 0)
     or (add_repo and add_repo.length > 0)
-    or (add_member and add_member.length > 0) %}
+    or (add_member and add_member.length > 0)
+    or (additional_requests and additional_requests.length > 0) %}
 
     <table class="govuk-table">
         <caption class="govuk-table__caption govuk-table__caption--m">Requests summary</caption>
@@ -33,6 +34,17 @@
                     <td class="govuk-table__cell">{{ member.first_name }} {{ member.last_name }}</td>
                     <td class="govuk-table__cell">
                         <a class="govuk-link" href="/add-member/{{ member.id }}">
+                            Change or remove
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% for additional_request in additional_requests %}
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">New additional request</th>
+                    <td class="govuk-table__cell">{{ additional_request.context }}</td>
+                    <td class="govuk-table__cell">
+                        <a class="govuk-link" href="/additional-requests/{{ additional_request.id }}">
                             Change or remove
                         </a>
                     </td>

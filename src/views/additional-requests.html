@@ -66,6 +66,10 @@
         {% include "include/save-button.html" %}
 
       </form>
+
+      {% set removePathURL = "/additional-requests/remove/" + id %}
+      {% include "include/remove-button.html" %}
+
     </div>
   </div>
 {% endblock %}
