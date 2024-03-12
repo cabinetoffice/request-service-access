@@ -1,19 +1,22 @@
-import { Request, Response } from 'express';
-import { log } from '../utils/logger';
+import { NextFunction, Request, Response } from 'express';
 import * as config from '../config';
+
+import { log } from '../utils/logger';
 
 export const get = (_req: Request, res: Response) => {
     return res.render(config.ADDITIONAL_REQUESTS);
 };
 
-export const post = (req: Request, res: Response) => {
+export const post = (req: Request, res: Response, next: NextFunction) => {
+    try {
 
-    const repoName = req.body.repo_name;
-    const visibility = req.body.visibility;
+        const context = req.body.context;
 
-    // validation middleware and data assignment to be implemented
+        log.info(`Context: ${context}`);
 
-    log.info(`Repository Name: ${repoName}, Visibility: ${visibility}`);
-
-    return res.redirect(config.HOME);
+        return res.redirect(config.HOME_URL);
+    } catch (err: any) {
+        log.errorRequest(req, err.message);
+        next(err);
+    }
 };

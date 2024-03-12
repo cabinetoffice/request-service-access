@@ -18,6 +18,7 @@
       <form method="post" novalidate>
 
         {{ govukSelect({
+          errorMessage: errors.context if errors,
           id: "context",
           name: "context",
           label: {
@@ -25,29 +26,34 @@
           },
           items: [
             {
-              value: "context",
+              value: "",
               text: "Select context",
-              selected: true
+              selected: (context == "")
             },
             {
               value: "member",
-              text: "Member"
+              text: "Member",
+              selected: (context == "member")
             },
             {
               value: "team",
-              text: "Team"
+              text: "Team",
+              selected: (context == "team")
             },
             {
               value: "repository",
-              text: "Repository"
+              text: "Repository",
+              selected: (context == "repository")
             },
             {
               value: "collaborator",
-              text: "Collaborator"
+              text: "Collaborator",
+              selected: (context == "collaborator")
             },
             {
               value: "other",
-              text: "Other"
+              text: "Other",
+              selected: (context == "other")
             }
           ]
         }) }}
