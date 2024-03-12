@@ -11,6 +11,6 @@ export interface ApplicationData {
   add_member?: AddMember[]
   add_team?: AddTeam[]
   add_repo?: AddRepo[]
-  additional_requests?: AdditionalRequests
+  additional_requests?: AdditionalRequests[]
 }
 

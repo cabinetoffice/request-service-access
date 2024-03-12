@@ -30,8 +30,8 @@ export const MOCK_POST_ADD_TEAM_MEMBER_RESPONSE = 'Team Name: team1, Team Member
 // additional-requests mocks
 
 export const MOCK_GET_ADDITIONAL_REQUESTS_RESPONSE = 'Make an additional request that is not covered by the other options. For example, removal requests or permission changes';
-
-export const MOCK_POST_ADDITIONAL_REQUESTS_RESPONSE = 'Context: member';
+export const MOCK_POST_ADDITIONAL_REQUESTS_RESPONSE = 'Context: member, Additional Requests ID: ';
+export const MOCK_BY_ID_ADDITIONAL_REQUESTS_RESPONSE = 'Context: member, Additional Requests ID: ';
 
 export const MOCK_GET_REMOVE_MEMBER_RESPONSE = 'Remove a GitHub Member';
 export const MOCK_POST_REMOVE_MEMBER_RESPONSE = 'Github Handle: example';
