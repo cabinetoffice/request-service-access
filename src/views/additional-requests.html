@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+  {% include "include/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Additional Requests</h1>
+
+      <p class="govuk-body">
+        Make an additional request that is not covered by the other options. For example, removal requests or permission changes.
+      </p>
+
+      {% include "include/error-list.html" %}
+
+      <form method="post" novalidate>
+
+        {{ govukSelect({
+          errorMessage: errors.context if errors,
+          id: "context",
+          name: "context",
+          label: {
+            text: "Select context"
+          },
+          items: [
+            {
+              value: "",
+              text: "Select context",
+              selected: (context == "")
+            },
+            {
+              value: "member",
+              text: "Member",
+              selected: (context == "member")
+            },
+            {
+              value: "team",
+              text: "Team",
+              selected: (context == "team")
+            },
+            {
+              value: "repository",
+              text: "Repository",
+              selected: (context == "repository")
+            },
+            {
+              value: "collaborator",
+              text: "Collaborator",
+              selected: (context == "collaborator")
+            },
+            {
+              value: "other",
+              text: "Other",
+              selected: (context == "other")
+            }
+          ]
+        }) }}
+
+        {% set descriptionText = "Description" %}
+        {% set descriptionHint = "Provide specific details regarding the additional request." %}
+
+        {% include "include/description.html" %}
+
+        {% include "include/save-button.html" %}
+
+      </form>
+
+      {% set removePathURL = "/additional-requests/remove/" + id %}
+      {% include "include/remove-button.html" %}
+
+    </div>
+  </div>
+{% endblock %}
