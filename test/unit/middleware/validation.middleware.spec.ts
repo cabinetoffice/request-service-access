@@ -9,7 +9,7 @@ import * as config from '../../../src/config';
 
 import { checkValidations } from '../../../src/middleware/validation.middleware';
 import { ErrorMessages } from '../../../src/validation/error.messages';
-import { MOCK_ERROR, MOCK_POST_REMOVE_MEMBER } from '../../mock/data';
+import { MOCK_ERROR, MOCK_POST_ADD_REPO } from '../../mock/data';
 import { mockID } from '../../mock/session.mock';
 import {
     mockLogInfo,
@@ -21,8 +21,8 @@ const validationResultMock = validationResult as unknown as jest.Mock;
 
 const mockRequest = () => {
     const req = {} as Request;
-    req.path = config.REMOVE_MEMBER_URL;
-    req.body = MOCK_POST_REMOVE_MEMBER;
+    req.path = config.ADD_REPO_URL;
+    req.body = MOCK_POST_ADD_REPO;
     req.params = { [config.ID]: mockID };
     return req;
 };
@@ -49,12 +49,12 @@ describe('Validation Middleware test suites', () => {
         expect(mockNext).toHaveBeenCalledTimes(1);
     });
 
-    test(`should call res.render with ${config.REMOVE_MEMBER} view if errorList is not empty and id empty`, () => {
-        const fieldKey = 'github_handle';
+    test(`should call res.render with ${config.ADD_REPO} view if errorList is not empty and id empty`, () => {
+        const fieldKey = 'repo_name';
         validationResultMock.mockImplementationOnce(() => {
             return {
                 isEmpty: () => false,
-                array: () => [{ path: fieldKey, msg: ErrorMessages.GIT_HANDLE }]
+                array: () => [{ path: fieldKey, msg: ErrorMessages.REPO_NAME }]
             };
         });
         req.body[fieldKey] = '';
@@ -62,41 +62,41 @@ describe('Validation Middleware test suites', () => {
         checkValidations(req, res, mockNext);
 
         expect(mockLogInfo).toHaveBeenCalledTimes(1);
-        expect(mockLogInfo).toHaveBeenCalledWith(`Validation error on ${config.REMOVE_MEMBER} page`);
+        expect(mockLogInfo).toHaveBeenCalledWith(`Validation error on ${config.ADD_REPO} page`);
 
         expect(res.render).toHaveBeenCalledTimes(1);
-        expect(res.render).toHaveBeenCalledWith(config.REMOVE_MEMBER, {
+        expect(res.render).toHaveBeenCalledWith(config.ADD_REPO, {
             ...req.body,
             [config.ID]: '',
             errors: {
-                errorList: [{ 'href': `#${fieldKey}`, 'text': ErrorMessages.GIT_HANDLE }],
-                [fieldKey]: { 'text': ErrorMessages.GIT_HANDLE }
+                errorList: [{ 'href': `#${fieldKey}`, 'text': ErrorMessages.REPO_NAME }],
+                [fieldKey]: { 'text': ErrorMessages.REPO_NAME }
             }
         });
     });
 
-    test(`should call res.render with ${config.REMOVE_MEMBER} view if errorList and id is not empty`, () => {
-        const fieldKey = 'github_handle';
+    test(`should call res.render with ${config.ADD_REPO} view if errorList and id is not empty`, () => {
+        const fieldKey = 'repo_name';
         req.body[fieldKey] = '';
-        req.path = `${config.REMOVE_MEMBER_URL}/${mockID}`;
+        req.path = `${config.ADD_REPO_URL}/${mockID}`;
         validationResultMock.mockImplementationOnce(() => {
             return {
                 isEmpty: () => false,
-                array: () => [{ path: fieldKey, msg: ErrorMessages.GIT_HANDLE }]
+                array: () => [{ path: fieldKey, msg: ErrorMessages.REPO_NAME }]
             };
         });
         checkValidations(req, res, mockNext);
 
         expect(mockLogInfo).toHaveBeenCalledTimes(1);
-        expect(mockLogInfo).toHaveBeenCalledWith(`Validation error on ${config.REMOVE_MEMBER} page`);
+        expect(mockLogInfo).toHaveBeenCalledWith(`Validation error on ${config.ADD_REPO} page`);
 
         expect(res.render).toHaveBeenCalledTimes(1);
-        expect(res.render).toHaveBeenCalledWith(config.REMOVE_MEMBER, {
+        expect(res.render).toHaveBeenCalledWith(config.ADD_REPO, {
             ...req.body,
             [config.ID]: mockID,
             errors: {
-                errorList: [{ 'href': `#${fieldKey}`, 'text': ErrorMessages.GIT_HANDLE }],
-                [fieldKey]: { 'text': ErrorMessages.GIT_HANDLE }
+                errorList: [{ 'href': `#${fieldKey}`, 'text': ErrorMessages.REPO_NAME }],
+                [fieldKey]: { 'text': ErrorMessages.REPO_NAME }
             }
         });
     });
