@@ -24,8 +24,9 @@ export const MOCK_BY_ID_TEAM_RESPONSE = 'Team Name: team1, Team ID: ';
 
 // add-team-member response mocks
 
-export const MOCK_GET_ADD_TEAM_MEMBER_RESPONSE = 'Add a GitHub member to a team';
-export const MOCK_POST_ADD_TEAM_MEMBER_RESPONSE = 'Team Name: team1, Team Member GitHub Handle: joe';
+export const MOCK_GET_ADD_TEAM_MEMBER_RESPONSE = 'Add Member(s) to Team.';
+export const MOCK_POST_ADD_TEAM_MEMBER_RESPONSE = 'Team name: team1, GitHub handle(s): joe';
+export const MOCK_BY_ID_TEAM_MEMBER_RESPONSE = 'Team name: team1, GitHub handle(s): joe, Team member ID: ';
 
 // additional-requests mocks
 

@@ -12,7 +12,7 @@ import { logger } from '../../../src/middleware/logger.middleware';
 import { log } from '../../../src/utils/logger';
 import { authentication } from '../../../src/middleware/authentication.middleware';
 
-import { MOCK_REDIRECT_MESSAGE, MOCK_POST_ADD_TEAM_MEMBER_RESPONSE, MOCK_GET_ADD_TEAM_MEMBER_RESPONSE as MOCK_GET_ADD_TEAM_MEMBER_RESPONSE } from '../../mock/text.mock';
+import { MOCK_HOME_REDIRECT_MESSAGE, MOCK_POST_ADD_TEAM_MEMBER_RESPONSE, MOCK_GET_ADD_TEAM_MEMBER_RESPONSE } from '../../mock/text.mock';
 import { MOCK_POST_ADD_TEAM_MEMBER } from '../../mock/data';
 
 import { ErrorMessages } from '../../../src/validation/error.messages';
@@ -42,7 +42,7 @@ describe('add-team-member endpoint integration tests', () => {
             const res = await request(app).post(config.ADD_TEAM_MEMBER_URL).send(MOCK_POST_ADD_TEAM_MEMBER);
 
             expect(res.status).toEqual(302);
-            expect(res.text).toContain(MOCK_REDIRECT_MESSAGE);
+            expect(res.text).toContain(MOCK_HOME_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
@@ -66,8 +66,19 @@ describe('add-team-member endpoint integration tests', () => {
 
             const mockLog = log.info as jest.Mock;
 
-            expect(res.text).toContain(MOCK_REDIRECT_MESSAGE);
+            expect(res.text).toContain(MOCK_HOME_REDIRECT_MESSAGE);
             expect(mockLog).toBeCalledWith(MOCK_POST_ADD_TEAM_MEMBER_RESPONSE);
+            expect(mockedLogger).toHaveBeenCalledTimes(1);
+            expect(mockedAuth).toHaveBeenCalledTimes(1);
+        });
+
+        test('Should log the add-team-member details on POST request.', async () => {
+            const res = await request(app).post(config.ADD_TEAM_MEMBER_URL).send(MOCK_POST_ADD_TEAM_MEMBER);
+
+            const mockLog = log.info as jest.Mock;
+
+            expect(mockLog).toBeCalledWith(MOCK_POST_ADD_TEAM_MEMBER_RESPONSE);
+            expect(res.text).toContain(MOCK_HOME_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
