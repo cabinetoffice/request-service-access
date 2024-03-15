@@ -19,6 +19,7 @@ export const MOCK_POST_ADD_MEMBER = {
 export const APP_DATA = {
     [AddMemberKey]: MOCK_POST_ADD_MEMBER
 };
+
 export const MOCK_POST_ADD_TEAM = { team_name: 'team1', github_handle: 'bob' };
 export const MOCK_POST_ADDITIONAL_REQUESTS = { context: 'member', description: 'description' };
 export const MOCK_POST_REMOVE_MEMBER = { github_handle: 'example' };
