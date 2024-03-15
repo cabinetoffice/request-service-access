@@ -33,18 +33,6 @@ export const MOCK_GET_ADDITIONAL_REQUESTS_RESPONSE = 'Make an additional request
 export const MOCK_POST_ADDITIONAL_REQUESTS_RESPONSE = 'Context: member, Additional Requests ID: ';
 export const MOCK_BY_ID_ADDITIONAL_REQUESTS_RESPONSE = 'Context: member, Additional Requests ID: ';
 
-export const MOCK_GET_REMOVE_MEMBER_RESPONSE = 'Remove a GitHub Member';
-export const MOCK_POST_REMOVE_MEMBER_RESPONSE = 'Github Handle: example';
-
-export const MOCK_GET_TEAM_REQUEST_RESPONSE = 'Additional Team Request';
-export const MOCK_POST_TEAM_REQUEST_RESPONSE = 'Team Name: team1';
-
-export const MOCK_GET_MEMBER_REQUEST_RESPONSE = 'Additional Member Request';
-export const MOCK_POST_MEMBER_REQUEST_RESPONSE = 'GitHub Handle: example';
-
-export const MOCK_GET_REPO_REQUEST_RESPONSE = 'Additional Repository Requests';
-export const MOCK_POST_REPO_REQUEST_RESPONSE = 'Repository Name: repo1';
-
 export const MOCK_CHECK_YOUR_ANSWERS_TITLE = 'Check your requests before sending your application';
 
 export const MOCK_NOT_FOUND_RESPONSE = 'Page not found';
