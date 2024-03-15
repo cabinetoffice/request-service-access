@@ -1,6 +1,6 @@
 import { teamNameValidation } from './fields/team-name.validation';
-import { githubHandleValidation } from './fields/github-handle.validation';
+import { githubHandlesValidation } from './fields/github-handles.validation';
 
 export const addTeamMember = [
-    ...teamNameValidation, ...githubHandleValidation
+    ...teamNameValidation, ...githubHandlesValidation
 ];
