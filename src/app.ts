@@ -21,6 +21,9 @@ const app = express();
 
 app.disable('x-powered-by');
 
+const assetsPath = path.join(__dirname, '../assets');
+app.use('/assets', express.static(assetsPath));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
