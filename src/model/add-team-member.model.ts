@@ -1,6 +1,6 @@
 export const AddTeamMemberKey = 'add_team_member';
 
-export const AddMemberMappingKeys: (keyof AddTeamMember)[] = [
+export const AddTeamMemberMappingKeys: (keyof AddTeamMember)[] = [
     'id',
     'team_name',
     'github_handles',

@@ -19,10 +19,10 @@ export const get = (_req: Request, res: Response) => {
 export const post = (req: Request, res: Response, next: NextFunction ) => {
     try {
         const teamMembersID = uuidv4();
-        const teamNAME = req.body.team_name;
-        const gitHubHandles = req.body.github_handles;
+        const teamName = req.body.team_name;
+        const githubHandles = req.body.github_handles;
 
-        log.info(`Team name: ${teamNAME}, GitHub handle(s): ${gitHubHandles}`);
+        log.info(`Team name: ${teamName}, GitHub handle(s): ${githubHandles}`);
 
         setApplicationDataKey(req.session, { ...req.body, [config.ID]: teamMembersID }, AddTeamMemberKey);
 
@@ -49,11 +49,11 @@ export const getById = (req: Request, res: Response, next: NextFunction) => {
 
 export const postById = (req: Request, res: Response, next: NextFunction) => {
     try {
-        const teamNAME = req.body.team_name;
-        const gitHubHandles = req.body.github_handles;
+        const teamName = req.body.team_name;
+        const githubHandles = req.body.github_handles;
         const teamMembersID = req.params[config.ID];
 
-        log.info(`Team name: ${teamNAME}, GitHub handle(s): ${gitHubHandles}, Team member ID: ${teamMembersID}`);
+        log.info(`Team name: ${teamName}, GitHub handle(s): ${githubHandles}, Team member ID: ${teamMembersID}`);
 
         setApplicationDataByID(req.session, { ...req.body, [config.ID]: teamMembersID }, AddTeamMemberKey, teamMembersID);
 

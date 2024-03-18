@@ -8,6 +8,11 @@ describe('validateGithubHandles unit tests', () => {
         expect(validateGithubHandles(validHandle)).toBe(true);
     });
 
+    test('should validate a GitHub handle with spaces eitherside of the handle', () => {
+        const spacesHandle = ' valid-handle ';
+        expect(validateGithubHandles(spacesHandle)).toBe(true);
+    });
+
     test('should throw an error for an empty string', () => {
         expect(() => validateGithubHandles('')).toThrow(ErrorMessages.GIT_HANDLE);
     });
@@ -34,5 +39,16 @@ describe('validateGithubHandles unit tests', () => {
         const oneInvalidHandle = 'handle1, h@ndle2, handle-3';
 
         expect(() => validateGithubHandles(oneInvalidHandle)).toThrow(ErrorMessages.INVALID_GIT_HANDLE);
+    });
+
+    test('should throw an error for consecutive hyphens', () => {
+        const consecutiveHyphensHandle = 'handle--1';
+
+        expect(() => validateGithubHandles(consecutiveHyphensHandle)).toThrow(ErrorMessages.INVALID_GIT_HANDLE);
+    });
+    test('should throw an error for a handle beginning with a hyphen', () => {
+        const hypenStartHandle = '-handle1';
+
+        expect(() => validateGithubHandles(hypenStartHandle)).toThrow(ErrorMessages.INVALID_GIT_HANDLE);
     });
 });

@@ -1,15 +1,16 @@
 import { ErrorMessages } from '../../error.messages';
 
-export const validateGithubHandles = (value: string) => {
-    if (!value) {
+export const validateGithubHandles = (values: string) => {
+    if (!values) {
         throw new Error(ErrorMessages.GIT_HANDLE);
     }
 
-    const handles = value.split(',').map(handle => handle.trim());
-    const githubHandleRegex = /^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$/;
+    const handles = values.split(',').map(handle => handle.trim());
+    const githubHandleRegex = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i;
+    const githubHandlesMaxLength = 39;
 
     for (const handle of handles) {
-        if (!githubHandleRegex.test(handle) || handle.length > 39 || handle.length < 1) {
+        if (!githubHandleRegex.test(handle) || handle.length > githubHandlesMaxLength || handle.length < 1) {
             throw new Error(ErrorMessages.INVALID_GIT_HANDLE);
         }
     }
