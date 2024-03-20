@@ -1,30 +1,23 @@
 {% extends "layout.html" %}
 
-{% set mainClasses = "govuk-main-wrapper--l" %}
+{% block pageContent %}
+  {{ govukPanel({
+    titleText: "GitHub request complete",
+    html: "Your reference number<br><strong>" + id + "</strong>"
+  }) }}
 
-{% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  <p class="govuk-body">We have sent you a confirmation email.</p>
 
-      {{ govukPanel({
-        titleText: "GitHub request complete",
-        html: "Your reference number<br><strong>" + id + "</strong>"
-      }) }}
+  <h2 class="govuk-heading-m">What happens next</h2>
 
-      <p class="govuk-body">We have sent you a confirmation email.</p>
+  <p class="govuk-body">
+    We’ve sent your request to cabinetoffice internal developer platform.
+  </p>
+  <p class="govuk-body">
+    They will contact you either to confirm your request, or to ask for more information.
+  </p>
 
-      <h2 class="govuk-heading-m">What happens next</h2>
-
-      <p class="govuk-body">
-        We’ve sent your request to cabinetoffice internal developer platform.
-      </p>
-      <p class="govuk-body">
-        They will contact you either to confirm your request, or to ask for more information.
-      </p>
-
-      <p class="govuk-body">
-        If you need any further information - contact us at: github-requests.idp@digital.cabinet-office.gov.uk
-      </p>
-    </div>
-  </div>
+  <p class="govuk-body">
+    If you need any further information - contact us at: github-requests.idp@digital.cabinet-office.gov.uk
+  </p>
 {% endblock %}

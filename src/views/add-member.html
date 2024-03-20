@@ -4,117 +4,113 @@
   {% include "include/back-link.html" %}
 {% endblock %}
 
-{% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Add a GitHub Member</h1>
+{% block pageContent %}
+  <h1 class="govuk-heading-l">Add a GitHub Member</h1>
 
-      <p class="govuk-body">
-        When a user requires access to our GitHub organisations (e.g they have joined The Cabinet Office) they should be added to the cabinetoffice GitHub organisation.
-      </p>
+  <p class="govuk-body">
+    When a user requires access to our GitHub organisations (e.g they have joined The Cabinet Office) they should be added to the cabinetoffice GitHub organisation.
+  </p>
 
-      {% include "include/error-list.html" %}
+  {% include "include/error-list.html" %}
 
-      <form method="post" novalidate>
+  <form method="post" novalidate>
 
-        {{ govukInput({
-          errorMessage: errors.first_name if errors,
-          label: {
-            text: "First Name",
-            classes: "govuk-label--m"
-          },
-          classes: "govuk-input--width-10",
-          id: "first_name",
-          name: "first_name",
-          value: first_name
-        }) }}
+    {{ govukInput({
+      errorMessage: errors.first_name if errors,
+      label: {
+        text: "First Name",
+        classes: "govuk-label--m"
+      },
+      classes: "govuk-input--width-10",
+      id: "first_name",
+      name: "first_name",
+      value: first_name
+    }) }}
 
-        {{ govukInput({
-          errorMessage: errors.last_name if errors,
-          label: {
-            text: "Last Name",
-            classes: "govuk-label--m"
-          },
-          classes: "govuk-input--width-10",
-          id: "last_name",
-          name: "last_name",
-          value: last_name
-        }) }}
+    {{ govukInput({
+      errorMessage: errors.last_name if errors,
+      label: {
+        text: "Last Name",
+        classes: "govuk-label--m"
+      },
+      classes: "govuk-input--width-10",
+      id: "last_name",
+      name: "last_name",
+      value: last_name
+    }) }}
 
-        {% set githubHandleText = "GitHub Handle" %}
-        {% include "include/inputs/github-handle.html" %}
+    {% set githubHandleText = "GitHub Handle" %}
+    {% include "include/inputs/github-handle.html" %}
 
-        {{ govukInput({
-          errorMessage: errors.email_address if errors,
-          label: {
-            text: "Email Address",
-            classes: "govuk-label--m"
-          },
-          classes: "govuk-input--width-10",
-          id: "email_address",
-          name: "email_address",
-          value: email_address,
-          type: "email",
-          spellcheck: false
-        }) }}
+    {{ govukInput({
+      errorMessage: errors.email_address if errors,
+      label: {
+        text: "Email Address",
+        classes: "govuk-label--m"
+      },
+      classes: "govuk-input--width-10",
+      id: "email_address",
+      name: "email_address",
+      value: email_address,
+      type: "email",
+      spellcheck: false
+    }) }}
 
-        {% set dateHtml %}
-          {{ govukInput({
-            errorMessage: errors.contract_end_date if errors,
-            label: {
-              text: "Contract end date",
-              classes: "govuk-label--m"
-            },
-            hint: {
-              text: "Enter the contract end date in the format dd/mm/yyyy. For example: '01/01/2024'"
-            },
-            id: "contract_end_date",
-            name: "contract_end_date",
-            value: contract_end_date,
-            type: "date",
-            classes: "govuk-input--width-10"
-          }) }}
-        {% endset -%}
+    {% set dateHtml %}
+      {{ govukInput({
+        errorMessage: errors.contract_end_date if errors,
+        label: {
+          text: "Contract end date",
+          classes: "govuk-label--m"
+        },
+        hint: {
+          text: "Enter the contract end date in the format dd/mm/yyyy. For example: '01/01/2024'"
+        },
+        id: "contract_end_date",
+        name: "contract_end_date",
+        value: contract_end_date,
+        type: "date",
+        classes: "govuk-input--width-10"
+      }) }}
+    {% endset -%}
 
-        {{ govukRadios({
-          errorMessage: errors.contract_type if errors,
-          name: "contract_type",
-          fieldset: {
-            legend: {
-              text: "Is the GitHub account holder permanently employed within the CO orginsation?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          items: [ 
-            {
-              value: "permanent",
-              text: "Yes", 
-              checked: (contract_type == "permanent"),
-              conditional: {}
-            },
-            {
-              value: "non_permanent",
-              text: "No",
-              checked: (contract_type == "non_permanent"),
-              conditional: {
-                html: dateHtml
-              }
-            }
-          ]
-        }) }}
+    {{ govukRadios({
+      errorMessage: errors.contract_type if errors,
+      name: "contract_type",
+      fieldset: {
+        legend: {
+          text: "Is the GitHub account holder permanently employed within the CO orginsation?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [ 
+        {
+          value: "permanent",
+          text: "Yes", 
+          checked: (contract_type == "permanent"),
+          conditional: {}
+        },
+        {
+          value: "non_permanent",
+          text: "No",
+          checked: (contract_type == "non_permanent"),
+          conditional: {
+            html: dateHtml
+          }
+        }
+      ]
+    }) }}
 
-        {% set descriptionText = "Description (optional)" %}
-        {% set descriptionHint = "Explain the reason for adding this member." %}
+    {% set descriptionText = "Description (optional)" %}
+    {% set descriptionHint = "Explain the reason for adding this member." %}
 
-        {% include "include/description.html" %}
+    {% include "include/description.html" %}
 
-        {% include "include/save-button.html" %}
+    {% include "include/save-button.html" %}
 
-        {% set removePathURL = "/add-member/remove/" + id %}
-        {% include "include/remove-button.html" %}
+    {% set removePathURL = "/add-member/remove/" + id %}
+    {% include "include/remove-button.html" %}
 
-      </form>
-    </div>
-  </div>
+  </form>
 {%endblock%}

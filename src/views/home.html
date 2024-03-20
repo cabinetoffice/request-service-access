@@ -1,70 +1,59 @@
 {% extends "layout.html" %}
 
-{% block content %}
+{% block pageContent %}
+  <h1 class="govuk-heading-l">GitHub Requests</h1>
+  <p class="govuk-body">You can use this service to make requests to your GitHub organisation. You can make multiple requests at once, with all requests displayed in a summary table at the bottom of this page.</p>
+  <h2 class="govuk-heading-m">General requests</h2>
+  <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+    <li>
+      <a class="govuk-link" href="/add-member">Add a new member</a>
+    </li>
+    <li>
+      <a class="govuk-link" href="/add-team">Add a new team</a>
+    </li>
+    <li>
+      <a class="govuk-link" href="/add-team-member">Add existing member(s) to a team</a>
+    </li>
+    <li>
+      <a class="govuk-link" href="/add-repo">Add a new repository</a>
+    </li>
+    <li>
+      <a class="govuk-link" href="/add-collaborator">Add a new collaborator to a repository</a>
+    </li>
+  </ul>
+  <h2 class="govuk-heading-m">Additional requests</h2>
+  <p class="govuk-body">
+    Make additional requests that are not covered by the other options,
+    for example, removal requests or permission changes.
+  </p>
+  <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+    <li>
+      <a class="govuk-link" href="/additional-requests">Additional requests</a>
+    </li>
+  </ul>
 
-<div class="govuk-width-container">
-  <main class="govuk-main-wrapper">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l">GitHub Requests</h1>
-        <p class="govuk-body">You can use this service to make requests to your GitHub organisation. You can make multiple requests at once, with all requests displayed in a summary table at the bottom of this page.</p>
-        <h2 class="govuk-heading-m">General requests</h2>
-        <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
-          <li>
-            <a class="govuk-link" href="/add-member">Add a new member</a>
-          </li>
-          <li>
-            <a class="govuk-link" href="/add-team">Add a new team</a>
-          </li>
-          <li>
-            <a class="govuk-link" href="/add-team-member">Add existing member(s) to a team</a>
-          </li>
-          <li>
-            <a class="govuk-link" href="/add-repo">Add a new repository</a>
-          </li>
-          <li>
-            <a class="govuk-link" href="/add-collaborator">Add a new collaborator to a repository</a>
-          </li>
-        </ul>
-        <h2 class="govuk-heading-m">Additional requests</h2>
-        <p class="govuk-body">
-          Make additional requests that are not covered by the other options,
-          for example, removal requests or permission changes.
-        </p>
-        <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
-          <li>
-            <a class="govuk-link" href="/additional-requests">Additional requests</a>
-          </li>
-        </ul>
+  <form method="post">
+    {% if (add_team and add_team.length > 0)
+      or (add_repo and add_repo.length > 0)
+      or (add_member and add_member.length > 0)
+      or (additional_requests and additional_requests.length > 0) %}
 
-        <form method="post">
-          {% if (add_team and add_team.length > 0)
-            or (add_repo and add_repo.length > 0)
-            or (add_member and add_member.length > 0)
-            or (additional_requests and additional_requests.length > 0) %}
-  
-            <br>
-            <br>
-            <h2 class="govuk-heading-l govuk-!-margin-0">What you have added so far:</h2>
-            <br>
+      <br>
+      <br>
+      <h2 class="govuk-heading-l govuk-!-margin-0">What you have added so far:</h2>
+      <br>
 
-            {% include "include/list/added.html" %}
+      {% include "include/list/added.html" %}
 
-            {{ govukButton({
-              text: "Continue",
-              attributes: {
-                "id": "submit"
-              },
-              classes: "govuk-button--secondary govuk-!-margin-top-6",
-              href: "/check-your-answers"
-            }) }}
+      {{ govukButton({
+        text: "Continue",
+        attributes: {
+          "id": "submit"
+        },
+        classes: "govuk-button--secondary govuk-!-margin-top-6",
+        href: "/check-your-answers"
+      }) }}
 
-          {% endif %}
-        </form>
-
-      </div>
-    </div>
-  </main>
-</div>
-
+    {% endif %}
+  </form>
 {% endblock %}

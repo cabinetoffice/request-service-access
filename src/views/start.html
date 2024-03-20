@@ -1,47 +1,37 @@
 {% extends "layout.html" %}
 
-{% block content %}
+{% block pageContent %}
+  <h1 class="govuk-heading-l">GitHub Requests</h1>
 
-<div class="govuk-width-container">
-  <main class="govuk-main-wrapper">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l">GitHub Requests</h1>
+  <p class="govuk-body">The GitHub Requests application is a tool designed to streamline GitHub organisation management, which involves automatically managing requests to access organisation resources. Further documentation can be found <a href="https://github.com/cabinetoffice/github-requests-app" class="govuk-link">here</a>.</p>
 
-        <p class="govuk-body">The GitHub Requests application is a tool designed to streamline GitHub organisation management, which involves automatically managing requests to access organisation resources. Further documentation can be found <a href="https://github.com/cabinetoffice/github-requests-app" class="govuk-link">here</a>.</p>
+  <h2 class="govuk-heading-m">Before you start:</h2>
+  
+  <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+    <li>
+      <p class="govuk-body">New users must have a GitHub handle.</p>
+    </li>
+    <li>
+      <p class="govuk-body">New users must be associated with an existing team (with the exception of <a href="https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-outside-collaborators/adding-outside-collaborators-to-repositories-in-your-organization#about-outside-collaborators" class="govuk-link">outside collaborators</a>), otherwise, the new team must be created in the same request.</p>
+    </li>
+    <li>
+      <p class="govuk-body">New teams must have at least one <a href="https://docs.github.com/en/organizations/organizing-members-into-teams/assigning-the-team-maintainer-role-to-a-team-member#about-team-maintainers" class="govuk-link">maintainer</a>.</p>
+    </li>
+    <li>
+      <p class="govuk-body">New users that are not permanent staff must provide an expected end date of their contract.</p>
+    </li>
+  </ul>
 
-        <h2 class="govuk-heading-m">Before you start:</h2>
-        
-        <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
-          <li>
-            <p class="govuk-body">New users must have a GitHub handle.</p>
-          </li>
-          <li>
-            <p class="govuk-body">New users must be associated with an existing team (with the exception of <a href="https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-outside-collaborators/adding-outside-collaborators-to-repositories-in-your-organization#about-outside-collaborators" class="govuk-link">outside collaborators</a>), otherwise, the new team must be created in the same request.</p>
-          </li>
-          <li>
-            <p class="govuk-body">New teams must have at least one <a href="https://docs.github.com/en/organizations/organizing-members-into-teams/assigning-the-team-maintainer-role-to-a-team-member#about-team-maintainers" class="govuk-link">maintainer</a>.</p>
-          </li>
-          <li>
-            <p class="govuk-body">New users that are not permanent staff must provide an expected end date of their contract.</p>
-          </li>
-        </ul>
-
-        <a href="https://cola.service.cabinetoffice.gov.uk/v2/github-requests/login" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-          Start now
-          <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-          </svg>
-        </a>
-        {{ govukInsetText({
-          text: "An email will be sent to the account authenticated with COLA (Cabinet Office Login Application)."
-        }) }}
-        {{ govukInsetText({
-          text: "Requests will be assessed within 5 working days."
-        }) }}
-      </div>
-    </div>
-  </main>
-</div>
-
+  <a href="https://cola.service.cabinetoffice.gov.uk/v2/github-requests/login" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+    Start now
+    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+    </svg>
+  </a>
+  {{ govukInsetText({
+    text: "An email will be sent to the account authenticated with COLA (Cabinet Office Login Application)."
+  }) }}
+  {{ govukInsetText({
+    text: "Requests will be assessed within 5 working days."
+  }) }}
 {% endblock %}
