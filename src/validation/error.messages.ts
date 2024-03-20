@@ -1,6 +1,6 @@
 export enum ErrorMessages {
-  GIT_HANDLE = 'Enter the username of the GitHub handle (aka GitHub account)',
-  INVALID_GIT_HANDLE = 'Enter the username of the GitHub handle in the correct format (aka GitHub account)',
+  GIT_HANDLE = 'Enter a GitHub handle (aka GitHub username)',
+  INVALID_GIT_HANDLE = 'GitHub handles may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.',
   DESCRIPTION_REQUIRED = 'Description is required',
   DESCRIPTION_LENGTH = 'Description must be 1000 characters or less',
   FIRST_NAME = 'Enter the first name of the GitHub account holder',

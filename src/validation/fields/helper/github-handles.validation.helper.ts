@@ -11,7 +11,7 @@ export const validateGithubHandles = (values: string) => {
 
     for (const handle of handles) {
         if (!githubHandleRegex.test(handle) || handle.length > githubHandlesMaxLength || handle.length < 1) {
-            throw new Error(ErrorMessages.INVALID_GIT_HANDLE);
+            throw new Error(`${handle} is an invalid GitHub handle. ${ErrorMessages.INVALID_GIT_HANDLE}`);
         }
     }
 
