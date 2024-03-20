@@ -1,0 +1,45 @@
+{% for team_member in add_team_member %}
+
+{% set teamNameHref = "/add-team-member/" + teamMember.id + "#team_name" %}
+{% set githubHandlesHref = "/add-team-member/" + teamMember.id + "#github_handles" %}
+
+<br>
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Team name"
+      },
+      value: {
+        text: team_member.team_name
+      },
+      actions: {
+        items: [
+          {
+            href: teamNameHref,
+            text: "Change",
+            visuallyHiddenText: "Team name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "GitHub Handle(s)"
+      },
+      value: {
+        text: team_member.github_handles
+      },
+      actions: {
+        items: [
+          {
+            href: githubHandlesHref,
+            text: "Change",
+            visuallyHiddenText: "Github Handles"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+{% endfor %}

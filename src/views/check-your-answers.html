@@ -25,6 +25,11 @@
                 {% include "include/check-your-answers/add_member.html" %}
                 <br>
             {% endif %}
+            {% if (add_team_member and add_team_member.length > 0) %}
+                <h2 class="govuk-heading-l">Added Member(s) to Team details</h2>
+                {% include "include/check-your-answers/add_team_member.html" %}
+                <br>
+            {% endif %}
             {% if (additional_requests and additional_requests.length > 0) %}
                 <h2 class="govuk-heading-l">Added Additional Requests details</h2>
                 {% include "include/check-your-answers/additional_requests.html" %}

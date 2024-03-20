@@ -1,6 +1,7 @@
 import { AddMember } from './add-member.model';
 import { AddTeam } from './add-team.model';
 import { AddRepo } from './add-repo.model';
+import { AddTeamMember } from './add-team-member.model';
 import { AdditionalRequests } from './additional-requests.model';
 
 /*
@@ -11,6 +12,7 @@ export interface ApplicationData {
   add_member?: AddMember[]
   add_team?: AddTeam[]
   add_repo?: AddRepo[]
+  add_team_member?: AddTeamMember[]
   additional_requests?: AdditionalRequests[]
 }
 

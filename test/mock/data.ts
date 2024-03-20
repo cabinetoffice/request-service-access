@@ -22,7 +22,12 @@ export const APP_DATA = {
 
 export const MOCK_POST_ADD_TEAM = { team_name: 'team1', github_handle: 'bob' };
 export const MOCK_POST_ADDITIONAL_REQUESTS = { context: 'member', description: 'description' };
-export const MOCK_POST_ADD_TEAM_MEMBER = { team_name: 'team1', github_handle: 'joe' };
+export const MOCK_POST_REMOVE_MEMBER = { github_handle: 'example' };
+export const MOCK_POST_TEAM_REQUEST = { team_name: 'team1' };
+export const MOCK_POST_MEMBER_REQUEST = { github_handle: 'example' };
+
+export const MOCK_POST_ADD_TEAM_MEMBER = { team_name: 'team1', github_handles: 'joe' };
+export const MOCK_POST_REPO_REQUEST = { repo_name: 'repo1' };
 
 export const MOCK_CORS_VALUE = {
     origin: [config.CDN_HOST, config.BASE_URL],
