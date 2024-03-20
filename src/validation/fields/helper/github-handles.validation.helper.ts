@@ -7,10 +7,9 @@ export const validateGithubHandles = (values: string) => {
 
     const handles = values.split(',').map(handle => handle.trim());
     const githubHandleRegex = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i;
-    const githubHandlesMaxLength = 39;
 
     for (const handle of handles) {
-        if (!githubHandleRegex.test(handle) || handle.length > githubHandlesMaxLength || handle.length < 1) {
+        if (!githubHandleRegex.test(handle)) {
             throw new Error(`${handle} is an invalid GitHub handle. ${ErrorMessages.INVALID_GIT_HANDLE}`);
         }
     }
