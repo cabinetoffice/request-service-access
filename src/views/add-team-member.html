@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block pageContent %}
-  <h1 class="govuk-heading-l">Add a GitHub member to a team</h1>
+  <h1 class="govuk-heading-l">Add Member(s) to Team.</h1>
 
   <p class="govuk-body">
-    When a user has access to our GitHub organisations and they wish to be added to a team within the cabinetoffice GitHub organisation.
+    When user(s) has access to our GitHub organisations and they wish to be added to a team within the cabinetoffice GitHub organisation.
   </p>
 
   {% include "include/error-list.html" %}
@@ -17,10 +17,14 @@
 
     {% include "include/inputs/team-name.html" %}
 
-    {% set githubHandleText = "Member GitHub handle" %}
-    {% include "include/inputs/github-handle.html" %}
+    {% set githubHandlesText = "Member GitHub handle(s)" %}
+    {% set githubHandlesHint = "For multiple members, enter GitHub handles as comma-separated values. For example, username1, username2, username3" %}
+    {% include "include/inputs/github-handles.html" %}
 
     {% include "include/save-button.html" %}
-    
+        
   </form>
+
+  {% set removePathURL = "/add-team-member/remove/" + id %}
+  {% include "include/remove-button.html" %}
 {% endblock %}

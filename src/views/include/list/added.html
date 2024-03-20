@@ -1,6 +1,7 @@
 {% if (add_team and add_team.length > 0)
     or (add_repo and add_repo.length > 0)
     or (add_member and add_member.length > 0)
+    or (add_team_member and add_team_member.length > 0)
     or (additional_requests and additional_requests.length > 0) %}
 
     <table class="govuk-table">
@@ -34,6 +35,17 @@
                     <td class="govuk-table__cell">{{ member.first_name }} {{ member.last_name }}</td>
                     <td class="govuk-table__cell">
                         <a class="govuk-link" href="/add-member/{{ member.id }}">
+                            Change or remove
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% for team_member in add_team_member %}
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">New member(s) to team</th>
+                    <td class="govuk-table__cell">{{ team_member.github_handles }}</td>
+                    <td class="govuk-table__cell">
+                        <a class="govuk-link" href="/add-team-member/{{ team_member.id }}">
                             Change or remove
                         </a>
                     </td>
