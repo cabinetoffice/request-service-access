@@ -244,7 +244,7 @@ export const addTeam = [
     text: "Team name",
     classes: "govuk-label--m"
   },
-  classes: "govuk-input--width-10",
+  classes: "govuk-input--width-20",
   id: "team_name",
   name: "team_name",
   value: team_name
