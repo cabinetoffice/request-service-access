@@ -1,0 +1,65 @@
+{% set html %}
+  <p class="govuk-body">We’d like to use analytics cookies so we can understand how you use this site.</p>
+  <p class="govuk-body">We also use essential cookies to remember if you’ve accepted analytics cookies.</p>
+{% endset %}
+
+{% set acceptHtml %}
+  <p class="govuk-body">You’ve accepted analytics cookies. You can <a class="govuk-link" href="/cookies">change your cookie settings</a> at any time.</p>
+{% endset %}
+
+{% set rejectHtml %}
+  <p class="govuk-body">You’ve rejected analytics cookies. You can <a class="govuk-link" href="/cookies">change your cookie settings</a> at any time.</p>
+{% endset %}
+
+{{ govukCookieBanner({
+  classes: "js-cookies-banner",
+  messages: [
+    {
+      headingText: "Cookies notice for GitHub Requests",
+      html: html,
+      actions: [
+        {
+          text: "Accept analytics cookies",
+          type: "button",
+          classes: "js-cookies-button-accept"
+        },
+        {
+          text: "Reject analytics cookies",
+          type: "button",
+          classes: "js-cookies-button-reject"
+        },
+        {
+          text: "View cookie preferences",
+          href: "#"
+        }
+      ],
+      classes: "js-question-banner"
+    },
+    {
+      html: acceptHtml,
+      role: "alert",
+      actions: [
+        {
+            text: "Hide cookie message",
+            type: "button",
+            classes: "js-hide"
+        }
+      ],
+      classes: "js-cookies-accepted",
+      hidden: true
+    },
+    {
+      html: rejectHtml,
+      role: "alert",
+      actions: [
+        {
+          text: "Hide cookie message",
+          type: "button",
+          classes: "js-hide"
+        }
+      ],
+      classes: "js-cookies-rejected",
+      hidden: true
+    }
+  ]
+}) }}
