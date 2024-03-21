@@ -4,35 +4,31 @@
   {% include "include/back-link.html" %}
 {% endblock %}
 
-{% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Add a GitHub Team</h1>
+{% block pageContent %}
+  <h1 class="govuk-heading-l">Add a GitHub Team</h1>
 
-      <p class="govuk-body">
-        GitHub Teams can be used to manage repository permissions and mentions for groups of members.
-      </p>
+  <p class="govuk-body">
+    GitHub Teams can be used to manage repository permissions and mentions for groups of members.
+  </p>
 
-      {% include "include/error-list.html" %}
+  {% include "include/error-list.html" %}
 
-      <form method="post" novalidate>
+  <form method="post" novalidate>
 
-        {% include "include/inputs/team-name.html" %}
+    {% include "include/inputs/team-name.html" %}
 
-        {% set githubHandleText = "Team maintainer GitHub handle" %}
-        {% include "include/inputs/github-handle.html" %}
+    {% set githubHandleText = "Team maintainer GitHub handle" %}
+    {% include "include/inputs/github-handle.html" %}
 
-        {% set descriptionText = "Description (optional)" %}
-        {% set descriptionHint = "Explain the reason for adding this team." %}
+    {% set descriptionText = "Description (optional)" %}
+    {% set descriptionHint = "Explain the reason for adding this team." %}
 
-        {% include "include/description.html" %}
+    {% include "include/description.html" %}
 
-        {% include "include/save-button.html" %}
+    {% include "include/save-button.html" %}
 
-        {% set removePathURL = "/add-team/remove/" + id %}
-        {% include "include/remove-button.html" %}
-        
-      </form>
-    </div>
-  </div>
+    {% set removePathURL = "/add-team/remove/" + id %}
+    {% include "include/remove-button.html" %}
+    
+  </form>
 {% endblock %}

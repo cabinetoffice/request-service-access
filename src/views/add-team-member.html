@@ -4,32 +4,27 @@
   {% include "include/back-link.html" %}
 {% endblock %}
 
-{% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Add Member(s) to Team.</h1>
+{% block pageContent %}
+  <h1 class="govuk-heading-l">Add Member(s) to Team.</h1>
 
-      <p class="govuk-body">
-        When user(s) has access to our GitHub organisations and they wish to be added to a team within the cabinetoffice GitHub organisation.
-      </p>
+  <p class="govuk-body">
+    When user(s) has access to our GitHub organisations and they wish to be added to a team within the cabinetoffice GitHub organisation.
+  </p>
 
-      {% include "include/error-list.html" %}
+  {% include "include/error-list.html" %}
 
-      <form method="post" novalidate>
+  <form method="post" novalidate>
 
-        {% include "include/inputs/team-name.html" %}
+    {% include "include/inputs/team-name.html" %}
 
-        {% set githubHandlesText = "Member GitHub handle(s)" %}
-        {% set githubHandlesHint = "For multiple members, enter GitHub handles as comma-separated values. For example, username1, username2, username3" %}
-        {% include "include/inputs/github-handles.html" %}
+    {% set githubHandlesText = "Member GitHub handle(s)" %}
+    {% set githubHandlesHint = "For multiple members, enter GitHub handles as comma-separated values. For example, username1, username2, username3" %}
+    {% include "include/inputs/github-handles.html" %}
 
-        {% include "include/save-button.html" %}
+    {% include "include/save-button.html" %}
         
-      </form>
+  </form>
 
-      {% set removePathURL = "/add-team-member/remove/" + id %}
-      {% include "include/remove-button.html" %}
-
-    </div>
-  </div>
+  {% set removePathURL = "/add-team-member/remove/" + id %}
+  {% include "include/remove-button.html" %}
 {% endblock %}

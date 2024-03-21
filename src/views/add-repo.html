@@ -4,56 +4,52 @@
   {% include "include/back-link.html" %}
 {% endblock %}
 
-{% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Add a GitHub Repository</h1>
+{% block pageContent %}
+  <h1 class="govuk-heading-l">Add a GitHub Repository</h1>
 
-      <p class="govuk-body">
-        GitHub repositories contains all of your code, your files, and each file's revision history. You can discuss and manage your work within the repository.
-      </p>
+  <p class="govuk-body">
+    GitHub repositories contains all of your code, your files, and each file's revision history. You can discuss and manage your work within the repository.
+  </p>
 
-      {% include "include/error-list.html" %}
+  {% include "include/error-list.html" %}
 
-      <form method="post" novalidate>
+  <form method="post" novalidate>
 
-        {% include "include/inputs/repo-name.html" %}
+    {% include "include/inputs/repo-name.html" %}
 
-        {{ govukRadios({
-          errorMessage: errors.visibility if errors,
-          name: "visibility",
-          fieldset: {
-            legend: {
-              text: "Repository visibility",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "public",
-              text: "Public", 
-              checked: (visibility == "public")
-            },
-            {
-              value: "private",
-              text: "Private", 
-              checked: (visibility == "private")
-            }
-          ]
-        }) }}
+    {{ govukRadios({
+      errorMessage: errors.visibility if errors,
+      name: "visibility",
+      fieldset: {
+        legend: {
+          text: "Repository visibility",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "public",
+          text: "Public", 
+          checked: (visibility == "public")
+        },
+        {
+          value: "private",
+          text: "Private", 
+          checked: (visibility == "private")
+        }
+      ]
+    }) }}
 
-        {% set descriptionText = "Description (optional)" %}
-        {% set descriptionHint = "Explain the reason for adding this repository." %}
+    {% set descriptionText = "Description (optional)" %}
+    {% set descriptionHint = "Explain the reason for adding this repository." %}
 
-        {% include "include/description.html" %}
+    {% include "include/description.html" %}
 
-        {% include "include/save-button.html" %}
+    {% include "include/save-button.html" %}
 
-        {% set removePathURL = "/add-repo/remove/" + id %}
-        {% include "include/remove-button.html" %}
+    {% set removePathURL = "/add-repo/remove/" + id %}
+    {% include "include/remove-button.html" %}
 
-      </form>
-    </div>
-  </div>
+  </form>
 {% endblock %}

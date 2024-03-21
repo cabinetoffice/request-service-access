@@ -35,10 +35,19 @@
     containerClasses: "govuk-width-container"
   }) }}
 {% endblock %}
-
 {% block bodyStart %}
   {% include "include/cookie-consent-banner.html" %}
 {% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% block pageContent %}
+    {% endblock %}
+  </div>
+</div>
+{% endblock %}
+
 
 {% block footer %}
     {{ govukFooter({
