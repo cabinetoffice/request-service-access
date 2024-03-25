@@ -62,12 +62,23 @@ The issue is then reviewed by the team, and further comments may be requested if
 
 ### Running local development environment with Docker
 
-Docker is used to run the application in **development** mode, with tooling setup to detect changes in local `src` directory and reload the container's node server. Ensure that `NODE_ENV=development` is set in the `.env` file.
+Docker is used to run the application in **development** mode, with tooling setup to detect changes in local `src` directory and reload the container's node server. 
+
+- Ensure that `NODE_ENV=development` is set in the `.env` file.
+
+- In order for static assets to be loaded, the `CDN_HOST` must be set to a CDN domain which serves the GOV.UK static assets.
+
+### Building the application
+
+To build the project, run: 
+
+```sh
+make build
+```
 
 ### Building the Docker Image
 
-1. Create a copy of the `.env.example` file and name it `.env`:
-Then run:
+Create a copy of the `.env.example` file and name it `.env`, then run:
 
 ```sh
 make docker-build
