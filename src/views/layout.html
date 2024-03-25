@@ -16,14 +16,13 @@
 {% from "govuk/components/summary-list/macro.njk"     import govukSummaryList %}
 {% from "govuk/components/select/macro.njk"           import govukSelect %}
 {% from "govuk/components/cookie-banner/macro.njk"    import govukCookieBanner %}
+{% from "govuk/components/phase-banner/macro.njk"     import govukPhaseBanner %}
 
 {% block head %}
-
   <link rel="stylesheet" type="text/css" media="all" href="//{{CDN_HOST}}/stylesheets/govuk-frontend/v3.11.0/govuk-frontend-3.11.0.min.css">
 
   <link rel="SHORTCUT ICON" href="//{{CDN_HOST}}/images/favicon.ico"/>
   <link rel="icon" href="//{{CDN_HOST}}/images/favicon.ico" type="image/x-icon"/>
-
 {% endblock %}
 
 {% block header %}
@@ -35,43 +34,49 @@
     containerClasses: "govuk-width-container"
   }) }}
 {% endblock %}
+
 {% block bodyStart %}
   {% include "include/cookie-consent-banner.html" %}
 {% endblock %}
 
-{% block content %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    {% block pageContent %}
-    {% endblock %}
-  </div>
-</div>
+{% block beforeContent %}
+  {% include "include/phase-banner.html" %}
+  {% block backLink %}
+  {% endblock %}
 {% endblock %}
 
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% block pageContent %}
+      {% endblock %}
+    </div>
+  </div>
+{% endblock %}
 
 {% block footer %}
-    {{ govukFooter({
-      meta: {
-        items: [
-          {
-            href: "#",
-            text: "Policies"
-          },
-          {
-            href: "#",
-            text: "Cookies"
-          },
-          {
-            href: "#",
-            text: "Contact us"
-          },
-          {
-            href: "#",
-            text: "Accessibility"
-          }
-        ]
-      }
-    }) }} 
+  {{ govukFooter({
+    meta: {
+      items: [
+        {
+          href: "#",
+          text: "Policies"
+        },
+        {
+          href: "#",
+          text: "Cookies"
+        },
+        {
+          href: "#",
+          text: "Contact us"
+        },
+        {
+          href: "#",
+          text: "Accessibility"
+        }
+      ]
+    }
+  }) }} 
 {% endblock %}
 
 {% block bodyEnd %}
