@@ -10,6 +10,7 @@ import addRepoRouter from './add-repo';
 import addMemberRouter from './add-member';
 import addTeamRouter from './add-team';
 import addTeamMemberRouter from './add-team-member';
+import addCollaboratorRouter from './add-collaborator';
 import checkYourAnswersRouter from './check-your-answers';
 import additionalRequestsRouter from './additional-requests.controller';
 
@@ -27,6 +28,7 @@ router.use(healthcheckRouter);
 router.use(addRepoRouter);
 router.use(addTeamRouter);
 router.use(addTeamMemberRouter);
+router.use(addCollaboratorRouter);
 router.use(checkYourAnswersRouter);
 router.use(additionalRequestsRouter);
 
