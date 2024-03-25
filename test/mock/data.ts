@@ -16,6 +16,13 @@ export const MOCK_POST_ADD_MEMBER = {
     contract_type: 'permanent',
     contract_end_date: ''
 };
+export const MOCK_POST_ADD_COLLABORATOR = {
+    first_name: 'example',
+    last_name: 'example',
+    github_handle: 'example',
+    email_address: 'email@hotmail.com',
+    repo_name: 'repo1'
+};
 export const APP_DATA = {
     [AddMemberKey]: MOCK_POST_ADD_MEMBER
 };
