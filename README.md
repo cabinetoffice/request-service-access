@@ -26,27 +26,32 @@ The issue is then reviewed by the team, and further comments may be requested if
 
 ### Config variables
 
-Key             |  Description               | Example Value
-----------------|--------------------------- |-------------------------
-PATH_SSL_PRIVATE_KEY | Path to ssl private key | `./infrastructure/host/test.key`
-PATH_SSL_CERTIFICATE | Path to ssl certificate | `./infrastructure/host/test.cert`
-BASE_URL | Base application URL | `http://localhost:3000` (dev mode)
-NODE_ENV | Node environment | `development` (or `production`)
-PORT | Server port number | `3000`
-CDN_HOST | CDN host | `cdn domain`
-USER_POOL_ID | ID of the user pool in Amazon Cognito | `secret`
-USER_POOL_CLIENT_ID | Client ID of an app registered with the user pool in Amazon Cognito | `secret`
-AUTH_SIGN_IN_URL | Authentication sign in URL | `https://cola.service.cabinetoffice.gov.uk/v2/<YOUR_SERVICE>/login`
-COOKIE_ID_NAME | The name of the cookie | `github-requests`
-COOKIE_PARSER_SECRET | Secret used in validating/calculating the cookie signature | `secret`
-COOKIE_SESSION_SECRET | Secret key for signing the session cookie | `secret`
-LANDING_PAGE_URL | Github Requests landing Page | `/home/`
-GITHUB_OWNER | Github organization name | `cabinetoffice`
-GITHUB_TERRAFORM_REPO | Github private repo with terraform configurations with members, repos and teams files | `github-requests-terraform`
-GITHUB_REPO_ISSUE_ASSIGNEE | Github team responsible to solve issues and update configs files | (eg. `IDP_TEAM`)
-GITHUB_REPO_ISSUE_LABEL | Github label to categorize the related issues | (eg. `github-requests-app`)
-LOG_LEVEL | Logging levels | `info`
-HUMAN | Formatting messages form (default JSON) | `true` (Enable human formatting for log messages)
+| Key                         | Description                                                         | Example Value                                                      |
+|-----------------------------|---------------------------------------------------------------------|----------------------------------------------------------          |
+| AUTH_SIGN_IN_URL            | Authentication sign in URL                                          | `https://cola.service.cabinetoffice.gov.uk/v2/<YOUR_SERVICE>/login`|
+| BASE_URL                    | Base application URL                                                | `http://localhost:3000` (dev mode)                                 |
+| CDN_HOST                    | CDN host                                                            | `cdn_domain`                                                       |
+| COOKIE_ID_NAME              | The name of the cookie                                              | `github-requests`                                                  |
+| COOKIE_PARSER_SECRET        | Secret used in validating/calculating the cookie signature          | `secret`                                                           |
+| COOKIE_SESSION_SECRET       | Secret key for signing the session cookie                           | `secret`                                                           |
+| FEATURE_FLAG_ENABLE_AUTH    | Enable authentication feature flag                                  | `true` or `false`                                                  |
+| GITHUB_KEY                  | GitHub key                                                          | `[github key]`                                                     |
+| GITHUB_OWNER                | GitHub organisation name                                            | `cabinetoffice`                                                    |
+| GITHUB_REPO_ISSUE_ASSIGNEE  | GitHub team responsible to solve issues and update configs files    | `IDP_TEAM`                                                         |
+| GITHUB_REPO_ISSUE_LABEL     | GitHub label to categorize the related issues                       | `github-requests-app`                                              |
+| GITHUB_TERRAFORM_REPO       | GitHub private repo with terraform configurations with members, repos and teams files | `github-requests-terraform`                      |
+| HUMAN                       | Formatting messages form (default JSON)                             | `true` (Enable human formatting for log messages)                  |
+| LOG_LEVEL                   | Logging levels                                                      | `info`                                                             |
+| NODE_ENV                    | Node environment                                                    | `development` or `production`                                      |
+| NODE_SSL_ENABLED            | Whether SSL is enabled for Node                                     | `true` or `false`                                                  |
+| PATH_SSL_CERTIFICATE        | Path to SSL certificate                                             | `./infrastructure/host/test.cert`                                  |
+| PATH_SSL_PRIVATE_KEY        | Path to SSL private key                                             | `./infrastructure/host/test.key`                                   |
+| PORT                        | Server port number                                                  | `3000`                                                             |
+| SESSION_APP_KEY             | Session application key                                             | `git`                                                              |
+| SESSION_ID_NAME             | Session ID name                                                     | `connect.sid`                                                      |
+| USER_POOL_CLIENT_ID         | Client ID of an app registered with the user pool in Amazon Cognito | `secret`                                                           |
+| USER_POOL_ID                | ID of the user pool in Amazon Cognito                               | `secret`                                                           |
+
 
 ## Launching the web-app
 
