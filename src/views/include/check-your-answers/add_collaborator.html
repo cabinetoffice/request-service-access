@@ -1,0 +1,99 @@
+{% for collaborator in add_collaborator %}
+
+{% set firstNameHref = "/add-collaborator/" + collaborator.id + "#first_name" %}
+{% set lastNameHref = "/add-collaborator/" + collaborator.id + "#last_name" %}
+{% set githubHandleHref = "/add-collaborator/" + collaborator.id + "#github_handle" %}
+{% set emailAddressHref = "/add-collaborator/" + collaborator.id + "#email_address" %}
+{% set repoHref = "/add-collaborator/" + collaborator.id + "#repo_name" %}
+
+<br>
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "First Name"
+      },
+      value: {
+        text: collaborator.first_name
+      },
+      actions: {
+        items: [
+          {
+            href: firstNameHref,
+            text: "Change",
+            visuallyHiddenText: "First Name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Last Name"
+      },
+      value: {
+        text: collaborator.last_name
+      },
+      actions: {
+        items: [
+          {
+            href: lastNameHref,
+            text: "Change",
+            visuallyHiddenText: "Last Name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "GitHub Handle"
+      },
+      value: {
+        text: collaborator.github_handle
+      },
+      actions: {
+        items: [
+          {
+            href: githubHandleHref,
+            text: "Change",
+            visuallyHiddenText: "Github Handle"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Email Address"
+      },
+      value: {
+        text: collaborator.email_address
+      },
+      actions: {
+        items: [
+          {
+            href: emailAddressHref,
+            text: "Change",
+            visuallyHiddenText: "Email Address"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Repository Name"
+      },
+      value: {
+        text: collaborator.repo_name
+      },
+      actions: {
+        items: [
+          {
+            href: repoHref,
+            text: "Change",
+            visuallyHiddenText: "Repository name"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+{% endfor %}
