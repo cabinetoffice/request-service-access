@@ -5,56 +5,28 @@
 {% endblock %}
 
 {% block pageContent %}
-  <h1 class="govuk-heading-l">Add a New Collaborator to a Repository</h1>
+  <h1 class="govuk-heading-l">Add a new collaborator to a repository</h1>
 
   <p class="govuk-body">
-    When you want to grant more granular access to a repository, you can add an external collaborator directly to the repository.
+    When a user requires access to one or more repositories but they are not apart of the orginisation, they should be added as an outside collaborator.
   </p>
 
   {% include "include/error-list.html" %}
 
   <form method="post" novalidate>
+    
 
-    {{ govukInput({
-      errorMessage: errors.first_name if errors,
-      label: {
-        text: "First Name",
-        classes: "govuk-label--m"
-      },
-      classes: "govuk-input--width-20",
-      id: "first_name",
-      name: "first_name",
-      value: first_name
-    }) }}
+    {% set firstNameText = "First name" %}
+    {% include "include/inputs/first-name.html" %}
 
-    {{ govukInput({
-      errorMessage: errors.last_name if errors,
-      label: {
-        text: "Last Name",
-        classes: "govuk-label--m"
-      },
-      classes: "govuk-input--width-20",
-      id: "last_name",
-      name: "last_name",
-      value: last_name
-    }) }}
+    {% set lastNameText = "Last name" %}
+    {% include "include/inputs/last-name.html" %}
 
-    {% set githubHandleText = "GitHub Handle" %}
+    {% set githubHandleText = "GitHub handle" %}
     {% include "include/inputs/github-handle.html" %}
 
-    {{ govukInput({
-      errorMessage: errors.email_address if errors,
-      label: {
-        text: "Email Address",
-        classes: "govuk-label--m"
-      },
-      classes: "govuk-input--width-20",
-      id: "email_address",
-      name: "email_address",
-      value: email_address,
-      type: "email",
-      spellcheck: false
-    }) }}
+    {% set emailAddressText = "Email address" %}
+    {% include "include/inputs/email-address.html" %}
 
     {% include "include/inputs/repo-name.html" %}
 

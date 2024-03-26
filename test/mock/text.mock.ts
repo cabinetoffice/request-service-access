@@ -30,7 +30,7 @@ export const MOCK_BY_ID_TEAM_MEMBER_RESPONSE = 'Team name: team1, GitHub handle(
 
 // add-collaborator response mocks
 
-export const MOCK_GET_ADD_COLLABORATOR_RESPONSE = 'Add a New Collaborator to a Repository';
+export const MOCK_GET_ADD_COLLABORATOR_RESPONSE = 'Add a new collaborator to a repository';
 export const MOCK_POST_ADD_COLLABORATOR_RESPONSE = 'First name: example, Last name: example, GitHub handle: example, email: email@hotmail.com, Repository Name: repo1';
 export const MOCK_BY_ID_ADD_COLLABORATOR_RESPONSE = 'GitHub handle: example, Collaborator ID: ';
 
