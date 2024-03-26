@@ -78,7 +78,7 @@ Both `Nunjucks` and `GDS` style/components are utilised. To streamline the const
 // Nunjucks HTML inputs field for adding a team 
 {% extends "layout.html" %}
 
-{% block beforeContent %}
+{% block backLink %}
   {% include "include/back-link.html" %}
 {% endblock %}
 
