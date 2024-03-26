@@ -1,0 +1,11 @@
+{{ govukInput({
+  errorMessage: errors.first_name if errors,
+  label: {
+    text: firstNameText,
+    classes: "govuk-label--m"
+  },
+  classes: "govuk-input--width-20",
+  id: "first_name",
+  name: "first_name",
+  value: first_name
+}) }}

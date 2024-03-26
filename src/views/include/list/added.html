@@ -2,6 +2,7 @@
     or (add_repo and add_repo.length > 0)
     or (add_member and add_member.length > 0)
     or (add_team_member and add_team_member.length > 0)
+    or (add_collaborator and add_collaborator.length > 0)
     or (additional_requests and additional_requests.length > 0) %}
 
     <table class="govuk-table">
@@ -46,6 +47,17 @@
                     <td class="govuk-table__cell">{{ team_member.github_handles }}</td>
                     <td class="govuk-table__cell">
                         <a class="govuk-link" href="/add-team-member/{{ team_member.id }}">
+                            Change or remove
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% for collaborator in add_collaborator %}
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">New collaborator</th>
+                    <td class="govuk-table__cell">{{ collaborator.first_name }} {{ collaborator.last_name }}</td>
+                    <td class="govuk-table__cell">
+                        <a class="govuk-link" href="/add-collaborator/{{ collaborator.id }}">
                             Change or remove
                         </a>
                     </td>

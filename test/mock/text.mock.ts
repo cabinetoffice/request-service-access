@@ -28,6 +28,12 @@ export const MOCK_GET_ADD_TEAM_MEMBER_RESPONSE = 'Add Member(s) to Team.';
 export const MOCK_POST_ADD_TEAM_MEMBER_RESPONSE = 'Team name: team1, GitHub handle(s): joe';
 export const MOCK_BY_ID_TEAM_MEMBER_RESPONSE = 'Team name: team1, GitHub handle(s): joe, Team member ID: ';
 
+// add-collaborator response mocks
+
+export const MOCK_GET_ADD_COLLABORATOR_RESPONSE = 'Add a new collaborator to a repository';
+export const MOCK_POST_ADD_COLLABORATOR_RESPONSE = 'First name: example, Last name: example, GitHub handle: example, email: email@hotmail.com, Repository Name: repo1';
+export const MOCK_BY_ID_ADD_COLLABORATOR_RESPONSE = 'GitHub handle: example, Collaborator ID: ';
+
 // additional-requests mocks
 
 export const MOCK_GET_ADDITIONAL_REQUESTS_RESPONSE = 'Make an additional request that is not covered by the other options. For example, removal requests or permission changes';

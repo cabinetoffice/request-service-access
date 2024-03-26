@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block backLink %}
+  {% include "include/back-link.html" %}
+{% endblock %}
+
+{% block pageContent %}
+  <h1 class="govuk-heading-l">Add a new collaborator to a repository</h1>
+
+  <p class="govuk-body">
+    When a user requires access to one or more repositories but they are not apart of the orginisation, they should be added as an outside collaborator.
+  </p>
+
+  {% include "include/error-list.html" %}
+
+  <form method="post" novalidate>
+    
+
+    {% set firstNameText = "First name" %}
+    {% include "include/inputs/first-name.html" %}
+
+    {% set lastNameText = "Last name" %}
+    {% include "include/inputs/last-name.html" %}
+
+    {% set githubHandleText = "GitHub handle" %}
+    {% include "include/inputs/github-handle.html" %}
+
+    {% set emailAddressText = "Email address" %}
+    {% include "include/inputs/email-address.html" %}
+
+    {% include "include/inputs/repo-name.html" %}
+
+    {% include "include/save-button.html" %}
+
+    {% set removePathURL = "/add-collaborator/remove/" + id %}
+    {% include "include/remove-button.html" %}
+
+  </form>
+{%endblock%}

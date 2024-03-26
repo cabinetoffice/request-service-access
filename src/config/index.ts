@@ -32,6 +32,7 @@ export const CONFIRMATION = 'confirmation';
 export const ADD_TEAM = 'add-team';
 export const ADD_TEAM_MEMBER = 'add-team-member';
 export const ADD_REPO = 'add-repo';
+export const ADD_COLLABORATOR = 'add-collaborator';
 export const CHECK_YOUR_ANSWERS = 'check-your-answers';
 export const ADDITIONAL_REQUESTS = 'additional-requests';
 
@@ -44,6 +45,7 @@ export const CONFIRMATION_URL = '/confirmation';
 export const ADD_TEAM_URL = '/add-team';
 export const ADD_TEAM_MEMBER_URL = '/add-team-member';
 export const ADD_REPO_URL = '/add-repo';
+export const ADD_COLLABORATOR_URL = '/add-collaborator';
 export const CHECK_YOUR_ANSWERS_URL = '/check-your-answers';
 export const ADDITIONAL_REQUESTS_URL = '/additional-requests';
 

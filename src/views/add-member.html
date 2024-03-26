@@ -15,46 +15,17 @@
 
   <form method="post" novalidate>
 
-    {{ govukInput({
-      errorMessage: errors.first_name if errors,
-      label: {
-        text: "First Name",
-        classes: "govuk-label--m"
-      },
-      classes: "govuk-input--width-20",
-      id: "first_name",
-      name: "first_name",
-      value: first_name
-    }) }}
+    {% set firstNameText = "First name" %}
+    {% include "include/inputs/first-name.html" %}
 
-    {{ govukInput({
-      errorMessage: errors.last_name if errors,
-      label: {
-        text: "Last Name",
-        classes: "govuk-label--m"
-      },
-      classes: "govuk-input--width-20",
-      id: "last_name",
-      name: "last_name",
-      value: last_name
-    }) }}
+    {% set lastNameText = "Last name" %}
+    {% include "include/inputs/last-name.html" %}
 
     {% set githubHandleText = "GitHub Handle" %}
     {% include "include/inputs/github-handle.html" %}
 
-    {{ govukInput({
-      errorMessage: errors.email_address if errors,
-      label: {
-        text: "Email Address",
-        classes: "govuk-label--m"
-      },
-      classes: "govuk-input--width-20",
-      id: "email_address",
-      name: "email_address",
-      value: email_address,
-      type: "email",
-      spellcheck: false
-    }) }}
+    {% set emailAddressText = "Email address" %}
+    {% include "include/inputs/email-address.html" %}
 
     {% set dateHtml %}
       {{ govukInput({
