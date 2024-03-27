@@ -18,7 +18,7 @@ export const MOCK_BY_ID_ADD_MEMBER_RESPONSE = 'GitHub handle: example, Member ID
 
 // add-team reponse mocks
 
-export const MOCK_GET_ADD_TEAM_RESPONSE = 'Add a GitHub Team';
+export const MOCK_GET_ADD_TEAM_RESPONSE = 'Add a new team';
 export const MOCK_POST_ADD_TEAM_RESPONSE = 'Team Name: team1, Team Maintainer GitHub Handle: bob, Team ID: ';
 export const MOCK_BY_ID_TEAM_RESPONSE = 'Team Name: team1, Team ID: ';
 
