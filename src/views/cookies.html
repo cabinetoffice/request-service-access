@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% from "include/table.html" import table %}
+
+{% block pageContent %}
+
+  <h1 class="govuk-heading-l">Cookies</h1>
+
+  <p class="govuk-body">Cookies are small files saved on your phone, tablet or computer when you visit a website.</p>
+
+  <p class="govuk-body">We use cookies to make this site work and collect information about how you use our service.</p>
+
+  <h2 class="govuk-heading-m">Essential cookies</h2>
+
+  <p class="govuk-body">Essential cookies keep your information secure while you use Github Requests. We do not need to ask permission to use them.</p>
+
+  {{ table(headClasses = "govuk-body", rowClasses = "govuk-body",
+    heads = ["Name", "Purpose", "Expires"],
+    rows = [["session", "Used for session data management", "20 hours"], ["session.sig", "Used to protect the integrity of the session data", "20 hours"]]
+  ) }}
+
+  {{ govukButton({
+    text: "Save cookie settings",
+    preventDoubleClick: true,
+    type: "button",
+    attributes: {
+      id: "save-cookie-settings"
+    }
+  }) }}
+
+{% endblock %}

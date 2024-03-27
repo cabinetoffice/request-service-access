@@ -35,6 +35,7 @@ export const ADD_REPO = 'add-repo';
 export const ADD_COLLABORATOR = 'add-collaborator';
 export const CHECK_YOUR_ANSWERS = 'check-your-answers';
 export const ADDITIONAL_REQUESTS = 'additional-requests';
+export const COOKIES = 'cookies';
 
 // Routing paths
 export const START_URL = '/start';
@@ -48,6 +49,7 @@ export const ADD_REPO_URL = '/add-repo';
 export const ADD_COLLABORATOR_URL = '/add-collaborator';
 export const CHECK_YOUR_ANSWERS_URL = '/check-your-answers';
 export const ADDITIONAL_REQUESTS_URL = '/additional-requests';
+export const COOKIES_URL = '/cookies';
 
 export const SERVICE_URL = `${BASE_URL}${HOME_URL}`;
 
