@@ -14,6 +14,7 @@ import addCollaboratorRouter from './add-collaborator';
 import checkYourAnswersRouter from './check-your-answers';
 import additionalRequestsRouter from './additional-requests.controller';
 import cookiesRouter from './cookies';
+import contactUsRouter from './contact-us';
 
 const router = Router();
 
@@ -33,5 +34,6 @@ router.use(addCollaboratorRouter);
 router.use(checkYourAnswersRouter);
 router.use(additionalRequestsRouter);
 router.use(cookiesRouter);
+router.use(contactUsRouter);
 
 export default router;
