@@ -13,6 +13,7 @@ import addTeamMemberRouter from './add-team-member';
 import addCollaboratorRouter from './add-collaborator';
 import checkYourAnswersRouter from './check-your-answers';
 import additionalRequestsRouter from './additional-requests.controller';
+import accessibilityStatementRouter from './accessibility-statement';
 import cookiesRouter from './cookies';
 
 const router = Router();
@@ -32,6 +33,7 @@ router.use(addTeamMemberRouter);
 router.use(addCollaboratorRouter);
 router.use(checkYourAnswersRouter);
 router.use(additionalRequestsRouter);
+router.use(accessibilityStatementRouter);
 router.use(cookiesRouter);
 
 export default router;
