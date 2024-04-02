@@ -13,6 +13,7 @@ import addTeamMemberRouter from './add-team-member';
 import addCollaboratorRouter from './add-collaborator';
 import checkYourAnswersRouter from './check-your-answers';
 import additionalRequestsRouter from './additional-requests';
+import accessibilityStatementRouter from './accessibility-statement';
 import cookiesRouter from './cookies';
 import contactUsRouter from './contact-us';
 
@@ -33,6 +34,7 @@ router.use(addTeamMemberRouter);
 router.use(addCollaboratorRouter);
 router.use(checkYourAnswersRouter);
 router.use(additionalRequestsRouter);
+router.use(accessibilityStatementRouter);
 router.use(cookiesRouter);
 router.use(contactUsRouter);
 
