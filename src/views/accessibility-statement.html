@@ -5,7 +5,6 @@
 
   <ul class="govuk-list govuk-list--bullet">
     <li><a class="govuk-link" href="#about-service">About this service</a></li>
-    <li><a class="govuk-link" href="#how-accessible">How accessible this service is</a></li>
     <li><a class="govuk-link" href="#reporting">Reporting accessibility problems with this service</a></li>
     <li><a class="govuk-link" href="#technical-information">Technical information about this service’s accessibility</a></li>
     <li><a class="govuk-link" href="#tested">How we tested this service</a></li>
@@ -31,20 +30,6 @@
   {{ govukInsetText({
     html: '<a class="govuk-link" href="https://mcmw.abilitynet.org.uk/">AbilityNet has advice on making your device easier to use if you have a disability.</a>'
   }) }}
-
-  <h2 class="govuk-heading-m" id="how-accessible">
-    How accessible this service is
-  </h2>
-
-  <p class="govuk-body"> We know some parts of this service are not fully accessible for the following reasons:</p>
-
-  <h2 class="govuk-heading-s" id="non-accessible-content">
-    Non-compliance with the accessibility regulations
-  </h2>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>When users leave the service inactive for 60 minutes, they are directed back to the first page. There is no time out warning or option to extend the session. This fails WCAG 2.1 success criterion 2.2.1 (Timing Adjustable). We plan to fix this issue as soon as possible.</li>
-    <li>Some headings and buttons are not descriptive and screen reader users may find it difficult to understand their purpose. This fails WCAG 2.1 success criterion 2.4.6 (Headings and Labels). We plan to fix this issue as soon as possible.</li>
-  </ul>
 
   <h2 class="govuk-heading-m" id="reporting">
     Reporting accessibility problems with this service
