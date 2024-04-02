@@ -2,6 +2,7 @@ export const MOCK_OK_RESPONSE = 'OK';
 export const MOCK_GET_CONFIRMATION_RESPONSE = 'GitHub request complete';
 export const MOCK_GET_START_RESPONSE = 'GitHub Requests';
 export const MOCK_GET_HOME_RESPONSE = 'GitHub Requests';
+export const MOCK_ACCESSIBILITY_STATEMENT_RESPONSE = 'Accessibility statement for the GitHub Requests application';
 
 // add-repo response mocks
 

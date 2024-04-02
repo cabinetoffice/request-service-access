@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block pageContent %}
+  <h1 class="govuk-heading-l">Accessibility statement for the GitHub Requests application</h1>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li><a class="govuk-link" href="#about-service">About this service</a></li>
+    <li><a class="govuk-link" href="#how-accessible">How accessible this service is</a></li>
+    <li><a class="govuk-link" href="#reporting">Reporting accessibility problems with this service</a></li>
+    <li><a class="govuk-link" href="#technical-information">Technical information about this service’s accessibility</a></li>
+    <li><a class="govuk-link" href="#tested">How we tested this service</a></li>
+    <li><a class="govuk-link" href="#were-doing">What we’re doing to improve accessibility</a></li>
+  </ul>
+
+  <h2 class="govuk-heading-m" id="about-service">About this service</h2>
+
+  <p class="govuk-body">The GitHub Requests service is run by <a class="govuk-link" href="https://www.gov.uk/government/organisations/cabinet-office">Cabinet Office Digital</a>. We want as many people as possible to be able to use it. For example, that means you should be able to:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>change colours, contrast levels and fonts</li>
+    <li>zoom in up to 300% without the text disappearing off the screen</li>
+    <li>navigate most of the service using just a keyboard</li>
+    <li>navigate most of the service using speech recognition software</li>
+    <li>listen to most of the service using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)</li>
+  </ul>
+
+  <br>
+
+  <p class="govuk-body">We’ve also made the text simple to understand.</p>
+
+  {{ govukInsetText({
+    html: '<a class="govuk-link" href="https://mcmw.abilitynet.org.uk/">AbilityNet has advice on making your device easier to use if you have a disability.</a>'
+  }) }}
+
+  <h2 class="govuk-heading-m" id="how-accessible">
+    How accessible this service is
+  </h2>
+
+  <p class="govuk-body"> We know some parts of this service are not fully accessible for the following reasons:</p>
+
+  <h2 class="govuk-heading-s" id="non-accessible-content">
+    Non-compliance with the accessibility regulations
+  </h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>When users leave the service inactive for 60 minutes, they are directed back to the first page. There is no time out warning or option to extend the session. This fails WCAG 2.1 success criterion 2.2.1 (Timing Adjustable). We plan to fix this issue as soon as possible.</li>
+    <li>Some headings and buttons are not descriptive and screen reader users may find it difficult to understand their purpose. This fails WCAG 2.1 success criterion 2.4.6 (Headings and Labels). We plan to fix this issue as soon as possible.</li>
+  </ul>
+
+  <h2 class="govuk-heading-m" id="reporting">
+    Reporting accessibility problems with this service
+  </h2>
+
+  <p class="govuk-body">We’re always looking to improve the accessibility of this service. If you find any problems not listed on this page or think we’re not meeting accessibility requirements, you can find contact details on our
+    <a class="govuk-link" href="#">contact page.</a> <!--Add link to contact us page when created. -->
+  </p>
+
+  <h2 class="govuk-heading-m" id="technical-information">
+    Technical information about this service’s accessibility
+  </h2>
+
+  <p class="govuk-body">Cabinet Office is committed to making its website accessible in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.</p>
+
+  <p class="govuk-body">This website is partially compliant with the <a class="govuk-link" href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines version 2.1</a> AA standard, due to the non-compliances listed in the section on 'Non-compliance with the accessibility regulations.</p>
+
+  <h2 class="govuk-heading-m" id="tested">
+    How we tested this service
+  </h2>
+
+  <p class="govuk-body">We regularly carry out internal tests for compliance with the Web Content Accessibility Guidelines V2.1 level A and level AA using a variety of manual and automated testing tools.</p>
+
+  <h2 class="govuk-heading-m" id="were-doing">
+    What we’re doing to improve accessibility
+  </h2>
+
+  <p class="govuk-body">Following the audit conducted by the DAC in April 2022, departments and agencies are urgently fixing content which fails to meet the Web Content Accessibility Guidelines version 2.1 AA standard.</p>
+
+  {{ govukInsetText({
+    text: "This statement was prepared on 27 March 2024. It was last updated on 27 March 2024."
+  }) }}
+
+{% endblock %}
