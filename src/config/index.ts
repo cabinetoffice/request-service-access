@@ -36,6 +36,7 @@ export const ADD_COLLABORATOR = 'add-collaborator';
 export const CHECK_YOUR_ANSWERS = 'check-your-answers';
 export const ADDITIONAL_REQUESTS = 'additional-requests';
 export const COOKIES = 'cookies';
+export const CONTACT_US = 'contact-us';
 
 // Routing paths
 export const START_URL = '/start';
@@ -50,6 +51,7 @@ export const ADD_COLLABORATOR_URL = '/add-collaborator';
 export const CHECK_YOUR_ANSWERS_URL = '/check-your-answers';
 export const ADDITIONAL_REQUESTS_URL = '/additional-requests';
 export const COOKIES_URL = '/cookies';
+export const CONTACT_US_URL = '/contact-us';
 
 export const SERVICE_URL = `${BASE_URL}${HOME_URL}`;
 

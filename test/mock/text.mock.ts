@@ -1,6 +1,7 @@
 export const MOCK_OK_RESPONSE = 'OK';
 export const MOCK_GET_CONFIRMATION_RESPONSE = 'GitHub request complete';
 export const MOCK_COOKIES_RESPONSE = 'Cookies';
+export const MOCK_CONTACT_US_RESPONSE = 'Contact us';
 export const MOCK_GET_START_RESPONSE = 'GitHub Requests';
 export const MOCK_GET_HOME_RESPONSE = 'GitHub Requests';
 
