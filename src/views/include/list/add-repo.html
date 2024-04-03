@@ -7,7 +7,7 @@
 
   {% set addRepoSummaryData = (addRepoSummaryData.push({
     key: { 
-      text: "New repository name"
+      text: "Repository name"
     },
     value: {
       text: repo.repo_name
@@ -17,12 +17,12 @@
         {
           href: addRepoEditHref,
           text: "Edit",
-          visuallyHiddenText: "New repository name"
+          visuallyHiddenText: "Repository name"
         },
         {
           href: addRepoDeleteHref,
           text: "Delete",
-          visuallyHiddenText: "New repository name"
+          visuallyHiddenText: "Repository name"
         }
       ]
     }

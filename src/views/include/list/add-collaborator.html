@@ -7,7 +7,7 @@
 
   {% set addCollaboratorSummaryData = (addCollaboratorSummaryData.push({
     key: { 
-      text: "New collaborator name"
+      text: "Collaborator name"
     },
     value: {
       text: collaborator.first_name + " " + collaborator.last_name
@@ -17,12 +17,12 @@
         {
           href: addCollaboratorEditHref,
           text: "Edit",
-          visuallyHiddenText: "New collaborator name"
+          visuallyHiddenText: "Collaborator name"
         },
         {
           href: addCollaboratorDeleteHref,
           text: "Delete",
-          visuallyHiddenText: "New collaborator name"
+          visuallyHiddenText: "Collaborator name"
         }
       ]
     }

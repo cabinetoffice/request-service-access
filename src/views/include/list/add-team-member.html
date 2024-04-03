@@ -7,7 +7,7 @@
 
   {% set addTeamMemberSummaryData = (addTeamMemberSummaryData.push({
     key: { 
-      text: "Add existing member(s) to " + team_member.team_name + " team"
+      text: team_member.team_name + "'s" + " new member name(s)"
     },
     value: {
       text: team_member.github_handles
@@ -17,12 +17,12 @@
         {
           href: addTeamMemberEditHref,
           text: "Edit",
-          visuallyHiddenText: "Add existing member(s) to " + team_member.team_name + " team"
+          visuallyHiddenText: team_member.team_name + "'s" + " new member name(s)"
         },
         {
           href: addTeamMemberDeleteHref,
           text: "Delete",
-          visuallyHiddenText: "Add existing member(s) to " + team_member.team_name + " team"
+          visuallyHiddenText: team_member.team_name + "'s" + " new member name(s)"
         }
       ]
     }

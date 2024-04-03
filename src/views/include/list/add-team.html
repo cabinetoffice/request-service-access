@@ -7,7 +7,7 @@
 
   {% set addTeamSummaryData = (addTeamSummaryData.push({
     key: { 
-      text: "New team name"
+      text: "Team name"
     },
     value: {
       text: team.team_name
@@ -17,12 +17,12 @@
         {
           href: addTeamEditHref,
           text: "Edit",
-          visuallyHiddenText: "New team name"
+          visuallyHiddenText: "Team name"
         },
         {
           href: addTeamDeleteHref,
           text: "Delete",
-          visuallyHiddenText: "New team name"
+          visuallyHiddenText: "Team name"
         }
       ]
     }
