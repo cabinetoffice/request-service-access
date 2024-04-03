@@ -1,0 +1,35 @@
+{% set additionalRequestsSummaryData = [] %}
+
+{% for additional_request in additional_requests %}
+
+  {% set additionalRequestsEditHref = "/additional-requests/" + additional_request.id %}
+  {% set additionalRequestsDeleteHref = "/additional-requests/remove/" + additional_request.id %}
+
+  {% set additionalRequestsSummaryData = (additionalRequestsSummaryData.push({
+    key: { 
+      text: "Additional request context"
+    },
+    value: {
+      text: additional_request.context
+    },
+    actions: {
+      items: [
+        {
+          href: additionalRequestsEditHref,
+          text: "Edit",
+          visuallyHiddenText: "Additional requests context"
+        },
+        {
+          href: additionalRequestsDeleteHref,
+          text: "Delete",
+          visuallyHiddenText: "Additional requests context"
+        }
+      ]
+    }
+  }), additionalRequestsSummaryData) %}
+
+{% endfor %}
+
+{{ govukSummaryList({
+  rows: additionalRequestsSummaryData
+}) }}

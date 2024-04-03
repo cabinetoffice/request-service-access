@@ -1,0 +1,35 @@
+{% set addCollaboratorSummaryData = [] %}
+
+{% for collaborator in add_collaborator %}
+
+  {% set addCollaboratorEditHref = "/add-collaborator/" + collaborator.id %}
+  {% set addCollaboratorDeleteHref = "/add-collaborator/remove/" + collaborator.id %}
+
+  {% set addCollaboratorSummaryData = (addCollaboratorSummaryData.push({
+    key: { 
+      text: "New collaborator name"
+    },
+    value: {
+      text: collaborator.first_name + " " + collaborator.last_name
+    },
+    actions: {
+      items: [
+        {
+          href: addCollaboratorEditHref,
+          text: "Edit",
+          visuallyHiddenText: "New collaborator name"
+        },
+        {
+          href: addCollaboratorDeleteHref,
+          text: "Delete",
+          visuallyHiddenText: "New collaborator name"
+        }
+      ]
+    }
+  }), addCollaboratorSummaryData) %}
+
+{% endfor %}
+
+{{ govukSummaryList({
+  rows: addCollaboratorSummaryData
+}) }}
