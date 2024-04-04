@@ -1,6 +1,7 @@
 import { getEnvironmentValue } from '../utils/getEnvironmentValue';
 
 export const SERVICE_NAME = 'GitHub Requests';
+export const ORG_NAME = 'The Cabinet Office';
 
 export const PATH_SSL_PRIVATE_KEY = getEnvironmentValue('PATH_SSL_PRIVATE_KEY', 'false');
 export const PATH_SSL_CERTIFICATE = getEnvironmentValue('PATH_SSL_CERTIFICATE', 'false');

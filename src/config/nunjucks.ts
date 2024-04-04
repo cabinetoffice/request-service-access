@@ -18,4 +18,5 @@ export const configureNunjucks = (app: express.Application, viewsPath: string) =
     nunjucksEnv.addGlobal('CDN_HOST', config.CDN_HOST);
     nunjucksEnv.addGlobal('SERVICE_URL', config.SERVICE_URL);
     nunjucksEnv.addGlobal('SERVICE_NAME', config.SERVICE_NAME);
+    nunjucksEnv.addGlobal('ORG_NAME', config.ORG_NAME);
 };
