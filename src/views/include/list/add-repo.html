@@ -1,0 +1,35 @@
+{% set addRepoSummaryData = [] %}
+
+{% for repo in add_repo %}
+
+  {% set addRepoEditHref = "/add-repo/" + repo.id %}
+  {% set addRepoDeleteHref = "/add-repo/remove/" + repo.id %}
+
+  {% set addRepoSummaryData = (addRepoSummaryData.push({
+    key: { 
+      text: "Repository name"
+    },
+    value: {
+      text: repo.repo_name
+    },
+    actions: {
+      items: [
+        {
+          href: addRepoEditHref,
+          text: "Edit",
+          visuallyHiddenText: "Repository name"
+        },
+        {
+          href: addRepoDeleteHref,
+          text: "Delete",
+          visuallyHiddenText: "Repository name"
+        }
+      ]
+    }
+  }), addRepoSummaryData) %}
+
+{% endfor %}
+
+{{ govukSummaryList({
+  rows: addRepoSummaryData
+}) }}

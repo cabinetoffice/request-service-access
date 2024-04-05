@@ -104,9 +104,6 @@ Both `Nunjucks` and `GDS` style/components are utilised. To streamline the const
     {% include "include/description.html" %}
 
     {% include "include/save-button.html" %}
-
-    {% set removePathURL = "/add-team/remove/" + id %}
-    {% include "include/remove-button.html" %}
     
   </form>
 {% endblock %}

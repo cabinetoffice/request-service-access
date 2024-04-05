@@ -1,0 +1,35 @@
+{% set addTeamMemberSummaryData = [] %}
+
+{% for team_member in add_team_member %}
+
+  {% set addTeamMemberEditHref = "/add-team-member/" + team_member.id %}
+  {% set addTeamMemberDeleteHref = "/add-team-member/remove/" + team_member.id %}
+
+  {% set addTeamMemberSummaryData = (addTeamMemberSummaryData.push({
+    key: { 
+      text: team_member.team_name + "'s" + " new member name(s)"
+    },
+    value: {
+      text: team_member.github_handles
+    },
+    actions: {
+      items: [
+        {
+          href: addTeamMemberEditHref,
+          text: "Edit",
+          visuallyHiddenText: team_member.team_name + "'s" + " new member name(s)"
+        },
+        {
+          href: addTeamMemberDeleteHref,
+          text: "Delete",
+          visuallyHiddenText: team_member.team_name + "'s" + " new member name(s)"
+        }
+      ]
+    }
+  }), addTeamMemberSummaryData) %}
+
+{% endfor %}
+
+{{ govukSummaryList({
+  rows: addTeamMemberSummaryData
+}) }}

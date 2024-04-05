@@ -1,0 +1,35 @@
+{% set addMemberSummaryData = [] %}
+
+{% for member in add_member %}
+
+  {% set addMemberEditHref = "/add-member/" + member.id %}
+  {% set addMemberDeleteHref = "/add-member/remove/" + member.id %}
+
+  {% set addMemberSummaryData = (addMemberSummaryData.push({
+    key: { 
+      text: "Member name"
+    },
+    value: {
+      text: member.first_name + " " + member.last_name
+    },
+    actions: {
+      items: [
+        {
+          href: addMemberEditHref,
+          text: "Edit",
+          visuallyHiddenText: "Member name"
+        },
+        {
+          href: addMemberDeleteHref,
+          text: "Delete",
+          visuallyHiddenText: "Member name"
+        }
+      ]
+    }
+  }), addMemberSummaryData) %}
+
+{% endfor %}
+
+{{ govukSummaryList({
+  rows: addMemberSummaryData
+}) }}

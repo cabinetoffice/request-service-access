@@ -1,80 +1,34 @@
-{% if (add_team and add_team.length > 0)
-    or (add_repo and add_repo.length > 0)
-    or (add_member and add_member.length > 0)
-    or (add_team_member and add_team_member.length > 0)
-    or (add_collaborator and add_collaborator.length > 0)
-    or (additional_requests and additional_requests.length > 0) %}
-
-    <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m">Requests summary</caption>
-        <tbody class="govuk-table__body">
-            {% for team in add_team %}
-                <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header">New team</th>
-                    <td class="govuk-table__cell">{{ team.team_name }}</td>
-                    <td class="govuk-table__cell">
-                        <a class="govuk-link" href="/add-team/{{ team.id }}">
-                            Change or remove
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-            {% for repo in add_repo %}
-                <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header">New repo</th>
-                    <td class="govuk-table__cell">{{ repo.repo_name }}</td>
-                    <td class="govuk-table__cell">
-                        <a class="govuk-link" href="/add-repo/{{ repo.id }}">
-                            Change or remove
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-            {% for member in add_member %}
-                <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header">New member</th>
-                    <td class="govuk-table__cell">{{ member.first_name }} {{ member.last_name }}</td>
-                    <td class="govuk-table__cell">
-                        <a class="govuk-link" href="/add-member/{{ member.id }}">
-                            Change or remove
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-            {% for team_member in add_team_member %}
-                <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header">New member(s) to team</th>
-                    <td class="govuk-table__cell">{{ team_member.github_handles }}</td>
-                    <td class="govuk-table__cell">
-                        <a class="govuk-link" href="/add-team-member/{{ team_member.id }}">
-                            Change or remove
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-            {% for collaborator in add_collaborator %}
-                <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header">New collaborator</th>
-                    <td class="govuk-table__cell">{{ collaborator.first_name }} {{ collaborator.last_name }}</td>
-                    <td class="govuk-table__cell">
-                        <a class="govuk-link" href="/add-collaborator/{{ collaborator.id }}">
-                            Change or remove
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-            {% for additional_request in additional_requests %}
-                <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header">New additional request</th>
-                    <td class="govuk-table__cell">{{ additional_request.context }}</td>
-                    <td class="govuk-table__cell">
-                        <a class="govuk-link" href="/additional-requests/{{ additional_request.id }}">
-                            Change or remove
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
+{% if (add_member and add_member.length > 0) %}
+  <h2 class="govuk-heading-m">New member requests</h2>
+  {% include "include/list/add-member.html" %}
+  <br>
+  <br>
+{% endif %}
+{% if (add_team and add_team.length > 0) %}
+  <h2 class="govuk-heading-m">New team requests</h2>
+  {% include "include/list/add-team.html" %}
+  <br>
+  <br>
+{% endif %}
+{% if (add_team_member and add_team_member.length > 0) %}
+  <h2 class="govuk-heading-m">New team member requests</h2>
+  {% include "include/list/add-team-member.html" %}
+  <br>
+  <br>
+{% endif %}
+{% if (add_repo and add_repo.length > 0) %}
+  <h2 class="govuk-heading-m">New repository requests</h2>
+  {% include "include/list/add-repo.html" %}
+  <br>
+  <br>
+{% endif %}
+{% if (add_collaborator and add_collaborator.length > 0) %}
+  <h2 class="govuk-heading-m">New collaborator requests</h2>
+  {% include "include/list/add-collaborator.html" %}
+  <br>
+  <br>
+{% endif %}
+{% if (additional_requests and additional_requests.length > 0) %}
+  <h2 class="govuk-heading-m">Additional requests</h2>
+  {% include "include/list/additional-requests.html" %}
 {% endif %}
