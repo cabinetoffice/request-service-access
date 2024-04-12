@@ -8,7 +8,7 @@
   <h1 class="govuk-heading-l">Add a GitHub Member</h1>
 
   <p class="govuk-body">
-    When a user requires access to our GitHub organisations (e.g they have joined {{ ORG_NAME }}) they should be added to the {{ ORG_NAME }} GitHub organisation.
+    When a user requires access to our GitHub organisations (e.g they have joined {{ DEPARTMENT_NAME }}) they should be added to the {{ GITHUB_ORG_NAME }} GitHub organisation.
   </p>
 
   {% include "include/error-list.html" %}
@@ -50,7 +50,7 @@
       name: "contract_type",
       fieldset: {
         legend: {
-          text: "Is the GitHub account holder permanently employed within the CO orginsation?",
+          text: "Is the GitHub account holder permanently employed within the " + DEPARTMENT_NAME + " department?",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--l"
         }
