@@ -17,4 +17,6 @@ export default () => {
     process.env.SESSION_APP_KEY = 'test';
     process.env.GITHUB_KEY = 'key';
     process.env.UNSANITISED_TEST_KEY = '   test      ';
+    process.env.DEPARTMENT_NAME = 'Cabinet Office';
+    process.env.GITHUB_ORG_NAME = 'cabinetoffice';
 };
