@@ -43,7 +43,7 @@ export const MOCK_GET_ADDITIONAL_REQUESTS_RESPONSE = 'Make an additional request
 export const MOCK_POST_ADDITIONAL_REQUESTS_RESPONSE = 'Context: member, Additional Requests ID: ';
 export const MOCK_BY_ID_ADDITIONAL_REQUESTS_RESPONSE = 'Context: member, Additional Requests ID: ';
 
-export const MOCK_CHECK_YOUR_ANSWERS_TITLE = 'Check your requests before sending your application';
+export const MOCK_CHECK_YOUR_REQUESTS_TITLE = 'Check your requests before sending your application';
 
 export const MOCK_NOT_FOUND_RESPONSE = 'Page not found';
 export const MOCK_SERVICE_UNAVAILABLE = 'Sorry, there is a problem with the service';

@@ -9,32 +9,32 @@
 
   {% if (add_team and add_team.length > 0) %}
     <h2 class="govuk-heading-l">Added Teams details</h2>
-    {% include "include/check-your-answers/add_team.html" %}
+    {% include "include/check-your-requests/add_team.html" %}
     <br>
   {% endif %}
   {% if (add_repo and add_repo.length > 0) %}
     <h2 class="govuk-heading-l">Added Repositories details</h2>
-    {% include "include/check-your-answers/add_repo.html" %}
+    {% include "include/check-your-requests/add_repo.html" %}
     <br>
   {% endif %}
   {% if (add_member and add_member.length > 0) %}
     <h2 class="govuk-heading-l">Added Members details</h2>
-    {% include "include/check-your-answers/add_member.html" %}
+    {% include "include/check-your-requests/add_member.html" %}
     <br>
   {% endif %}
   {% if (add_team_member and add_team_member.length > 0) %}
       <h2 class="govuk-heading-l">Added Member(s) to Team details</h2>
-      {% include "include/check-your-answers/add_team_member.html" %}
+      {% include "include/check-your-requests/add_team_member.html" %}
       <br>
   {% endif %}
   {% if (add_collaborator and add_collaborator.length > 0) %}
       <h2 class="govuk-heading-l">Added Collaborator</h2>
-      {% include "include/check-your-answers/add_collaborator.html" %}
+      {% include "include/check-your-requests/add_collaborator.html" %}
       <br>
   {% endif %}
   {% if (additional_requests and additional_requests.length > 0) %}
     <h2 class="govuk-heading-l">Added Additional Requests details</h2>
-    {% include "include/check-your-answers/additional_requests.html" %}
+    {% include "include/check-your-requests/additional_requests.html" %}
     <br>
   {% endif %}
 
