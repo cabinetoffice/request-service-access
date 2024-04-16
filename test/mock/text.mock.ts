@@ -15,7 +15,7 @@ export const MOCK_LOG_ERROR_REQUEST = 'Cannot read properties of undefined';
 
 // add-member response mocks
 
-export const MOCK_GET_ADD_MEMBER_RESPONSE = 'Add a GitHub Member';
+export const MOCK_GET_ADD_MEMBER_RESPONSE = 'Add a new member';
 export const MOCK_POST_ADD_MEMBER_RESPONSE = 'First name: example, Last name: example, GitHub handle: example, email: email@hotmail.com, Contract end date: ';
 export const MOCK_BY_ID_ADD_MEMBER_RESPONSE = 'GitHub handle: example, Member ID: ';
 
