@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block backLink %}
+  {% include "include/back-link.html" %}
+{% endblock %}
+
+{% block pageContent %}
+  <h1 class="govuk-heading-xl">Check your requests before sending your application</h1>
+
+  {% if (add_member and add_member.length > 0) %}
+    <h2 class="govuk-heading-m">Members details</h2>
+    {% include "include/check-your-requests/add-member.html" %}
+    <br>
+  {% endif %}
+  {% if (add_team and add_team.length > 0) %}
+    <h2 class="govuk-heading-m">Teams details</h2>
+    {% include "include/check-your-requests/add-team.html" %}
+    <br>
+  {% endif %}
+  {% if (add_team_member and add_team_member.length > 0) %}
+    <h2 class="govuk-heading-m">Member(s) to Team details</h2>
+    {% include "include/check-your-requests/add-team-member.html" %}
+    <br>
+  {% endif %}
+  {% if (add_repo and add_repo.length > 0) %}
+    <h2 class="govuk-heading-m">Repositories details</h2>
+    {% include "include/check-your-requests/add-repo.html" %}
+    <br>
+  {% endif %}
+  {% if (add_collaborator and add_collaborator.length > 0) %}
+    <h2 class="govuk-heading-m">Collaborators details</h2>
+    {% include "include/check-your-requests/add-collaborator.html" %}
+    <br>
+  {% endif %}
+  {% if (additional_requests and additional_requests.length > 0) %}
+    <h2 class="govuk-heading-m">Additional Requests details</h2>
+    {% include "include/check-your-requests/additional-requests.html" %}
+    <br>
+  {% endif %}
+
+  <form method="post">
+    <div class="govuk-button-group">
+        {{ govukButton({
+            text: "Submit",
+            attributes: {
+                "id": "submit"
+            }
+        }) }}
+    </div>
+  </form>
+{% endblock %}

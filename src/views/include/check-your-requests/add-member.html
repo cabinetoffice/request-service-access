@@ -83,7 +83,7 @@
         text: "Contract type"
       },
       value: {
-        text: member.contract_type
+        text: member.contract_type | capitalize | replace("_", "-")
       },
       actions: {
         items: [

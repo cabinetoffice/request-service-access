@@ -11,7 +11,7 @@ jest.mock('uuid');
 
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 
-import { get, post } from '../../../src/controller/check-your-answers.controller';
+import { get, post } from '../../../src/controller/check-your-requests.controller';
 import * as config from '../../../src/config';
 
 import { APP_DATA, MOCK_POST_ISSUE_URL } from '../../mock/data';
@@ -29,15 +29,15 @@ import {
 import { client } from '../../../src/service/api';
 const mockPostIssue = client.gitHub.postIssue as jest.Mock<any>;
 
-describe('check-your-answers controller test suites', () => {
+describe('check-your-requests controller test suites', () => {
 
     afterEach(() => {
         jest.resetAllMocks();
     });
 
-    describe('check-your-answers GET tests', () => {
+    describe('check-your-requests GET tests', () => {
 
-        test('should render check-your-answers page', () => {
+        test('should render check-your-requests page', () => {
             const res = mockResponse();
             const req = mockRequest();
             mockGetSessionData.mockImplementation( _ => APP_DATA);
@@ -45,7 +45,7 @@ describe('check-your-answers controller test suites', () => {
             get(req, res, mockNext);
 
             expect(mockGetSessionData).toHaveBeenCalledTimes(1);
-            expect(res.render).toHaveBeenCalledWith(config.CHECK_YOUR_ANSWERS, { ... APP_DATA });
+            expect(res.render).toHaveBeenCalledWith(config.CHECK_YOUR_REQUESTS, { ... APP_DATA });
         });
 
         test('should log error request and call next', () => {
@@ -61,7 +61,7 @@ describe('check-your-answers controller test suites', () => {
         });
     });
 
-    describe('check-your-answers POST tests', () => {
+    describe('check-your-requests POST tests', () => {
 
         test('should redirect to confirmation page on POST request', async () => {
             mockGetSessionData.mockImplementationOnce( _ => APP_DATA);

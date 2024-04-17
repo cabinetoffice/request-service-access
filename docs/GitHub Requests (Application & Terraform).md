@@ -7,7 +7,7 @@ For example, when a new member wishes to add their GitHub account to a team, the
 
 1. User makes a request through the GitHub application.
 2. After authentication with COLA, user's request starts creating the data object.
-3. The user fills in all the details and submits the object from the `Check Your Answers` page, triggering:
+3. The user fills in all the details and submits the object from the `Check Your Requests` page, triggering:
     1. Terraform Repository: An issue is created.
     2. DynamoDB: User information is saved.
     3. Email Service: An email is sent to the user to confirm the information sent.
