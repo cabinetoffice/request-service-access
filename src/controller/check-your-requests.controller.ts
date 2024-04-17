@@ -13,7 +13,7 @@ export const get = (req: Request, res: Response, next: NextFunction) => {
     try {
         const appData: ApplicationData = getSessionData(req.session);
 
-        return res.render(config.CHECK_YOUR_ANSWERS, {
+        return res.render(config.CHECK_YOUR_REQUESTS, {
             ...appData
         });
     } catch (err: any) {
