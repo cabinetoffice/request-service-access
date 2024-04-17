@@ -8,7 +8,7 @@ export const MOCK_ACCESSIBILITY_STATEMENT_RESPONSE = 'Accessibility statement fo
 
 // add-repo response mocks
 
-export const MOCK_GET_ADD_REPO_RESPONSE = 'Add a GitHub Repository';
+export const MOCK_GET_ADD_REPO_RESPONSE = 'Add a new repository';
 export const MOCK_ADD_REPO_RESPONSE = 'Repository Name: repo1, Visibility: public';
 export const MOCK_BY_ID_REPO_RESPONSE = 'Repository Name: repo1, Repository ID: ';
 export const MOCK_LOG_ERROR_REQUEST = 'Cannot read properties of undefined';
@@ -27,7 +27,7 @@ export const MOCK_BY_ID_TEAM_RESPONSE = 'Team Name: team1, Team ID: ';
 
 // add-team-member response mocks
 
-export const MOCK_GET_ADD_TEAM_MEMBER_RESPONSE = 'Add Member(s) to Team.';
+export const MOCK_GET_ADD_TEAM_MEMBER_RESPONSE = 'Add existing member(s) to a team';
 export const MOCK_POST_ADD_TEAM_MEMBER_RESPONSE = 'Team name: team1, GitHub handle(s): joe';
 export const MOCK_BY_ID_TEAM_MEMBER_RESPONSE = 'Team name: team1, GitHub handle(s): joe, Team member ID: ';
 
