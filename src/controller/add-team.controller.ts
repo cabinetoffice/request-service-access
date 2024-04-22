@@ -11,6 +11,7 @@ import * as config from '../config';
 import { log } from '../utils/logger';
 
 import { AddTeam, AddTeamKey } from '../model/add-team.model';
+import { getPreviousPageUrl } from '../utils/getPreviousPageUrl';
 
 export const get = (_req: Request, res: Response) => {
     return res.render(config.ADD_TEAM);
@@ -56,7 +57,9 @@ export const postById = (req: Request, res: Response, next: NextFunction) => {
 
         setApplicationDataByID(req.session, { ...req.body, [config.ID]: teamID }, AddTeamKey, teamID);
 
-        return res.redirect(config.HOME_URL);
+        const previousPageUrl = getPreviousPageUrl(req);
+
+        return res.redirect(previousPageUrl);
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);

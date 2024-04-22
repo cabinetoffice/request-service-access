@@ -1,4 +1,5 @@
 jest.mock('../../../src/utils/logger');
+jest.mock('../../../src/utils/getPreviousPageUrl');
 jest.mock('@co-digital/login');
 jest.mock('uuid');
 
@@ -7,6 +8,8 @@ import { describe, expect, afterEach, test, jest } from '@jest/globals';
 import { get, getById, post, postById, removeById } from '../../../src/controller/add-team.controller';
 import { AddTeamKey } from '../../../src/model/add-team.model';
 import * as config from '../../../src/config';
+
+import { getPreviousPageUrl } from '../../../src/utils/getPreviousPageUrl';
 
 import { MOCK_POST_ADD_TEAM } from '../../mock/data';
 import { MOCK_POST_ADD_TEAM_RESPONSE, MOCK_LOG_ERROR_REQUEST, MOCK_BY_ID_TEAM_RESPONSE } from '../../mock/text.mock';
@@ -24,6 +27,8 @@ import {
     mockLogInfo,
     mockLogErrorRequest
 } from '../../mock/log.mock';
+
+const mockGetPreviousPageUrl = getPreviousPageUrl as jest.Mock;
 
 describe('add-team controller test suites', () => {
 
@@ -88,12 +93,16 @@ describe('add-team controller test suites', () => {
 
     describe('add-team POST ById tests', () => {
 
-        test('should redirect to home page on POST ById request', () => {
+        test('should redirect to previous page on POST ById request', () => {
+
+            mockGetPreviousPageUrl.mockReturnValue(config.CHECK_YOUR_REQUESTS_URL);
+
             const res = mockResponse();
             const req = {
                 ...mockRequest(MOCK_POST_ADD_TEAM),
                 session: {},
-                params: { id: mockID }
+                params: { id: mockID },
+                query: { previousPage: config.CHECK_YOUR_REQUESTS_URL }
             } as any;
 
             postById(req, res, mockNext);
@@ -102,8 +111,9 @@ describe('add-team controller test suites', () => {
                 id: mockID,
                 ...MOCK_POST_ADD_TEAM
             }, AddTeamKey, mockID);
+            expect(mockGetPreviousPageUrl).toHaveBeenCalledWith(req);
 
-            expect(res.redirect).toBeCalledWith(config.HOME_URL);
+            expect(res.redirect).toBeCalledWith(config.CHECK_YOUR_REQUESTS_URL);
             expect(mockNext).not.toHaveBeenCalled();
         });
 

@@ -1,8 +1,9 @@
 {% set addTeamSummaryData = [] %}
+{% set previousPageQueryParam = "?previousPage=/home" %}
 
 {% for team in add_team %}
 
-  {% set addTeamEditHref = "/add-team/" + team.id %}
+  {% set addTeamEditHref = "/add-team/" + team.id + previousPageQueryParam %}
   {% set addTeamDeleteHref = "/add-team/remove/" + team.id %}
 
   {% set addTeamSummaryData = (addTeamSummaryData.push({
