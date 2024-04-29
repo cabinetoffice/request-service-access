@@ -2,8 +2,8 @@
 
 {% for team_member in add_team_member %}
 
-  {% set teamNameHref = "/add-team-member/" + teamMember.id + previousPageQueryParam + "#team_name" %}
-  {% set githubHandlesHref = "/add-team-member/" + teamMember.id + previousPageQueryParam + "#github_handles" %}
+  {% set teamNameHref = "/add-team-member/" + team_member.id + previousPageQueryParam + "#team_name" %}
+  {% set githubHandlesHref = "/add-team-member/" + team_member.id + previousPageQueryParam + "#github_handles" %}
 
   <br>
   {{ govukSummaryList({
