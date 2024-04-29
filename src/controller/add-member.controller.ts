@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import * as config from '../config';
 import { log } from '../utils/logger';
+import { getPreviousPageUrl } from '../utils/getPreviousPageUrl';
 
 import { AddMember, AddMemberKey } from '../model/add-member.model';
 
@@ -71,7 +72,9 @@ export const postById = (req: Request, res: Response, next: NextFunction) => {
             AddMemberKey, memberID
         );
 
-        return res.redirect(config.HOME_URL);
+        const previousPageUrl = getPreviousPageUrl(req);
+
+        return res.redirect(previousPageUrl);
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);
