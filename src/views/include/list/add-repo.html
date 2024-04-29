@@ -1,8 +1,9 @@
 {% set addRepoSummaryData = [] %}
+{% set previousPageQueryParam = "?previousPage=/home" %}
 
 {% for repo in add_repo %}
 
-  {% set addRepoEditHref = "/add-repo/" + repo.id %}
+  {% set addRepoEditHref = "/add-repo/" + repo.id + previousPageQueryParam %}
   {% set addRepoDeleteHref = "/add-repo/remove/" + repo.id %}
 
   {% set addRepoSummaryData = (addRepoSummaryData.push({
