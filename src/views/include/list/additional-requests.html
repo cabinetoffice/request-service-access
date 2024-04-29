@@ -1,8 +1,9 @@
 {% set additionalRequestsSummaryData = [] %}
+{% set previousPageQueryParam = "?previousPage=/home" %}
 
 {% for additional_request in additional_requests %}
 
-  {% set additionalRequestsEditHref = "/additional-requests/" + additional_request.id %}
+  {% set additionalRequestsEditHref = "/additional-requests/" + additional_request.id + previousPageQueryParam %}
   {% set additionalRequestsDeleteHref = "/additional-requests/remove/" + additional_request.id %}
 
   {% set additionalRequestsSummaryData = (additionalRequestsSummaryData.push({

@@ -1,4 +1,5 @@
 jest.mock('../../../src/utils/logger');
+jest.mock('../../../src/utils/getPreviousPageUrl');
 jest.mock('@co-digital/login');
 jest.mock('uuid');
 
@@ -7,6 +8,8 @@ import { describe, expect, afterEach, test, jest } from '@jest/globals';
 import { get, getById, post, postById, removeById } from '../../../src/controller/additional-requests.controller';
 import { AdditionalRequestsKey } from '../../../src/model/additional-requests.model';
 import * as config from '../../../src/config';
+
+import { getPreviousPageUrl } from '../../../src/utils/getPreviousPageUrl';
 
 import { MOCK_POST_ADDITIONAL_REQUESTS } from '../../mock/data';
 import { MOCK_POST_ADDITIONAL_REQUESTS_RESPONSE, MOCK_LOG_ERROR_REQUEST, MOCK_BY_ID_ADDITIONAL_REQUESTS_RESPONSE } from '../../mock/text.mock';
@@ -25,6 +28,8 @@ import {
     mockLogInfo,
     mockLogErrorRequest
 } from '../../mock/log.mock';
+
+const mockGetPreviousPageUrl = getPreviousPageUrl as jest.Mock;
 
 describe('additional-requests controller test suites', () => {
 
@@ -86,7 +91,10 @@ describe('additional-requests controller test suites', () => {
 
     describe('additional-requests POST ById tests', () => {
 
-        test('should redirect to home page on POST ById request', () => {
+        test('should redirect to previous page on POST ById request', () => {
+
+            mockGetPreviousPageUrl.mockReturnValue(config.CHECK_YOUR_REQUESTS_URL);
+
             const res = mockResponse();
             const req = {
                 ...mockRequest(MOCK_POST_ADDITIONAL_REQUESTS),
@@ -100,8 +108,9 @@ describe('additional-requests controller test suites', () => {
                 id: mockID,
                 ...MOCK_POST_ADDITIONAL_REQUESTS
             }, AdditionalRequestsKey, mockID);
+            expect(mockGetPreviousPageUrl).toHaveBeenCalledWith(req);
 
-            expect(res.redirect).toBeCalledWith(config.HOME_URL);
+            expect(res.redirect).toBeCalledWith(config.CHECK_YOUR_REQUESTS_URL);
             expect(mockNext).not.toHaveBeenCalled();
         });
 
