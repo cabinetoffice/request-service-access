@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import * as config from '../config';
 import { log } from '../utils/logger';
+import { getPreviousPageUrl } from '../utils/getPreviousPageUrl';
 
 import { AddCollaborator, AddCollaboratorKey } from '../model/add-collaborator.model';
 
@@ -60,7 +61,9 @@ export const postById = (req: Request, res: Response, next: NextFunction) => {
 
         setApplicationDataByID(req.session, { ...req.body, [config.ID]: collaboratorID }, AddCollaboratorKey, collaboratorID);
 
-        return res.redirect(config.HOME_URL);
+        const previousPageUrl = getPreviousPageUrl(req);
+
+        return res.redirect(previousPageUrl);
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);

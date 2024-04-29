@@ -1,8 +1,9 @@
 {% set addCollaboratorSummaryData = [] %}
+{% set previousPageQueryParam = "?previousPage=/home" %}
 
 {% for collaborator in add_collaborator %}
 
-  {% set addCollaboratorEditHref = "/add-collaborator/" + collaborator.id %}
+  {% set addCollaboratorEditHref = "/add-collaborator/" + collaborator.id + previousPageQueryParam %}
   {% set addCollaboratorDeleteHref = "/add-collaborator/remove/" + collaborator.id %}
 
   {% set addCollaboratorSummaryData = (addCollaboratorSummaryData.push({
