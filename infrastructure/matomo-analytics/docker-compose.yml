@@ -1,0 +1,40 @@
+# Configuration taken from official example - https://github.com/matomo-org/docker/blob/master/.examples/apache/docker-compose.yml
+
+version: "3"
+
+services:
+  db:
+    image: mariadb:10.11
+    command: --max-allowed-packet=64MB
+    restart: always
+    volumes:
+      - db:/var/lib/mysql:Z
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MARIADB_AUTO_UPGRADE=${MARIADB_AUTO_UPGRADE}
+      - MARIADB_DISABLE_UPGRADE_BACKUP=${MARIADB_DISABLE_UPGRADE_BACKUP}
+      - MARIADB_INITDB_SKIP_TZINFO=${MARIADB_INITDB_SKIP_TZINFO}
+
+  app:
+    image: matomo
+    restart: always
+    volumes:
+#     - ./config:/var/www/html/config:z
+#     - ./logs:/var/www/html/logs:z
+      - matomo:/var/www/html:z
+    environment:
+      - MATOMO_DATABASE_ADAPTER=${MATOMO_DATABASE_HOST}
+      - MATOMO_DATABASE_DBNAME=${MATOMO_DATABASE_DBNAME}
+      - MATOMO_DATABASE_HOST=${MATOMO_DATABASE_HOST}
+      - MATOMO_DATABASE_PASSWORD=${MATOMO_DATABASE_PASSWORD}
+      - MATOMO_DATABASE_TABLES_PREFIX=${MATOMO_DATABASE_TABLES_PREFIX}
+      - MATOMO_DATABASE_USERNAME=${MATOMO_DATABASE_USERNAME}
+    ports:
+      - ${HOST_PORT}:${MATOMO_PORT}
+
+volumes:
+  db:
+  matomo:
