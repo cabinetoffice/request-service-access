@@ -15,11 +15,12 @@ export const configureHelmet = (app: express.Application) => {
                     "'self'",
                     "'sha256-l1eTVSK8DTnK8+yloud7wZUqFrI0atVo6VlC6PJvYaQ='",
                     "'sha256-+6WnXIl4mbFTCARd8N3COQmT3bJJmo32N8q8ZSQAIcU='",
+                    config.MATOMO_URL,
                     config.CDN_HOST
                     // `'nonce-${res.locals.nonceScript}'`
                 ],
                 imgSrc: ["'self'", 'data:', config.CDN_HOST],
-                connectSrc: ["'self'"],
+                connectSrc: ["'self'", config.MATOMO_URL],
                 formAction: ["'self'"],
                 objectSrc: ["'none'"]
             },

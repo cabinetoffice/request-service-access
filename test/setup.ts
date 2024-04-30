@@ -19,4 +19,5 @@ export default () => {
     process.env.UNSANITISED_TEST_KEY = '   test      ';
     process.env.DEPARTMENT_NAME = 'Cabinet Office';
     process.env.GITHUB_ORG_NAME = 'cabinetoffice';
+    process.env.MATOMO_URL = 'test';
 };

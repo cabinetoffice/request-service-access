@@ -24,6 +24,8 @@ export const GITHUB_TERRAFORM_REPO = getEnvironmentValue('GITHUB_TERRAFORM_REPO'
 export const GITHUB_REPO_ISSUE_ASSIGNEE = getEnvironmentValue('GITHUB_REPO_ISSUE_ASSIGNEE');
 export const GITHUB_REPO_ISSUE_LABEL = getEnvironmentValue('GITHUB_REPO_ISSUE_LABEL');
 
+export const MATOMO_URL = getEnvironmentValue('MATOMO_URL');
+
 // Template
 export const START = 'start';
 export const HOME = 'home';
