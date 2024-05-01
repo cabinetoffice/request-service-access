@@ -1,45 +1,47 @@
+{% set previousPageQueryParam = "?" + PARAMS.previousPage + "=" + ROUTES.CHECK_YOUR_REQUESTS_URL %}
+
 {% for additional_request in additional_requests %}
 
-{% set contextHref = "/additional-requests/" + additional_request.id + "#context" %}
-{% set descriptionHref = "/additional-requests/" + additional_request.id + "#description" %}
+  {% set contextHref = "/additional-requests/" + additional_request.id + previousPageQueryParam + "#context" %}
+  {% set descriptionHref = "/additional-requests/" + additional_request.id + previousPageQueryParam + "#description" %}
 
-<br>
-{{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "Context"
+  <br>
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Context"
+        },
+        value: {
+          text: additional_request.context | capitalize
+        },
+        actions: {
+          items: [
+            {
+              href: contextHref,
+              text: "Change",
+              visuallyHiddenText: "Context"
+            }
+          ]
+        }
       },
-      value: {
-        text: additional_request.context | capitalize
-      },
-      actions: {
-        items: [
-          {
-            href: contextHref,
-            text: "Change",
-            visuallyHiddenText: "Context"
-          }
-        ]
+      {
+        key: {
+          text: "Description"
+        },
+        value: {
+          html: additional_request.description
+        },
+        actions: {
+          items: [
+            {
+              href: descriptionHref,
+              text: "Change",
+              visuallyHiddenText: "description"
+            }
+          ]
+        }
       }
-    },
-    {
-      key: {
-        text: "Description"
-      },
-      value: {
-        html: additional_request.description
-      },
-      actions: {
-        items: [
-          {
-            href: descriptionHref,
-            text: "Change",
-            visuallyHiddenText: "description"
-          }
-        ]
-      }
-    }
-  ]
-}) }}
+    ]
+  }) }}
 {% endfor %}

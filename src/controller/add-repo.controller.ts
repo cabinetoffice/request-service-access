@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import * as config from '../config';
 import { log } from '../utils/logger';
+import { getPreviousPageUrl } from '../utils/getPreviousPageUrl';
 
 import { AddRepo, AddRepoKey } from '../model/add-repo.model';
 
@@ -56,7 +57,7 @@ export const postById = (req: Request, res: Response, next: NextFunction) => {
 
         setApplicationDataByID(req.session, { ...req.body, [config.ID]: repoID }, AddRepoKey, repoID);
 
-        return res.redirect(config.HOME_URL);
+        return res.redirect(getPreviousPageUrl(req));
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);

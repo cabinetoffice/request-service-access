@@ -60,6 +60,10 @@ export const CONTACT_US_URL = '/contact-us';
 
 export const SERVICE_URL = `${BASE_URL}${HOME_URL}`;
 
+// Query Params
+
+export const PREVIOUS_PAGE_QUERY_PARAM = 'previousPage';
+
 // Feature Flags
 export const FEATURE_FLAG_ENABLE_AUTH = getEnvironmentValue('FEATURE_FLAG_ENABLE_AUTH', 'false');
 

@@ -1,63 +1,65 @@
+{% set previousPageQueryParam = "?" + PARAMS.previousPage + "=" + ROUTES.CHECK_YOUR_REQUESTS_URL %}
+
 {% for repo in add_repo %}
 
-{% set repoHref = "/add-repo/" + repo.id + "#repo_name" %}
-{% set visibilityHref = "/add-repo/" + repo.id + "#visibility" %}
-{% set descriptionHref = "/add-repo/" + repo.id + "#description" %}
+  {% set repoHref = "/add-repo/" + repo.id + previousPageQueryParam + "#repo_name" %}
+  {% set visibilityHref = "/add-repo/" + repo.id + previousPageQueryParam + "#visibility" %}
+  {% set descriptionHref = "/add-repo/" + repo.id + previousPageQueryParam + "#description" %}
 
-<br>
-{{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "Repository name"
+  <br>
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Repository name"
+        },
+        value: {
+          text: repo.repo_name
+        },
+        actions: {
+          items: [
+            {
+              href: repoHref,
+              text: "Change",
+              visuallyHiddenText: "Repository name"
+            }
+          ]
+        }
       },
-      value: {
-        text: repo.repo_name
+      {
+        key: {
+          text: "Repository visibility"
+        },
+        value: {
+          text: repo.visibility | capitalize
+        },
+        actions: {
+          items: [
+            {
+              href: visibilityHref,
+              text: "Change",
+              visuallyHiddenText: "Repository visibility"
+            }
+          ]
+        }
       },
-      actions: {
-        items: [
-          {
-            href: repoHref,
-            text: "Change",
-            visuallyHiddenText: "Repository name"
-          }
-        ]
+      {
+        key: {
+          text: "Description"
+        },
+        value: {
+          html: repo.description
+        },
+        actions: {
+          items: [
+            {
+              href: descriptionHref,
+              text: "Change",
+              visuallyHiddenText: "description"
+            }
+          ]
+        }
       }
-    },
-    {
-      key: {
-        text: "Repository visibility"
-      },
-      value: {
-        text: repo.visibility | capitalize
-      },
-      actions: {
-        items: [
-          {
-            href: visibilityHref,
-            text: "Change",
-            visuallyHiddenText: "Repository visibility"
-          }
-        ]
-      }
-    },
-    {
-      key: {
-        text: "Description"
-      },
-      value: {
-        html: repo.description
-      },
-      actions: {
-        items: [
-          {
-            href: descriptionHref,
-            text: "Change",
-            visuallyHiddenText: "description"
-          }
-        ]
-      }
-    }
-  ]
-}) }}
+    ]
+  }) }}
 {% endfor %}

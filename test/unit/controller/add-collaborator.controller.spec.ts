@@ -1,4 +1,5 @@
 jest.mock('../../../src/utils/logger');
+jest.mock('../../../src/utils/getPreviousPageUrl');
 jest.mock('@co-digital/login');
 jest.mock('uuid');
 
@@ -7,6 +8,8 @@ import { describe, expect, afterEach, test, jest } from '@jest/globals';
 import { get, getById, post, postById, removeById } from '../../../src/controller/add-collaborator.controller';
 import { AddCollaboratorKey } from '../../../src/model/add-collaborator.model';
 import * as config from '../../../src/config';
+
+import { getPreviousPageUrl } from '../../../src/utils/getPreviousPageUrl';
 
 import { MOCK_POST_ADD_COLLABORATOR } from '../../mock/data';
 import {
@@ -32,6 +35,8 @@ import {
     mockLogInfo,
     mockLogErrorRequest
 } from '../../mock/log.mock';
+
+const mockGetPreviousPageUrl = getPreviousPageUrl as jest.Mock;
 
 describe('add-collaborator controller test suites', () => {
 
@@ -94,12 +99,16 @@ describe('add-collaborator controller test suites', () => {
 
     describe('add-collaborator POST ById tests', () => {
 
-        test('should redirect to home page on POST ById request', () => {
+        test('should redirect to previous page on POST ById request', () => {
+
+            mockGetPreviousPageUrl.mockReturnValue(config.CHECK_YOUR_REQUESTS_URL);
+
             const res = mockResponse();
             const req = {
                 ...mockRequest(MOCK_POST_ADD_COLLABORATOR),
                 session: {},
-                params: { id: mockID }
+                params: { id: mockID },
+                query: { previousPage: config.CHECK_YOUR_REQUESTS_URL }
             } as any;
 
             postById(req, res, mockNext);
@@ -108,8 +117,9 @@ describe('add-collaborator controller test suites', () => {
                 id: mockID,
                 ...MOCK_POST_ADD_COLLABORATOR
             }, AddCollaboratorKey, mockID);
+            expect(mockGetPreviousPageUrl).toHaveBeenCalledWith(req);
 
-            expect(res.redirect).toBeCalledWith(config.HOME_URL);
+            expect(res.redirect).toBeCalledWith(config.CHECK_YOUR_REQUESTS_URL);
             expect(mockNext).not.toHaveBeenCalled();
         });
 

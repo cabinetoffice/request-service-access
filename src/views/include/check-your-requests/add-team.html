@@ -1,63 +1,66 @@
+{% set previousPageQueryParam = "?" + PARAMS.previousPage + "=" + ROUTES.CHECK_YOUR_REQUESTS_URL %}
+
+
 {% for team in add_team %}
 
-{% set teamHref = "/add-team/" + team.id + "#team_name" %}
-{% set githubHandleHref = "/add-team/" + team.id + "#github_handle" %}
-{% set descriptionHref = "/add-team/" + team.id + "#description" %}
+  {% set teamHref = "/add-team/" + team.id + previousPageQueryParam + "#team_name"  %}
+  {% set githubHandleHref = "/add-team/" + team.id + previousPageQueryParam + "#github_handle" %}
+  {% set descriptionHref = "/add-team/" + team.id + previousPageQueryParam + "#description" %}
 
-<br>
-{{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "Team name"
+  <br>
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Team name"
+        },
+        value: {
+          text: team.team_name
+        },
+        actions: {
+          items: [
+            {
+              href: teamHref,
+              text: "Change",
+              visuallyHiddenText: "Team name"
+            }
+          ]
+        }
       },
-      value: {
-        text: team.team_name
+      {
+        key: {
+          text: "GitHub Handle"
+        },
+        value: {
+          text: team.github_handle
+        },
+        actions: {
+          items: [
+            {
+              href: githubHandleHref,
+              text: "Change",
+              visuallyHiddenText: "Github Handle"
+            }
+          ]
+        }
       },
-      actions: {
-        items: [
-          {
-            href: teamHref,
-            text: "Change",
-            visuallyHiddenText: "Team name"
-          }
-        ]
+      {
+        key: {
+          text: "Description"
+        },
+        value: {
+          html: team.description
+        },
+        actions: {
+          items: [
+            {
+              href: descriptionHref,
+              text: "Change",
+              visuallyHiddenText: "description"
+            }
+          ]
+        }
       }
-    },
-    {
-      key: {
-        text: "GitHub Handle"
-      },
-      value: {
-        text: team.github_handle
-      },
-      actions: {
-        items: [
-          {
-            href: githubHandleHref,
-            text: "Change",
-            visuallyHiddenText: "Github Handle"
-          }
-        ]
-      }
-    },
-    {
-      key: {
-        text: "Description"
-      },
-      value: {
-        html: team.description
-      },
-      actions: {
-        items: [
-          {
-            href: descriptionHref,
-            text: "Change",
-            visuallyHiddenText: "description"
-          }
-        ]
-      }
-    }
-  ]
-}) }}
+    ]
+  }) }}
 {% endfor %}
