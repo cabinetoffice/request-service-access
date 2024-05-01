@@ -57,9 +57,7 @@ export const postById = (req: Request, res: Response, next: NextFunction) => {
 
         setApplicationDataByID(req.session, { ...req.body, [config.ID]: repoID }, AddRepoKey, repoID);
 
-        const previousPageUrl = getPreviousPageUrl(req);
-
-        return res.redirect(previousPageUrl);
+        return res.redirect(getPreviousPageUrl(req));
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);

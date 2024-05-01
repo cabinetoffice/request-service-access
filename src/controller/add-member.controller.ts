@@ -72,9 +72,7 @@ export const postById = (req: Request, res: Response, next: NextFunction) => {
             AddMemberKey, memberID
         );
 
-        const previousPageUrl = getPreviousPageUrl(req);
-
-        return res.redirect(previousPageUrl);
+        return res.redirect(getPreviousPageUrl(req));
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);
