@@ -1,8 +1,19 @@
+{% set skip_cookie_banner = true %}
 {% extends "layout.html" %}
 
 {% from "include/table.html" import table %}
 
 {% block pageContent %}
+
+<div id="notification-banner" class="govuk-notification-banner govuk-notification-banner--success" hidden>
+  <div class="govuk-notification-banner__header">
+      <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+  </div>
+  <div class="govuk-notification-banner__content">
+      <p class="govuk-notification-banner__heading">Your cookie settings have been saved.</p>
+  </div>
+</div>
+
 
   <h1 class="govuk-heading-l">Cookies</h1>
 
@@ -19,13 +30,40 @@
     rows = [["session", "Used for session data management", "20 hours"], ["session.sig", "Used to protect the integrity of the session data", "20 hours"]]
   ) }}
 
-  {{ govukButton({
-    text: "Save cookie settings",
-    preventDoubleClick: true,
-    type: "button",
-    attributes: {
-      id: "save-cookie-settings"
-    }
-  }) }}
+  <h2 class="govuk-heading-m" id="analytics-cookies">Analytics cookies (optional)</h2>
+  <p class="govuk-body">
+    With your permission, we use analytics tools to collect data about how you use GitHub Requests. This information helps us to improve our service.
+  </p>
+
+  <form id="cookie-settings-form" novalidate>
+      {{ govukRadios({
+        name: "cookie_preferences",
+          legend: {
+            text: "Do you want to accept analytics cookies?",
+            classes: "govuk-fieldset__legend--s"
+          },
+        items: [
+          {
+            value: "true",
+            id: "analytics-cookies-accepted",
+            text: "Yes",
+            checked: analyticsConsent === true
+          },
+          {
+            value: "false",
+            id: "analytics-cookies-rejected",
+            text: "No",
+            checked: analyticsConsent === false
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Save cookie settings",
+        "type": "submit",
+        "preventDoubleClick": true,
+        attributes: { id: "save-cookie-settings" }
+      }) }}
+  </form>
 
 {% endblock %}
