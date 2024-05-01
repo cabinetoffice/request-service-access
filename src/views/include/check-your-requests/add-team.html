@@ -1,4 +1,5 @@
-{% set previousPageQueryParam = "?previousPage=/check-your-requests" %}
+{% set previousPageQueryParam = "?" + PARAMS.previousPage + "=" + ROUTES.CHECK_YOUR_REQUESTS_URL %}
+
 
 {% for team in add_team %}
 

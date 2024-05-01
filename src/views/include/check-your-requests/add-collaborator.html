@@ -1,4 +1,4 @@
-{% set previousPageQueryParam = "?previousPage=/check-your-requests" %}
+{% set previousPageQueryParam = "?" + PARAMS.previousPage + "=" + ROUTES.CHECK_YOUR_REQUESTS_URL %}
 
 {% for collaborator in add_collaborator %}
 

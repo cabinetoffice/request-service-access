@@ -14,10 +14,17 @@ export const configureNunjucks = (app: express.Application, viewsPath: string) =
             express: app
         }
     );
-
+    nunjucksEnv.addGlobal('PARAMS', {
+        previousPage: config.PREVIOUS_PAGE_QUERY_PARAM
+    });
+    nunjucksEnv.addGlobal('ROUTES', {
+        HOME: config.HOME_URL,
+        CHECK_YOUR_REQUESTS_URL: config.CHECK_YOUR_REQUESTS_URL
+    });
     nunjucksEnv.addGlobal('CDN_HOST', config.CDN_HOST);
     nunjucksEnv.addGlobal('SERVICE_URL', config.SERVICE_URL);
     nunjucksEnv.addGlobal('SERVICE_NAME', config.SERVICE_NAME);
     nunjucksEnv.addGlobal('DEPARTMENT_NAME', config.DEPARTMENT_NAME);
     nunjucksEnv.addGlobal('GITHUB_ORG_NAME', config.GITHUB_ORG_NAME);
+
 };
