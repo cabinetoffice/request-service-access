@@ -43,6 +43,7 @@ export const COOKIES = 'cookies';
 export const CONTACT_US = 'contact-us';
 
 // Routing paths
+export const ROOT_URL = '/';
 export const START_URL = '/start';
 export const HOME_URL = '/home';
 export const ADD_MEMBER_URL = '/add-member';
