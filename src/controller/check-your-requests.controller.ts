@@ -8,6 +8,7 @@ import { client } from '../service/api';
 import { log } from '../utils/logger';
 import * as config from '../config';
 import { ApplicationData } from '../model/application.model';
+import { confirmationEmail } from '../service/notify';
 
 export const get = (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -38,6 +39,9 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
         log.info(`Submit Issue to ${url}, ID: #${id}`);
 
         await client.gitHub.postIssue(url, body);
+
+        // TODO: Implement logic to gather the users email
+        await confirmationEmail(config.NOTIFY_USER_EMAIL, id);
 
         return res.redirect(`${config.CONFIRMATION_URL}/${id}`);
     } catch (err: any) {
