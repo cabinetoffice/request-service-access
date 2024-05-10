@@ -19,4 +19,9 @@ export default () => {
     process.env.UNSANITISED_TEST_KEY = '   test      ';
     process.env.DEPARTMENT_NAME = 'Cabinet Office';
     process.env.GITHUB_ORG_NAME = 'cabinetoffice';
+    process.env.NOTIFY_API_KEY = 'test';
+    process.env.NOTIFY_EMAIL_TEMPLATE = 'test';
+    process.env.NOTIFY_USER_EMAIL = 'test';
+    process.env.NOTIFY_TEAM_EMAIL = 'test';
+    process.env.FEATURE_FLAG_NOTIFY = 'true';
 };
