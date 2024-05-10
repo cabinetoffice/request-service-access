@@ -9,9 +9,9 @@ import { FormattedValidationErrors } from '../model/validation.model';
 export const checkValidations = (req: Request, res: Response, next: NextFunction) => {
     try {
         const errorList = validationResult(req);
-        const validatedFilepath = validateFilepath(req, res);
 
-        if (!errorList.isEmpty() && validatedFilepath) {
+        if (!errorList.isEmpty()) {
+            const validatedFilepath = validateFilepath(req.path);
             const id = req.params[config.ID];
             // Removing trailing slash and 36 characters from UUID length
             const template_path = (id) ? validatedFilepath.substring(0, validatedFilepath.length - 37).substring(1) : validatedFilepath.substring(1);
