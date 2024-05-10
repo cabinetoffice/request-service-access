@@ -24,6 +24,11 @@ export const GITHUB_TERRAFORM_REPO = getEnvironmentValue('GITHUB_TERRAFORM_REPO'
 export const GITHUB_REPO_ISSUE_ASSIGNEE = getEnvironmentValue('GITHUB_REPO_ISSUE_ASSIGNEE');
 export const GITHUB_REPO_ISSUE_LABEL = getEnvironmentValue('GITHUB_REPO_ISSUE_LABEL');
 
+export const NOTIFY_API_KEY = getEnvironmentValue('NOTIFY_API_KEY');
+export const NOTIFY_EMAIL_TEMPLATE = getEnvironmentValue('NOTIFY_EMAIL_TEMPLATE');
+export const NOTIFY_USER_EMAIL = getEnvironmentValue('NOTIFY_USER_EMAIL');
+export const NOTIFY_TEAM_EMAIL = getEnvironmentValue('NOTIFY_TEAM_EMAIL');
+
 // Template
 export const START = 'start';
 export const HOME = 'home';
@@ -66,6 +71,7 @@ export const PREVIOUS_PAGE_QUERY_PARAM = 'previousPage';
 
 // Feature Flags
 export const FEATURE_FLAG_ENABLE_AUTH = getEnvironmentValue('FEATURE_FLAG_ENABLE_AUTH', 'false');
+export const FEATURE_FLAG_NOTIFY = getEnvironmentValue('FEATURE_FLAG_NOTIFY', 'false');
 
 // MISC
 export const REMOVE = '/remove';
