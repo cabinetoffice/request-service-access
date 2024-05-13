@@ -3,6 +3,10 @@
 **GitHub Requests Application** is a key component designed to handle GitHub requests in a secure and consistent manner by incorporating automation with Terraform (repository [here](https://github.com/cabinetoffice/github-requests-terraform)) and implementing security access through the COLA Identity Provider.
 For example, when a new member wishes to add their GitHub account to a team, they submit an issue through this app. The IDP team verifies the issues, applies changes, and merges the Pull Request to the main branch. On the next Terraform run, the changes propagate to GitHub, granting access. This entire process occurs with complete visibility within the department, ensuring consistency, instead of relying on a single user to make changes through GitHub's web interface.
 
+## AWS HLD Diagram
+
+![AWS HLD Diagram](./github.app.svg)
+
 ## Workflow
 
 1. User makes a request through the GitHub application.
