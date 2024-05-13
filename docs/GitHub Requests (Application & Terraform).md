@@ -5,7 +5,7 @@ For example, when a new member wishes to add their GitHub account to a team, the
 
 ## AWS HLD Diagram
 
-![AWS HLD Diagram](./github.app.svg)
+![AWS HLD Diagram](./github.app.png)
 
 ## Workflow
 
