@@ -67,6 +67,13 @@ export const MOCK_HELMET_VALUE = {
     }
 };
 
+export const MOCK_RATE_LIMIT_VALUE = {
+    windowMs: 5 * 60 * 1000,
+    limit: 10,
+    standardHeaders: 'draft-7',
+    legacyHeaders: false
+};
+
 export const MOCK_EXPRESS_APP = {
     use: jest.fn()
 } as unknown as express.Application;
