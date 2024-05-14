@@ -1,88 +1,75 @@
-jest.mock('../../../src/utils/isFeatureEnabled');
 jest.mock('../../../src/utils/logger', () => ({
     log: {
         infoRequest: jest.fn(),
         errorRequest: jest.fn()
     }
 }));
+jest.mock('../../../src/config/index.ts', () => ({
+    __esModule: true,
+    NODE_ENV: null
+}));
+jest.mock('@co-digital/login');
 
 import { describe, expect, test, jest, afterEach } from '@jest/globals';
 import { Request, Response, NextFunction } from 'express';
 
-import * as config from '../../../src/config';
-
 import { authentication } from '../../../src/middleware/authentication.middleware';
 import { log } from '../../../src/utils/logger';
-import { isFeatureEnabled } from '../../../src/utils/isFeatureEnabled';
+import * as config from '../../../src/config/index';
 
-import { GET_REQUEST_MOCK } from '../../mock/data';
+import { mockRequest, mockResponse, mockNext } from '../../mock/express.mock';
+import { colaAuthenticationMiddleware } from '@co-digital/login';
+import { MOCK_ERROR } from '../../mock/data';
 
+const configMock = config as { NODE_ENV: string };
 const logInfoRequestMock = log.infoRequest as jest.Mock;
 const logErrorRequestMock = log.errorRequest as jest.Mock;
-const isFeatureEnabledMock = isFeatureEnabled as jest.Mock;
-
-const req = GET_REQUEST_MOCK as Request;
-const mockResponse = () => {
-    const res = {} as Response;
-    res.render = jest.fn() as any;
-    return res;
-};
-const next = jest.fn() as NextFunction;
+const colaAuthenticationMiddlewareMock = colaAuthenticationMiddleware as jest.Mock;
 
 describe('Authentication Middleware test suites', () => {
 
-    let res: any;
+    let req: Request;
+    let res: Response;
+    let next: NextFunction;
 
     beforeEach(() => {
+        req = mockRequest();
         res = mockResponse();
+        next = mockNext;
     });
 
     afterEach(() => {
         jest.resetAllMocks();
     });
 
-    test('Should call next if auth feature is enabled', () => {
+    test('should skip authentication and call next if NODE_ENV is not production', () => {
 
-        // enable auth flag
-        isFeatureEnabledMock.mockReturnValue(true);
+        configMock.NODE_ENV = 'development';
 
         authentication(req, res, next);
 
-        expect(logInfoRequestMock).toHaveBeenCalledTimes(1);
-        expect(logInfoRequestMock).toHaveBeenCalledWith(req, 'some auth here soon!');
+        expect(logInfoRequestMock).toHaveBeenCalledWith(req, 'Skipping authentication...');
         expect(next).toHaveBeenCalledTimes(1);
     });
 
-    test('should call res.render with not-available view if auth feature is disabled', () => {
-
-        // disable auth flag
-        isFeatureEnabledMock.mockReturnValue(false);
+    test('should call ColaAuthenticationMiddleware if NODE_ENV set to production', () => {
+        configMock.NODE_ENV = 'production';
 
         authentication(req, res, next);
 
-        expect(logInfoRequestMock).toHaveBeenCalledTimes(1);
-        expect(logInfoRequestMock).toHaveBeenCalledWith(req, 'sorry, auth service not available right now');
-        expect(res.render).toHaveBeenCalledTimes(1);
-        expect(res.render).toHaveBeenCalledWith(config.NOT_AVAILABLE);
+        expect(logInfoRequestMock).toHaveBeenCalledWith(req, 'Authenticating through COLA...');
+        expect(colaAuthenticationMiddlewareMock).toHaveBeenCalledTimes(1);
     });
 
     test('should call next with error object if error is thrown', () => {
 
-        // disable auth flag so res.render is called
-        isFeatureEnabledMock.mockReturnValue(false);
+        configMock.NODE_ENV = 'production';
+        colaAuthenticationMiddlewareMock.mockImplementationOnce(() => { throw new Error(MOCK_ERROR.message); });
 
-        // force an error to be thrown by res.render
-        const errMsg = 'Error thrown by res.render!';
-        const resWithError = { ...res };
-        resWithError.render = jest.fn(() => { throw new Error(errMsg); });
-
-        authentication(req, resWithError, next);
-
-        const errObj = expect.objectContaining({ message: errMsg });
+        authentication(req, res, next);
 
         expect(logErrorRequestMock).toHaveBeenCalledTimes(1);
-        expect(logErrorRequestMock).toHaveBeenCalledWith(req, errObj);
+        expect(logErrorRequestMock).toHaveBeenCalledWith(req, MOCK_ERROR.message);
         expect(next).toHaveBeenCalledTimes(1);
-        expect(next).toHaveBeenCalledWith(errObj);
     });
 });
