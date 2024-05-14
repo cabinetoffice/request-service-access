@@ -43,9 +43,8 @@ describe('Validation Middleware test suites', () => {
         jest.resetAllMocks();
     });
 
-    test('Should call next if errorList is empty and validatedFilepath is falsey', () => {
+    test('Should call next if errorList is empty', () => {
         validationResultMock.mockImplementationOnce(() => { return { isEmpty: () => true }; });
-        validateFilepathMock.mockImplementationOnce(() => undefined);
         checkValidations(req, res, mockNext);
 
         expect(mockLogInfo).toBeCalledTimes(0);
@@ -53,7 +52,7 @@ describe('Validation Middleware test suites', () => {
         expect(mockNext).toHaveBeenCalledTimes(1);
     });
 
-    test(`should call res.render with ${config.ADD_REPO} view if errorList /  validatedFilepath is not empty and id empty`, () => {
+    test(`should call res.render with ${config.ADD_REPO} view if errorList is not empty and id empty`, () => {
         const fieldKey = 'repo_name';
         validationResultMock.mockImplementationOnce(() => {
             return {
@@ -80,7 +79,7 @@ describe('Validation Middleware test suites', () => {
         });
     });
 
-    test(`should call res.render with ${config.ADD_REPO} view if errorList, validatedFilepath and id is not empty`, () => {
+    test(`should call res.render with ${config.ADD_REPO} view if errorList and id is not empty`, () => {
         const fieldKey = 'repo_name';
         req.body[fieldKey] = '';
         validationResultMock.mockImplementationOnce(() => {

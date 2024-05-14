@@ -6,7 +6,7 @@ import { configureRateLimit } from '../../../src/config/rate-limit';
 
 import { MOCK_RATE_LIMIT_VALUE, MOCK_EXPRESS_APP } from '../../mock/data';
 
-describe('Helmet Config test suites', () => {
+describe('Rate limit config test suites', () => {
     afterEach(() => {
         jest.resetAllMocks();
     });
