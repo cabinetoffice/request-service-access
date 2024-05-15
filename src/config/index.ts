@@ -11,6 +11,7 @@ export const PATH_SSL_CERTIFICATE = getEnvironmentValue('PATH_SSL_CERTIFICATE', 
 export const PORT = getEnvironmentValue('PORT', '3000');
 export const BASE_URL = getEnvironmentValue('BASE_URL', `http://localhost:${PORT}`);
 export const NODE_SSL_ENABLED = getEnvironmentValue('NODE_SSL_ENABLED', 'false');
+export const NODE_ENV = getEnvironmentValue('NODE_ENV');
 
 export const CDN_HOST = getEnvironmentValue('CDN_HOST');
 
@@ -48,6 +49,7 @@ export const COOKIES = 'cookies';
 export const CONTACT_US = 'contact-us';
 
 // Routing paths
+export const ROOT_URL = '/';
 export const START_URL = '/start';
 export const HOME_URL = '/home';
 export const ADD_MEMBER_URL = '/add-member';

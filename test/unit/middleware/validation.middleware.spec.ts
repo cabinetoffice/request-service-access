@@ -1,4 +1,5 @@
 jest.mock('express-validator');
+jest.mock('../../../src/utils/validateFilepath.ts');
 jest.mock('../../../src/utils/logger');
 
 import { describe, expect, test, jest, afterEach, beforeEach } from '@jest/globals';
@@ -7,6 +8,7 @@ import { validationResult } from 'express-validator';
 
 import * as config from '../../../src/config';
 
+import { validateFilepath } from '../../../src/utils/validateFilepath';
 import { checkValidations } from '../../../src/middleware/validation.middleware';
 import { ErrorMessages } from '../../../src/validation/error.messages';
 import { MOCK_ERROR, MOCK_POST_ADD_REPO } from '../../mock/data';
@@ -18,6 +20,7 @@ import {
 import { mockNext, mockResponse } from '../../mock/express.mock';
 
 const validationResultMock = validationResult as unknown as jest.Mock;
+const validateFilepathMock = validateFilepath as jest.Mock<typeof validateFilepath>;
 
 const mockRequest = () => {
     const req = {} as Request;
@@ -57,6 +60,7 @@ describe('Validation Middleware test suites', () => {
                 array: () => [{ path: fieldKey, msg: ErrorMessages.REPO_NAME }]
             };
         });
+        validateFilepathMock.mockImplementationOnce(() => config.ADD_REPO_URL);
         req.body[fieldKey] = '';
         req.params[config.ID] = '';
         checkValidations(req, res, mockNext);
@@ -78,13 +82,13 @@ describe('Validation Middleware test suites', () => {
     test(`should call res.render with ${config.ADD_REPO} view if errorList and id is not empty`, () => {
         const fieldKey = 'repo_name';
         req.body[fieldKey] = '';
-        req.path = `${config.ADD_REPO_URL}/${mockID}`;
         validationResultMock.mockImplementationOnce(() => {
             return {
                 isEmpty: () => false,
                 array: () => [{ path: fieldKey, msg: ErrorMessages.REPO_NAME }]
             };
         });
+        validateFilepathMock.mockImplementationOnce(() => `${config.ADD_REPO_URL}/${mockID}`);
         checkValidations(req, res, mockNext);
 
         expect(mockLogInfo).toHaveBeenCalledTimes(1);
