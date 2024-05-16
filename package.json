@@ -55,6 +55,7 @@
     "govuk-frontend": "^4.8.0",
     "helmet": "^7.0.0",
     "luxon": "^3.4.4",
+    "notifications-node-client": "^8.0.0",
     "nunjucks": "^3.2.4",
     "uuid": "^9.0.1"
   }

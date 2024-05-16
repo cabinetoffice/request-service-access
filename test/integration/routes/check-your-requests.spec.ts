@@ -2,6 +2,7 @@ jest.mock('../../../src/middleware/logger.middleware');
 jest.mock('../../../src/middleware/authentication.middleware');
 jest.mock('../../../src/utils/logger');
 jest.mock('uuid');
+jest.mock('../../../src/service/notify');
 
 import { jest, afterEach, describe, expect, test } from '@jest/globals';
 import { Request, Response, NextFunction } from 'express';
@@ -19,11 +20,15 @@ import {
 import { MOCK_POST_ISSUE_URL } from '../../mock/data';
 import { mockLogInfo } from '../../mock/log.mock';
 import { mockID, mockUuidv4 } from '../../mock/session.mock';
+import { confirmationEmail } from '../../../src/service/notify';
 
 const mockedLogger = logger as jest.Mock<typeof logger>;
 mockedLogger.mockImplementation((_req: Request, _res: Response, next: NextFunction) => next());
 const mockedAuth = authentication as jest.Mock<typeof authentication>;
 mockedAuth.mockImplementation((_req: Request, _res: Response, next: NextFunction) => next());
+
+const mockedConfirmationEmail = confirmationEmail as jest.Mock<typeof confirmationEmail>;
+mockedConfirmationEmail.mockImplementation(() => Promise.resolve());
 
 const redirectUrl = `${MOCK_FOUND_REDIRECT_MESSAGE}${config.CONFIRMATION_URL}/${mockID}`;
 
@@ -51,6 +56,7 @@ describe('check-your-requests endpoint integration tests', () => {
 
             expect(res.status).toEqual(302);
             expect(res.text).toContain(redirectUrl);
+            expect(mockedConfirmationEmail).toHaveBeenCalledTimes(1);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
@@ -63,6 +69,7 @@ describe('check-your-requests endpoint integration tests', () => {
 
             expect(mockLogInfo).toBeCalledWith(logMsg);
             expect(res.text).toContain(redirectUrl);
+            expect(mockedConfirmationEmail).toHaveBeenCalledTimes(1);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });

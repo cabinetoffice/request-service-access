@@ -8,11 +8,14 @@ jest.mock('@co-digital/api-sdk', () => ({
 }));
 jest.mock('@co-digital/login');
 jest.mock('uuid');
+jest.mock('../../../src/service/notify');
 
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 
 import { get, post } from '../../../src/controller/check-your-requests.controller';
 import * as config from '../../../src/config';
+
+import { confirmationEmail } from '../../../src/service/notify';
 
 import { APP_DATA, MOCK_POST_ISSUE_URL } from '../../mock/data';
 import { MOCK_LOG_ERROR_REQUEST } from '../../mock/text.mock';
@@ -28,6 +31,7 @@ import {
 
 import { client } from '../../../src/service/api';
 const mockPostIssue = client.gitHub.postIssue as jest.Mock<any>;
+const mockConfirmationEmail = confirmationEmail as jest.Mock;
 
 describe('check-your-requests controller test suites', () => {
 
@@ -82,6 +86,9 @@ describe('check-your-requests controller test suites', () => {
                 }
             );
 
+            expect(mockConfirmationEmail).toHaveBeenCalledTimes(1);
+            expect(mockConfirmationEmail).toHaveBeenCalledWith(config.NOTIFY_USER_EMAIL, mockID);
+
             expect(res.redirect).toBeCalledWith(`${config.CONFIRMATION_URL}/${mockID}`);
             expect(mockNext).not.toHaveBeenCalled();
         });
@@ -99,6 +106,8 @@ describe('check-your-requests controller test suites', () => {
             expect(mockGetSessionData).toHaveBeenCalledTimes(1);
 
             expect(mockLogInfo).toHaveBeenCalledWith(logMsg);
+            expect(mockConfirmationEmail).toHaveBeenCalledTimes(1);
+            expect(mockConfirmationEmail).toHaveBeenCalledWith(config.NOTIFY_USER_EMAIL, mockID);
             expect(res.redirect).toBeCalledWith(`${config.CONFIRMATION_URL}/${mockID}`);
             expect(mockNext).not.toHaveBeenCalled();
         });
