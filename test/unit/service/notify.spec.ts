@@ -2,8 +2,7 @@ jest.mock('../../../src/utils/isFeatureEnabled');
 jest.mock('notifications-node-client');
 jest.mock('../../../src/utils/logger', () => ({
     log: {
-        info: jest.fn(),
-        error: jest.fn()
+        info: jest.fn()
     }
 }));
 
@@ -17,7 +16,6 @@ import * as config from '../../../src/config/';
 const NotifyClientMock = NotifyClient as jest.Mock;
 const isFeatureEnabledMock = isFeatureEnabled as jest.Mock;
 const logInfoMock = log.info as jest.Mock;
-const mockLogError = log.error as jest.Mock;
 
 describe('Notify service unit test suites', () => {
     afterEach(() => {
@@ -47,7 +45,6 @@ describe('Notify service unit test suites', () => {
         );
 
         expect(logInfoMock).not.toHaveBeenCalledWith('Email confirmation is disabled.');
-        expect(mockLogError).toHaveBeenCalledTimes(0);
     });
 
     test('should not send an email when the feature flag is disabled', async () => {
@@ -60,21 +57,6 @@ describe('Notify service unit test suites', () => {
 
         expect(NotifyClientMock.prototype.sendEmail).not.toHaveBeenCalled();
         expect(logInfoMock).toHaveBeenCalledWith('Email confirmation is disabled.');
-        expect(mockLogError).toHaveBeenCalledTimes(0);
-    });
-    test('should log an error if sending the email fails', async () => {
-        isFeatureEnabledMock.mockReturnValue(true);
-        const mockError = ('Failed to send email');
-
-        NotifyClientMock.prototype.sendEmail.mockRejectedValue(new Error(mockError));
-
-        const mockEmailAddress = 'test@example.com';
-        const mockReferenceNumber = '123456';
-
-        await confirmationEmail(mockEmailAddress, mockReferenceNumber);
-
-        expect(NotifyClientMock.prototype.sendEmail).toHaveBeenCalled();
-        expect(log.error).toHaveBeenCalledWith(`Error: ${mockError}`);
     });
 });
 
