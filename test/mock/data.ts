@@ -1,3 +1,5 @@
+import { jest, expect } from '@jest/globals';
+
 import * as config from '../../src/config';
 import express from 'express';
 import { AddMemberKey } from '../../src/model/add-member.model';
@@ -71,7 +73,8 @@ export const MOCK_RATE_LIMIT_VALUE = {
     windowMs: 15 * 60 * 1000,
     limit: 100,
     standardHeaders: 'draft-7',
-    legacyHeaders: false
+    legacyHeaders: false,
+    handler: expect.any(Function)
 };
 
 export const MOCK_EXPRESS_APP = {
