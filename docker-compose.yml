@@ -7,8 +7,6 @@ services:
       dockerfile: ./infrastructure/docker/${NODE_ENV}/Dockerfile
     ports:
       - "${PORT}:3000"
-    volumes:
-      - ./:/app
     environment:
       - AUTH_SIGN_IN_URL=${AUTH_SIGN_IN_URL}
       - BASE_URL=${BASE_URL}
