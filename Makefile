@@ -21,7 +21,7 @@ docker-build:
 docker-up:
 ifeq ($(NODE_ENV),development)
 	$(info Building development environment)
-	docker-compose -f docker-compose.yml -f infrastructure/docker/development/docker-compose.override.yml up
+	docker compose -f docker-compose.yml -f ./infrastructure/docker/development/docker-compose.override.yml up
 else
 	$(info Building production environment)
 	docker compose -f docker-compose.yml up
