@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { client } from '../service/api';
 
 import { log } from '../utils/logger';
+import { getUserEmail } from '../utils/getUserEmail';
 import * as config from '../config';
 import { ApplicationData } from '../model/application.model';
 import { confirmationEmail } from '../service/notify';
@@ -40,8 +41,8 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
 
         await client.gitHub.postIssue(url, body);
 
-        // TODO: Implement logic to gather the users email
-        await confirmationEmail(config.NOTIFY_USER_EMAIL, id);
+        const userEmail = getUserEmail(req);
+        await confirmationEmail(userEmail, id);
 
         return res.redirect(`${config.CONFIRMATION_URL}/${id}`);
     } catch (err: any) {
