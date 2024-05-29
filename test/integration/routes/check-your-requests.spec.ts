@@ -2,6 +2,7 @@ jest.mock('../../../src/middleware/logger.middleware');
 jest.mock('../../../src/middleware/authentication.middleware');
 jest.mock('../../../src/utils/logger');
 jest.mock('uuid');
+jest.mock('../../../src/utils/getUserEmail');
 jest.mock('../../../src/service/notify');
 
 import { jest, afterEach, describe, expect, test } from '@jest/globals';
@@ -20,6 +21,7 @@ import {
 import { MOCK_POST_ISSUE_URL } from '../../mock/data';
 import { mockLogInfo } from '../../mock/log.mock';
 import { mockID, mockUuidv4 } from '../../mock/session.mock';
+import { getUserEmail } from '../../../src/utils/getUserEmail';
 import { confirmationEmail } from '../../../src/service/notify';
 
 const mockedLogger = logger as jest.Mock<typeof logger>;
@@ -27,6 +29,7 @@ mockedLogger.mockImplementation((_req: Request, _res: Response, next: NextFuncti
 const mockedAuth = authentication as jest.Mock<typeof authentication>;
 mockedAuth.mockImplementation((_req: Request, _res: Response, next: NextFunction) => next());
 
+const mockedGetUserEmail = getUserEmail as jest.Mock<typeof getUserEmail>;
 const mockedConfirmationEmail = confirmationEmail as jest.Mock<typeof confirmationEmail>;
 mockedConfirmationEmail.mockImplementation(() => Promise.resolve());
 
@@ -56,6 +59,7 @@ describe('check-your-requests endpoint integration tests', () => {
 
             expect(res.status).toEqual(302);
             expect(res.text).toContain(redirectUrl);
+            expect(mockedGetUserEmail).toHaveBeenCalledTimes(1);
             expect(mockedConfirmationEmail).toHaveBeenCalledTimes(1);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
@@ -69,6 +73,7 @@ describe('check-your-requests endpoint integration tests', () => {
 
             expect(mockLogInfo).toBeCalledWith(logMsg);
             expect(res.text).toContain(redirectUrl);
+            expect(mockedGetUserEmail).toHaveBeenCalledTimes(1);
             expect(mockedConfirmationEmail).toHaveBeenCalledTimes(1);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
