@@ -5,6 +5,7 @@ export default () => {
     process.env.CDN_HOST = 'test';
     process.env.COOKIE_PARSER_SECRET = 'secret';
     process.env.COOKIE_SESSION_SECRET = 'secret';
+    process.env.COOKIE_ID_NAME = 'secret';
     process.env.USER_POOL_ID = 'secret';
     process.env.USER_POOL_CLIENT_ID = 'secret';
     process.env.COOKIE_ID_NAME = 'test';

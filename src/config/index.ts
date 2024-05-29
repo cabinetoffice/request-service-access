@@ -15,6 +15,7 @@ export const NODE_ENV = getEnvironmentValue('NODE_ENV');
 
 export const CDN_HOST = getEnvironmentValue('CDN_HOST');
 
+export const COOKIE_ID_NAME = getEnvironmentValue('COOKIE_ID_NAME');
 export const COOKIE_PARSER_SECRET = getEnvironmentValue('COOKIE_PARSER_SECRET');
 export const COOKIE_SESSION_SECRET = getEnvironmentValue('COOKIE_SESSION_SECRET');
 export const SESSION_APP_KEY = getEnvironmentValue('SESSION_APP_KEY');
