@@ -5,7 +5,7 @@ import * as config from '../config';
 
 export const confirmationEmail = async (emailAddress: string, reference_number: string): Promise<void> => {
 
-    if (isFeatureEnabled(config.FEATURE_FLAG_NOTIFY)) {
+    if (isFeatureEnabled(config.FEATURE_FLAG_ENABLE_NOTIFY)) {
         const notifyClient = new NotifyClient(config.NOTIFY_API_KEY);
         log.info('Email confirmation is enabled.');
         await notifyClient.sendEmail(config.NOTIFY_EMAIL_TEMPLATE, emailAddress, {

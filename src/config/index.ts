@@ -74,7 +74,7 @@ export const PREVIOUS_PAGE_QUERY_PARAM = 'previousPage';
 
 // Feature Flags
 export const FEATURE_FLAG_ENABLE_AUTH = getEnvironmentValue('FEATURE_FLAG_ENABLE_AUTH', 'false');
-export const FEATURE_FLAG_NOTIFY = getEnvironmentValue('FEATURE_FLAG_NOTIFY', 'false');
+export const FEATURE_FLAG_ENABLE_NOTIFY = getEnvironmentValue('FEATURE_FLAG_ENABLE_NOTIFY', 'false');
 
 // MISC
 export const REMOVE = '/remove';
