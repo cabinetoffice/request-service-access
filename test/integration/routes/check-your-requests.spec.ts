@@ -53,8 +53,9 @@ describe('check-your-requests endpoint integration tests', () => {
     });
 
     describe('POST tests', () => {
-        test('Should redirect to confirmation page after POST request', async () => {
+        test('Should redirect to confirmation page and send confirmation email after POST request', async () => {
             mockUuidv4.mockImplementation(_ => mockID);
+            mockedGetUserEmail.mockReturnValue('user@example.com');
             const res = await request(app).post(config.CHECK_YOUR_REQUESTS_URL);
 
             expect(res.status).toEqual(302);
@@ -64,8 +65,21 @@ describe('check-your-requests endpoint integration tests', () => {
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
+        test('Should not send a confirmation email when mockEmail is null', async () => {
+            mockUuidv4.mockImplementation(_ => mockID);
+            mockedGetUserEmail.mockReturnValue(null);
+            const res = await request(app).post(config.CHECK_YOUR_REQUESTS_URL);
+
+            expect(res.status).toEqual(302);
+            expect(res.text).toContain(redirectUrl);
+            expect(mockedGetUserEmail).toHaveBeenCalledTimes(1);
+            expect(mockedConfirmationEmail).not.toHaveBeenCalledTimes(1);
+            expect(mockedLogger).toHaveBeenCalledTimes(1);
+            expect(mockedAuth).toHaveBeenCalledTimes(1);
+        });
 
         test('Should log the submit url and Id on POST request.', async () => {
+            mockedGetUserEmail.mockReturnValue('user@example.com');
             mockUuidv4.mockImplementation(_ => mockID);
 
             const logMsg = `Submit Issue to ${MOCK_POST_ISSUE_URL}, ID: #${mockID}`;

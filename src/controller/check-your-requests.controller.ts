@@ -42,7 +42,9 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
         await client.gitHub.postIssue(url, body);
 
         const userEmail = getUserEmail(req);
-        await confirmationEmail(userEmail, id);
+        if (userEmail) {
+            await confirmationEmail(userEmail, id);
+        }
 
         return res.redirect(`${config.CONFIRMATION_URL}/${id}`);
     } catch (err: any) {
