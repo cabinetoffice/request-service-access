@@ -5,6 +5,7 @@ export default () => {
     process.env.CDN_HOST = 'test';
     process.env.COOKIE_PARSER_SECRET = 'secret';
     process.env.COOKIE_SESSION_SECRET = 'secret';
+    process.env.COOKIE_ID_NAME = 'secret';
     process.env.USER_POOL_ID = 'secret';
     process.env.USER_POOL_CLIENT_ID = 'secret';
     process.env.COOKIE_ID_NAME = 'test';
@@ -23,5 +24,5 @@ export default () => {
     process.env.NOTIFY_EMAIL_TEMPLATE = 'test';
     process.env.NOTIFY_USER_EMAIL = 'test';
     process.env.NOTIFY_TEAM_EMAIL = 'test';
-    process.env.FEATURE_FLAG_NOTIFY = 'true';
+    process.env.FEATURE_FLAG_ENABLE_NOTIFY = 'true';
 };

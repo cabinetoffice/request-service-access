@@ -40,8 +40,10 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
 
         await client.gitHub.postIssue(url, body);
 
-        // TODO: Implement logic to gather the users email
-        await confirmationEmail(config.NOTIFY_USER_EMAIL, id);
+        // TO:DO - Implement handling cookies util on @co-digital/login
+        const jwt = req.signedCookies[config.COOKIE_ID_NAME];
+
+        await confirmationEmail(jwt, id);
 
         return res.redirect(`${config.CONFIRMATION_URL}/${id}`);
     } catch (err: any) {

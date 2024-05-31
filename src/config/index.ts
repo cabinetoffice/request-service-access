@@ -15,6 +15,7 @@ export const NODE_ENV = getEnvironmentValue('NODE_ENV');
 
 export const CDN_HOST = getEnvironmentValue('CDN_HOST');
 
+export const COOKIE_ID_NAME = getEnvironmentValue('COOKIE_ID_NAME');
 export const COOKIE_PARSER_SECRET = getEnvironmentValue('COOKIE_PARSER_SECRET');
 export const COOKIE_SESSION_SECRET = getEnvironmentValue('COOKIE_SESSION_SECRET');
 export const SESSION_APP_KEY = getEnvironmentValue('SESSION_APP_KEY');
@@ -73,7 +74,7 @@ export const PREVIOUS_PAGE_QUERY_PARAM = 'previousPage';
 
 // Feature Flags
 export const FEATURE_FLAG_ENABLE_AUTH = getEnvironmentValue('FEATURE_FLAG_ENABLE_AUTH', 'false');
-export const FEATURE_FLAG_NOTIFY = getEnvironmentValue('FEATURE_FLAG_NOTIFY', 'false');
+export const FEATURE_FLAG_ENABLE_NOTIFY = getEnvironmentValue('FEATURE_FLAG_ENABLE_NOTIFY', 'false');
 
 // MISC
 export const REMOVE = '/remove';

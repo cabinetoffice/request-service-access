@@ -5,6 +5,7 @@ export const MOCK_CONTACT_US_RESPONSE = 'Contact us';
 export const MOCK_GET_START_RESPONSE = 'GitHub Requests';
 export const MOCK_GET_HOME_RESPONSE = 'GitHub Requests';
 export const MOCK_ACCESSIBILITY_STATEMENT_RESPONSE = 'Accessibility statement for the GitHub Requests application';
+export const MOCK_EMAIL = 'test@example.com';
 
 // add-repo response mocks
 

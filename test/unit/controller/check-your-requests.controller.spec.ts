@@ -73,6 +73,8 @@ describe('check-your-requests controller test suites', () => {
 
             const res = mockResponse();
             const req = { session: {} } as any;
+            req.signedCookies = {};
+            req.signedCookies[config.COOKIE_ID_NAME] = 'mocked-jwt-token';
 
             await post(req, res, mockNext);
 
@@ -87,7 +89,7 @@ describe('check-your-requests controller test suites', () => {
             );
 
             expect(mockConfirmationEmail).toHaveBeenCalledTimes(1);
-            expect(mockConfirmationEmail).toHaveBeenCalledWith(config.NOTIFY_USER_EMAIL, mockID);
+            expect(mockConfirmationEmail).toHaveBeenCalledWith('mocked-jwt-token', mockID);
 
             expect(res.redirect).toBeCalledWith(`${config.CONFIRMATION_URL}/${mockID}`);
             expect(mockNext).not.toHaveBeenCalled();
@@ -101,13 +103,16 @@ describe('check-your-requests controller test suites', () => {
             const res = mockResponse();
             const req = mockRequest();
 
+            req.signedCookies = {};
+            req.signedCookies[config.COOKIE_ID_NAME] = 'mocked-jwt-token';
+
             await post(req, res, mockNext);
 
             expect(mockGetSessionData).toHaveBeenCalledTimes(1);
 
             expect(mockLogInfo).toHaveBeenCalledWith(logMsg);
             expect(mockConfirmationEmail).toHaveBeenCalledTimes(1);
-            expect(mockConfirmationEmail).toHaveBeenCalledWith(config.NOTIFY_USER_EMAIL, mockID);
+            expect(mockConfirmationEmail).toHaveBeenCalledWith('mocked-jwt-token', mockID);
             expect(res.redirect).toBeCalledWith(`${config.CONFIRMATION_URL}/${mockID}`);
             expect(mockNext).not.toHaveBeenCalled();
         });

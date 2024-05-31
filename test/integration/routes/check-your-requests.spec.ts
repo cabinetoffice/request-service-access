@@ -50,7 +50,7 @@ describe('check-your-requests endpoint integration tests', () => {
     });
 
     describe('POST tests', () => {
-        test('Should redirect to confirmation page after POST request', async () => {
+        test('Should redirect to confirmation page and send confirmation email after POST request', async () => {
             mockUuidv4.mockImplementation(_ => mockID);
             const res = await request(app).post(config.CHECK_YOUR_REQUESTS_URL);
 
