@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { client } from '../service/api';
 
 import { log } from '../utils/logger';
-import { getUserEmail } from '../utils/getUserEmail';
 import * as config from '../config';
 import { ApplicationData } from '../model/application.model';
 import { confirmationEmail } from '../service/notify';
@@ -41,10 +40,10 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
 
         await client.gitHub.postIssue(url, body);
 
-        const userEmail = getUserEmail(req);
-        if (userEmail) {
-            await confirmationEmail(userEmail, id);
-        }
+        // TO:DO - Implement handling cookies util on @co-digital/login
+        const jwt = req.signedCookies[config.COOKIE_ID_NAME];
+
+        await confirmationEmail(jwt, id);
 
         return res.redirect(`${config.CONFIRMATION_URL}/${id}`);
     } catch (err: any) {
