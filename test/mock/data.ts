@@ -25,7 +25,7 @@ export const MOCK_POST_ADD_COLLABORATOR = {
     email_address: 'email@hotmail.com',
     repo_name: 'repo1'
 };
-export const APP_DATA = {
+export const MOCK_APP_DATA = {
     [AddMemberKey]: MOCK_POST_ADD_MEMBER
 };
 
