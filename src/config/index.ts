@@ -31,6 +31,10 @@ export const NOTIFY_EMAIL_TEMPLATE = getEnvironmentValue('NOTIFY_EMAIL_TEMPLATE'
 export const NOTIFY_USER_EMAIL = getEnvironmentValue('NOTIFY_USER_EMAIL');
 export const NOTIFY_TEAM_EMAIL = getEnvironmentValue('NOTIFY_TEAM_EMAIL');
 
+export const REGION = getEnvironmentValue('REGION');
+export const DYNAMO_ENDPOINT = getEnvironmentValue('DYNAMO_ENDPOINT');
+export const DYNAMO_TABLE_NAME = getEnvironmentValue('DYNAMO_TABLE_NAME');
+
 // Template
 export const START = 'start';
 export const HOME = 'home';
@@ -75,6 +79,7 @@ export const PREVIOUS_PAGE_QUERY_PARAM = 'previousPage';
 // Feature Flags
 export const FEATURE_FLAG_ENABLE_AUTH = getEnvironmentValue('FEATURE_FLAG_ENABLE_AUTH', 'false');
 export const FEATURE_FLAG_ENABLE_NOTIFY = getEnvironmentValue('FEATURE_FLAG_ENABLE_NOTIFY', 'false');
+export const FEATURE_FLAG_ENABLE_DYNAMO = getEnvironmentValue('FEATURE_FLAG_ENABLE_DYNAMO', 'false');
 
 // MISC
 export const REMOVE = '/remove';

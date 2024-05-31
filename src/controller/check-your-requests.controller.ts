@@ -9,6 +9,7 @@ import { log } from '../utils/logger';
 import * as config from '../config';
 import { ApplicationData } from '../model/application.model';
 import { confirmationEmail } from '../service/notify';
+import { putSubmission } from '../service/dynamo/dynamo.submission.service';
 
 export const get = (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -37,6 +38,8 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
         };
 
         log.info(`Submit Issue to ${url}, ID: #${id}`);
+
+        await putSubmission(id, appData);
 
         await client.gitHub.postIssue(url, body);
 

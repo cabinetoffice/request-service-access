@@ -29,6 +29,50 @@ export const MOCK_APP_DATA = {
     [AddMemberKey]: MOCK_POST_ADD_MEMBER
 };
 
+export const MOCK_SUBMISSION_ID = '123456789';
+
+export const MOCK_DYNAMODB_RECORD = {
+    'id': {
+        'S': MOCK_SUBMISSION_ID
+    },
+    'data': {
+        'M': {
+            [AddMemberKey]: {
+                'L': [
+                    {
+                        'M': {
+                            'first_name': {
+                                'S': MOCK_POST_ADD_MEMBER.first_name
+                            },
+                            'last_name': {
+                                'S': MOCK_POST_ADD_MEMBER.last_name
+                            },
+                            'github_handle': {
+                                'S': MOCK_POST_ADD_MEMBER.github_handle
+                            },
+                            'id': {
+                                'S': 'a36c9b7f-fe99-4d4c-b2c7-9056f4091527'
+                            },
+                            'email_address': {
+                                'S': MOCK_POST_ADD_MEMBER.email_address
+                            },
+                            'description': {
+                                'S': MOCK_POST_ADD_MEMBER.description
+                            },
+                            'contract_type': {
+                                'S': MOCK_POST_ADD_MEMBER.contract_type
+                            },
+                            'contract_end_date': {
+                                'S': MOCK_POST_ADD_MEMBER.contract_end_date
+                            },
+                        }
+                    }
+                ]
+            }
+        }
+    }
+};
+
 export const MOCK_POST_ADD_TEAM = { team_name: 'team1', github_handle: 'bob' };
 export const MOCK_POST_ADDITIONAL_REQUESTS = { context: 'member', description: 'description' };
 export const MOCK_POST_REMOVE_MEMBER = { github_handle: 'example' };
