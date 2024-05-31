@@ -42,6 +42,8 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.585.0",
+    "@aws-sdk/lib-dynamodb": "^3.585.0",
     "@co-digital/api-sdk": "^1.0.6",
     "@co-digital/logging": "^1.0.1",
     "@co-digital/login": "^1.0.2",
