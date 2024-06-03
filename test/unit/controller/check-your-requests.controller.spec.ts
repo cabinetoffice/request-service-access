@@ -9,6 +9,7 @@ jest.mock('@co-digital/api-sdk', () => ({
 jest.mock('@co-digital/login');
 jest.mock('uuid');
 jest.mock('../../../src/service/notify');
+jest.mock('../../../src/service/dynamo/dynamo.submission.service.ts');
 
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 
@@ -20,6 +21,7 @@ import { confirmationEmail } from '../../../src/service/notify';
 import { MOCK_APP_DATA, MOCK_POST_ISSUE_URL } from '../../mock/data';
 import { MOCK_LOG_ERROR_REQUEST } from '../../mock/text.mock';
 import { mockRequest, mockResponse, mockNext } from '../../mock/express.mock';
+import { putSubmission } from '../../../src/service/dynamo/dynamo.submission.service';
 
 import {
     mockGetSessionData, mockID, mockUuidv4
@@ -30,8 +32,10 @@ import {
 } from '../../mock/log.mock';
 
 import { client } from '../../../src/service/api';
+
 const mockPostIssue = client.gitHub.postIssue as jest.Mock<any>;
 const mockConfirmationEmail = confirmationEmail as jest.Mock;
+const mockPutSubmission = putSubmission as jest.Mock;
 
 describe('check-your-requests controller test suites', () => {
 
@@ -70,11 +74,12 @@ describe('check-your-requests controller test suites', () => {
         test('should redirect to confirmation page on POST request', async () => {
             mockGetSessionData.mockImplementationOnce( _ => MOCK_APP_DATA);
             mockUuidv4.mockImplementation(_ => mockID);
+            const mockJwt = 'mocked-jwt-token';
 
             const res = mockResponse();
             const req = { session: {} } as any;
             req.signedCookies = {};
-            req.signedCookies[config.COOKIE_ID_NAME] = 'mocked-jwt-token';
+            req.signedCookies[config.COOKIE_ID_NAME] = mockJwt;
 
             await post(req, res, mockNext);
 
@@ -88,8 +93,11 @@ describe('check-your-requests controller test suites', () => {
                 }
             );
 
+            expect(mockPutSubmission).toHaveBeenCalledTimes(1);
+            expect(mockPutSubmission).toHaveBeenCalledWith(mockID, mockJwt, MOCK_APP_DATA);
+
             expect(mockConfirmationEmail).toHaveBeenCalledTimes(1);
-            expect(mockConfirmationEmail).toHaveBeenCalledWith('mocked-jwt-token', mockID);
+            expect(mockConfirmationEmail).toHaveBeenCalledWith(mockJwt, mockID);
 
             expect(res.redirect).toBeCalledWith(`${config.CONFIRMATION_URL}/${mockID}`);
             expect(mockNext).not.toHaveBeenCalled();
@@ -98,21 +106,21 @@ describe('check-your-requests controller test suites', () => {
         test('should log Submit Issue and Id on POST request', async () => {
             mockGetSessionData.mockImplementationOnce( _ => MOCK_APP_DATA);
             mockUuidv4.mockImplementation(_ => mockID);
+            const mockJwt = 'mocked-jwt-token';
             const logMsg = `Submit Issue to ${MOCK_POST_ISSUE_URL}, ID: #${mockID}`;
 
             const res = mockResponse();
             const req = mockRequest();
 
             req.signedCookies = {};
-            req.signedCookies[config.COOKIE_ID_NAME] = 'mocked-jwt-token';
+            req.signedCookies[config.COOKIE_ID_NAME] = mockJwt;
 
             await post(req, res, mockNext);
 
             expect(mockGetSessionData).toHaveBeenCalledTimes(1);
 
             expect(mockLogInfo).toHaveBeenCalledWith(logMsg);
-            expect(mockConfirmationEmail).toHaveBeenCalledTimes(1);
-            expect(mockConfirmationEmail).toHaveBeenCalledWith('mocked-jwt-token', mockID);
+
             expect(res.redirect).toBeCalledWith(`${config.CONFIRMATION_URL}/${mockID}`);
             expect(mockNext).not.toHaveBeenCalled();
         });
