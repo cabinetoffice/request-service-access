@@ -39,12 +39,12 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
 
         log.info(`Submit Issue to ${url}, ID: #${id}`);
 
-        await putSubmission(id, appData);
-
-        await client.gitHub.postIssue(url, body);
-
         // TO:DO - Implement handling cookies util on @co-digital/login
         const jwt = req.signedCookies[config.COOKIE_ID_NAME];
+
+        await putSubmission(id, jwt, appData);
+
+        await client.gitHub.postIssue(url, body);
 
         await confirmationEmail(jwt, id);
 

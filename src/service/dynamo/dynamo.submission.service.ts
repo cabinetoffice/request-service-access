@@ -3,17 +3,19 @@ import { marshall } from '@aws-sdk/util-dynamodb';
 import { log } from '../../utils/logger';
 import * as config from '../../config';
 import { isFeatureEnabled } from '../../utils/isFeatureEnabled';
+import { getUserEmail } from '../../utils/getUserEmail';
 
 const client = new DynamoDBClient({
     region: config.REGION,
     endpoint: config.DYNAMO_ENDPOINT
 });
 
-export const putSubmission = async (id: string, appData: any) => {
+export const putSubmission = async (id: string, jwt: string, appData: any) => {
 
     if (isFeatureEnabled(config.FEATURE_FLAG_ENABLE_DYNAMO)) {
+
         const params = { TableName: config.DYNAMO_TABLE_NAME,
-            Item: marshall({ id: id, data: appData })
+            Item: marshall({ id: id, data: { ...appData, submission_email_address: getUserEmail(jwt) } })
         };
 
         const command = new PutItemCommand(params);
@@ -22,7 +24,7 @@ export const putSubmission = async (id: string, appData: any) => {
         log.info(`Submission ${id} successfully stored in ${config.DYNAMO_TABLE_NAME} table`);
 
     } else {
-        log.info('DynamoDB is disabled');
+        log.info('Dynamo DB is disabled');
     }
 
 };

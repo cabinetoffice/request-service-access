@@ -31,6 +31,8 @@ export const MOCK_APP_DATA = {
 
 export const MOCK_SUBMISSION_ID = '123456789';
 
+export const MOCK_SUBMISSION_EMAIL_ADDRESS = 'someemail@fake.com';
+
 export const MOCK_DYNAMODB_RECORD = {
     'id': {
         'S': MOCK_SUBMISSION_ID
@@ -69,7 +71,8 @@ export const MOCK_DYNAMODB_RECORD = {
                     }
                 ]
             }
-        }
+        },
+        submission_email_address: { S: MOCK_SUBMISSION_EMAIL_ADDRESS }
     }
 };
 
