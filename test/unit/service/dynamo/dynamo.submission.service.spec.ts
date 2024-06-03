@@ -41,7 +41,7 @@ describe('Dynamo submission service unit test suites', () => {
         jest.resetAllMocks();
     });
 
-    test('it should call dynamodb clients, marshall util and getUserEmail with correct params if feature flag is enabled', async () => {
+    test('it should call Dynamo DB methods, marshall util and getUserEmail with correct params if feature flag is enabled', async () => {
 
         const mockJwt = 'mocked-jwt-token';
 
