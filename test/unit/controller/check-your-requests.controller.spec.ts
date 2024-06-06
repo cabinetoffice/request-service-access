@@ -9,7 +9,7 @@ jest.mock('@co-digital/api-sdk', () => ({
 jest.mock('@co-digital/login');
 jest.mock('uuid');
 jest.mock('../../../src/service/notify');
-jest.mock('../../../src/service/dynamo/dynamo.submission.service.ts');
+jest.mock('../../../src/service/dynamo');
 
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 
@@ -21,7 +21,7 @@ import { confirmationEmail } from '../../../src/service/notify';
 import { MOCK_APP_DATA, MOCK_POST_ISSUE_URL } from '../../mock/data';
 import { MOCK_LOG_ERROR_REQUEST } from '../../mock/text.mock';
 import { mockRequest, mockResponse, mockNext } from '../../mock/express.mock';
-import { putSubmission } from '../../../src/service/dynamo/dynamo.submission.service';
+import { putSubmission } from '../../../src/service/dynamo';
 
 import {
     mockGetSessionData, mockID, mockUuidv4

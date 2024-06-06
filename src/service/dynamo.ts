@@ -1,9 +1,9 @@
 import { PutItemCommand, DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { marshall } from '@aws-sdk/util-dynamodb';
-import { log } from '../../utils/logger';
-import * as config from '../../config';
-import { isFeatureEnabled } from '../../utils/isFeatureEnabled';
-import { getUserEmail } from '../../utils/getUserEmail';
+import { log } from '../utils/logger';
+import * as config from '../config';
+import { isFeatureEnabled } from '../utils/isFeatureEnabled';
+import { getUserEmail } from '../utils/getUserEmail';
 
 const client = new DynamoDBClient({
     region: config.REGION,

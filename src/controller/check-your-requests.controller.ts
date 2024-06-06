@@ -9,7 +9,7 @@ import { log } from '../utils/logger';
 import * as config from '../config';
 import { ApplicationData } from '../model/application.model';
 import { confirmationEmail } from '../service/notify';
-import { putSubmission } from '../service/dynamo/dynamo.submission.service';
+import { putSubmission } from '../service/dynamo';
 
 export const get = (req: Request, res: Response, next: NextFunction) => {
     try {

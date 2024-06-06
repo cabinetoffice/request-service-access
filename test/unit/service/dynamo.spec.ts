@@ -1,10 +1,10 @@
-jest.mock('../../../../src/utils/isFeatureEnabled');
-jest.mock('../../../../src/utils/logger', () => ({
+jest.mock('../../../src/utils/isFeatureEnabled');
+jest.mock('../../../src/utils/logger', () => ({
     log: {
         info: jest.fn()
     }
 }));
-jest.mock('../../../../src/utils/getUserEmail');
+jest.mock('../../../src/utils/getUserEmail');
 
 const commandMock = jest.fn();
 const dynamoDbClientSendMock = jest.fn();
@@ -19,14 +19,14 @@ jest.mock('@aws-sdk/util-dynamodb', () => ({
 
 import { describe, expect, jest, test, afterEach } from '@jest/globals';
 
-import { putSubmission } from '../../../../src/service/dynamo/dynamo.submission.service';
-import { isFeatureEnabled } from '../../../../src/utils/isFeatureEnabled';
-import { getUserEmail } from '../../../../src/utils/getUserEmail';
-import { log } from '../../../../src/utils/logger';
+import { putSubmission } from '../../../src/service/dynamo';
+import { isFeatureEnabled } from '../../../src/utils/isFeatureEnabled';
+import { getUserEmail } from '../../../src/utils/getUserEmail';
+import { log } from '../../../src/utils/logger';
 import { marshall } from '@aws-sdk/util-dynamodb';
 
-import * as config from '../../../../src/config';
-import { MOCK_APP_DATA, MOCK_SUBMISSION_ID, MOCK_SUBMISSION_EMAIL_ADDRESS, MOCK_DYNAMODB_RECORD } from '../../../mock/data';
+import * as config from '../../../src/config';
+import { MOCK_APP_DATA, MOCK_SUBMISSION_ID, MOCK_SUBMISSION_EMAIL_ADDRESS, MOCK_DYNAMODB_RECORD } from '../../mock/data';
 import { DynamoDBClient, PutItemCommand } from '@aws-sdk/client-dynamodb';
 
 const isFeatureEnabledMock = isFeatureEnabled as jest.Mock;
