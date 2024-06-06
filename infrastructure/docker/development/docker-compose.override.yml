@@ -16,7 +16,7 @@ services:
       - DYNAMO_PORT=${DYNAMO_PORT}
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
     volumes:
-      - "./infrastructure/dynamodb-local-db/:/home/dynamodblocal/data"
+      - "./infrastructure/dynamodb-local/:/home/dynamodblocal/data"
     working_dir: /home/dynamodblocal
 
   dynamodb-local-init-table:
