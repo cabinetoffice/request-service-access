@@ -1,7 +1,9 @@
 import { PutItemCommand, DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { marshall } from '@aws-sdk/util-dynamodb';
-import { log } from '../utils/logger';
+
 import * as config from '../config';
+
+import { log } from '../utils/logger';
 import { isFeatureEnabled } from '../utils/isFeatureEnabled';
 import { getUserEmail } from '../utils/getUserEmail';
 
@@ -14,8 +16,18 @@ export const putSubmission = async (id: string, jwt: string, appData: any) => {
 
     if (isFeatureEnabled(config.FEATURE_FLAG_ENABLE_DYNAMO)) {
 
-        const params = { TableName: config.DYNAMO_TABLE_NAME,
-            Item: marshall({ id: id, data: { ...appData, submission_email_address: getUserEmail(jwt) } })
+        // TO-DO: add email retrieval to middleware and attach as property to res.locals
+        const submissionEmailAddress = config.NODE_ENV === 'production' ? getUserEmail(jwt) : 'placeholder@fake.com';
+
+        const params = {
+            TableName: config.DYNAMO_TABLE_NAME,
+            Item: marshall({
+                id,
+                data: {
+                    ...appData,
+                    submission_email_address: submissionEmailAddress
+                }
+            })
         };
 
         const command = new PutItemCommand(params);
