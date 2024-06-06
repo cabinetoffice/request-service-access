@@ -32,7 +32,7 @@ import { isFeatureEnabled } from '../../../src/utils/isFeatureEnabled';
 import { getUserEmail } from '../../../src/utils/getUserEmail';
 import { putSubmission } from '../../../src/service/dynamo';
 
-import { MOCK_APP_DATA, MOCK_SUBMISSION_ID, MOCK_SUBMISSION_EMAIL_ADDRESS, MOCK_DYNAMODB_RECORD } from '../../mock/data';
+import { MOCK_APP_DATA, MOCK_SUBMISSION_ID, MOCK_SUBMISSION_EMAIL_ADDRESS, MOCK_DYNAMODB_RECORD, MOCK_JWT } from '../../mock/data';
 
 const configMock = config as { NODE_ENV: string };
 const isFeatureEnabledMock = isFeatureEnabled as jest.Mock;
@@ -49,13 +49,12 @@ describe('Dynamo submission service unit test suites', () => {
 
     test('it should call Dynamo DB methods, marshall util and getUserEmail with correct params if feature flag is enabled and NODE_ENV is production', async () => {
 
-        const mockJwt = 'mocked-jwt-token';
         configMock.NODE_ENV = 'production';
         isFeatureEnabledMock.mockReturnValueOnce(true);
         marshallMock.mockReturnValueOnce(MOCK_DYNAMODB_RECORD);
         getUserEmailMock.mockReturnValue(MOCK_SUBMISSION_EMAIL_ADDRESS);
 
-        await putSubmission(MOCK_SUBMISSION_ID, mockJwt, MOCK_APP_DATA);
+        await putSubmission(MOCK_SUBMISSION_ID, MOCK_JWT, MOCK_APP_DATA);
 
         expect(dynamoDbClientMock).toHaveBeenCalledWith({
             region: config.REGION,
@@ -67,7 +66,7 @@ describe('Dynamo submission service unit test suites', () => {
         expect(marshallMock).toHaveBeenCalledWith({ id: MOCK_SUBMISSION_ID, data: { ...MOCK_APP_DATA, submission_email_address: MOCK_SUBMISSION_EMAIL_ADDRESS } });
 
         expect(getUserEmailMock).toHaveBeenCalledTimes(1);
-        expect(getUserEmailMock).toHaveBeenCalledWith(mockJwt);
+        expect(getUserEmailMock).toHaveBeenCalledWith(MOCK_JWT);
 
         expect(putItemCommandMock).toHaveBeenCalledTimes(1);
         expect(putItemCommandMock).toHaveBeenCalledWith({ TableName: config.DYNAMO_TABLE_NAME, Item: MOCK_DYNAMODB_RECORD });
@@ -81,11 +80,10 @@ describe('Dynamo submission service unit test suites', () => {
 
     test('it should assign submissionEmailAddress to placeholder value if feature flag is enabled and NODE_ENV is not production', async () => {
 
-        const mockJwt = 'mocked-jwt-token';
         configMock.NODE_ENV = 'development';
         isFeatureEnabledMock.mockReturnValueOnce(true);
 
-        await putSubmission(MOCK_SUBMISSION_ID, mockJwt, MOCK_APP_DATA);
+        await putSubmission(MOCK_SUBMISSION_ID, MOCK_JWT, MOCK_APP_DATA);
 
         expect(getUserEmailMock).not.toHaveBeenCalled();
 
@@ -96,10 +94,9 @@ describe('Dynamo submission service unit test suites', () => {
     test('it should not call marshall util, getUserEmail or Dynamo DB methods if feature flag is disabled', async () => {
 
         isFeatureEnabledMock.mockReturnValueOnce(false);
-        const mockJwt = 'mocked-jwt-token';
         configMock.NODE_ENV = 'production';
 
-        await putSubmission(MOCK_SUBMISSION_ID, mockJwt, MOCK_APP_DATA);
+        await putSubmission(MOCK_SUBMISSION_ID, MOCK_JWT, MOCK_APP_DATA);
 
         expect(isFeatureEnabledMock).toHaveBeenCalledWith(config.FEATURE_FLAG_ENABLE_DYNAMO);
 

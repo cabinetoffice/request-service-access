@@ -5,25 +5,24 @@ import { getUserEmailFromColaJwt } from '@co-digital/login';
 import { getUserEmail } from '../../../src/utils/getUserEmail';
 
 import { MOCK_EMAIL } from '../../mock/text.mock';
+import { MOCK_JWT } from '../../mock/data';
 
 const mockGetUserEmailFromColaJwt = getUserEmailFromColaJwt as jest.Mock;
 
 describe('getUserEmail unit tests', () => {
     test('should return user email if JWT is valid', () => {
-        const mockJwt = 'mocked-jwt-token';
-
         mockGetUserEmailFromColaJwt.mockReturnValue(MOCK_EMAIL);
 
-        const email = getUserEmail(mockJwt);
+        const email = getUserEmail(MOCK_JWT);
 
         expect(email).toBe(MOCK_EMAIL);
-        expect(mockGetUserEmailFromColaJwt).toHaveBeenCalledWith(mockJwt);
+        expect(mockGetUserEmailFromColaJwt).toHaveBeenCalledWith(MOCK_JWT);
     });
     test('should throw error if JWT is invalid', () => {
-        const mockJwt = 'invalid-jwt-token';
+        const mockInvalidJwt = 'invalid-jwt-token';
         mockGetUserEmailFromColaJwt.mockReturnValue(null);
 
-        expect(() => getUserEmail(mockJwt)).toThrow('Failed to decode JWT or no email found in token.');
-        expect(mockGetUserEmailFromColaJwt).toHaveBeenCalledWith(mockJwt);
+        expect(() => getUserEmail(mockInvalidJwt)).toThrow('Failed to decode JWT or no email found in token.');
+        expect(mockGetUserEmailFromColaJwt).toHaveBeenCalledWith(mockInvalidJwt);
     });
 });

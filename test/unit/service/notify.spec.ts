@@ -14,6 +14,7 @@ import { NotifyClient } from 'notifications-node-client';
 import { log } from '../../../src/utils/logger';
 import { getUserEmail } from '../../../src/utils/getUserEmail';
 import * as config from '../../../src/config/';
+import { MOCK_JWT } from '../../mock/data';
 
 const NotifyClientMock = NotifyClient as jest.Mock;
 const isFeatureEnabledMock = isFeatureEnabled as jest.Mock;
@@ -29,10 +30,9 @@ describe('Notify service unit test suites', () => {
         isFeatureEnabledMock.mockReturnValue(true);
         getUserEmailMock.mockReturnValue('test@example.com');
 
-        const mockJwt = 'mocked-jwt-token';
         const mockReferenceNumber = '123456';
 
-        await confirmationEmail(mockJwt, mockReferenceNumber);
+        await confirmationEmail(MOCK_JWT, mockReferenceNumber);
 
         expect(NotifyClientMock).toHaveBeenCalledWith(config.NOTIFY_API_KEY);
 
@@ -54,10 +54,9 @@ describe('Notify service unit test suites', () => {
     test('should not send an email when the feature flag is disabled', async () => {
         isFeatureEnabledMock.mockReturnValue(false);
 
-        const mockJwt = 'mocked-jwt-token';
         const mockReferenceNumber = '123456';
 
-        await confirmationEmail(mockJwt, mockReferenceNumber);
+        await confirmationEmail(MOCK_JWT, mockReferenceNumber);
 
         expect(NotifyClientMock.prototype.sendEmail).not.toHaveBeenCalled();
         expect(logInfoMock).toHaveBeenCalledWith('Email confirmation is disabled.');
