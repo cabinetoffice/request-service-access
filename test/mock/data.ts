@@ -25,8 +25,57 @@ export const MOCK_POST_ADD_COLLABORATOR = {
     email_address: 'email@hotmail.com',
     repo_name: 'repo1'
 };
-export const APP_DATA = {
+export const MOCK_APP_DATA = {
     [AddMemberKey]: MOCK_POST_ADD_MEMBER
+};
+
+export const MOCK_JWT = 'ey32fakejwt3957t7u2';
+
+export const MOCK_SUBMISSION_ID = '123456789';
+
+export const MOCK_SUBMISSION_EMAIL_ADDRESS = 'someemail@fake.com';
+
+export const MOCK_DYNAMODB_RECORD = {
+    'id': {
+        'S': MOCK_SUBMISSION_ID
+    },
+    'data': {
+        'M': {
+            [AddMemberKey]: {
+                'L': [
+                    {
+                        'M': {
+                            'first_name': {
+                                'S': MOCK_POST_ADD_MEMBER.first_name
+                            },
+                            'last_name': {
+                                'S': MOCK_POST_ADD_MEMBER.last_name
+                            },
+                            'github_handle': {
+                                'S': MOCK_POST_ADD_MEMBER.github_handle
+                            },
+                            'id': {
+                                'S': 'a36c9b7f-fe99-4d4c-b2c7-9056f4091527'
+                            },
+                            'email_address': {
+                                'S': MOCK_POST_ADD_MEMBER.email_address
+                            },
+                            'description': {
+                                'S': MOCK_POST_ADD_MEMBER.description
+                            },
+                            'contract_type': {
+                                'S': MOCK_POST_ADD_MEMBER.contract_type
+                            },
+                            'contract_end_date': {
+                                'S': MOCK_POST_ADD_MEMBER.contract_end_date
+                            },
+                        }
+                    }
+                ]
+            }
+        },
+        submission_email_address: { S: MOCK_SUBMISSION_EMAIL_ADDRESS }
+    }
 };
 
 export const MOCK_POST_ADD_TEAM = { team_name: 'team1', github_handle: 'bob' };
