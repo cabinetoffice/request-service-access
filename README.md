@@ -27,31 +27,45 @@ The issue is then reviewed by the team, and further comments may be requested if
 ### Config variables
 
 | Key                         | Description                                                         | Example Value                                                      |
-|-----------------------------|---------------------------------------------------------------------|----------------------------------------------------------          |
+|-----------------------------|---------------------------------------------------------------------|--------------------------------------------------------------------|
 | AUTH_SIGN_IN_URL            | Authentication sign in URL                                          | `https://cola.service.cabinetoffice.gov.uk/v2/<YOUR_SERVICE>/login`|
+| AWS_ACCESS_KEY_ID           | AWS access key ID                                                   | `[aws key ID]`                                                     |
+| AWS_SECRET_ACCESS_KEY       | AWS secret key ID                                                   | `secret`                                                           |
 | BASE_URL                    | Base application URL                                                | `http://localhost:3000` (dev mode)                                 |
 | CDN_HOST                    | CDN host                                                            | `cdn_domain`                                                       |
 | COOKIE_ID_NAME              | The name of the cookie                                              | `github-requests`                                                  |
 | COOKIE_PARSER_SECRET        | Secret used in validating/calculating the cookie signature          | `secret`                                                           |
 | COOKIE_SESSION_SECRET       | Secret key for signing the session cookie                           | `secret`                                                           |
+| DEPARTMENT_NAME             | Name of government department                                       | `Cabinet Office`                                                   |
+| DYNAMO_ADMIN_PORT           | Port for local containerised DynamoDB admin page                    | `8001` (dev mode)                                                  |
+| DYNAMO_PORT                 | Port for local containerised DynamoDB database                      | `8000` (dev mode)                                                  |
+| DYNAMO_ENDPOINT             | URL used to access the DynamoDB service in a specific AWS region    | `http://dynamodb-local:${DYNAMO_PORT}` (dev mode)                  |
+| DYNAMO_TABLE_NAME           | Name of DynamoDB table                                              | `test-github-requests-submissions` (dev mode)                      |
 | FEATURE_FLAG_ENABLE_AUTH    | Enable authentication feature flag                                  | `true` or `false`                                                  |
+| FEATURE_FLAG_ENABLE_DYNAMO  | Enable DynamoDB feature flag                                        | `true` or `false`                                                  |
+| FEATURE_FLAG_ENABLE_NOTIFY  | Enable Notify feature flag                                          | `true` or `false`                                                  |
 | GITHUB_KEY                  | GitHub key                                                          | `[github key]`                                                     |
-| GITHUB_OWNER                | GitHub organisation name                                            | `cabinetoffice`                                                    |
+| GITHUB_ORG_NAME             | GitHub organisation name                                            | `Cabinet Office`                                                   |
+| GITHUB_OWNER                | GitHub owner                                                        | `cabinetoffice`                                                    |
 | GITHUB_REPO_ISSUE_ASSIGNEE  | GitHub team responsible to solve issues and update configs files    | `IDP_TEAM`                                                         |
 | GITHUB_REPO_ISSUE_LABEL     | GitHub label to categorize the related issues                       | `github-requests-app`                                              |
 | GITHUB_TERRAFORM_REPO       | GitHub private repo with terraform configurations with members, repos and teams files | `github-requests-terraform`                      |
 | HUMAN                       | Formatting messages form (default JSON)                             | `true` (Enable human formatting for log messages)                  |
 | LOG_LEVEL                   | Logging levels                                                      | `info`                                                             |
 | NODE_ENV                    | Node environment                                                    | `development` or `production`                                      |
-| NODE_SSL_ENABLED            | Whether SSL is enabled for Node                                     | `true` or `false`                                                  |
+| NODE_SSL_ENABLED            | Node SSL                                                            | `true` or `false`                                                  |
+| NOTIFY_API_KEY              | API Key for Notify service                                          | `[notify api key]`                                                 |
+| NOTIFY_EMAIL_TEMPLATE       | Email template for Notify service                                   | `Template name`                                                    |
+| NOTIFY_USER_EMAIL           | Email to contact from Notify service                                | `example@example.com`                                              |
+| NOTIFY_TEAM_EMAIL           | Team email to contact from Notify service                           | `example@example.com`                                              |
 | PATH_SSL_CERTIFICATE        | Path to SSL certificate                                             | `./infrastructure/host/test.cert`                                  |
 | PATH_SSL_PRIVATE_KEY        | Path to SSL private key                                             | `./infrastructure/host/test.key`                                   |
 | PORT                        | Server port number                                                  | `3000`                                                             |
+| REGION                      | AWS Region                                                          | `3000`                                                             |
 | SESSION_APP_KEY             | Session application key                                             | `git`                                                              |
 | SESSION_ID_NAME             | Session ID name                                                     | `connect.sid`                                                      |
 | USER_POOL_CLIENT_ID         | Client ID of an app registered with the user pool in Amazon Cognito | `secret`                                                           |
 | USER_POOL_ID                | ID of the user pool in Amazon Cognito                               | `secret`                                                           |
-
 
 ## Launching the web-app
 
