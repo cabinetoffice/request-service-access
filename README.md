@@ -61,7 +61,7 @@ The issue is then reviewed by the team, and further comments may be requested if
 | PATH_SSL_CERTIFICATE        | Path to SSL certificate                                             | `./infrastructure/host/test.cert`                                  |
 | PATH_SSL_PRIVATE_KEY        | Path to SSL private key                                             | `./infrastructure/host/test.key`                                   |
 | PORT                        | Server port number                                                  | `3000`                                                             |
-| REGION                      | AWS Region                                                          | `3000`                                                             |
+| REGION                      | AWS Region                                                          | `eu-west-1`                                                        |
 | SESSION_APP_KEY             | Session application key                                             | `git`                                                              |
 | SESSION_ID_NAME             | Session ID name                                                     | `connect.sid`                                                      |
 | USER_POOL_CLIENT_ID         | Client ID of an app registered with the user pool in Amazon Cognito | `secret`                                                           |
