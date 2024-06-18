@@ -18,8 +18,8 @@ import * as config from '../../../src/config';
 
 import { confirmationEmail } from '../../../src/service/notify';
 
-import { MOCK_APP_DATA, MOCK_POST_ISSUE_URL } from '../../mock/data';
-import { MOCK_EMAIL, MOCK_LOG_ERROR_REQUEST } from '../../mock/text.mock';
+import { MOCK_APP_DATA, MOCK_POST_ISSUE_URL, MOCK_EMAIL } from '../../mock/data';
+import { MOCK_LOG_ERROR_REQUEST } from '../../mock/text.mock';
 import { mockRequest, mockResponse, mockNext } from '../../mock/express.mock';
 import { putSubmission } from '../../../src/service/dynamo';
 

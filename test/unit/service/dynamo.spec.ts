@@ -32,7 +32,7 @@ import { isFeatureEnabled } from '../../../src/utils/isFeatureEnabled';
 import { getUserEmail } from '../../../src/utils/getUserEmail';
 import { putSubmission } from '../../../src/service/dynamo';
 
-import { MOCK_APP_DATA, MOCK_SUBMISSION_ID, MOCK_SUBMISSION_EMAIL_ADDRESS, MOCK_DYNAMODB_RECORD, MOCK_JWT } from '../../mock/data';
+import { MOCK_APP_DATA, MOCK_SUBMISSION_ID, MOCK_EMAIL, MOCK_DYNAMODB_RECORD, MOCK_JWT } from '../../mock/data';
 
 const configMock = config as { NODE_ENV: string };
 const isFeatureEnabledMock = isFeatureEnabled as jest.Mock;
@@ -52,7 +52,7 @@ describe('Dynamo submission service unit test suites', () => {
         configMock.NODE_ENV = 'production';
         isFeatureEnabledMock.mockReturnValueOnce(true);
         marshallMock.mockReturnValueOnce(MOCK_DYNAMODB_RECORD);
-        getUserEmailMock.mockReturnValue(MOCK_SUBMISSION_EMAIL_ADDRESS);
+        getUserEmailMock.mockReturnValue(MOCK_EMAIL);
 
         await putSubmission(MOCK_SUBMISSION_ID, MOCK_JWT, MOCK_APP_DATA);
 
@@ -63,7 +63,7 @@ describe('Dynamo submission service unit test suites', () => {
         expect(isFeatureEnabledMock).toHaveBeenCalledWith(config.FEATURE_FLAG_ENABLE_DYNAMO);
 
         expect(marshallMock).toHaveBeenCalledTimes(1);
-        expect(marshallMock).toHaveBeenCalledWith({ id: MOCK_SUBMISSION_ID, data: { ...MOCK_APP_DATA, submission_email_address: MOCK_SUBMISSION_EMAIL_ADDRESS } });
+        expect(marshallMock).toHaveBeenCalledWith({ id: MOCK_SUBMISSION_ID, data: { ...MOCK_APP_DATA, submission_email_address: MOCK_EMAIL } });
 
         expect(getUserEmailMock).toHaveBeenCalledTimes(1);
         expect(getUserEmailMock).toHaveBeenCalledWith(MOCK_JWT);

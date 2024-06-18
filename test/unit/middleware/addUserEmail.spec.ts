@@ -23,8 +23,7 @@ import { getCookieValue } from '@co-digital/login';
 import { getUserEmail } from '../../../src/utils/getUserEmail';
 
 import { mockRequest, mockResponse, mockNext } from '../../mock/express.mock';
-import { MOCK_ERROR, MOCK_JWT, MOCK_JWT_NAME } from '../../mock/data';
-import { MOCK_EMAIL } from '../../mock/text.mock';
+import { MOCK_ERROR, MOCK_JWT, MOCK_JWT_NAME, MOCK_EMAIL } from '../../mock/data';
 
 const configMock = config as { NODE_ENV: string, COOKIE_ID_NAME: string };
 const logInfoRequestMock = log.infoRequest as jest.Mock;

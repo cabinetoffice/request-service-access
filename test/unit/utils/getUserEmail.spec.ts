@@ -4,8 +4,7 @@ import { describe, test, expect, jest } from '@jest/globals';
 import { getUserEmailFromColaJwt } from '@co-digital/login';
 import { getUserEmail } from '../../../src/utils/getUserEmail';
 
-import { MOCK_EMAIL } from '../../mock/text.mock';
-import { MOCK_JWT } from '../../mock/data';
+import { MOCK_JWT, MOCK_EMAIL } from '../../mock/data';
 
 const mockGetUserEmailFromColaJwt = getUserEmailFromColaJwt as jest.Mock;
 
