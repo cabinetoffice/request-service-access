@@ -26,6 +26,7 @@ export const get = (req: Request, res: Response, next: NextFunction) => {
 
 export const post = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const userEmail = res.locals.userEmail as string;
         const id = uuidv4();
         const url = `https://api.github.com/repos/${config.GITHUB_OWNER}/${config.GITHUB_TERRAFORM_REPO}/issues`;
 
@@ -39,14 +40,11 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
 
         log.info(`Submit Issue to ${url}, ID: #${id}`);
 
-        // TO:DO - Implement handling cookies util on @co-digital/login
-        const jwt = req.signedCookies[config.COOKIE_ID_NAME];
-
-        await putSubmission(id, jwt, appData);
+        await putSubmission(id, userEmail, appData);
 
         await client.gitHub.postIssue(url, body);
 
-        await confirmationEmail(jwt, id);
+        await confirmationEmail(userEmail, id);
 
         return res.redirect(`${config.CONFIRMATION_URL}/${id}`);
     } catch (err: any) {
