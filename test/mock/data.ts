@@ -29,6 +29,8 @@ export const MOCK_APP_DATA = {
     [AddMemberKey]: MOCK_POST_ADD_MEMBER
 };
 
+export const MOCK_JWT_NAME = 'mock-jwt-name';
+
 export const MOCK_JWT = 'ey32fakejwt3957t7u2';
 
 export const MOCK_SUBMISSION_ID = '123456789';
