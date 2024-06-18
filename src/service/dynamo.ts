@@ -5,19 +5,15 @@ import * as config from '../config';
 
 import { log } from '../utils/logger';
 import { isFeatureEnabled } from '../utils/isFeatureEnabled';
-import { getUserEmail } from '../utils/getUserEmail';
 
 const client = new DynamoDBClient({
     region: config.REGION,
     endpoint: config.DYNAMO_ENDPOINT
 });
 
-export const putSubmission = async (id: string, jwt: string, appData: any) => {
+export const putSubmission = async (id: string, userEmail: string, appData: any) => {
 
     if (isFeatureEnabled(config.FEATURE_FLAG_ENABLE_DYNAMO)) {
-
-        // TO-DO: add email retrieval to middleware and attach as property to res.locals
-        const submissionEmailAddress = config.NODE_ENV === 'production' ? getUserEmail(jwt) : 'placeholder@fake.com';
 
         const params = {
             TableName: config.DYNAMO_TABLE_NAME,
@@ -25,7 +21,7 @@ export const putSubmission = async (id: string, jwt: string, appData: any) => {
                 id,
                 data: {
                     ...appData,
-                    submission_email_address: submissionEmailAddress
+                    submission_email_address: userEmail
                 }
             })
         };
