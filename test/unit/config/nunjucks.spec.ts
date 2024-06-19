@@ -42,6 +42,9 @@ describe('Nunjucks Configuration test suites', () => {
         expect(mockNunjucksEnv.addGlobal).toHaveBeenCalledWith('CDN_HOST', config.CDN_HOST);
         expect(mockNunjucksEnv.addGlobal).toHaveBeenCalledWith('SERVICE_URL', config.SERVICE_URL);
         expect(mockNunjucksEnv.addGlobal).toHaveBeenCalledWith('SERVICE_NAME', config.SERVICE_NAME);
+        expect(mockNunjucksEnv.addGlobal).toHaveBeenCalledWith('DEPARTMENT_NAME', config.DEPARTMENT_NAME);
+        expect(mockNunjucksEnv.addGlobal).toHaveBeenCalledWith('GITHUB_ORG_NAME', config.GITHUB_ORG_NAME);
+        expect(mockNunjucksEnv.addGlobal).toHaveBeenCalledWith('FEATURE_FLAG_ENABLE_COOKIE_BANNER', config.FEATURE_FLAG_ENABLE_COOKIE_BANNER);
 
         expect(mockLogInfo).toHaveBeenCalledWith(expect.stringContaining(MOCK_VIEWS_PATH));
     });
