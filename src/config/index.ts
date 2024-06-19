@@ -77,6 +77,7 @@ export const SERVICE_URL = `${BASE_URL}${HOME_URL}`;
 export const PREVIOUS_PAGE_QUERY_PARAM = 'previousPage';
 
 // Feature Flags
+export const FEATURE_FLAG_ENABLE_COOKIE_BANNER = getEnvironmentValue('FEATURE_FLAG_ENABLE_COOKIE_BANNER');
 export const FEATURE_FLAG_ENABLE_AUTH = getEnvironmentValue('FEATURE_FLAG_ENABLE_AUTH', 'false');
 export const FEATURE_FLAG_ENABLE_NOTIFY = getEnvironmentValue('FEATURE_FLAG_ENABLE_NOTIFY', 'false');
 export const FEATURE_FLAG_ENABLE_DYNAMO = getEnvironmentValue('FEATURE_FLAG_ENABLE_DYNAMO', 'false');

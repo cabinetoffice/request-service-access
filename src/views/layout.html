@@ -37,7 +37,9 @@
 {% endblock %}
 
 {% block bodyStart %}
-  {% include "include/cookie-consent-banner.html" %}
+  {% if FEATURE_FLAG_ENABLE_COOKIE_BANNER == "true" %}
+    {% include "include/cookie-consent-banner.html" %}
+  {% endif %}
 {% endblock %}
 
 {% block beforeContent %}

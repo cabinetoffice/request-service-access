@@ -26,5 +26,6 @@ export const configureNunjucks = (app: express.Application, viewsPath: string) =
     nunjucksEnv.addGlobal('SERVICE_NAME', config.SERVICE_NAME);
     nunjucksEnv.addGlobal('DEPARTMENT_NAME', config.DEPARTMENT_NAME);
     nunjucksEnv.addGlobal('GITHUB_ORG_NAME', config.GITHUB_ORG_NAME);
+    nunjucksEnv.addGlobal('FEATURE_FLAG_ENABLE_COOKIE_BANNER', config.FEATURE_FLAG_ENABLE_COOKIE_BANNER);
 
 };
