@@ -29,11 +29,13 @@ export const MOCK_APP_DATA = {
     [AddMemberKey]: MOCK_POST_ADD_MEMBER
 };
 
+export const MOCK_JWT_NAME = 'mock-jwt-name';
+
 export const MOCK_JWT = 'ey32fakejwt3957t7u2';
 
 export const MOCK_SUBMISSION_ID = '123456789';
 
-export const MOCK_SUBMISSION_EMAIL_ADDRESS = 'someemail@fake.com';
+export const MOCK_EMAIL = 'test@example.com';
 
 export const MOCK_DYNAMODB_RECORD = {
     'id': {
@@ -74,7 +76,7 @@ export const MOCK_DYNAMODB_RECORD = {
                 ]
             }
         },
-        submission_email_address: { S: MOCK_SUBMISSION_EMAIL_ADDRESS }
+        submission_email_address: { S: MOCK_EMAIL }
     }
 };
 
