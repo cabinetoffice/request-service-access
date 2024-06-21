@@ -16,6 +16,7 @@ export const authentication = (
         }
 
         log.infoRequest(req, 'Skipping authentication...');
+        res.locals.userEmail = 'placeholder@fake.com';
         next();
 
     } catch (err: any) {
