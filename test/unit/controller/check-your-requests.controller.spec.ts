@@ -18,7 +18,7 @@ import * as config from '../../../src/config';
 
 import { confirmationEmail } from '../../../src/service/notify';
 
-import { MOCK_APP_DATA, MOCK_POST_ISSUE_URL, MOCK_JWT } from '../../mock/data';
+import { MOCK_APP_DATA, MOCK_POST_ISSUE_URL, MOCK_EMAIL } from '../../mock/data';
 import { MOCK_LOG_ERROR_REQUEST } from '../../mock/text.mock';
 import { mockRequest, mockResponse, mockNext } from '../../mock/express.mock';
 import { putSubmission } from '../../../src/service/dynamo';
@@ -72,13 +72,12 @@ describe('check-your-requests controller test suites', () => {
     describe('check-your-requests POST tests', () => {
 
         test('should redirect to confirmation page on POST request', async () => {
-            mockGetSessionData.mockImplementationOnce( _ => MOCK_APP_DATA);
+            mockGetSessionData.mockImplementationOnce(_ => MOCK_APP_DATA);
             mockUuidv4.mockImplementation(_ => mockID);
 
             const res = mockResponse();
+            res.locals.userEmail = MOCK_EMAIL;
             const req = { session: {} } as any;
-            req.signedCookies = {};
-            req.signedCookies[config.COOKIE_ID_NAME] = MOCK_JWT;
 
             await post(req, res, mockNext);
 
@@ -93,10 +92,10 @@ describe('check-your-requests controller test suites', () => {
             );
 
             expect(mockPutSubmission).toHaveBeenCalledTimes(1);
-            expect(mockPutSubmission).toHaveBeenCalledWith(mockID, MOCK_JWT, MOCK_APP_DATA);
+            expect(mockPutSubmission).toHaveBeenCalledWith(mockID, MOCK_EMAIL, MOCK_APP_DATA);
 
             expect(mockConfirmationEmail).toHaveBeenCalledTimes(1);
-            expect(mockConfirmationEmail).toHaveBeenCalledWith(MOCK_JWT, mockID);
+            expect(mockConfirmationEmail).toHaveBeenCalledWith(MOCK_EMAIL, mockID);
 
             expect(res.redirect).toBeCalledWith(`${config.CONFIRMATION_URL}/${mockID}`);
             expect(mockNext).not.toHaveBeenCalled();
@@ -108,10 +107,8 @@ describe('check-your-requests controller test suites', () => {
             const logMsg = `Submit Issue to ${MOCK_POST_ISSUE_URL}, ID: #${mockID}`;
 
             const res = mockResponse();
+            res.locals.userEmail = MOCK_EMAIL;
             const req = mockRequest();
-
-            req.signedCookies = {};
-            req.signedCookies[config.COOKIE_ID_NAME] = MOCK_JWT;
 
             await post(req, res, mockNext);
 

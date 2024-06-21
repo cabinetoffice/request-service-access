@@ -12,6 +12,7 @@ export const mockResponse = () => {
     const res = {} as Response;
     res.render = jest.fn().mockReturnValue(res) as any;
     res.redirect = jest.fn().mockReturnValue(res) as any;
+    res.locals = {};
     return res;
 };
 
