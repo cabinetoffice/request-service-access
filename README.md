@@ -41,6 +41,7 @@ The issue is then reviewed by the team, and further comments may be requested if
 | DYNAMO_PORT                 | Port for local containerised DynamoDB database                      | `8000` (dev mode)                                                  |
 | DYNAMO_ENDPOINT             | URL used to access the DynamoDB service in a specific AWS region    | `http://dynamodb-local:${DYNAMO_PORT}` (dev mode)                  |
 | DYNAMO_TABLE_NAME           | Name of DynamoDB table                                              | `test-github-requests-submissions` (dev mode)                      |
+| FEATURE_FLAG_ENABLE_COOKIE_BANNER    | Enable cookie banner feature flag                          | `true` or `false`                                                  |
 | FEATURE_FLAG_ENABLE_AUTH    | Enable authentication feature flag                                  | `true` or `false`                                                  |
 | FEATURE_FLAG_ENABLE_DYNAMO  | Enable DynamoDB feature flag                                        | `true` or `false`                                                  |
 | FEATURE_FLAG_ENABLE_NOTIFY  | Enable Notify feature flag                                          | `true` or `false`                                                  |

@@ -25,6 +25,7 @@ export default () => {
     process.env.NOTIFY_USER_EMAIL = 'test';
     process.env.NOTIFY_TEAM_EMAIL = 'test';
     process.env.FEATURE_FLAG_ENABLE_NOTIFY = 'true';
+    process.env.FEATURE_FLAG_ENABLE_COOKIE_BANNER = 'true';
     process.env.REGION = 'test';
     process.env.DYNAMO_ENDPOINT = 'test';
     process.env.DYNAMO_TABLE_NAME = 'test';
