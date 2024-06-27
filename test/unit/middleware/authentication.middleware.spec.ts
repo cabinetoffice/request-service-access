@@ -42,13 +42,14 @@ describe('Authentication Middleware test suites', () => {
         jest.resetAllMocks();
     });
 
-    test('should skip authentication and call next if NODE_ENV is not production', () => {
+    test('should skip authentication, assign placeholder email to res.locals.userEmail and call next if NODE_ENV is not production', () => {
 
         configMock.NODE_ENV = 'development';
 
         authentication(req, res, next);
 
         expect(logInfoRequestMock).toHaveBeenCalledWith(req, 'Skipping authentication...');
+        expect(res.locals.userEmail).toBe('placeholder@fake.com');
         expect(next).toHaveBeenCalledTimes(1);
     });
 
