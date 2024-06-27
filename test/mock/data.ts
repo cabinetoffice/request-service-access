@@ -99,11 +99,14 @@ export const MOCK_ERROR = {
 } as Error;
 
 export const MOCK_HELMET_VALUE = {
+    referrerPolicy: {
+        policy: 'strict-origin-when-cross-origin'
+    },
     contentSecurityPolicy: {
         useDefaults: true,
         directives: {
             defaultSrc: ["'self'"],
-            fontSrc: ["'self'"],
+            fontSrc: ["'self'", config.CDN_HOST],
             styleSrc: ["'self'", config.CDN_HOST],
             scriptSrc: [
                 "'self'",
