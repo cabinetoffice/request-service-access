@@ -99,15 +99,21 @@ export const MOCK_ERROR = {
 } as Error;
 
 export const MOCK_HELMET_VALUE = {
+    referrerPolicy: {
+        policy: 'strict-origin-when-cross-origin'
+    },
     contentSecurityPolicy: {
         useDefaults: true,
         directives: {
             defaultSrc: ["'self'"],
-            fontSrc: ["'self'"],
+            fontSrc: ["'self'", config.CDN_HOST],
             styleSrc: ["'self'", config.CDN_HOST],
             scriptSrc: [
                 "'self'",
+                // Hash of the inline scripts respectively for:
+                // `<script> document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>`
                 "'sha256-l1eTVSK8DTnK8+yloud7wZUqFrI0atVo6VlC6PJvYaQ='",
+                // `<script>window.GOVUKFrontend.initAll()</script>`
                 "'sha256-+6WnXIl4mbFTCARd8N3COQmT3bJJmo32N8q8ZSQAIcU='",
                 config.CDN_HOST
             ],
