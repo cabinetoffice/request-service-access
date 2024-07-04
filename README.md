@@ -6,7 +6,7 @@ The GitHub request application is a tool designed to streamline and automate the
 
 ## Overview
 
-The GitHub Requests Application is a Node.js-based web application that provides a simple interface. Internal users (members of the Cognito user pool) fill in forms with requested details. When a request is submitted, an issue is created on the dedicated terraform repository, and an email is sent to the user from our `github-request.idp` email address. The email includes a message containing the user's filled-in information.
+The GitHub Requests Application is a Node.js-based web application that provides a simple interface. Internal users (members of the Cognito user pool) fill in forms with requested details. When a request is submitted, an issue is created on the dedicated terraform repository, and an email is sent to the user from our `github-request.cpe` email address. The email includes a message containing the user's filled-in information.
 
 The issue is then reviewed by the team, and further comments may be requested if necessary. Approval must be granted by two members of the team to avoid misconfigurations.
 
@@ -48,9 +48,9 @@ The issue is then reviewed by the team, and further comments may be requested if
 | GITHUB_KEY                  | GitHub key                                                          | `[github key]`                                                     |
 | GITHUB_ORG_NAME             | GitHub organisation name                                            | `Cabinet Office`                                                   |
 | GITHUB_OWNER                | GitHub owner                                                        | `cabinetoffice`                                                    |
-| GITHUB_REPO_ISSUE_ASSIGNEE  | GitHub team responsible to solve issues and update configs files    | `IDP_TEAM`                                                         |
+| GITHUB_REPO_ISSUE_ASSIGNEE  | GitHub team responsible to solve issues and update configs files    | `CPE_TEAM`                                                         |
 | GITHUB_REPO_ISSUE_LABEL     | GitHub label to categorize the related issues                       | `github-requests-app`                                              |
-| GITHUB_TERRAFORM_REPO       | GitHub private repo with terraform configurations with members, repos and teams files | `github-requests-terraform`                      |
+| GITHUB_TERRAFORM_REPO       | GitHub private repo with terraform configurations with members, repos and teams files | `cpe-terraform-infrastructure-github`                      |
 | HUMAN                       | Formatting messages form (default JSON)                             | `true` (Enable human formatting for log messages)                  |
 | LOG_LEVEL                   | Logging levels                                                      | `info`                                                             |
 | NODE_ENV                    | Node environment                                                    | `development` or `production`                                      |
