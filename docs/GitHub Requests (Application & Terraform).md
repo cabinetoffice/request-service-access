@@ -1,7 +1,7 @@
 # GitHub Requests (Application & Terraform)
 
-**GitHub Requests Application** is a key component designed to handle GitHub requests in a secure and consistent manner by incorporating automation with Terraform (repository [here](https://github.com/cabinetoffice/github-requests-terraform)) and implementing security access through the COLA Identity Provider.
-For example, when a new member wishes to add their GitHub account to a team, they submit an issue through this app. The IDP team verifies the issues, applies changes, and merges the Pull Request to the main branch. On the next Terraform run, the changes propagate to GitHub, granting access. This entire process occurs with complete visibility within the department, ensuring consistency, instead of relying on a single user to make changes through GitHub's web interface.
+**GitHub Requests Application** is a key component designed to handle GitHub requests in a secure and consistent manner by incorporating automation with Terraform (repository [here](https://github.com/cabinetoffice/cpe-terraform-infrastructure-github)) and implementing security access through the COLA Identity Provider.
+For example, when a new member wishes to add their GitHub account to a team, they submit an issue through this app. The CPE team verifies the issues, applies changes, and merges the Pull Request to the main branch. On the next Terraform run, the changes propagate to GitHub, granting access. This entire process occurs with complete visibility within the department, ensuring consistency, instead of relying on a single user to make changes through GitHub's web interface.
 
 ## AWS HLD Diagram
 
@@ -22,7 +22,7 @@ For example, when a new member wishes to add their GitHub account to a team, the
 
 ## Overview and Design
 
-The GitHub Requests Application is a Node.js-based web application that provides a simple interface. Internal users (members of the Cognito user pool) fill in forms with requested details. When a request is submitted, an issue is created on the dedicated terraform repository, and an email is sent to the user from our `github-request.idp` email address. The email includes a message containing the user's filled-in information.
+The GitHub Requests Application is a Node.js-based web application that provides a simple interface. Internal users (members of the Cognito user pool) fill in forms with requested details. When a request is submitted, an issue is created on the dedicated terraform repository, and an email is sent to the user from our `github-request.cpe` email address. The email includes a message containing the user's filled-in information.
 
 The issue is then reviewed by the team, and further comments may be requested if necessary. Approval must be granted by two members of the team to avoid misconfigurations.
 
