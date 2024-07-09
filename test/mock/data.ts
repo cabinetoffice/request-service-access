@@ -107,7 +107,7 @@ export const MOCK_HELMET_VALUE = {
         directives: {
             defaultSrc: ["'self'"],
             fontSrc: ["'self'", config.CDN_HOST],
-            styleSrc: ["'self'", config.CDN_HOST],
+            styleSrc: ["'self'", "'unsafe-hashes'", "'sha256-6FWIojjtZwiNizws7ImlHjGH3DA5yMh5x4c+/4UVpXk='", config.CDN_HOST],
             scriptSrc: [
                 "'self'",
                 // Hash of the inline scripts respectively for:
