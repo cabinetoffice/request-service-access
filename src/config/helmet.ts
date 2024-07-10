@@ -13,7 +13,7 @@ export const configureHelmet = (app: express.Application) => {
             directives: {
                 defaultSrc: ["'self'"],
                 fontSrc: ["'self'", config.CDN_HOST],
-                styleSrc: ["'self'", config.CDN_HOST],
+                styleSrc: ["'self'", "'unsafe-hashes'", "'sha256-6FWIojjtZwiNizws7ImlHjGH3DA5yMh5x4c+/4UVpXk='", config.CDN_HOST],
                 scriptSrc: [
                     "'self'",
                     "'sha256-l1eTVSK8DTnK8+yloud7wZUqFrI0atVo6VlC6PJvYaQ='",
