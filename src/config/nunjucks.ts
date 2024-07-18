@@ -21,6 +21,10 @@ export const configureNunjucks = (app: express.Application, viewsPath: string) =
         HOME: config.HOME_URL,
         CHECK_YOUR_REQUESTS_URL: config.CHECK_YOUR_REQUESTS_URL
     });
+    nunjucksEnv.addGlobal('AUTH_URLS', {
+        SIGN_IN: config.AUTH_PATH_SIGN_IN,
+        SIGN_OUT: config.AUTH_PATH_SIGN_OUT
+    });
     nunjucksEnv.addGlobal('CDN_HOST', config.CDN_HOST);
     nunjucksEnv.addGlobal('SERVICE_URL', config.SERVICE_URL);
     nunjucksEnv.addGlobal('SERVICE_NAME', config.SERVICE_NAME);

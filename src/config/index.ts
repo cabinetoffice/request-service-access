@@ -82,6 +82,11 @@ export const FEATURE_FLAG_ENABLE_AUTH = getEnvironmentValue('FEATURE_FLAG_ENABLE
 export const FEATURE_FLAG_ENABLE_NOTIFY = getEnvironmentValue('FEATURE_FLAG_ENABLE_NOTIFY', 'false');
 export const FEATURE_FLAG_ENABLE_DYNAMO = getEnvironmentValue('FEATURE_FLAG_ENABLE_DYNAMO', 'false');
 
+// Auth URLs
+export const AUTH_PATH = 'https://cola.service.cabinetoffice.gov.uk/v2/github-requests';
+export const AUTH_PATH_SIGN_IN = `${AUTH_PATH}/login`;
+export const AUTH_PATH_SIGN_OUT = `${AUTH_PATH}/?logout=true`;
+
 // MISC
 export const REMOVE = '/remove';
 export const ID = 'id';
