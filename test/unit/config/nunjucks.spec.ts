@@ -32,7 +32,7 @@ describe('Nunjucks Configuration test suites', () => {
         configureNunjucks(MOCK_EXPRESS_APP, MOCK_VIEWS_PATH);
 
         expect(nunjucks.configure).toHaveBeenCalledWith(
-            [MOCK_VIEWS_PATH, 'node_modules/govuk-frontend', 'node_modules/govuk-frontend/components'],
+            [MOCK_VIEWS_PATH, 'node_modules/govuk-frontend/dist', 'node_modules/govuk-frontend/dist/components'],
             {
                 autoescape: true,
                 express: MOCK_EXPRESS_APP
