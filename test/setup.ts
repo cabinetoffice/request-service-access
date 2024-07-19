@@ -10,6 +10,7 @@ export default () => {
     process.env.USER_POOL_CLIENT_ID = 'secret';
     process.env.COOKIE_ID_NAME = 'test';
     process.env.AUTH_SIGN_IN_URL = 'test';
+    process.env.AUTH_SIGN_OUT_URL = 'test';
     process.env.SESSION_ID_NAME = 'test';
     process.env.GITHUB_OWNER = 'secret';
     process.env.GITHUB_TERRAFORM_REPO = 'test';

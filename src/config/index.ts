@@ -2,6 +2,9 @@ import { getEnvironmentValue } from '../utils/getEnvironmentValue';
 
 export const SERVICE_NAME = 'GitHub Requests';
 
+export const AUTH_SIGN_IN_URL = getEnvironmentValue('AUTH_SIGN_IN_URL');
+export const AUTH_SIGN_OUT_URL = getEnvironmentValue('AUTH_SIGN_OUT_URL');
+
 export const DEPARTMENT_NAME = getEnvironmentValue('DEPARTMENT_NAME');
 export const GITHUB_ORG_NAME = getEnvironmentValue('GITHUB_ORG_NAME');
 
@@ -81,11 +84,6 @@ export const FEATURE_FLAG_ENABLE_COOKIE_BANNER = getEnvironmentValue('FEATURE_FL
 export const FEATURE_FLAG_ENABLE_AUTH = getEnvironmentValue('FEATURE_FLAG_ENABLE_AUTH', 'false');
 export const FEATURE_FLAG_ENABLE_NOTIFY = getEnvironmentValue('FEATURE_FLAG_ENABLE_NOTIFY', 'false');
 export const FEATURE_FLAG_ENABLE_DYNAMO = getEnvironmentValue('FEATURE_FLAG_ENABLE_DYNAMO', 'false');
-
-// Auth URLs
-export const AUTH_PATH = 'https://cola.service.cabinetoffice.gov.uk/v2/github-requests';
-export const AUTH_PATH_SIGN_IN = `${AUTH_PATH}/login`;
-export const AUTH_PATH_SIGN_OUT = `${AUTH_PATH}/?logout=true`;
 
 // MISC
 export const REMOVE = '/remove';
