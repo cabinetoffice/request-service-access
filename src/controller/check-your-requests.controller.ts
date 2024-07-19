@@ -33,9 +33,9 @@ export const post = async (req: Request, res: Response, next: NextFunction) => {
         const appData = getSessionData(req.session);
         const body: GitHubIssueRequest = {
             assignees: [config.GITHUB_REPO_ISSUE_ASSIGNEE],
-            labels: [config.GITHUB_REPO_ISSUE_ASSIGNEE],
+            labels: [config.GITHUB_REPO_ISSUE_LABEL],
             title: `Github Request App #${id}`,
-            body: appData
+            body: JSON.stringify(appData)
         };
 
         log.info(`Submit Issue to ${url}, ID: #${id}`);

@@ -85,9 +85,9 @@ describe('check-your-requests controller test suites', () => {
             expect(mockPostIssue).toHaveBeenCalledWith(
                 MOCK_POST_ISSUE_URL, {
                     assignees: [config.GITHUB_REPO_ISSUE_ASSIGNEE],
-                    labels: [config.GITHUB_REPO_ISSUE_ASSIGNEE],
+                    labels: [config.GITHUB_REPO_ISSUE_LABEL],
                     title: `Github Request App #${mockID}`,
-                    body: MOCK_APP_DATA
+                    body: JSON.stringify(MOCK_APP_DATA)
                 }
             );
 
