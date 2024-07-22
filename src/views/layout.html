@@ -87,6 +87,9 @@
   {% if FEATURE_FLAG_ENABLE_COOKIE_BANNER == "true" %}
     <script src="/assets/javascripts/cookies.js"></script>
   {% endif %}
-  <script src="//{{CDN_HOST}}/govuk-frontend/v5.3.0/govuk-frontend-5.3.0.min.js"></script>
-  <script>window.GOVUKFrontend.initAll()</script>
+  <script type="module" src="//{{CDN_HOST}}/govuk-frontend/v5.3.0/govuk-frontend-5.3.0.min.js"></script>
+  <script type="module">
+    import { initAll } from '//{{CDN_HOST}}/govuk-frontend/v5.3.0/govuk-frontend.min.js'
+    initAll()
+  </script>
 {% endblock %}
