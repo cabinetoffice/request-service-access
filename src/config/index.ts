@@ -2,6 +2,9 @@ import { getEnvironmentValue } from '../utils/getEnvironmentValue';
 
 export const SERVICE_NAME = 'GitHub Requests';
 
+export const AUTH_SIGN_IN_URL = getEnvironmentValue('AUTH_SIGN_IN_URL');
+export const AUTH_SIGN_OUT_URL = getEnvironmentValue('AUTH_SIGN_OUT_URL');
+
 export const DEPARTMENT_NAME = getEnvironmentValue('DEPARTMENT_NAME');
 export const GITHUB_ORG_NAME = getEnvironmentValue('GITHUB_ORG_NAME');
 

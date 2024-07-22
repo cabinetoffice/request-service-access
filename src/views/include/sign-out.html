@@ -3,7 +3,7 @@
     <li class="govuk-list govuk-!-margin-top-2">
       <p class="govuk-body">
         {{ userEmailAuth | default(userEmail) }} | 
-        <a class="govuk-link govuk-link--no-underline govuk-link--no-visited-state" href={{ ROUTES.SIGN_OUT_URL }}>Sign out</a>
+        <a class="govuk-link govuk-link--no-underline govuk-link--no-visited-state" href= {{ AUTH_URLS.AUTH_SIGN_OUT_URL }}>Sign out</a>
       </p>
     </li>
   </ul>
