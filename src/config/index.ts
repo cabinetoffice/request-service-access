@@ -49,7 +49,7 @@ export const CONFIRMATION = 'confirmation';
 export const ADD_TEAM = 'add-team';
 export const ADD_TEAM_MEMBER = 'add-team-member';
 export const ADD_REPO = 'add-repo';
-export const ADD_COLLABORATOR = 'add-collaborator';
+export const COLLABORATOR = 'collaborator';
 export const CHECK_YOUR_REQUESTS = 'check-your-requests';
 export const ADDITIONAL_REQUESTS = 'additional-requests';
 export const ACCESSIBILITY_STATEMENT = 'accessibility-statement';
@@ -66,7 +66,7 @@ export const CONFIRMATION_URL = '/confirmation';
 export const ADD_TEAM_URL = '/add-team';
 export const ADD_TEAM_MEMBER_URL = '/add-team-member';
 export const ADD_REPO_URL = '/add-repo';
-export const ADD_COLLABORATOR_URL = '/add-collaborator';
+export const COLLABORATOR_URL = '/collaborator';
 export const CHECK_YOUR_REQUESTS_URL = '/check-your-requests';
 export const ADDITIONAL_REQUESTS_URL = '/additional-requests';
 export const ACCESSIBILITY_STATEMENT_URL = '/accessibility-statement';
@@ -87,5 +87,7 @@ export const FEATURE_FLAG_ENABLE_DYNAMO = getEnvironmentValue('FEATURE_FLAG_ENAB
 
 // MISC
 export const REMOVE = '/remove';
+export const UPDATE = '/update';
+export const GITHUB_URL = '/github';
 export const ID = 'id';
 export const PARAM_ID = `/:${ID}`;
