@@ -13,13 +13,17 @@ export const checkValidations = (req: Request, res: Response, next: NextFunction
         if (!errorList.isEmpty()) {
             const validatedFilepath = validateFilepath(req.path);
             const id = req.params[config.ID];
+
             // Removing trailing slash and 36 characters from UUID length
-            const template_path = (id) ? validatedFilepath.substring(0, validatedFilepath.length - 37).substring(1) : validatedFilepath.substring(1);
+            const templatePath = (id) ? validatedFilepath.substring(0, validatedFilepath.length - 37).substring(1) : validatedFilepath.substring(1);
             const errors = formatValidationError(errorList.array() as FieldValidationError[]);
 
-            log.info(`Validation error on ${template_path} page`);
+            // extracts the template name from the filepath
+            const template = templatePath.split('/').pop() as string;
 
-            return res.render(template_path, { ...req.body, id, errors });
+            log.info(`Validation error on ${template} page`);
+
+            return res.render(template, { ...req.body, id, errors });
         }
 
         return next();
