@@ -18,7 +18,7 @@ export const MOCK_POST_ADD_MEMBER = {
     contract_type: 'permanent',
     contract_end_date: ''
 };
-export const MOCK_POST_ADD_COLLABORATOR = {
+export const MOCK_POST_COLLABORATOR = {
     first_name: 'example',
     last_name: 'example',
     github_handle: 'example',
