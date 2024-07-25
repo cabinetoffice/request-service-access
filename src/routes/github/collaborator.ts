@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
-import * as config from '../config';
+import * as config from '../../config';
 
-import { checkValidations } from '../middleware/validation.middleware';
-import { authentication } from '../middleware/authentication.middleware';
-import { Collaborator } from '../validation/collaborator.validation';
-import { get, getById, post, postById, removeById } from '../controller/collaborator.controller';
+import { checkValidations } from '../../middleware/validation.middleware';
+import { authentication } from '../../middleware/authentication.middleware';
+import { Collaborator } from '../../validation/github/collaborator.validation';
+import { get, getById, post, postById, removeById } from '../../controller/github/collaborator.controller';
 
 const CollaboratorRouter = Router();
 

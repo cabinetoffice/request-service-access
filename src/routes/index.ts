@@ -10,7 +10,7 @@ import addRepoRouter from './add-repo';
 import addMemberRouter from './add-member';
 import addTeamRouter from './add-team';
 import addTeamMemberRouter from './add-team-member';
-import CollaboratorRouter from './collaborator';
+import CollaboratorRouter from './github/collaborator';
 import checkYourRequestsRouter from './check-your-requests';
 import additionalRequestsRouter from './additional-requests';
 import accessibilityStatementRouter from './accessibility-statement';

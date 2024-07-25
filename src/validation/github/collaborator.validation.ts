@@ -1,8 +1,8 @@
 import { body } from 'express-validator';
 
-import { ErrorMessages } from './error.messages';
-import { githubHandleValidation } from './fields/github-handle.validation';
-import { repoNameValidation } from './fields/repo-name.validation';
+import { ErrorMessages } from '../error.messages';
+import { githubHandleValidation } from '../fields/github-handle.validation';
+import { repoNameValidation } from '../fields/repo-name.validation';
 
 export const Collaborator = [
     body('first_name').not().isEmpty({ ignore_whitespace: true }).withMessage(ErrorMessages.FIRST_NAME),

@@ -1,28 +1,28 @@
-jest.mock('../../../src/utils/logger');
-jest.mock('../../../src/utils/getPreviousPageUrl');
+jest.mock('../../../../src/utils/logger');
+jest.mock('../../../../src/utils/getPreviousPageUrl');
 jest.mock('@co-digital/login');
 jest.mock('uuid');
 
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 
-import { get, getById, post, postById, removeById } from '../../../src/controller/collaborator.controller';
-import { CollaboratorKey } from '../../../src/model/collaborator.model';
-import * as config from '../../../src/config';
+import { get, getById, post, postById, removeById } from '../../../../src/controller/github/collaborator.controller';
+import { CollaboratorKey } from '../../../../src/model/github/collaborator.model';
+import * as config from '../../../../src/config';
 
-import { getPreviousPageUrl } from '../../../src/utils/getPreviousPageUrl';
+import { getPreviousPageUrl } from '../../../../src/utils/getPreviousPageUrl';
 
-import { MOCK_POST_COLLABORATOR } from '../../mock/data';
+import { MOCK_POST_COLLABORATOR } from '../../../mock/data';
 import {
     MOCK_POST_COLLABORATOR_RESPONSE,
     MOCK_BY_ID_COLLABORATOR_RESPONSE,
     MOCK_LOG_ERROR_REQUEST
-} from '../../mock/text.mock';
+} from '../../../mock/text.mock';
 import {
     mockBadRequest,
     mockRequest,
     mockResponse,
     mockNext
-} from '../../mock/express.mock';
+} from '../../../mock/express.mock';
 import {
     mockGetApplicationDataByID,
     mockID,
@@ -30,11 +30,11 @@ import {
     mockSetApplicationDataByID,
     mockSetApplicationDataKey,
     mockUuidv4
-} from '../../mock/session.mock';
+} from '../../../mock/session.mock';
 import {
     mockLogInfo,
     mockLogErrorRequest
-} from '../../mock/log.mock';
+} from '../../../mock/log.mock';
 
 const mockGetPreviousPageUrl = getPreviousPageUrl as jest.Mock;
 

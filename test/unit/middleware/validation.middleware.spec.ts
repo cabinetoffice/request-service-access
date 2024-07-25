@@ -105,6 +105,32 @@ describe('Validation Middleware test suites', () => {
         });
     });
 
+    test(`should call res.render with ${config.COLLABORATOR} with the endpoint path 'github/collaborator`, () => {
+        const fieldKey = 'first_name';
+        req.body[fieldKey] = '';
+        validationResultMock.mockImplementationOnce(() => {
+            return {
+                isEmpty: () => false,
+                array: () => [{ path: fieldKey, msg: ErrorMessages.FIRST_NAME }]
+            };
+        });
+        validateFilepathMock.mockImplementationOnce(() => `${config.GITHUB_URL}/${config.COLLABORATOR_URL}/${mockID}`);
+        checkValidations(req, res, mockNext);
+
+        expect(mockLogInfo).toHaveBeenCalledTimes(1);
+        expect(mockLogInfo).toHaveBeenCalledWith(`Validation error on ${config.COLLABORATOR} page`);
+
+        expect(res.render).toHaveBeenCalledTimes(1);
+        expect(res.render).toHaveBeenCalledWith(config.COLLABORATOR, {
+            ...req.body,
+            [config.ID]: mockID,
+            errors: {
+                errorList: [{ 'href': `#${fieldKey}`, 'text': ErrorMessages.FIRST_NAME }],
+                [fieldKey]: { 'text': ErrorMessages.FIRST_NAME }
+            }
+        });
+    });
+
     test('should catch the error log error message and call next(err)', () => {
         validationResultMock.mockImplementationOnce(() => { throw new Error(MOCK_ERROR.message); });
         checkValidations(req, res, mockNext);

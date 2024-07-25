@@ -7,11 +7,11 @@ import {
 } from '@co-digital/login';
 import { v4 as uuidv4 } from 'uuid';
 
-import * as config from '../config';
-import { log } from '../utils/logger';
-import { getPreviousPageUrl } from '../utils/getPreviousPageUrl';
+import * as config from '../../config';
+import { log } from '../../utils/logger';
+import { getPreviousPageUrl } from '../../utils/getPreviousPageUrl';
 
-import { Collaborator, CollaboratorKey } from '../model/collaborator.model';
+import { Collaborator, CollaboratorKey } from '../../model/github/collaborator.model';
 
 export const get = (_req: Request, res: Response) => {
     return res.render(config.COLLABORATOR);
@@ -28,8 +28,6 @@ export const post = (req: Request, res: Response, next: NextFunction ) => {
 
         const msg = `First name: ${firstName}, Last name: ${lastName}, GitHub handle: ${gitHubHandle}`;
         log.info(`${msg}, email: ${emailAddress}, Repository Name: ${repoName}`);
-
-        console.log(collaboratorID);
 
         setApplicationDataKey(req.session, { ...req.body, [config.ID]: collaboratorID }, CollaboratorKey);
 

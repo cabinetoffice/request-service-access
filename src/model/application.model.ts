@@ -3,7 +3,7 @@ import { AddTeam } from './add-team.model';
 import { AddRepo } from './add-repo.model';
 import { AddTeamMember } from './add-team-member.model';
 import { AdditionalRequests } from './additional-requests.model';
-import { Collaborator } from './collaborator.model';
+import { Collaborator } from './github/collaborator.model';
 
 /*
 All the field names in the page models must exactly match the `name` attributes in the corresponding elements of the HTML pages. This ensures the models can be correctly mapped to the form data.
