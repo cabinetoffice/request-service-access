@@ -15,7 +15,6 @@ import { configureCors } from './config/cors';
 
 import { errorHandler, errorNotFound } from './controller/error.controller';
 
-import { setNonce } from './middleware/nonce.middleware';
 import { configureRateLimit } from './config/rate-limit';
 
 const app = express();
@@ -31,7 +30,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(COOKIE_PARSER_SECRET));
 app.use(cookieSession({ secret: COOKIE_SESSION_SECRET }));
 
-app.use(setNonce);
 configureHelmet(app);
 configureCors(app);
 configureRateLimit(app);
