@@ -27,9 +27,9 @@
     {% include "include/check-your-requests/add-repo.html" %}
     <br>
   {% endif %}
-  {% if (add_collaborator and add_collaborator.length > 0) %}
+  {% if (collaborator and collaborator.length > 0) %}
     <h2 class="govuk-heading-m">Collaborators details</h2>
-    {% include "include/check-your-requests/add-collaborator.html" %}
+    {% include "include/check-your-requests/collaborator.html" %}
     <br>
   {% endif %}
   {% if (additional_requests and additional_requests.length > 0) %}

@@ -1,6 +1,6 @@
-export const AddCollaboratorKey = 'add_collaborator';
+export const CollaboratorKey = 'collaborator';
 
-export const AddCollaboratorMappingKeys: (keyof AddCollaborator)[] = [
+export const CollaboratorMappingKeys: (keyof Collaborator)[] = [
     'id',
     'first_name',
     'last_name',
@@ -9,7 +9,7 @@ export const AddCollaboratorMappingKeys: (keyof AddCollaborator)[] = [
     'repo_name'
 ];
 
-export interface AddCollaborator {
+export interface Collaborator {
   id?: string
   first_name?: string
   last_name?: string

@@ -31,11 +31,11 @@ export const MOCK_GET_ADD_TEAM_MEMBER_RESPONSE = 'Add existing member(s) to a te
 export const MOCK_POST_ADD_TEAM_MEMBER_RESPONSE = 'Team name: team1, GitHub handle(s): joe';
 export const MOCK_BY_ID_TEAM_MEMBER_RESPONSE = 'Team name: team1, GitHub handle(s): joe, Team member ID: ';
 
-// add-collaborator response mocks
+// collaborator response mocks
 
-export const MOCK_GET_ADD_COLLABORATOR_RESPONSE = 'Add a new collaborator to a repository';
-export const MOCK_POST_ADD_COLLABORATOR_RESPONSE = 'First name: example, Last name: example, GitHub handle: example, email: email@hotmail.com, Repository Name: repo1';
-export const MOCK_BY_ID_ADD_COLLABORATOR_RESPONSE = 'GitHub handle: example, Collaborator ID: ';
+export const MOCK_GET_COLLABORATOR_RESPONSE = 'Add a new collaborator to a repository';
+export const MOCK_POST_COLLABORATOR_RESPONSE = 'First name: example, Last name: example, GitHub handle: example, email: email@hotmail.com, Repository Name: repo1';
+export const MOCK_BY_ID_COLLABORATOR_RESPONSE = 'GitHub handle: example, Collaborator ID: ';
 
 // additional-requests mocks
 

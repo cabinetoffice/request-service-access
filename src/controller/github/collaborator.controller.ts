@@ -7,14 +7,14 @@ import {
 } from '@co-digital/login';
 import { v4 as uuidv4 } from 'uuid';
 
-import * as config from '../config';
-import { log } from '../utils/logger';
-import { getPreviousPageUrl } from '../utils/getPreviousPageUrl';
+import * as config from '../../config';
+import { log } from '../../utils/logger';
+import { getPreviousPageUrl } from '../../utils/getPreviousPageUrl';
 
-import { AddCollaborator, AddCollaboratorKey } from '../model/add-collaborator.model';
+import { Collaborator, CollaboratorKey } from '../../model/github/collaborator.model';
 
 export const get = (_req: Request, res: Response) => {
-    return res.render(config.ADD_COLLABORATOR);
+    return res.render(config.COLLABORATOR);
 };
 
 export const post = (req: Request, res: Response, next: NextFunction ) => {
@@ -29,7 +29,7 @@ export const post = (req: Request, res: Response, next: NextFunction ) => {
         const msg = `First name: ${firstName}, Last name: ${lastName}, GitHub handle: ${gitHubHandle}`;
         log.info(`${msg}, email: ${emailAddress}, Repository Name: ${repoName}`);
 
-        setApplicationDataKey(req.session, { ...req.body, [config.ID]: collaboratorID }, AddCollaboratorKey);
+        setApplicationDataKey(req.session, { ...req.body, [config.ID]: collaboratorID }, CollaboratorKey);
 
         return res.redirect(config.HOME_URL);
     } catch (err: any) {
@@ -41,11 +41,11 @@ export const post = (req: Request, res: Response, next: NextFunction ) => {
 export const getById = (req: Request, res: Response, next: NextFunction ) => {
     try {
         const collaboratorID = req.params[config.ID];
-        const addCollaboratorData: AddCollaborator = getApplicationDataByID(req.session, AddCollaboratorKey, collaboratorID);
+        const CollaboratorData: Collaborator = getApplicationDataByID(req.session, CollaboratorKey, collaboratorID);
 
-        log.info(`GitHub handle: ${addCollaboratorData.github_handle}, Collaborator ID: ${collaboratorID}`);
+        log.info(`GitHub handle: ${CollaboratorData.github_handle}, Collaborator ID: ${collaboratorID}`);
 
-        return res.render(config.ADD_COLLABORATOR, { ...addCollaboratorData, [config.ID]: collaboratorID });
+        return res.render(config.COLLABORATOR, { ...CollaboratorData, [config.ID]: collaboratorID });
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);
@@ -59,7 +59,7 @@ export const postById = (req: Request, res: Response, next: NextFunction) => {
 
         log.info(`GitHub handle: ${githubHandleName}, Collaborator ID: ${collaboratorID}`);
 
-        setApplicationDataByID(req.session, { ...req.body, [config.ID]: collaboratorID }, AddCollaboratorKey, collaboratorID);
+        setApplicationDataByID(req.session, { ...req.body, [config.ID]: collaboratorID }, CollaboratorKey, collaboratorID);
 
         return res.redirect(getPreviousPageUrl(req));
     } catch (err: any) {
@@ -72,7 +72,7 @@ export const removeById = (req: Request, res: Response, next: NextFunction) => {
     try {
         log.info(`Collaborator ID: ${req.params.id}`);
 
-        removeApplicationDataByID(req.session, AddCollaboratorKey, req.params[config.ID]);
+        removeApplicationDataByID(req.session, CollaboratorKey, req.params[config.ID]);
 
         return res.redirect(config.HOME_URL);
     } catch (err: any) {
