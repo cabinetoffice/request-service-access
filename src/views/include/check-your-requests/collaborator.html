@@ -2,11 +2,11 @@
 
 {% for collab in collaborator %}
 
-  {% set firstNameHref = "/github/update/collaborator/" + collaborator.id + previousPageQueryParam + "#first_name" %}
-  {% set lastNameHref = "/github/update/collaborator/" + collaborator.id + previousPageQueryParam + "#last_name" %}
-  {% set githubHandleHref = "/github/update/collaborator/" + collaborator.id + previousPageQueryParam + "#github_handle" %}
-  {% set emailAddressHref = "/github/update/collaborator/" + collaborator.id + previousPageQueryParam + "#email_address" %}
-  {% set repoHref = "/github/update/collaborator/" + collaborator.id + previousPageQueryParam + "#repo_name" %}
+  {% set firstNameHref = "/github/update/collaborator/" + collab.id + previousPageQueryParam + "#first_name" %}
+  {% set lastNameHref = "/github/update/collaborator/" + collab.id + previousPageQueryParam + "#last_name" %}
+  {% set githubHandleHref = "/github/update/collaborator/" + collab.id + previousPageQueryParam + "#github_handle" %}
+  {% set emailAddressHref = "/github/update/collaborator/" + collab.id + previousPageQueryParam + "#email_address" %}
+  {% set repoHref = "/github/update/collaborator/" + collab.id + previousPageQueryParam + "#repo_name" %}
 
   <br>
   {{ govukSummaryList({
