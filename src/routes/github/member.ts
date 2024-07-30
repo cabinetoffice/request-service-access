@@ -4,7 +4,7 @@ import * as config from '../../config';
 
 import { checkValidations } from '../../middleware/validation.middleware';
 import { authentication } from '../../middleware/authentication.middleware';
-import { addMember as memberValidation } from '../../validation/member.validation';
+import { member as memberValidation } from '../../validation/github/member.validation';
 import { get, getById, post, postById, removeById } from '../../controller/github/member.controller';
 
 const memberRouter = Router();
