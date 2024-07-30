@@ -2,7 +2,7 @@ import { jest, expect } from '@jest/globals';
 
 import * as config from '../../src/config';
 import express from 'express';
-import { AddMemberKey } from '../../src/model/add-member.model';
+import { MemberKey } from '../../src/model/member.model';
 
 export const MOCK_POST_ISSUE_URL = `https://api.github.com/repos/secret/test/issues`;
 
@@ -26,7 +26,7 @@ export const MOCK_POST_COLLABORATOR = {
     repo_name: 'repo1'
 };
 export const MOCK_APP_DATA = {
-    [AddMemberKey]: MOCK_POST_MEMBER
+    [MemberKey]: MOCK_POST_MEMBER
 };
 
 export const MOCK_JWT_NAME = 'mock-jwt-name';
@@ -43,7 +43,7 @@ export const MOCK_DYNAMODB_RECORD = {
     },
     'data': {
         'M': {
-            [AddMemberKey]: {
+            [MemberKey]: {
                 'L': [
                     {
                         'M': {

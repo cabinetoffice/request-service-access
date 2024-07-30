@@ -1,6 +1,6 @@
-export const AddMemberKey = 'add_member';
+export const MemberKey = 'member';
 
-export const AddMemberMappingKeys: (keyof AddMember)[] = [
+export const MemberMappingKeys: (keyof Member)[] = [
     'id',
     'first_name',
     'last_name',
@@ -10,7 +10,7 @@ export const AddMemberMappingKeys: (keyof AddMember)[] = [
     'description'
 ];
 
-export interface AddMember {
+export interface Member {
   id?: string
   first_name?: string
   last_name?: string

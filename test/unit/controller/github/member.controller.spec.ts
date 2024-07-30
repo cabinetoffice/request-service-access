@@ -6,7 +6,7 @@ jest.mock('uuid');
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 
 import { get, getById, post, postById, removeById } from '../../../../src/controller/github/member.controller';
-import { AddMemberKey } from '../../../../src/model/add-member.model';
+import { MemberKey } from '../../../../src/model/member.model';
 import * as config from '../../../../src/config';
 
 import { getPreviousPageUrl } from '../../../../src/utils/getPreviousPageUrl';
@@ -68,7 +68,7 @@ describe('Member controller test suites', () => {
             expect(mockSetApplicationDataKey).toHaveBeenCalledWith(req.session, {
                 id: mockID,
                 ...MOCK_POST_MEMBER
-            }, AddMemberKey);
+            }, MemberKey);
 
             expect(res.redirect).toBeCalledWith(config.HOME_URL);
             expect(mockNext).not.toHaveBeenCalled();
@@ -132,7 +132,7 @@ describe('Member controller test suites', () => {
             expect(mockSetApplicationDataByID).toHaveBeenCalledWith(req.session, {
                 id: mockID,
                 ...MOCK_POST_MEMBER
-            }, AddMemberKey, mockID);
+            }, MemberKey, mockID);
             expect(mockGetPreviousPageUrl).toHaveBeenCalledWith(req);
 
             expect(res.redirect).toBeCalledWith(config.CHECK_YOUR_REQUESTS_URL);
@@ -173,7 +173,7 @@ describe('Member controller test suites', () => {
 
             getById(req, res, mockNext);
 
-            expect(mockGetApplicationDataByID).toHaveBeenCalledWith(req.session, AddMemberKey, mockID);
+            expect(mockGetApplicationDataByID).toHaveBeenCalledWith(req.session, MemberKey, mockID);
 
             expect(res.render).toBeCalledWith(
                 config.MEMBER,
@@ -215,7 +215,7 @@ describe('Member controller test suites', () => {
 
             removeById(req, res, mockNext);
 
-            expect(mockRemoveApplicationDataByID).toHaveBeenCalledWith(req.session, AddMemberKey, mockID);
+            expect(mockRemoveApplicationDataByID).toHaveBeenCalledWith(req.session, MemberKey, mockID);
 
             expect(res.redirect).toBeCalledWith(config.HOME_URL);
             expect(mockNext).not.toHaveBeenCalled();
