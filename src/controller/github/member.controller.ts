@@ -7,14 +7,14 @@ import {
 } from '@co-digital/login';
 import { v4 as uuidv4 } from 'uuid';
 
-import * as config from '../config';
-import { log } from '../utils/logger';
-import { getPreviousPageUrl } from '../utils/getPreviousPageUrl';
+import * as config from '../../config';
+import { log } from '../../utils/logger';
+import { getPreviousPageUrl } from '../../utils/getPreviousPageUrl';
 
-import { AddMember, AddMemberKey } from '../model/add-member.model';
+import { AddMember, AddMemberKey } from '../../model/add-member.model';
 
 export const get = (_req: Request, res: Response) => {
-    return res.render(config.ADD_MEMBER);
+    return res.render(config.MEMBER);
 };
 
 export const post = (req: Request, res: Response, next: NextFunction ) => {
@@ -50,7 +50,7 @@ export const getById = (req: Request, res: Response, next: NextFunction ) => {
 
         log.info(`GitHub handle: ${addMemberData.github_handle}, Member ID: ${memberID}`);
 
-        return res.render(config.ADD_MEMBER, { ...addMemberData, [config.ID]: memberID });
+        return res.render(config.MEMBER, { ...addMemberData, [config.ID]: memberID });
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);

@@ -9,7 +9,7 @@ export const MOCK_POST_ISSUE_URL = `https://api.github.com/repos/secret/test/iss
 export const GET_REQUEST_MOCK = { method: 'GET', path: '/test' };
 
 export const MOCK_POST_ADD_REPO = { repo_name: 'repo1', visibility: 'public' };
-export const MOCK_POST_ADD_MEMBER = {
+export const MOCK_POST_MEMBER = {
     first_name: 'example',
     last_name: 'example',
     github_handle: 'example',
@@ -26,7 +26,7 @@ export const MOCK_POST_COLLABORATOR = {
     repo_name: 'repo1'
 };
 export const MOCK_APP_DATA = {
-    [AddMemberKey]: MOCK_POST_ADD_MEMBER
+    [AddMemberKey]: MOCK_POST_MEMBER
 };
 
 export const MOCK_JWT_NAME = 'mock-jwt-name';
@@ -48,28 +48,28 @@ export const MOCK_DYNAMODB_RECORD = {
                     {
                         'M': {
                             'first_name': {
-                                'S': MOCK_POST_ADD_MEMBER.first_name
+                                'S': MOCK_POST_MEMBER.first_name
                             },
                             'last_name': {
-                                'S': MOCK_POST_ADD_MEMBER.last_name
+                                'S': MOCK_POST_MEMBER.last_name
                             },
                             'github_handle': {
-                                'S': MOCK_POST_ADD_MEMBER.github_handle
+                                'S': MOCK_POST_MEMBER.github_handle
                             },
                             'id': {
                                 'S': 'a36c9b7f-fe99-4d4c-b2c7-9056f4091527'
                             },
                             'email_address': {
-                                'S': MOCK_POST_ADD_MEMBER.email_address
+                                'S': MOCK_POST_MEMBER.email_address
                             },
                             'description': {
-                                'S': MOCK_POST_ADD_MEMBER.description
+                                'S': MOCK_POST_MEMBER.description
                             },
                             'contract_type': {
-                                'S': MOCK_POST_ADD_MEMBER.contract_type
+                                'S': MOCK_POST_MEMBER.contract_type
                             },
                             'contract_end_date': {
-                                'S': MOCK_POST_ADD_MEMBER.contract_end_date
+                                'S': MOCK_POST_MEMBER.contract_end_date
                             },
                         }
                     }
