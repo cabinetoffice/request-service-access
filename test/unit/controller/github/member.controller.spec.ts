@@ -6,7 +6,7 @@ jest.mock('uuid');
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 
 import { get, getById, post, postById, removeById } from '../../../../src/controller/github/member.controller';
-import { MemberKey } from '../../../../src/model/member.model';
+import { MemberKey } from '../../../../src/model/github/member.model';
 import * as config from '../../../../src/config';
 
 import { getPreviousPageUrl } from '../../../../src/utils/getPreviousPageUrl';

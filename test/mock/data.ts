@@ -2,7 +2,7 @@ import { jest, expect } from '@jest/globals';
 
 import * as config from '../../src/config';
 import express from 'express';
-import { MemberKey } from '../../src/model/member.model';
+import { MemberKey } from '../../src/model/github/member.model';
 
 export const MOCK_POST_ISSUE_URL = `https://api.github.com/repos/secret/test/issues`;
 
