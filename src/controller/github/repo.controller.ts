@@ -7,14 +7,14 @@ import {
 } from '@co-digital/login';
 import { v4 as uuidv4 } from 'uuid';
 
-import * as config from '../config';
-import { log } from '../utils/logger';
-import { getPreviousPageUrl } from '../utils/getPreviousPageUrl';
+import * as config from '../../config';
+import { log } from '../../utils/logger';
+import { getPreviousPageUrl } from '../../utils/getPreviousPageUrl';
 
-import { AddRepo, AddRepoKey } from '../model/add-repo.model';
+import { AddRepo, AddRepoKey } from '../../model/add-repo.model';
 
 export const get = (_req: Request, res: Response) => {
-    return res.render(config.ADD_REPO);
+    return res.render(config.REPO);
 };
 
 export const post = (req: Request, res: Response, next: NextFunction ) => {
@@ -41,7 +41,7 @@ export const getById = (req: Request, res: Response, next: NextFunction ) => {
 
         log.info(`Repository Name: ${addRepoData.repo_name}, Repository ID: ${repoID}`);
 
-        return res.render(config.ADD_REPO, { ...addRepoData, [config.ID]: repoID });
+        return res.render(config.REPO, { ...addRepoData, [config.ID]: repoID });
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);

@@ -11,7 +11,7 @@ import * as config from '../../../src/config';
 import { validateFilepath } from '../../../src/utils/validateFilepath';
 import { checkValidations } from '../../../src/middleware/validation.middleware';
 import { ErrorMessages } from '../../../src/validation/error.messages';
-import { MOCK_ERROR, MOCK_POST_ADD_REPO } from '../../mock/data';
+import { MOCK_ERROR, MOCK_POST_REPO } from '../../mock/data';
 import { mockID } from '../../mock/session.mock';
 import {
     mockLogInfo,
@@ -24,8 +24,8 @@ const validateFilepathMock = validateFilepath as jest.Mock<typeof validateFilepa
 
 const mockRequest = () => {
     const req = {} as Request;
-    req.path = config.ADD_REPO_URL;
-    req.body = MOCK_POST_ADD_REPO;
+    req.path = config.REPO_URL;
+    req.body = MOCK_POST_REPO;
     req.params = { [config.ID]: mockID };
     return req;
 };
@@ -52,7 +52,7 @@ describe('Validation Middleware test suites', () => {
         expect(mockNext).toHaveBeenCalledTimes(1);
     });
 
-    test(`should call res.render with ${config.ADD_REPO} view if errorList is not empty and id empty`, () => {
+    test(`should call res.render with ${config.REPO} view if errorList is not empty and id empty`, () => {
         const fieldKey = 'repo_name';
         validationResultMock.mockImplementationOnce(() => {
             return {
@@ -60,16 +60,16 @@ describe('Validation Middleware test suites', () => {
                 array: () => [{ path: fieldKey, msg: ErrorMessages.REPO_NAME }]
             };
         });
-        validateFilepathMock.mockImplementationOnce(() => config.ADD_REPO_URL);
+        validateFilepathMock.mockImplementationOnce(() => config.REPO_URL);
         req.body[fieldKey] = '';
         req.params[config.ID] = '';
         checkValidations(req, res, mockNext);
 
         expect(mockLogInfo).toHaveBeenCalledTimes(1);
-        expect(mockLogInfo).toHaveBeenCalledWith(`Validation error on ${config.ADD_REPO} page`);
+        expect(mockLogInfo).toHaveBeenCalledWith(`Validation error on ${config.REPO} page`);
 
         expect(res.render).toHaveBeenCalledTimes(1);
-        expect(res.render).toHaveBeenCalledWith(config.ADD_REPO, {
+        expect(res.render).toHaveBeenCalledWith(config.REPO, {
             ...req.body,
             [config.ID]: '',
             errors: {
@@ -79,7 +79,7 @@ describe('Validation Middleware test suites', () => {
         });
     });
 
-    test(`should call res.render with ${config.ADD_REPO} view if errorList and id is not empty`, () => {
+    test(`should call res.render with ${config.REPO} view if errorList and id is not empty`, () => {
         const fieldKey = 'repo_name';
         req.body[fieldKey] = '';
         validationResultMock.mockImplementationOnce(() => {
@@ -88,14 +88,14 @@ describe('Validation Middleware test suites', () => {
                 array: () => [{ path: fieldKey, msg: ErrorMessages.REPO_NAME }]
             };
         });
-        validateFilepathMock.mockImplementationOnce(() => `${config.ADD_REPO_URL}/${mockID}`);
+        validateFilepathMock.mockImplementationOnce(() => `${config.REPO_URL}/${mockID}`);
         checkValidations(req, res, mockNext);
 
         expect(mockLogInfo).toHaveBeenCalledTimes(1);
-        expect(mockLogInfo).toHaveBeenCalledWith(`Validation error on ${config.ADD_REPO} page`);
+        expect(mockLogInfo).toHaveBeenCalledWith(`Validation error on ${config.REPO} page`);
 
         expect(res.render).toHaveBeenCalledTimes(1);
-        expect(res.render).toHaveBeenCalledWith(config.ADD_REPO, {
+        expect(res.render).toHaveBeenCalledWith(config.REPO, {
             ...req.body,
             [config.ID]: mockID,
             errors: {

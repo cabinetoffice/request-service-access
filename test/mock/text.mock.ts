@@ -6,10 +6,10 @@ export const MOCK_GET_START_RESPONSE = 'GitHub Requests';
 export const MOCK_GET_HOME_RESPONSE = 'GitHub Requests';
 export const MOCK_ACCESSIBILITY_STATEMENT_RESPONSE = 'Accessibility statement for the GitHub Requests application';
 
-// add-repo response mocks
+// repo response mocks
 
-export const MOCK_GET_ADD_REPO_RESPONSE = 'Add a new repository';
-export const MOCK_ADD_REPO_RESPONSE = 'Repository Name: repo1, Visibility: public';
+export const MOCK_GET_REPO_RESPONSE = 'Add a new repository';
+export const MOCK_REPO_RESPONSE = 'Repository Name: repo1, Visibility: public';
 export const MOCK_BY_ID_REPO_RESPONSE = 'Repository Name: repo1, Repository ID: ';
 export const MOCK_LOG_ERROR_REQUEST = 'Cannot read properties of undefined';
 
