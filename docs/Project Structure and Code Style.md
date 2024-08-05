@@ -41,17 +41,17 @@ Each page or user interface, defined by an endpoint, is divided into three compo
 In the model the interfaces are defined. These are the data structures used to represent the data for a particular page. Both a mapping key and array are used to map back and forth information between the `session` data and the `nunjucks` HTML view data.
 
 ```js
-// add-repo Page Model
-export const AddRepoKey = 'add_repo';
+// Repo Page Model
+export const RepoKey = 'repo';
 
-export const AddRepoMappingKeys: (keyof AddRepo)[] = [
+export const RepoMappingKeys: (keyof Repo)[] = [
     'id',
     'repo_name',
     'visibility',
     'description'
 ];
 
-export interface AddRepo {
+export interface Repo {
   id?: string;
   repo_name?: string;
   visibility?: string;
@@ -65,7 +65,7 @@ For each interface, a key used to represent the object on the application data m
 ```js
 // Application Data model
 export interface ApplicationData {
-    add_repo?: AddRepo[]
+    repo?: Repo[]
     ​...​
 }
 ```
@@ -204,16 +204,18 @@ export const colaAuthenticationMiddleware = async ( req: Request, res: Response,
 To chain the middleware to a particular endpoint it is added to the router object like `router.METHOD(path, [callback, ...] callback)` as described [here](https://expressjs.com/en/5x/api.html#router.METHOD)
 
 ```js
-// Chain middlewares for the `add-repo` endpoints
-const addRepoRouter = Router();
+// Chain middlewares for the `repo` endpoints
+const repoRouter = Router();
 
-addRepoRouter.get(config.ADD_REPO_URL, authentication, get);
-addRepoRouter.post(config.ADD_REPO_URL, authentication, ...addRepoValidation, checkValidations, post);
-addRepoRouter.get(config.ADD_REPO_URL + config.PARAM_ID, authentication, getById);
-addRepoRouter.get(config.ADD_REPO_URL + config.REMOVE + config.PARAM_ID, authentication, removeById);
-addRepoRouter.post(config.ADD_REPO_URL + config.PARAM_ID, authentication, ...addRepoValidation, checkValidations, postById);
+repoRouter.get(config.GITHUB_URL + config.CREATE + config.REPO_URL, authentication, get);
+repoRouter.post(config.GITHUB_URL + config.CREATE + config.REPO_URL, authentication, ...repoValidation, checkValidations, post);
 
-export default addRepoRouter;
+repoRouter.get(config.GITHUB_URL + config.REMOVE + config.REPO_URL + config.PARAM_ID, authentication, removeById);
+
+repoRouter.get(config.GITHUB_URL + config.UPDATE + config.REPO_URL + config.PARAM_ID, authentication, getById);
+repoRouter.post(config.GITHUB_URL + config.UPDATE + config.REPO_URL + config.PARAM_ID, authentication, ...repoValidation, checkValidations, postById);
+
+export default repoRouter;
 ```
 
 ## Validation
