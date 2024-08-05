@@ -6,7 +6,7 @@ jest.mock('uuid');
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 
 import { get, getById, post, postById, removeById } from '../../../../src/controller/github/repo.controller';
-import { AddRepoKey } from '../../../../src/model/add-repo.model';
+import { RepoKey } from '../../../../src/model/github/repo.model';
 import * as config from '../../../../src/config';
 
 import { getPreviousPageUrl } from '../../../../src/utils/getPreviousPageUrl';
@@ -59,7 +59,7 @@ describe('Repo controller test suites', () => {
             expect(mockSetApplicationDataKey).toHaveBeenCalledWith(req.session, {
                 id: mockID,
                 ...MOCK_POST_REPO
-            }, AddRepoKey);
+            }, RepoKey);
 
             expect(res.redirect).toBeCalledWith(config.HOME_URL);
             expect(mockNext).not.toHaveBeenCalled();
@@ -108,7 +108,7 @@ describe('Repo controller test suites', () => {
             expect(mockSetApplicationDataByID).toHaveBeenCalledWith(req.session, {
                 id: mockID,
                 ...MOCK_POST_REPO
-            }, AddRepoKey, mockID);
+            }, RepoKey, mockID);
             expect(mockGetPreviousPageUrl).toHaveBeenCalledWith(req);
 
             expect(res.redirect).toBeCalledWith(config.CHECK_YOUR_REQUESTS_URL);
@@ -150,7 +150,7 @@ describe('Repo controller test suites', () => {
 
             getById(req, res, mockNext);
 
-            expect(mockGetApplicationDataByID).toHaveBeenCalledWith(req.session, AddRepoKey, mockID);
+            expect(mockGetApplicationDataByID).toHaveBeenCalledWith(req.session, RepoKey, mockID);
 
             expect(res.render).toBeCalledWith(
                 config.REPO,
@@ -192,7 +192,7 @@ describe('Repo controller test suites', () => {
 
             removeById(req, res, mockNext);
 
-            expect(mockRemoveApplicationDataByID).toHaveBeenCalledWith(req.session, AddRepoKey, mockID);
+            expect(mockRemoveApplicationDataByID).toHaveBeenCalledWith(req.session, RepoKey, mockID);
 
             expect(res.redirect).toBeCalledWith(config.HOME_URL);
             expect(mockNext).not.toHaveBeenCalled();
