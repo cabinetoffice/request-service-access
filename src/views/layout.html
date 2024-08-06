@@ -20,10 +20,10 @@
 {% from "govuk/components/notification-banner/macro.njk"    import govukNotificationBanner %}
 
 {% block head %}
-  <link rel="stylesheet" type="text/css" media="all" href="//{{CDN_HOST}}/govuk-frontend/v5.3.0/govuk-frontend-5.3.0.min.css">
+  <link rel="stylesheet" type="text/css" media="all" href="/govuk-frontend.min.css">
 
-  <link rel="SHORTCUT ICON" href="//{{CDN_HOST}}/images/favicon.ico"/>
-  <link rel="icon" href="//{{CDN_HOST}}/images/favicon.ico" type="image/x-icon"/>
+  <link rel="SHORTCUT ICON" href="/assets/images/favicon.ico"/>
+  <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 {% endblock %}
 
 {% block header %}
@@ -85,11 +85,10 @@
 
 {% block bodyEnd %}
   {% if FEATURE_FLAG_ENABLE_COOKIE_BANNER == "true" %}
-    <script src="/assets/javascripts/cookies.js"></script>
+    <script src="//{{CDN_HOST}}/app/github-requests-app/javascripts/cookies.js"></script>
   {% endif %}
-  <script type="module" src="//{{CDN_HOST}}/govuk-frontend/v5.3.0/govuk-frontend-5.3.0.min.js"></script>
   <script type="module">
-    import { initAll } from '//{{CDN_HOST}}/govuk-frontend/v5.3.0/govuk-frontend.min.js'
+    import { initAll } from '/govuk-frontend.min.js'
     initAll()
   </script>
 {% endblock %}

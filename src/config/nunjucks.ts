@@ -8,7 +8,7 @@ export const configureNunjucks = (app: express.Application, viewsPath: string) =
     log.info(`Set nunjucks configurations and where nunjucks templates should resolve to: ${viewsPath}`);
 
     const nunjucksEnv = nunjucks.configure(
-        [viewsPath, 'node_modules/govuk-frontend/dist', 'node_modules/govuk-frontend/dist/components'],
+        [viewsPath, 'node_modules/govuk-frontend/dist'],
         {
             autoescape: true,
             express: app
