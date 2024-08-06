@@ -1,6 +1,6 @@
 {% set memberSummaryData = [] %}
 
-{% for member in member %}
+{% for member in members %}
 
   {% set memberEditHref = "/github/update/member/" + member.id %}
   {% set memberDeleteHref = "/github/remove/member/" + member.id %}

@@ -1,6 +1,6 @@
 {% set previousPageQueryParam = "?" + PARAMS.previousPage + "=" + ROUTES.CHECK_YOUR_REQUESTS_URL %}
 
-{% for member in member %}
+{% for member in members %}
 
   {% set firstNameHref = "/github/update/member/" + member.id + previousPageQueryParam + "#first_name" %}
   {% set lastNameHref = "/github/update/member/" + member.id + previousPageQueryParam + "#last_name" %}

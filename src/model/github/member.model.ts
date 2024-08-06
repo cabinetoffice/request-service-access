@@ -1,4 +1,4 @@
-export const MemberKey = 'member';
+export const MemberKey = 'members';
 
 export const MemberMappingKeys: (keyof Member)[] = [
     'id',
