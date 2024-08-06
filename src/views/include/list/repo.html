@@ -1,6 +1,6 @@
 {% set repoSummaryData = [] %}
 
-{% for repo in repo %}
+{% for repo in repos %}
 
   {% set repoEditHref = "/github/update/repo/" + repo.id %}
   {% set repoDeleteHref = "/github/remove/repo/" + repo.id %}

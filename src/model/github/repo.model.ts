@@ -1,4 +1,4 @@
-export const RepoKey = 'repo';
+export const RepoKey = 'repos';
 
 export const RepoMappingKeys: (keyof Repo)[] = [
     'id',

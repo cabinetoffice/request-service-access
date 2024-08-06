@@ -1,6 +1,6 @@
 {% set previousPageQueryParam = "?" + PARAMS.previousPage + "=" + ROUTES.CHECK_YOUR_REQUESTS_URL %}
 
-{% for repo in repo %}
+{% for repo in repos %}
 
   {% set repoHref = "/github/update/repo/" + repo.id + previousPageQueryParam + "#repo_name" %}
   {% set visibilityHref = "/github/update/repo/" + repo.id + previousPageQueryParam + "#visibility" %}

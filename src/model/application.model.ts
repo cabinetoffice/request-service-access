@@ -12,7 +12,7 @@ All the field names in the page models must exactly match the `name` attributes 
 export interface ApplicationData {
   members?: Member[]
   add_team?: AddTeam[]
-  repo?: Repo[]
+  repos?: Repo[]
   add_team_member?: AddTeamMember[]
   collaborator?: Collaborator[]
   additional_requests?: AdditionalRequests[]

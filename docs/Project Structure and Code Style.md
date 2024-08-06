@@ -42,7 +42,7 @@ In the model the interfaces are defined. These are the data structures used to r
 
 ```js
 // Repo Page Model
-export const RepoKey = 'repo';
+export const RepoKey = 'repos';
 
 export const RepoMappingKeys: (keyof Repo)[] = [
     'id',
@@ -65,7 +65,7 @@ For each interface, a key used to represent the object on the application data m
 ```js
 // Application Data model
 export interface ApplicationData {
-    repo?: Repo[]
+    repos?: Repo[]
     ​...​
 }
 ```
