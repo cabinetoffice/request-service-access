@@ -1,7 +1,7 @@
 jest.mock('nunjucks');
 jest.mock('../../../src/utils/logger');
 
-import { describe, expect, test, jest } from '@jest/globals';
+import { describe, expect, afterEach, test, jest } from '@jest/globals';
 
 import * as nunjucks from 'nunjucks';
 
@@ -32,7 +32,7 @@ describe('Nunjucks Configuration test suites', () => {
         configureNunjucks(MOCK_EXPRESS_APP, MOCK_VIEWS_PATH);
 
         expect(nunjucks.configure).toHaveBeenCalledWith(
-            [MOCK_VIEWS_PATH, 'node_modules/govuk-frontend/dist', 'node_modules/govuk-frontend/dist/components'],
+            [MOCK_VIEWS_PATH, 'node_modules/govuk-frontend/dist'],
             {
                 autoescape: true,
                 express: MOCK_EXPRESS_APP

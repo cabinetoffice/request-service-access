@@ -3,8 +3,8 @@ jest.mock('helmet');
 import { describe, expect, test, jest, afterEach } from '@jest/globals';
 import helmet from 'helmet';
 
-import { configureHelmet } from '../../../src/config/helmet';
-import { MOCK_HELMET_VALUE, MOCK_EXPRESS_APP } from '../../mock/data';
+import { configureHelmet, HELMET_OPTIONS } from '../../../src/config/helmet';
+import { MOCK_EXPRESS_APP } from '../../mock/data';
 
 describe('Helmet Config test suites', () => {
     afterEach(() => {
@@ -17,7 +17,7 @@ describe('Helmet Config test suites', () => {
         configureHelmet(MOCK_EXPRESS_APP);
 
         expect(mockHelmet).toHaveBeenCalledTimes(1);
-        expect(mockHelmet).toHaveBeenCalledWith(MOCK_HELMET_VALUE);
+        expect(mockHelmet).toHaveBeenCalledWith(HELMET_OPTIONS);
         expect(MOCK_EXPRESS_APP.use).toHaveBeenCalled();
     });
 });
