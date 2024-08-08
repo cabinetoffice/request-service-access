@@ -6,7 +6,7 @@
   <h2 class="govuk-heading-m">General requests</h2>
   <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
     <li>
-      <a class="govuk-link" href="/add-member">Add a new member</a>
+      <a class="govuk-link" href="/github/create/member">Add a new member</a>
     </li>
     <li>
       <a class="govuk-link" href="/add-team">Add a new team</a>
@@ -33,7 +33,7 @@
   </ul>
 
   <form method="post">
-    {% if (add_member and add_member.length > 0)
+    {% if (members and members.length > 0)
       or (add_team and add_team.length > 0)
       or (add_team_member and add_team_member.length > 0)
       or (add_repo and add_repo.length > 0)

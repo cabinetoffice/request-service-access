@@ -7,14 +7,14 @@ import {
 } from '@co-digital/login';
 import { v4 as uuidv4 } from 'uuid';
 
-import * as config from '../config';
-import { log } from '../utils/logger';
-import { getPreviousPageUrl } from '../utils/getPreviousPageUrl';
+import * as config from '../../config';
+import { log } from '../../utils/logger';
+import { getPreviousPageUrl } from '../../utils/getPreviousPageUrl';
 
-import { AddMember, AddMemberKey } from '../model/add-member.model';
+import { Member, MemberKey } from '../../model/github/member.model';
 
 export const get = (_req: Request, res: Response) => {
-    return res.render(config.ADD_MEMBER);
+    return res.render(config.MEMBER);
 };
 
 export const post = (req: Request, res: Response, next: NextFunction ) => {
@@ -33,7 +33,7 @@ export const post = (req: Request, res: Response, next: NextFunction ) => {
         setApplicationDataKey(
             req.session,
             postSessionBody(req.body, memberID, contractType, contractEndDate),
-            AddMemberKey
+            MemberKey
         );
 
         return res.redirect(config.HOME_URL);
@@ -46,11 +46,11 @@ export const post = (req: Request, res: Response, next: NextFunction ) => {
 export const getById = (req: Request, res: Response, next: NextFunction ) => {
     try {
         const memberID = req.params[config.ID];
-        const addMemberData: AddMember = getApplicationDataByID(req.session, AddMemberKey, memberID);
+        const memberData: Member = getApplicationDataByID(req.session, MemberKey, memberID);
 
-        log.info(`GitHub handle: ${addMemberData.github_handle}, Member ID: ${memberID}`);
+        log.info(`GitHub handle: ${memberData.github_handle}, Member ID: ${memberID}`);
 
-        return res.render(config.ADD_MEMBER, { ...addMemberData, [config.ID]: memberID });
+        return res.render(config.MEMBER, { ...memberData, [config.ID]: memberID });
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);
@@ -69,7 +69,7 @@ export const postById = (req: Request, res: Response, next: NextFunction) => {
         setApplicationDataByID(
             req.session,
             postSessionBody(req.body, memberID, contractType, contractEndDate),
-            AddMemberKey, memberID
+            MemberKey, memberID
         );
 
         return res.redirect(getPreviousPageUrl(req));
@@ -83,7 +83,7 @@ export const removeById = (req: Request, res: Response, next: NextFunction) => {
     try {
         log.info(`Member ID: ${req.params.id}`);
 
-        removeApplicationDataByID(req.session, AddMemberKey, req.params[config.ID]);
+        removeApplicationDataByID(req.session, MemberKey, req.params[config.ID]);
 
         return res.redirect(config.HOME_URL);
     } catch (err: any) {

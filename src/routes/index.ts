@@ -7,7 +7,7 @@ import homePageRouter from './home';
 import healthcheckRouter from './healthcheck';
 import confirmationRouter from './confirmation';
 import addRepoRouter from './add-repo';
-import addMemberRouter from './add-member';
+import memberRouter from './github/member';
 import addTeamRouter from './add-team';
 import addTeamMemberRouter from './add-team-member';
 import CollaboratorRouter from './github/collaborator';
@@ -25,7 +25,7 @@ router.use(logger);
 // Routes
 router.use(startPageRouter);
 router.use(homePageRouter);
-router.use(addMemberRouter);
+router.use(memberRouter);
 router.use(confirmationRouter);
 router.use(healthcheckRouter);
 router.use(addRepoRouter);

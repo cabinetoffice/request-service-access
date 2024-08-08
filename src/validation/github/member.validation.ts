@@ -1,11 +1,11 @@
 import { body } from 'express-validator';
 
-import { ErrorMessages } from './error.messages';
-import { descriptionValidation } from './fields/description.validation';
-import { checkDateFieldIfRadioButtonSelected } from './fields/helper/date.validation.helper';
-import { githubHandleValidation } from './fields/github-handle.validation';
+import { ErrorMessages } from '../error.messages';
+import { descriptionValidation } from '../fields/description.validation';
+import { checkDateFieldIfRadioButtonSelected } from '../fields/helper/date.validation.helper';
+import { githubHandleValidation } from '../fields/github-handle.validation';
 
-export const addMember = [
+export const member = [
     body('first_name').not().isEmpty({ ignore_whitespace: true }).withMessage(ErrorMessages.FIRST_NAME),
     body('last_name').not().isEmpty({ ignore_whitespace: true }).withMessage(ErrorMessages.LAST_NAME),
     ...githubHandleValidation,
