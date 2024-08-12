@@ -1,15 +1,15 @@
 import { NextFunction, Request, Response } from 'express';
 import { getSessionData } from '@co-digital/login';
 
-import * as config from '../config';
-import { log } from '../utils/logger';
-import { ApplicationData } from '../model/application.model';
+import * as config from '../../config';
+import { log } from '../../utils/logger';
+import { ApplicationData } from '../../model/application.model';
 
 export const get = (req: Request, res: Response, next: NextFunction) => {
     try {
         const appData: ApplicationData = getSessionData(req.session);
 
-        return res.render(config.HOME, {
+        return res.render(config.GITHUB_HOME, {
             ...appData
         });
     } catch (err: any) {
