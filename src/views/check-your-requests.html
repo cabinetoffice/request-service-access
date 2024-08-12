@@ -12,9 +12,9 @@
     {% include "include/check-your-requests/member.html" %}
     <br>
   {% endif %}
-  {% if (add_team and add_team.length > 0) %}
+  {% if (teams and teams.length > 0) %}
     <h2 class="govuk-heading-m">Teams details</h2>
-    {% include "include/check-your-requests/add-team.html" %}
+    {% include "include/check-your-requests/team.html" %}
     <br>
   {% endif %}
   {% if (add_team_member and add_team_member.length > 0) %}

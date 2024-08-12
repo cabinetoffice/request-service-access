@@ -1,0 +1,35 @@
+{% set teamSummaryData = [] %}
+
+{% for team in teams %}
+
+  {% set teamEditHref = "/github/update/team/" + team.id %}
+  {% set teamDeleteHref = "/github/remove/team/" + team.id %}
+
+  {% set teamSummaryData = (teamSummaryData.push({
+    key: { 
+      text: "Team name"
+    },
+    value: {
+      text: team.team_name
+    },
+    actions: {
+      items: [
+        {
+          href: teamEditHref,
+          text: "Edit",
+          visuallyHiddenText: "Team name"
+        },
+        {
+          href: teamDeleteHref,
+          text: "Delete",
+          visuallyHiddenText: "Team name"
+        }
+      ]
+    }
+  }), teamSummaryData) %}
+
+{% endfor %}
+
+{{ govukSummaryList({
+  rows: teamSummaryData
+}) }}
