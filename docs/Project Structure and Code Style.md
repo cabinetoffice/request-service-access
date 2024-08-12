@@ -115,13 +115,13 @@ Generally only POST and GET HTTP methods are used, and therefore GET and POST co
 
 
 ```js
-// Home page which fetches session data
+// Github home page which fetches session data
 
 export const get = (req: Request, res: Response, next: NextFunction) => {
     try {
         const appData: ApplicationData = getSessionData(req.session);
 
-        return res.render(config.HOME, {
+        return res.render(config.GITHUB_HOME, {
             ...appData
         });
     } catch (err: any) {
@@ -143,7 +143,7 @@ export const post = (req: Request, res: Response, next: NextFunction ) => {
         ...
         setApplicationDataKey(req.session, { ...req.body, [config.ID]: repoID }, AddRepoKey);
 
-        return res.redirect(config.HOME_URL);
+        return res.redirect(config.GITHUB_HOME_URL);
     } catch (err: any) {
       ...
     }
