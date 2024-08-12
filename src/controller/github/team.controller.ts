@@ -7,14 +7,14 @@ import {
 } from '@co-digital/login';
 import { v4 as uuidv4 } from 'uuid';
 
-import * as config from '../config';
-import { log } from '../utils/logger';
+import * as config from '../../config';
+import { log } from '../../utils/logger';
 
-import { AddTeam, AddTeamKey } from '../model/add-team.model';
-import { getPreviousPageUrl } from '../utils/getPreviousPageUrl';
+import { AddTeam, AddTeamKey } from '../../model/add-team.model';
+import { getPreviousPageUrl } from '../../utils/getPreviousPageUrl';
 
 export const get = (_req: Request, res: Response) => {
-    return res.render(config.ADD_TEAM);
+    return res.render(config.TEAM);
 };
 
 export const post = (req: Request, res: Response, next: NextFunction) => {
@@ -41,7 +41,7 @@ export const getById = (req: Request, res: Response, next: NextFunction) => {
 
         log.info(`Team Name: ${addTeamData.team_name}, Team ID: ${teamID}`);
 
-        return res.render(config.ADD_TEAM, { ...addTeamData, [config.ID]: teamID });
+        return res.render(config.TEAM, { ...addTeamData, [config.ID]: teamID });
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);

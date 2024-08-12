@@ -1,19 +1,19 @@
-jest.mock('../../../src/utils/logger');
-jest.mock('../../../src/utils/getPreviousPageUrl');
+jest.mock('../../../../src/utils/logger');
+jest.mock('../../../../src/utils/getPreviousPageUrl');
 jest.mock('@co-digital/login');
 jest.mock('uuid');
 
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 
-import { get, getById, post, postById, removeById } from '../../../src/controller/add-team.controller';
-import { AddTeamKey } from '../../../src/model/add-team.model';
-import * as config from '../../../src/config';
+import { get, getById, post, postById, removeById } from '../../../../src/controller/github/team.controller';
+import { AddTeamKey } from '../../../../src/model/add-team.model';
+import * as config from '../../../../src/config';
 
-import { getPreviousPageUrl } from '../../../src/utils/getPreviousPageUrl';
+import { getPreviousPageUrl } from '../../../../src/utils/getPreviousPageUrl';
 
-import { MOCK_POST_ADD_TEAM } from '../../mock/data';
-import { MOCK_POST_ADD_TEAM_RESPONSE, MOCK_LOG_ERROR_REQUEST, MOCK_BY_ID_TEAM_RESPONSE } from '../../mock/text.mock';
-import { mockRequest, mockResponse, mockNext, mockBadRequest } from '../../mock/express.mock';
+import { MOCK_POST_TEAM } from '../../../mock/data';
+import { MOCK_POST_TEAM_RESPONSE, MOCK_LOG_ERROR_REQUEST, MOCK_BY_ID_TEAM_RESPONSE } from '../../../mock/text.mock';
+import { mockRequest, mockResponse, mockNext, mockBadRequest } from '../../../mock/express.mock';
 
 import {
     mockGetApplicationDataByID,
@@ -22,44 +22,44 @@ import {
     mockSetApplicationDataByID,
     mockSetApplicationDataKey,
     mockUuidv4
-} from '../../mock/session.mock';
+} from '../../../mock/session.mock';
 import {
     mockLogInfo,
     mockLogErrorRequest
-} from '../../mock/log.mock';
+} from '../../../mock/log.mock';
 
 const mockGetPreviousPageUrl = getPreviousPageUrl as jest.Mock;
 
-describe('add-team controller test suites', () => {
+describe('team controller test suites', () => {
 
     afterEach(() => {
         jest.resetAllMocks();
     });
 
-    describe('add-team GET tests', () => {
+    describe('team GET tests', () => {
 
-        test('should render add-team page', () => {
+        test('should render team page', () => {
             const res = mockResponse();
             const req = mockRequest();
 
             get(req, res);
 
-            expect(res.render).toHaveBeenCalledWith(config.ADD_TEAM);
+            expect(res.render).toHaveBeenCalledWith(config.TEAM);
         });
     });
 
-    describe('add-team POST tests', () => {
+    describe('team POST tests', () => {
 
         test('should redirect to home page on POST request', () => {
             mockUuidv4.mockImplementation(_ => mockID);
             const res = mockResponse();
-            const req = { ...mockRequest(MOCK_POST_ADD_TEAM), session: {} } as any;
+            const req = { ...mockRequest(MOCK_POST_TEAM), session: {} } as any;
 
             post(req, res, mockNext);
 
             expect(mockSetApplicationDataKey).toHaveBeenCalledWith(req.session, {
                 id: mockID,
-                ...MOCK_POST_ADD_TEAM
+                ...MOCK_POST_TEAM
             }, AddTeamKey);
 
             expect(res.redirect).toBeCalledWith(config.HOME_URL);
@@ -68,13 +68,13 @@ describe('add-team controller test suites', () => {
 
         test('should log Team Name and Team Maintainer GitHub handle on POST request', () => {
             const res = mockResponse();
-            const req = mockRequest(MOCK_POST_ADD_TEAM);
+            const req = mockRequest(MOCK_POST_TEAM);
             mockUuidv4.mockImplementationOnce(_ => mockID);
 
             post(req, res, mockNext);
 
             expect(mockSetApplicationDataKey).toHaveBeenCalledTimes(1);
-            expect(mockLogInfo).toHaveBeenCalledWith(`${MOCK_POST_ADD_TEAM_RESPONSE}${mockID}`);
+            expect(mockLogInfo).toHaveBeenCalledWith(`${MOCK_POST_TEAM_RESPONSE}${mockID}`);
             expect(mockNext).not.toHaveBeenCalled();
 
         });
@@ -91,7 +91,7 @@ describe('add-team controller test suites', () => {
         });
     });
 
-    describe('add-team POST ById tests', () => {
+    describe('team POST ById tests', () => {
 
         test('should redirect to previous page on POST ById request', () => {
 
@@ -99,7 +99,7 @@ describe('add-team controller test suites', () => {
 
             const res = mockResponse();
             const req = {
-                ...mockRequest(MOCK_POST_ADD_TEAM),
+                ...mockRequest(MOCK_POST_TEAM),
                 session: {},
                 params: { id: mockID },
                 query: { previousPage: config.CHECK_YOUR_REQUESTS_URL }
@@ -109,7 +109,7 @@ describe('add-team controller test suites', () => {
 
             expect(mockSetApplicationDataByID).toHaveBeenCalledWith(req.session, {
                 id: mockID,
-                ...MOCK_POST_ADD_TEAM
+                ...MOCK_POST_TEAM
             }, AddTeamKey, mockID);
             expect(mockGetPreviousPageUrl).toHaveBeenCalledWith(req);
 
@@ -117,10 +117,10 @@ describe('add-team controller test suites', () => {
             expect(mockNext).not.toHaveBeenCalled();
         });
 
-        test('should log add-team details on POST ById request', () => {
+        test('should log team details on POST ById request', () => {
             const res = mockResponse();
             const req = {
-                ...mockRequest(MOCK_POST_ADD_TEAM),
+                ...mockRequest(MOCK_POST_TEAM),
                 params: { id: mockID }
             } as any;
 
@@ -143,30 +143,30 @@ describe('add-team controller test suites', () => {
         });
     });
 
-    describe('add-team GET ById tests', () => {
+    describe('team GET ById tests', () => {
 
-        test('should render add-team template', () => {
+        test('should render team template', () => {
             const res = mockResponse();
             const req = { params: { id: mockID } } as any;
-            mockGetApplicationDataByID.mockImplementationOnce( _ => MOCK_POST_ADD_TEAM);
+            mockGetApplicationDataByID.mockImplementationOnce( _ => MOCK_POST_TEAM);
 
             getById(req, res, mockNext);
 
             expect(mockGetApplicationDataByID).toHaveBeenCalledWith(req.session, AddTeamKey, mockID);
 
             expect(res.render).toBeCalledWith(
-                config.ADD_TEAM,
-                { ...MOCK_POST_ADD_TEAM, [config.ID]: mockID }
+                config.TEAM,
+                { ...MOCK_POST_TEAM, [config.ID]: mockID }
             );
             expect(mockNext).not.toHaveBeenCalled();
         });
 
-        test('should log add-team details on GET ById request', () => {
+        test('should log team details on GET ById request', () => {
             const res = mockResponse();
             const req = {
                 params: { id: mockID }
             } as any;
-            mockGetApplicationDataByID.mockImplementationOnce( _ => MOCK_POST_ADD_TEAM);
+            mockGetApplicationDataByID.mockImplementationOnce( _ => MOCK_POST_TEAM);
 
             getById(req, res, mockNext);
             expect(mockGetApplicationDataByID).toHaveBeenCalledTimes(1);
@@ -186,7 +186,7 @@ describe('add-team controller test suites', () => {
         });
     });
 
-    describe('add-team REMOVE ById tests', () => {
+    describe('team REMOVE ById tests', () => {
 
         test('should redirect to home page', () => {
             const res = mockResponse();
@@ -200,7 +200,7 @@ describe('add-team controller test suites', () => {
             expect(mockNext).not.toHaveBeenCalled();
         });
 
-        test('should log add-team details on Remove ById request', () => {
+        test('should log team details on Remove ById request', () => {
             const res = mockResponse();
             const req = { params: { id: mockID } } as any;
 
