@@ -13,7 +13,7 @@ import { logger } from '../../../src/middleware/logger.middleware';
 import { authentication } from '../../../src/middleware/authentication.middleware';
 
 import {
-    MOCK_HOME_REDIRECT_MESSAGE,
+    MOCK_GITHUB_HOME_REDIRECT_MESSAGE,
     MOCK_GET_ADD_MEMBER_RESPONSE,
     MOCK_POST_ADD_MEMBER_RESPONSE
 } from '../../mock/text.mock';
@@ -41,11 +41,11 @@ describe('Add-member endpoint integration tests', () => {
         });
     });
     describe('Add member POST tests', () => {
-        test('Should redirect to home page after POST request', async () => {
+        test('Should redirect to github-home page after POST request', async () => {
             const res = await request(app).post(config.ADD_MEMBER_URL).send(MOCK_POST_ADD_MEMBER);
 
             expect(res.status).toEqual(302);
-            expect(res.text).toContain(MOCK_HOME_REDIRECT_MESSAGE);
+            expect(res.text).toContain(MOCK_GITHUB_HOME_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
@@ -76,7 +76,7 @@ describe('Add-member endpoint integration tests', () => {
             const mockLog = log.info as jest.Mock;
 
             expect(mockLog).toBeCalledWith(MOCK_POST_ADD_MEMBER_RESPONSE);
-            expect(res.text).toContain(MOCK_HOME_REDIRECT_MESSAGE);
+            expect(res.text).toContain(MOCK_GITHUB_HOME_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });

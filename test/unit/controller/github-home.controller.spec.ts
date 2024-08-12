@@ -2,7 +2,7 @@ jest.mock('../../../src/utils/logger');
 
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 
-import { get } from '../../../src/controller/home.controller';
+import { get } from '../../../src/controller/github/github-home.controller';
 import * as config from '../../../src/config';
 import { mockNext, mockRequest, mockResponse } from '../../mock/express.mock';
 import { mockLogErrorRequest } from '../../mock/log.mock';
@@ -19,7 +19,7 @@ describe('Home controller test suites', () => {
 
         get(req, res, mockNext);
 
-        expect(res.render).toHaveBeenCalledWith(config.HOME, expect.anything());
+        expect(res.render).toHaveBeenCalledWith(config.GITHUB_HOME, expect.anything());
     });
 
     test('should log error request and call next', () => {
