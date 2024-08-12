@@ -177,7 +177,6 @@ Session {
     ]
   }
 }
-add_team: 
 ```
 
 ## Authentication
