@@ -1,6 +1,6 @@
 import { Member } from './github/member.model';
 import { AddTeam } from './add-team.model';
-import { AddRepo } from './add-repo.model';
+import { Repo } from './github/repo.model';
 import { AddTeamMember } from './add-team-member.model';
 import { AdditionalRequests } from './additional-requests.model';
 import { Collaborator } from './github/collaborator.model';
@@ -12,7 +12,7 @@ All the field names in the page models must exactly match the `name` attributes 
 export interface ApplicationData {
   members?: Member[]
   add_team?: AddTeam[]
-  add_repo?: AddRepo[]
+  repos?: Repo[]
   add_team_member?: AddTeamMember[]
   collaborator?: Collaborator[]
   additional_requests?: AdditionalRequests[]

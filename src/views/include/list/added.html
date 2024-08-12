@@ -16,9 +16,9 @@
   <br>
   <br>
 {% endif %}
-{% if (add_repo and add_repo.length > 0) %}
+{% if (repos and repos.length > 0) %}
   <h2 class="govuk-heading-m">New repository requests</h2>
-  {% include "include/list/add-repo.html" %}
+  {% include "include/list/repo.html" %}
   <br>
   <br>
 {% endif %}

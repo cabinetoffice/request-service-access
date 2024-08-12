@@ -1,19 +1,19 @@
-jest.mock('../../../src/utils/logger');
-jest.mock('../../../src/utils/getPreviousPageUrl');
+jest.mock('../../../../src/utils/logger');
+jest.mock('../../../../src/utils/getPreviousPageUrl');
 jest.mock('@co-digital/login');
 jest.mock('uuid');
 
 import { describe, expect, afterEach, test, jest } from '@jest/globals';
 
-import { get, getById, post, postById, removeById } from '../../../src/controller/add-repo.controller';
-import { AddRepoKey } from '../../../src/model/add-repo.model';
-import * as config from '../../../src/config';
+import { get, getById, post, postById, removeById } from '../../../../src/controller/github/repo.controller';
+import { RepoKey } from '../../../../src/model/github/repo.model';
+import * as config from '../../../../src/config';
 
-import { getPreviousPageUrl } from '../../../src/utils/getPreviousPageUrl';
+import { getPreviousPageUrl } from '../../../../src/utils/getPreviousPageUrl';
 
-import { MOCK_POST_ADD_REPO } from '../../mock/data';
-import { MOCK_LOG_ERROR_REQUEST, MOCK_ADD_REPO_RESPONSE, MOCK_BY_ID_REPO_RESPONSE } from '../../mock/text.mock';
-import { mockBadRequest, mockRequest, mockResponse, mockNext } from '../../mock/express.mock';
+import { MOCK_POST_REPO } from '../../../mock/data';
+import { MOCK_LOG_ERROR_REQUEST, MOCK_REPO_RESPONSE, MOCK_BY_ID_REPO_RESPONSE } from '../../../mock/text.mock';
+import { mockBadRequest, mockRequest, mockResponse, mockNext } from '../../../mock/express.mock';
 
 import {
     mockGetApplicationDataByID,
@@ -22,44 +22,44 @@ import {
     mockSetApplicationDataByID,
     mockSetApplicationDataKey,
     mockUuidv4
-} from '../../mock/session.mock';
+} from '../../../mock/session.mock';
 import {
     mockLogInfo,
     mockLogErrorRequest
-} from '../../mock/log.mock';
+} from '../../../mock/log.mock';
 
 const mockGetPreviousPageUrl = getPreviousPageUrl as jest.Mock;
 
-describe('Add-repo controller test suites', () => {
+describe('Repo controller test suites', () => {
     afterEach(() => {
         jest.resetAllMocks();
     });
 
-    describe('add-repo GET tests', () => {
+    describe('repo GET tests', () => {
 
-        test('should render add-repo page', () => {
+        test('should render repo page', () => {
             const res = mockResponse();
             const req = mockRequest();
 
             get(req, res);
 
-            expect(res.render).toHaveBeenCalledWith(config.ADD_REPO);
+            expect(res.render).toHaveBeenCalledWith(config.REPO);
         });
     });
 
-    describe('add-repo POST tests', () => {
+    describe('repo POST tests', () => {
 
         test('should redirect to home page on POST request', () => {
             mockUuidv4.mockImplementation(_ => mockID);
             const res = mockResponse();
-            const req = { ...mockRequest(MOCK_POST_ADD_REPO), session: {} } as any;
+            const req = { ...mockRequest(MOCK_POST_REPO), session: {} } as any;
 
             post(req, res, mockNext);
 
             expect(mockSetApplicationDataKey).toHaveBeenCalledWith(req.session, {
                 id: mockID,
-                ...MOCK_POST_ADD_REPO
-            }, AddRepoKey);
+                ...MOCK_POST_REPO
+            }, RepoKey);
 
             expect(res.redirect).toBeCalledWith(config.HOME_URL);
             expect(mockNext).not.toHaveBeenCalled();
@@ -68,12 +68,12 @@ describe('Add-repo controller test suites', () => {
         test('should log Repository Name, Visibility and Description on POST request', () => {
             mockUuidv4.mockImplementation(_ => mockID);
             const res = mockResponse();
-            const req = mockRequest(MOCK_POST_ADD_REPO);
+            const req = mockRequest(MOCK_POST_REPO);
 
             post(req, res, mockNext);
 
             expect(mockSetApplicationDataKey).toHaveBeenCalledTimes(1);
-            expect(mockLogInfo).toHaveBeenCalledWith(MOCK_ADD_REPO_RESPONSE);
+            expect(mockLogInfo).toHaveBeenCalledWith(MOCK_REPO_RESPONSE);
             expect(mockNext).not.toHaveBeenCalled();
         });
 
@@ -89,7 +89,7 @@ describe('Add-repo controller test suites', () => {
         });
     });
 
-    describe('add-repo POST ById tests', () => {
+    describe('repo POST ById tests', () => {
 
         test('should redirect to previous page on POST ById request', () => {
 
@@ -97,7 +97,7 @@ describe('Add-repo controller test suites', () => {
 
             const res = mockResponse();
             const req = {
-                ...mockRequest(MOCK_POST_ADD_REPO),
+                ...mockRequest(MOCK_POST_REPO),
                 session: {},
                 params: { id: mockID },
                 query: { previousPage: config.CHECK_YOUR_REQUESTS_URL }
@@ -107,18 +107,18 @@ describe('Add-repo controller test suites', () => {
 
             expect(mockSetApplicationDataByID).toHaveBeenCalledWith(req.session, {
                 id: mockID,
-                ...MOCK_POST_ADD_REPO
-            }, AddRepoKey, mockID);
+                ...MOCK_POST_REPO
+            }, RepoKey, mockID);
             expect(mockGetPreviousPageUrl).toHaveBeenCalledWith(req);
 
             expect(res.redirect).toBeCalledWith(config.CHECK_YOUR_REQUESTS_URL);
             expect(mockNext).not.toHaveBeenCalled();
         });
 
-        test('should log add-repo details on POST ById request', () => {
+        test('should log repo details on POST ById request', () => {
             const res = mockResponse();
             const req = {
-                ...mockRequest(MOCK_POST_ADD_REPO),
+                ...mockRequest(MOCK_POST_REPO),
                 params: { id: mockID }
             } as any;
 
@@ -141,30 +141,30 @@ describe('Add-repo controller test suites', () => {
         });
     });
 
-    describe('add-repo GET ById tests', () => {
+    describe('repo GET ById tests', () => {
 
-        test('should render add-repo template', () => {
+        test('should render repo template', () => {
             const res = mockResponse();
             const req = { params: { id: mockID } } as any;
-            mockGetApplicationDataByID.mockImplementationOnce( _ => MOCK_POST_ADD_REPO);
+            mockGetApplicationDataByID.mockImplementationOnce( _ => MOCK_POST_REPO);
 
             getById(req, res, mockNext);
 
-            expect(mockGetApplicationDataByID).toHaveBeenCalledWith(req.session, AddRepoKey, mockID);
+            expect(mockGetApplicationDataByID).toHaveBeenCalledWith(req.session, RepoKey, mockID);
 
             expect(res.render).toBeCalledWith(
-                config.ADD_REPO,
-                { ...MOCK_POST_ADD_REPO, [config.ID]: mockID }
+                config.REPO,
+                { ...MOCK_POST_REPO, [config.ID]: mockID }
             );
             expect(mockNext).not.toHaveBeenCalled();
         });
 
-        test('should log add-repo details on GET ById request', () => {
+        test('should log repo details on GET ById request', () => {
             const res = mockResponse();
             const req = {
                 params: { id: mockID }
             } as any;
-            mockGetApplicationDataByID.mockImplementationOnce( _ => MOCK_POST_ADD_REPO);
+            mockGetApplicationDataByID.mockImplementationOnce( _ => MOCK_POST_REPO);
 
             getById(req, res, mockNext);
             expect(mockGetApplicationDataByID).toHaveBeenCalledTimes(1);
@@ -184,7 +184,7 @@ describe('Add-repo controller test suites', () => {
         });
     });
 
-    describe('add-repo REMOVE ById tests', () => {
+    describe('repo REMOVE ById tests', () => {
 
         test('should redirect to home page', () => {
             const res = mockResponse();
@@ -192,13 +192,13 @@ describe('Add-repo controller test suites', () => {
 
             removeById(req, res, mockNext);
 
-            expect(mockRemoveApplicationDataByID).toHaveBeenCalledWith(req.session, AddRepoKey, mockID);
+            expect(mockRemoveApplicationDataByID).toHaveBeenCalledWith(req.session, RepoKey, mockID);
 
             expect(res.redirect).toBeCalledWith(config.HOME_URL);
             expect(mockNext).not.toHaveBeenCalled();
         });
 
-        test('should log add-repo details on Remove ById request', () => {
+        test('should log repo details on Remove ById request', () => {
             const res = mockResponse();
             const req = { params: { id: mockID } } as any;
 

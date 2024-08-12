@@ -8,7 +8,7 @@ export const MOCK_POST_ISSUE_URL = `https://api.github.com/repos/secret/test/iss
 
 export const GET_REQUEST_MOCK = { method: 'GET', path: '/test' };
 
-export const MOCK_POST_ADD_REPO = { repo_name: 'repo1', visibility: 'public' };
+export const MOCK_POST_REPO = { repo_name: 'repo1', visibility: 'public' };
 export const MOCK_POST_MEMBER = {
     first_name: 'example',
     last_name: 'example',
