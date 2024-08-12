@@ -2,14 +2,14 @@ import { jest, expect } from '@jest/globals';
 
 import * as config from '../../src/config';
 import express from 'express';
-import { AddMemberKey } from '../../src/model/add-member.model';
+import { MemberKey } from '../../src/model/github/member.model';
 
 export const MOCK_POST_ISSUE_URL = `https://api.github.com/repos/secret/test/issues`;
 
 export const GET_REQUEST_MOCK = { method: 'GET', path: '/test' };
 
 export const MOCK_POST_ADD_REPO = { repo_name: 'repo1', visibility: 'public' };
-export const MOCK_POST_ADD_MEMBER = {
+export const MOCK_POST_MEMBER = {
     first_name: 'example',
     last_name: 'example',
     github_handle: 'example',
@@ -26,7 +26,7 @@ export const MOCK_POST_COLLABORATOR = {
     repo_name: 'repo1'
 };
 export const MOCK_APP_DATA = {
-    [AddMemberKey]: MOCK_POST_ADD_MEMBER
+    [MemberKey]: MOCK_POST_MEMBER
 };
 
 export const MOCK_JWT_NAME = 'mock-jwt-name';
@@ -43,33 +43,33 @@ export const MOCK_DYNAMODB_RECORD = {
     },
     'data': {
         'M': {
-            [AddMemberKey]: {
+            [MemberKey]: {
                 'L': [
                     {
                         'M': {
                             'first_name': {
-                                'S': MOCK_POST_ADD_MEMBER.first_name
+                                'S': MOCK_POST_MEMBER.first_name
                             },
                             'last_name': {
-                                'S': MOCK_POST_ADD_MEMBER.last_name
+                                'S': MOCK_POST_MEMBER.last_name
                             },
                             'github_handle': {
-                                'S': MOCK_POST_ADD_MEMBER.github_handle
+                                'S': MOCK_POST_MEMBER.github_handle
                             },
                             'id': {
                                 'S': 'a36c9b7f-fe99-4d4c-b2c7-9056f4091527'
                             },
                             'email_address': {
-                                'S': MOCK_POST_ADD_MEMBER.email_address
+                                'S': MOCK_POST_MEMBER.email_address
                             },
                             'description': {
-                                'S': MOCK_POST_ADD_MEMBER.description
+                                'S': MOCK_POST_MEMBER.description
                             },
                             'contract_type': {
-                                'S': MOCK_POST_ADD_MEMBER.contract_type
+                                'S': MOCK_POST_MEMBER.contract_type
                             },
                             'contract_end_date': {
-                                'S': MOCK_POST_ADD_MEMBER.contract_end_date
+                                'S': MOCK_POST_MEMBER.contract_end_date
                             },
                         }
                     }
@@ -97,31 +97,6 @@ export const MOCK_CORS_VALUE = {
 export const MOCK_ERROR = {
     message: 'Error message'
 } as Error;
-
-export const MOCK_HELMET_VALUE = {
-    referrerPolicy: {
-        policy: 'strict-origin-when-cross-origin'
-    },
-    contentSecurityPolicy: {
-        useDefaults: true,
-        directives: {
-            defaultSrc: ["'self'"],
-            fontSrc: ["'self'", config.CDN_HOST],
-            styleSrc: ["'self'", "'unsafe-hashes'", "'sha256-6FWIojjtZwiNizws7ImlHjGH3DA5yMh5x4c+/4UVpXk='", config.CDN_HOST],
-            scriptSrc: [
-                "'self'",
-                "'sha256-GUQ5ad8JK5KmEWmROf3LZd9ge94daqNvd8xy9YS1iDw='",
-                "'sha256-rDMP7u4Lf+tIufrYmUZIhcf2T3WBD4Pweu0EXe+qaLA='",
-                config.CDN_HOST
-            ],
-            imgSrc: ["'self'", 'data:', config.CDN_HOST],
-            connectSrc: ["'self'"],
-            formAction: ["'self'"],
-            objectSrc: ["'none'"]
-        },
-        reportOnly: false
-    }
-};
 
 export const MOCK_RATE_LIMIT_VALUE = {
     windowMs: 15 * 60 * 1000,

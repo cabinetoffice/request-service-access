@@ -21,8 +21,11 @@ const app = express();
 
 app.disable('x-powered-by');
 
-const assetsPath = path.join(__dirname, '../assets');
-app.use('/assets', express.static(assetsPath));
+const govukPath = path.join(__dirname, '../node_modules/govuk-frontend/dist/govuk');
+
+app.use('/assets', express.static(`${govukPath}/assets`));
+app.use('/govuk-frontend.min.css', express.static(`${govukPath}/govuk-frontend.min.css`));
+app.use('/govuk-frontend.min.js', express.static(`${govukPath}/govuk-frontend.min.js`));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

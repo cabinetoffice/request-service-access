@@ -1,13 +1,13 @@
 {% set previousPageQueryParam = "?" + PARAMS.previousPage + "=" + ROUTES.CHECK_YOUR_REQUESTS_URL %}
 
-{% for member in add_member %}
+{% for member in members %}
 
-  {% set firstNameHref = "/add-member/" + member.id + previousPageQueryParam + "#first_name" %}
-  {% set lastNameHref = "/add-member/" + member.id + previousPageQueryParam + "#last_name" %}
-  {% set githubHandleHref = "/add-member/" + member.id + previousPageQueryParam + "#github_handle" %}
-  {% set emailAddressHref = "/add-member/" + member.id + previousPageQueryParam + "#email_address" %}
-  {% set contractTypeHref = "/add-member/" + member.id + previousPageQueryParam + "#contract_type" %}
-  {% set descriptionHref = "/add-member/" + member.id + previousPageQueryParam + "#description" %}
+  {% set firstNameHref = "/github/update/member/" + member.id + previousPageQueryParam + "#first_name" %}
+  {% set lastNameHref = "/github/update/member/" + member.id + previousPageQueryParam + "#last_name" %}
+  {% set githubHandleHref = "/github/update/member/" + member.id + previousPageQueryParam + "#github_handle" %}
+  {% set emailAddressHref = "/github/update/member/" + member.id + previousPageQueryParam + "#email_address" %}
+  {% set contractTypeHref = "/github/update/member/" + member.id + previousPageQueryParam + "#contract_type" %}
+  {% set descriptionHref = "/github/update/member/" + member.id + previousPageQueryParam + "#description" %}
 
   <br>
   {{ govukSummaryList({

@@ -13,11 +13,11 @@ export const MOCK_ADD_REPO_RESPONSE = 'Repository Name: repo1, Visibility: publi
 export const MOCK_BY_ID_REPO_RESPONSE = 'Repository Name: repo1, Repository ID: ';
 export const MOCK_LOG_ERROR_REQUEST = 'Cannot read properties of undefined';
 
-// add-member response mocks
+// member response mocks
 
-export const MOCK_GET_ADD_MEMBER_RESPONSE = 'Add a new member';
-export const MOCK_POST_ADD_MEMBER_RESPONSE = 'First name: example, Last name: example, GitHub handle: example, email: email@hotmail.com, Contract end date: ';
-export const MOCK_BY_ID_ADD_MEMBER_RESPONSE = 'GitHub handle: example, Member ID: ';
+export const MOCK_GET_MEMBER_RESPONSE = 'Add a new member';
+export const MOCK_POST_MEMBER_RESPONSE = 'First name: example, Last name: example, GitHub handle: example, email: email@hotmail.com, Contract end date: ';
+export const MOCK_BY_ID_MEMBER_RESPONSE = 'GitHub handle: example, Member ID: ';
 
 // add-team reponse mocks
 

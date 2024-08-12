@@ -7,9 +7,9 @@
 {% block pageContent %}
   <h1 class="govuk-heading-xl">Check your requests before sending your application</h1>
 
-  {% if (add_member and add_member.length > 0) %}
+  {% if (members and members.length > 0) %}
     <h2 class="govuk-heading-m">Members details</h2>
-    {% include "include/check-your-requests/add-member.html" %}
+    {% include "include/check-your-requests/member.html" %}
     <br>
   {% endif %}
   {% if (add_team and add_team.length > 0) %}

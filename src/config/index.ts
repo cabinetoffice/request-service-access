@@ -41,7 +41,7 @@ export const DYNAMO_TABLE_NAME = getEnvironmentValue('DYNAMO_TABLE_NAME');
 // Template
 export const START = 'start';
 export const GITHUB_HOME = 'github-home';
-export const ADD_MEMBER = 'add-member';
+export const MEMBER = 'member';
 export const NOT_FOUND = 'page-not-found';
 export const NOT_AVAILABLE = 'not-available';
 export const ERROR_PAGE = 'error';
@@ -60,7 +60,7 @@ export const CONTACT_US = 'contact-us';
 export const ROOT_URL = '/';
 export const START_URL = '/start';
 export const GITHUB_HOME_URL = '/github/home';
-export const ADD_MEMBER_URL = '/add-member';
+export const MEMBER_URL = '/member';
 export const HEALTHCHECK_URL = '/healthcheck';
 export const CONFIRMATION_URL = '/confirmation';
 export const ADD_TEAM_URL = '/add-team';
@@ -84,6 +84,7 @@ export const FEATURE_FLAG_ENABLE_NOTIFY = getEnvironmentValue('FEATURE_FLAG_ENAB
 export const FEATURE_FLAG_ENABLE_DYNAMO = getEnvironmentValue('FEATURE_FLAG_ENABLE_DYNAMO', 'false');
 
 // MISC
+export const CREATE = '/create';
 export const REMOVE = '/remove';
 export const UPDATE = '/update';
 export const GITHUB_URL = '/github';

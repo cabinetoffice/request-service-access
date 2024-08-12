@@ -1,11 +1,11 @@
-{% set addMemberSummaryData = [] %}
+{% set memberSummaryData = [] %}
 
-{% for member in add_member %}
+{% for member in members %}
 
-  {% set addMemberEditHref = "/add-member/" + member.id %}
-  {% set addMemberDeleteHref = "/add-member/remove/" + member.id %}
+  {% set memberEditHref = "/github/update/member/" + member.id %}
+  {% set memberDeleteHref = "/github/remove/member/" + member.id %}
 
-  {% set addMemberSummaryData = (addMemberSummaryData.push({
+  {% set memberSummaryData = (memberSummaryData.push({
     key: { 
       text: "Member name"
     },
@@ -15,21 +15,21 @@
     actions: {
       items: [
         {
-          href: addMemberEditHref,
+          href: memberEditHref,
           text: "Edit",
           visuallyHiddenText: "Member name"
         },
         {
-          href: addMemberDeleteHref,
+          href: memberDeleteHref,
           text: "Delete",
           visuallyHiddenText: "Member name"
         }
       ]
     }
-  }), addMemberSummaryData) %}
+  }), memberSummaryData) %}
 
 {% endfor %}
 
 {{ govukSummaryList({
-  rows: addMemberSummaryData
+  rows: memberSummaryData
 }) }}
