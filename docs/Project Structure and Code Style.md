@@ -135,13 +135,13 @@ export const get = (req: Request, res: Response, next: NextFunction) => {
 A `post` method which saves user data every time the page is submitted.
 
 ```js
-// Post controller for the add-repo page which sets add-repo data to session
+// Post controller for the repo page which sets repo data to session
 
 export const post = (req: Request, res: Response, next: NextFunction ) => {
     try {
         const repoID = uuidv4();
         ...
-        setApplicationDataKey(req.session, { ...req.body, [config.ID]: repoID }, AddRepoKey);
+        setApplicationDataKey(req.session, { ...req.body, [config.ID]: repoID }, RepoKey);
 
         return res.redirect(config.HOME_URL);
     } catch (err: any) {
