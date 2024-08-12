@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import * as config from '../../config';
 import { log } from '../../utils/logger';
 
-import { AddTeam, AddTeamKey } from '../../model/add-team.model';
+import { Team, TeamKey } from '../../model/github/team.model';
 import { getPreviousPageUrl } from '../../utils/getPreviousPageUrl';
 
 export const get = (_req: Request, res: Response) => {
@@ -25,7 +25,7 @@ export const post = (req: Request, res: Response, next: NextFunction) => {
 
         log.info(`Team Name: ${teamName}, Team Maintainer GitHub Handle: ${githubHandle}, Team ID: ${teamID}`);
 
-        setApplicationDataKey(req.session, { ...req.body, [config.ID]: teamID }, AddTeamKey);
+        setApplicationDataKey(req.session, { ...req.body, [config.ID]: teamID }, TeamKey);
 
         return res.redirect(config.HOME_URL);
     } catch (err: any) {
@@ -37,7 +37,7 @@ export const post = (req: Request, res: Response, next: NextFunction) => {
 export const getById = (req: Request, res: Response, next: NextFunction) => {
     try {
         const teamID = req.params[config.ID];
-        const addTeamData: AddTeam = getApplicationDataByID(req.session, AddTeamKey, teamID);
+        const addTeamData: Team = getApplicationDataByID(req.session, TeamKey, teamID);
 
         log.info(`Team Name: ${addTeamData.team_name}, Team ID: ${teamID}`);
 
@@ -55,7 +55,7 @@ export const postById = (req: Request, res: Response, next: NextFunction) => {
 
         log.info(`Team Name: ${teamName}, Team ID: ${teamID}`);
 
-        setApplicationDataByID(req.session, { ...req.body, [config.ID]: teamID }, AddTeamKey, teamID);
+        setApplicationDataByID(req.session, { ...req.body, [config.ID]: teamID }, TeamKey, teamID);
 
         return res.redirect(getPreviousPageUrl(req));
     } catch (err: any) {
@@ -68,7 +68,7 @@ export const removeById = (req: Request, res: Response, next: NextFunction) => {
     try {
         log.info(`Team ID: ${req.params.id}`);
 
-        removeApplicationDataByID(req.session, AddTeamKey, req.params[config.ID]);
+        removeApplicationDataByID(req.session, TeamKey, req.params[config.ID]);
 
         return res.redirect(config.HOME_URL);
     } catch (err: any) {

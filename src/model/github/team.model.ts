@@ -1,13 +1,13 @@
-export const AddTeamKey = 'add_team';
+export const TeamKey = 'teams';
 
-export const AddTeamMappingKeys: (keyof AddTeam)[] = [
+export const TeamMappingKeys: (keyof Team)[] = [
     'id',
     'team_name',
     'github_handle',
     'description'
 ];
 
-export interface AddTeam {
+export interface Team {
   id?: string;
   team_name?: string;
   github_handle?: string;
