@@ -37,11 +37,11 @@ export const post = (req: Request, res: Response, next: NextFunction) => {
 export const getById = (req: Request, res: Response, next: NextFunction) => {
     try {
         const teamID = req.params[config.ID];
-        const addTeamData: Team = getApplicationDataByID(req.session, TeamKey, teamID);
+        const teamData: Team = getApplicationDataByID(req.session, TeamKey, teamID);
 
-        log.info(`Team Name: ${addTeamData.team_name}, Team ID: ${teamID}`);
+        log.info(`Team Name: ${teamData.team_name}, Team ID: ${teamID}`);
 
-        return res.render(config.TEAM, { ...addTeamData, [config.ID]: teamID });
+        return res.render(config.TEAM, { ...teamData, [config.ID]: teamID });
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);
