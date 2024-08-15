@@ -1,13 +1,13 @@
-export const AddRepoKey = 'add_repo';
+export const RepoKey = 'repos';
 
-export const AddRepoMappingKeys: (keyof AddRepo)[] = [
+export const RepoMappingKeys: (keyof Repo)[] = [
     'id',
     'repo_name',
     'visibility',
     'description'
 ];
 
-export interface AddRepo {
+export interface Repo {
   id?: string;
   repo_name?: string;
   visibility?: string;

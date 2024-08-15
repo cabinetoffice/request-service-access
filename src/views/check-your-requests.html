@@ -22,9 +22,9 @@
     {% include "include/check-your-requests/add-team-member.html" %}
     <br>
   {% endif %}
-  {% if (add_repo and add_repo.length > 0) %}
+  {% if (repos and repos.length > 0) %}
     <h2 class="govuk-heading-m">Repositories details</h2>
-    {% include "include/check-your-requests/add-repo.html" %}
+    {% include "include/check-your-requests/repo.html" %}
     <br>
   {% endif %}
   {% if (collaborator and collaborator.length > 0) %}

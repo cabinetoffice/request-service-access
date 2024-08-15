@@ -1,10 +1,10 @@
 {% set previousPageQueryParam = "?" + PARAMS.previousPage + "=" + ROUTES.CHECK_YOUR_REQUESTS_URL %}
 
-{% for repo in add_repo %}
+{% for repo in repos %}
 
-  {% set repoHref = "/add-repo/" + repo.id + previousPageQueryParam + "#repo_name" %}
-  {% set visibilityHref = "/add-repo/" + repo.id + previousPageQueryParam + "#visibility" %}
-  {% set descriptionHref = "/add-repo/" + repo.id + previousPageQueryParam + "#description" %}
+  {% set repoHref = "/github/update/repo/" + repo.id + previousPageQueryParam + "#repo_name" %}
+  {% set visibilityHref = "/github/update/repo/" + repo.id + previousPageQueryParam + "#visibility" %}
+  {% set descriptionHref = "/github/update/repo/" + repo.id + previousPageQueryParam + "#description" %}
 
   <br>
   {{ govukSummaryList({
