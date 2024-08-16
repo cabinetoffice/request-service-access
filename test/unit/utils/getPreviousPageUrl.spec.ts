@@ -12,13 +12,13 @@ describe('getPreviousPage test suite', () => {
         jest.resetAllMocks();
     });
 
-    test('Should return home page URL if the previousPage query param is not present', () => {
+    test('Should return github-home page URL if the previousPage query param is not present', () => {
 
         const mockRequestWithNoQueryParam = { ...mockRequest(), query: {} } as unknown as Request;
 
         const previousPageUrl = getPreviousPageUrl(mockRequestWithNoQueryParam);
 
-        expect(previousPageUrl).toBe(config.HOME_URL);
+        expect(previousPageUrl).toBe(config.GITHUB_HOME_URL);
 
     });
 

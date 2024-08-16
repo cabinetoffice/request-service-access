@@ -13,7 +13,7 @@ import { logger } from '../../../../src/middleware/logger.middleware';
 import { authentication } from '../../../../src/middleware/authentication.middleware';
 
 import {
-    MOCK_HOME_REDIRECT_MESSAGE,
+    MOCK_GITHUB_HOME_REDIRECT_MESSAGE,
     MOCK_GET_MEMBER_RESPONSE,
     MOCK_POST_MEMBER_RESPONSE
 } from '../../../mock/text.mock';
@@ -48,7 +48,7 @@ describe('Member endpoint integration tests', () => {
             const res = await request(app).post(memberEndpoint).send(MOCK_POST_MEMBER);
 
             expect(res.status).toEqual(302);
-            expect(res.text).toContain(MOCK_HOME_REDIRECT_MESSAGE);
+            expect(res.text).toContain(MOCK_GITHUB_HOME_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
@@ -79,7 +79,7 @@ describe('Member endpoint integration tests', () => {
             const mockLog = log.info as jest.Mock;
 
             expect(mockLog).toBeCalledWith(MOCK_POST_MEMBER_RESPONSE);
-            expect(res.text).toContain(MOCK_HOME_REDIRECT_MESSAGE);
+            expect(res.text).toContain(MOCK_GITHUB_HOME_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
