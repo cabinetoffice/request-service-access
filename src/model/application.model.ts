@@ -1,7 +1,7 @@
 import { Member } from './github/member.model';
 import { AddTeam } from './add-team.model';
 import { Repo } from './github/repo.model';
-import { AddTeamMember } from './add-team-member.model';
+import { TeamMember } from './github/team-member.model';
 import { AdditionalRequests } from './additional-requests.model';
 import { Collaborator } from './github/collaborator.model';
 
@@ -13,7 +13,7 @@ export interface ApplicationData {
   members?: Member[]
   add_team?: AddTeam[]
   repos?: Repo[]
-  add_team_member?: AddTeamMember[]
+  team_members?: TeamMember[]
   collaborator?: Collaborator[]
   additional_requests?: AdditionalRequests[]
 }
