@@ -7,14 +7,14 @@ import {
 } from '@co-digital/login';
 import { v4 as uuidv4 } from 'uuid';
 
-import * as config from '../config';
-import { log } from '../utils/logger';
+import * as config from '../../config';
+import { log } from '../../utils/logger';
 
-import { AddTeamMember, AddTeamMemberKey } from '../model/add-team-member.model';
-import { getPreviousPageUrl } from '../utils/getPreviousPageUrl';
+import { TeamMember, TeamMemberKey } from '../../model/github/team-member.model';
+import { getPreviousPageUrl } from '../../utils/getPreviousPageUrl';
 
 export const get = (_req: Request, res: Response) => {
-    return res.render(config.ADD_TEAM_MEMBER);
+    return res.render(config.TEAM_MEMBER);
 };
 
 export const post = (req: Request, res: Response, next: NextFunction ) => {
@@ -25,7 +25,7 @@ export const post = (req: Request, res: Response, next: NextFunction ) => {
 
         log.info(`Team name: ${teamName}, GitHub handle(s): ${githubHandles}`);
 
-        setApplicationDataKey(req.session, { ...req.body, [config.ID]: teamMembersID }, AddTeamMemberKey);
+        setApplicationDataKey(req.session, { ...req.body, [config.ID]: teamMembersID }, TeamMemberKey);
 
         return res.redirect(config.GITHUB_HOME_URL);
     } catch (err: any) {
@@ -37,11 +37,10 @@ export const post = (req: Request, res: Response, next: NextFunction ) => {
 export const getById = (req: Request, res: Response, next: NextFunction) => {
     try {
         const teamMembersID = req.params[config.ID];
-        const addTeamMemberData: AddTeamMember = getApplicationDataByID(req.session, AddTeamMemberKey, teamMembersID);
+        const TeamMemberData: TeamMember = getApplicationDataByID(req.session, TeamMemberKey, teamMembersID);
+        log.info(`Team name: ${TeamMemberData.team_name}, GitHub handle(s): ${TeamMemberData.github_handles}, Team member ID: ${teamMembersID}`);
 
-        log.info(`Team name: ${addTeamMemberData.team_name}, GitHub handle(s): ${addTeamMemberData.github_handles}, Team member ID: ${teamMembersID}`);
-
-        return res.render(config.ADD_TEAM_MEMBER, { ...addTeamMemberData, [config.ID]: teamMembersID });
+        return res.render(config.TEAM_MEMBER, { ...TeamMemberData, [config.ID]: teamMembersID });
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);
@@ -56,7 +55,7 @@ export const postById = (req: Request, res: Response, next: NextFunction) => {
 
         log.info(`Team name: ${teamName}, GitHub handle(s): ${githubHandles}, Team member ID: ${teamMembersID}`);
 
-        setApplicationDataByID(req.session, { ...req.body, [config.ID]: teamMembersID }, AddTeamMemberKey, teamMembersID);
+        setApplicationDataByID(req.session, { ...req.body, [config.ID]: teamMembersID }, TeamMemberKey, teamMembersID);
 
         return res.redirect(getPreviousPageUrl(req));
     } catch (err: any) {
@@ -69,7 +68,7 @@ export const removeById = (req: Request, res: Response, next: NextFunction) => {
     try {
         log.info(`Team member ID: ${req.params.id}`);
 
-        removeApplicationDataByID(req.session, AddTeamMemberKey, req.params[config.ID]);
+        removeApplicationDataByID(req.session, TeamMemberKey, req.params[config.ID]);
 
         return res.redirect(config.GITHUB_HOME_URL);
     } catch (err: any) {
