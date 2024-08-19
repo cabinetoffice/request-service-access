@@ -1,9 +1,9 @@
 {% set previousPageQueryParam = "?" + PARAMS.previousPage + "=" + ROUTES.CHECK_YOUR_REQUESTS_URL %}
 
-{% for team_member in add_team_member %}
+{% for team_member in team_members %}
 
-  {% set teamNameHref = "/add-team-member/" + team_member.id + previousPageQueryParam + "#team_name" %}
-  {% set githubHandlesHref = "/add-team-member/" + team_member.id + previousPageQueryParam + "#github_handles" %}
+  {% set teamNameHref = "/github/update/team-member/" + team_member.id + previousPageQueryParam + "#team_name" %}
+  {% set githubHandlesHref = "/github/update/team-member/" + team_member.id + previousPageQueryParam + "#github_handles" %}
 
   <br>
   {{ govukSummaryList({

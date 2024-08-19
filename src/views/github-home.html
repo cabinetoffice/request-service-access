@@ -12,7 +12,7 @@
       <a class="govuk-link" href="/add-team">Add a new team</a>
     </li>
     <li>
-      <a class="govuk-link" href="/add-team-member">Add existing member(s) to a team</a>
+      <a class="govuk-link" href="/github/create/team-member">Add existing member(s) to a team</a>
     </li>
     <li>
       <a class="govuk-link" href="/github/create/repo">Add a new repository</a>
@@ -35,7 +35,7 @@
   <form method="post">
     {% if (members and members.length > 0)
       or (add_team and add_team.length > 0)
-      or (add_team_member and add_team_member.length > 0)
+      or (team_members and team_members.length > 0)
       or (repos and repos.length > 0)
       or (collaborator and collaborator.length > 0)
       or (additional_requests and additional_requests.length > 0) %}

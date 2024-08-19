@@ -17,9 +17,9 @@
     {% include "include/check-your-requests/add-team.html" %}
     <br>
   {% endif %}
-  {% if (add_team_member and add_team_member.length > 0) %}
+  {% if (team_members and team_members.length > 0) %}
     <h2 class="govuk-heading-m">Member(s) to Team details</h2>
-    {% include "include/check-your-requests/add-team-member.html" %}
+    {% include "include/check-your-requests/team-member.html" %}
     <br>
   {% endif %}
   {% if (repos and repos.length > 0) %}
