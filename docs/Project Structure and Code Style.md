@@ -155,7 +155,7 @@ In the `getById` method, if data is in the session, it is passed to the views/te
 ```js
 Session {
   git: {
-    add_team: [
+    teams: [
       {
         team_name: 'team1',
         github_handle: 'mr maintainer1',
@@ -222,19 +222,19 @@ export default repoRouter;
 In each of the `POST` endpoints for every page, there are sets of middlewares that are used to validate each field submitted by the user. If one of the validation middlewares fail, the `validationResult` [here](https://github.com/cabinetoffice/github-requests-app/blob/c1923314f23897a809624a8ec208648cab228b4e/src/middleware/validation.middleware.ts#L7) extracts the validation errors from a request (`req` object) and formats it as an `errors` object [here](https://github.com/cabinetoffice/github-requests-app/blob/c1923314f23897a809624a8ec208648cab228b4e/src/middleware/validation.middleware.ts#L27). It is passed to the render page and visualises the correct error messages.
 
 ```js
-// Middlewares validation checks for the add-team page
-import { descriptionValidation } from './fields/description.validation';
-import { githubHandleValidation } from './fields/github-handle.validation';
-import { teamNameValidation } from './fields/team-name.validation';
+// Middlewares validation checks for the team page
+import { descriptionValidation } from '../fields/description.validation';
+import { githubHandleValidation } from '../fields/github-handle.validation';
+import { teamNameValidation } from '../fields/team-name.validation';
 
-export const addTeam = [
+export const team = [
     ...teamNameValidation, ...githubHandleValidation, ...descriptionValidation
 ];
 
 ```
 
 ```js
-// Inputs field on add-team page with the errors object 
+// Inputs field on team page with the errors object 
 // content file for include/description.html
 {{ govukInput({
   errorMessage: errors.team_name if errors,

@@ -4,9 +4,9 @@
   <br>
   <br>
 {% endif %}
-{% if (add_team and add_team.length > 0) %}
+{% if (teams and teams.length > 0) %}
   <h2 class="govuk-heading-m">New team requests</h2>
-  {% include "include/list/add-team.html" %}
+  {% include "include/list/team.html" %}
   <br>
   <br>
 {% endif %}
