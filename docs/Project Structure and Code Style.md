@@ -155,7 +155,7 @@ In the `getById` method, if data is in the session, it is passed to the views/te
 ```js
 Session {
   git: {
-    add_team: [
+    teams: [
       {
         team_name: 'team1',
         github_handle: 'mr maintainer1',
