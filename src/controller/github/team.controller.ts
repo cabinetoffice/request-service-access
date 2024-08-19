@@ -27,7 +27,7 @@ export const post = (req: Request, res: Response, next: NextFunction) => {
 
         setApplicationDataKey(req.session, { ...req.body, [config.ID]: teamID }, TeamKey);
 
-        return res.redirect(config.HOME_URL);
+        return res.redirect(config.GITHUB_HOME_URL);
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);
@@ -70,7 +70,7 @@ export const removeById = (req: Request, res: Response, next: NextFunction) => {
 
         removeApplicationDataByID(req.session, TeamKey, req.params[config.ID]);
 
-        return res.redirect(config.HOME_URL);
+        return res.redirect(config.GITHUB_HOME_URL);
     } catch (err: any) {
         log.errorRequest(req, err.message);
         next(err);

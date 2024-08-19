@@ -40,7 +40,7 @@ export const DYNAMO_TABLE_NAME = getEnvironmentValue('DYNAMO_TABLE_NAME');
 
 // Template
 export const START = 'start';
-export const HOME = 'home';
+export const GITHUB_HOME = 'github-home';
 export const MEMBER = 'member';
 export const NOT_FOUND = 'page-not-found';
 export const NOT_AVAILABLE = 'not-available';
@@ -59,7 +59,7 @@ export const CONTACT_US = 'contact-us';
 // Routing paths
 export const ROOT_URL = '/';
 export const START_URL = '/start';
-export const HOME_URL = '/home';
+export const GITHUB_HOME_URL = '/github/home';
 export const MEMBER_URL = '/member';
 export const HEALTHCHECK_URL = '/healthcheck';
 export const CONFIRMATION_URL = '/confirmation';
@@ -72,8 +72,6 @@ export const ADDITIONAL_REQUESTS_URL = '/additional-requests';
 export const ACCESSIBILITY_STATEMENT_URL = '/accessibility-statement';
 export const COOKIES_URL = '/cookies';
 export const CONTACT_US_URL = '/contact-us';
-
-export const SERVICE_URL = `${BASE_URL}${HOME_URL}`;
 
 // Query Params
 
@@ -92,3 +90,5 @@ export const UPDATE = '/update';
 export const GITHUB_URL = '/github';
 export const ID = 'id';
 export const PARAM_ID = `/:${ID}`;
+
+export const SERVICE_URL = `${BASE_URL}${GITHUB_HOME_URL}`;

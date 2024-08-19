@@ -51,7 +51,7 @@ describe('additional-requests controller test suites', () => {
 
     describe('additional-requests POST tests', () => {
 
-        test('should redirect to home page on POST request', () => {
+        test('should redirect to github-home page on POST request', () => {
             mockUuidv4.mockImplementation(_ => mockID);
             const res = mockResponse();
             const req = { ...mockRequest(MOCK_POST_ADDITIONAL_REQUESTS), session: {} } as any;
@@ -63,7 +63,7 @@ describe('additional-requests controller test suites', () => {
                 ...MOCK_POST_ADDITIONAL_REQUESTS
             }, AdditionalRequestsKey);
 
-            expect(res.redirect).toBeCalledWith(config.HOME_URL);
+            expect(res.redirect).toBeCalledWith(config.GITHUB_HOME_URL);
             expect(mockNext).not.toHaveBeenCalled();
         });
         test('should log Context on POST request', () => {
@@ -185,7 +185,7 @@ describe('additional-requests controller test suites', () => {
 
     describe('additional-requests REMOVE ById tests', () => {
 
-        test('should redirect to home page', () => {
+        test('should redirect to github-home page', () => {
             const res = mockResponse();
             const req = { params: { id: mockID } } as any;
 
@@ -193,7 +193,7 @@ describe('additional-requests controller test suites', () => {
 
             expect(mockRemoveApplicationDataByID).toHaveBeenCalledWith(req.session, AdditionalRequestsKey, mockID);
 
-            expect(res.redirect).toBeCalledWith(config.HOME_URL);
+            expect(res.redirect).toBeCalledWith(config.GITHUB_HOME_URL);
             expect(mockNext).not.toHaveBeenCalled();
         });
 

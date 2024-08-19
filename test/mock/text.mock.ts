@@ -3,7 +3,7 @@ export const MOCK_GET_CONFIRMATION_RESPONSE = 'GitHub request complete';
 export const MOCK_COOKIES_RESPONSE = 'Cookies';
 export const MOCK_CONTACT_US_RESPONSE = 'Contact us';
 export const MOCK_GET_START_RESPONSE = 'GitHub Requests';
-export const MOCK_GET_HOME_RESPONSE = 'GitHub Requests';
+export const MOCK_GET_GITHUB_HOME_RESPONSE = 'GitHub Requests';
 export const MOCK_ACCESSIBILITY_STATEMENT_RESPONSE = 'Accessibility statement for the GitHub Requests application';
 
 // repo response mocks
@@ -51,7 +51,7 @@ export const MOCK_SERVER_ERROR = 'Pipe 3000 requires elevated privileges';
 export const MOCK_ERROR_MESSAGE = 'Something has went wrong';
 export const MOCK_WRONG_URL = '/infooo';
 export const MOCK_FOUND_REDIRECT_MESSAGE = 'Found. Redirecting to ';
-export const MOCK_REDIRECT_MESSAGE = 'Found. Redirecting to home';
-export const MOCK_HOME_REDIRECT_MESSAGE = 'Found. Redirecting to /home';
+export const MOCK_REDIRECT_MESSAGE = 'Found. Redirecting to /github/home';
+export const MOCK_GITHUB_HOME_REDIRECT_MESSAGE = 'Found. Redirecting to /github/home';
 
 export const MOCK_VIEWS_PATH = '/path/to/views';

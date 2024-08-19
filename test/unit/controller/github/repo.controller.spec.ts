@@ -49,7 +49,7 @@ describe('Repo controller test suites', () => {
 
     describe('repo POST tests', () => {
 
-        test('should redirect to home page on POST request', () => {
+        test('should redirect to github-home page on POST request', () => {
             mockUuidv4.mockImplementation(_ => mockID);
             const res = mockResponse();
             const req = { ...mockRequest(MOCK_POST_REPO), session: {} } as any;
@@ -61,7 +61,7 @@ describe('Repo controller test suites', () => {
                 ...MOCK_POST_REPO
             }, RepoKey);
 
-            expect(res.redirect).toBeCalledWith(config.HOME_URL);
+            expect(res.redirect).toBeCalledWith(config.GITHUB_HOME_URL);
             expect(mockNext).not.toHaveBeenCalled();
         });
 
@@ -186,7 +186,7 @@ describe('Repo controller test suites', () => {
 
     describe('repo REMOVE ById tests', () => {
 
-        test('should redirect to home page', () => {
+        test('should redirect to github-home page', () => {
             const res = mockResponse();
             const req = { params: { id: mockID } } as any;
 
@@ -194,7 +194,7 @@ describe('Repo controller test suites', () => {
 
             expect(mockRemoveApplicationDataByID).toHaveBeenCalledWith(req.session, RepoKey, mockID);
 
-            expect(res.redirect).toBeCalledWith(config.HOME_URL);
+            expect(res.redirect).toBeCalledWith(config.GITHUB_HOME_URL);
             expect(mockNext).not.toHaveBeenCalled();
         });
 

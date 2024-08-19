@@ -3,7 +3,7 @@ import { Router } from 'express';
 import { logger } from '../middleware/logger.middleware';
 
 import startPageRouter from './start';
-import homePageRouter from './home';
+import githubHomeRouter from './github/github-home';
 import healthcheckRouter from './healthcheck';
 import confirmationRouter from './confirmation';
 import repoRouter from './github/repo';
@@ -24,7 +24,7 @@ router.use(logger);
 
 // Routes
 router.use(startPageRouter);
-router.use(homePageRouter);
+router.use(githubHomeRouter);
 router.use(memberRouter);
 router.use(confirmationRouter);
 router.use(healthcheckRouter);

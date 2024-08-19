@@ -13,7 +13,7 @@ import { logger } from '../../../../src/middleware/logger.middleware';
 import { authentication } from '../../../../src/middleware/authentication.middleware';
 
 import {
-    MOCK_HOME_REDIRECT_MESSAGE,
+    MOCK_GITHUB_HOME_REDIRECT_MESSAGE,
     MOCK_GET_COLLABORATOR_RESPONSE,
     MOCK_POST_COLLABORATOR_RESPONSE
 } from '../../../mock/text.mock';
@@ -41,11 +41,11 @@ describe('Collaborator endpoint integration tests', () => {
         });
     });
     describe('Add collaborator POST tests', () => {
-        test('Should redirect to home page after POST request', async () => {
+        test('Should redirect to github-home page after POST request', async () => {
             const res = await request(app).post(config.GITHUB_URL + config.COLLABORATOR_URL).send(MOCK_POST_COLLABORATOR);
 
             expect(res.status).toEqual(302);
-            expect(res.text).toContain(MOCK_HOME_REDIRECT_MESSAGE);
+            expect(res.text).toContain(MOCK_GITHUB_HOME_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
@@ -76,7 +76,7 @@ describe('Collaborator endpoint integration tests', () => {
             const mockLog = log.info as jest.Mock;
 
             expect(mockLog).toBeCalledWith(MOCK_POST_COLLABORATOR_RESPONSE);
-            expect(res.text).toContain(MOCK_HOME_REDIRECT_MESSAGE);
+            expect(res.text).toContain(MOCK_GITHUB_HOME_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });

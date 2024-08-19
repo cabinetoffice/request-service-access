@@ -12,7 +12,7 @@ import { logger } from '../../../../src/middleware/logger.middleware';
 import { log } from '../../../../src/utils/logger';
 import { authentication } from '../../../../src/middleware/authentication.middleware';
 
-import { MOCK_HOME_REDIRECT_MESSAGE, MOCK_GET_REPO_RESPONSE, MOCK_REPO_RESPONSE } from '../../../mock/text.mock';
+import { MOCK_GITHUB_HOME_REDIRECT_MESSAGE, MOCK_GET_REPO_RESPONSE, MOCK_REPO_RESPONSE } from '../../../mock/text.mock';
 import { MOCK_POST_REPO } from '../../../mock/data';
 import { ErrorMessages } from '../../../../src/validation/error.messages';
 
@@ -44,7 +44,7 @@ describe('Repo endpoint integration tests', () => {
             const res = await request(app).post(repoEndpoint).send(MOCK_POST_REPO);
 
             expect(res.status).toEqual(302);
-            expect(res.text).toContain(MOCK_HOME_REDIRECT_MESSAGE);
+            expect(res.text).toContain(MOCK_GITHUB_HOME_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
@@ -69,7 +69,7 @@ describe('Repo endpoint integration tests', () => {
             const mockLog = log.info as jest.Mock;
 
             expect(mockLog).toBeCalledWith(MOCK_REPO_RESPONSE);
-            expect(res.text).toContain(MOCK_HOME_REDIRECT_MESSAGE);
+            expect(res.text).toContain(MOCK_GITHUB_HOME_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });

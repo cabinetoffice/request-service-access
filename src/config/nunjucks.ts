@@ -18,7 +18,7 @@ export const configureNunjucks = (app: express.Application, viewsPath: string) =
         previousPage: config.PREVIOUS_PAGE_QUERY_PARAM
     });
     nunjucksEnv.addGlobal('ROUTES', {
-        HOME: config.HOME_URL,
+        HOME: config.GITHUB_HOME_URL,
         CHECK_YOUR_REQUESTS_URL: config.CHECK_YOUR_REQUESTS_URL
     });
     nunjucksEnv.addGlobal('AUTH_URLS', {

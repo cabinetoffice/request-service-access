@@ -13,7 +13,7 @@ import { logger } from '../../../../src/middleware/logger.middleware';
 import { log } from '../../../../src/utils/logger';
 import { authentication } from '../../../../src/middleware/authentication.middleware';
 
-import { MOCK_HOME_REDIRECT_MESSAGE, MOCK_GET_TEAM_RESPONSE, MOCK_POST_TEAM_RESPONSE } from '../../../mock/text.mock';
+import { MOCK_GITHUB_HOME_REDIRECT_MESSAGE, MOCK_GET_TEAM_RESPONSE, MOCK_POST_TEAM_RESPONSE } from '../../../mock/text.mock';
 import { MOCK_POST_TEAM } from '../../../mock/data';
 import { ErrorMessages } from '../../../../src/validation/error.messages';
 import { mockID, mockUuidv4 } from '../../../mock/session.mock';
@@ -42,11 +42,11 @@ describe('team endpoint integration tests', () => {
         });
     });
     describe('POST tests', () => {
-        test('Should redirect to home page after POST request', async () => {
+        test('Should redirect to github-home page after POST request', async () => {
             const res = await request(app).post(teamEndpoint).send(MOCK_POST_TEAM);
 
             expect(res.status).toEqual(302);
-            expect(res.text).toContain(MOCK_HOME_REDIRECT_MESSAGE);
+            expect(res.text).toContain(MOCK_GITHUB_HOME_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
@@ -72,7 +72,7 @@ describe('team endpoint integration tests', () => {
             const mockLog = log.info as jest.Mock;
 
             expect(mockLog).toBeCalledWith(`${MOCK_POST_TEAM_RESPONSE}${mockID}`);
-            expect(res.text).toContain(MOCK_HOME_REDIRECT_MESSAGE);
+            expect(res.text).toContain(MOCK_GITHUB_HOME_REDIRECT_MESSAGE);
             expect(mockedLogger).toHaveBeenCalledTimes(1);
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });

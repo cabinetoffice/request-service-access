@@ -50,7 +50,7 @@ describe('add-team-member controller test suites', () => {
 
     describe('add-team-member POST tests', () => {
 
-        test('should redirect to home page on POST request', () => {
+        test('should redirect to github-home page on POST request', () => {
             mockUuidv4.mockImplementation(_ => mockID);
             const res = mockResponse();
             const req = { ...mockRequest(MOCK_POST_ADD_TEAM_MEMBER), session: {} } as any;
@@ -62,7 +62,7 @@ describe('add-team-member controller test suites', () => {
                 ...MOCK_POST_ADD_TEAM_MEMBER
             }, AddTeamMemberKey);
 
-            expect(res.redirect).toBeCalledWith(config.HOME_URL);
+            expect(res.redirect).toBeCalledWith(config.GITHUB_HOME_URL);
             expect(mockNext).not.toHaveBeenCalled();
         });
         test('should log Team Name, Team Member GitHub handle on POST request', () => {
@@ -183,7 +183,7 @@ describe('add-team-member controller test suites', () => {
     });
     describe('add-team-member REMOVE ById tests', () => {
 
-        test('should redirect to home page', () => {
+        test('should redirect to github-home page', () => {
             const res = mockResponse();
             const req = { params: { id: mockID } } as any;
 
@@ -191,7 +191,7 @@ describe('add-team-member controller test suites', () => {
 
             expect(mockRemoveApplicationDataByID).toHaveBeenCalledWith(req.session, AddTeamMemberKey, mockID);
 
-            expect(res.redirect).toBeCalledWith(config.HOME_URL);
+            expect(res.redirect).toBeCalledWith(config.GITHUB_HOME_URL);
             expect(mockNext).not.toHaveBeenCalled();
         });
 
