@@ -80,7 +80,7 @@ export const MOCK_DYNAMODB_RECORD = {
     }
 };
 
-export const MOCK_POST_ADD_TEAM = { team_name: 'team1', github_handle: 'bob' };
+export const MOCK_POST_TEAM = { team_name: 'team1', github_handle: 'bob' };
 export const MOCK_POST_ADDITIONAL_REQUESTS = { context: 'member', description: 'description' };
 export const MOCK_POST_REMOVE_MEMBER = { github_handle: 'example' };
 export const MOCK_POST_TEAM_REQUEST = { team_name: 'team1' };
