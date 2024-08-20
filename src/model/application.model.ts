@@ -14,7 +14,7 @@ export interface ApplicationData {
   teams?: Team[]
   repos?: Repo[]
   add_team_member?: AddTeamMember[]
-  collaborator?: Collaborator[]
+  collaborators?: Collaborator[]
   additional_requests?: AdditionalRequests[]
 }
 
