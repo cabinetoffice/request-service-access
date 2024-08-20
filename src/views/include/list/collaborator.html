@@ -1,16 +1,16 @@
 {% set CollaboratorSummaryData = [] %}
 
-{% for collab in collaborator %}
+{% for collaborator in collaborators %}
 
-  {% set CollaboratorEditHref = "/github/update/collaborator/" + collab.id %}
-  {% set CollaboratorDeleteHref = "/github/remove/collaborator/" + collab.id %}
+  {% set CollaboratorEditHref = "/github/update/collaborator/" + collaborator.id %}
+  {% set CollaboratorDeleteHref = "/github/remove/collaborator/" + collaborator.id %}
 
   {% set CollaboratorSummaryData = (CollaboratorSummaryData.push({
     key: { 
       text: "Collaborator name"
     },
     value: {
-      text: collab.first_name + " " + collab.last_name
+      text: collaborator.first_name + " " + collaborator.last_name
     },
     actions: {
       items: [
