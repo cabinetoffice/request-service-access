@@ -10,9 +10,9 @@
   <br>
   <br>
 {% endif %}
-{% if (add_team_member and add_team_member.length > 0) %}
+{% if (team_members and team_members.length > 0) %}
   <h2 class="govuk-heading-m">New team member requests</h2>
-  {% include "include/list/add-team-member.html" %}
+  {% include "include/list/team-member.html" %}
   <br>
   <br>
 {% endif %}
