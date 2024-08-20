@@ -26,13 +26,16 @@ const mockedAuth = authentication as jest.Mock<typeof authentication>;
 mockedAuth.mockImplementation((_req: Request, _res: Response, next: NextFunction) => next());
 
 describe('Collaborator endpoint integration tests', () => {
+
+    const collaboratorEndpoint = config.GITHUB_URL + config.CREATE + config.COLLABORATOR_URL;
+
     beforeEach(() => {
         jest.clearAllMocks();
     });
 
     describe('GET tests', () => {
         test('renders the collaborator page', async () => {
-            const res = await request(app).get(config.GITHUB_URL + config.COLLABORATOR_URL);
+            const res = await request(app).get(collaboratorEndpoint);
 
             expect(res.status).toEqual(200);
             expect(res.text).toContain(MOCK_GET_COLLABORATOR_RESPONSE);
@@ -40,9 +43,9 @@ describe('Collaborator endpoint integration tests', () => {
             expect(mockedAuth).toHaveBeenCalledTimes(1);
         });
     });
-    describe('Add collaborator POST tests', () => {
+    describe('collaborator POST tests', () => {
         test('Should redirect to github-home page after POST request', async () => {
-            const res = await request(app).post(config.GITHUB_URL + config.COLLABORATOR_URL).send(MOCK_POST_COLLABORATOR);
+            const res = await request(app).post(collaboratorEndpoint).send(MOCK_POST_COLLABORATOR);
 
             expect(res.status).toEqual(302);
             expect(res.text).toContain(MOCK_GITHUB_HOME_REDIRECT_MESSAGE);
@@ -51,7 +54,7 @@ describe('Collaborator endpoint integration tests', () => {
         });
 
         test('Should render the same page with error messages after POST request', async () => {
-            const res = await request(app).post(config.GITHUB_URL + config.COLLABORATOR_URL).send({
+            const res = await request(app).post(collaboratorEndpoint).send({
                 first_name: '',
                 last_name: '',
                 github_handle: '',
@@ -71,7 +74,7 @@ describe('Collaborator endpoint integration tests', () => {
         });
 
         test('Should log the collaborator details on POST request.', async () => {
-            const res = await request(app).post(config.GITHUB_URL + config.COLLABORATOR_URL).send(MOCK_POST_COLLABORATOR);
+            const res = await request(app).post(collaboratorEndpoint).send(MOCK_POST_COLLABORATOR);
 
             const mockLog = log.info as jest.Mock;
 
