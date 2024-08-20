@@ -25,10 +25,10 @@ export const MOCK_GET_TEAM_RESPONSE = 'Add a new team';
 export const MOCK_POST_TEAM_RESPONSE = 'Team Name: team1, Team Maintainer GitHub Handle: bob, Team ID: ';
 export const MOCK_BY_ID_TEAM_RESPONSE = 'Team Name: team1, Team ID: ';
 
-// add-team-member response mocks
+// team-member response mocks
 
-export const MOCK_GET_ADD_TEAM_MEMBER_RESPONSE = 'Add existing member(s) to a team';
-export const MOCK_POST_ADD_TEAM_MEMBER_RESPONSE = 'Team name: team1, GitHub handle(s): joe';
+export const MOCK_GET_TEAM_MEMBER_RESPONSE = 'Add existing member(s) to a team';
+export const MOCK_POST_TEAM_MEMBER_RESPONSE = 'Team name: team1, GitHub handle(s): joe';
 export const MOCK_BY_ID_TEAM_MEMBER_RESPONSE = 'Team name: team1, GitHub handle(s): joe, Team member ID: ';
 
 // collaborator response mocks
