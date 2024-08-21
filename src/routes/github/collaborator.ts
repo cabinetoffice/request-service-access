@@ -9,12 +9,12 @@ import { get, getById, post, postById, removeById } from '../../controller/githu
 
 const CollaboratorRouter = Router();
 
-CollaboratorRouter.get(config.GITHUB_URL + config.COLLABORATOR_URL, authentication, get);
-CollaboratorRouter.get(config.GITHUB_URL + config.UPDATE + config.COLLABORATOR_URL + config.PARAM_ID, authentication, getById);
+CollaboratorRouter.get(config.GITHUB_URL + config.CREATE + config.COLLABORATOR_URL, authentication, get);
+CollaboratorRouter.post(config.GITHUB_URL + config.CREATE + config.COLLABORATOR_URL, authentication, ...collaborator, checkValidations, post);
 
 CollaboratorRouter.get(config.GITHUB_URL + config.REMOVE + config.COLLABORATOR_URL + config.PARAM_ID, authentication, removeById);
 
-CollaboratorRouter.post(config.GITHUB_URL + config.COLLABORATOR_URL, authentication, ...collaborator, checkValidations, post);
+CollaboratorRouter.get(config.GITHUB_URL + config.UPDATE + config.COLLABORATOR_URL + config.PARAM_ID, authentication, getById);
 CollaboratorRouter.post(config.GITHUB_URL + config.UPDATE + config.COLLABORATOR_URL + config.PARAM_ID, authentication, ...collaborator, checkValidations, postById);
 
 export default CollaboratorRouter;
