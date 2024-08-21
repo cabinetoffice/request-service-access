@@ -4,17 +4,17 @@ import * as config from '../../config';
 
 import { checkValidations } from '../../middleware/validation.middleware';
 import { authentication } from '../../middleware/authentication.middleware';
-import { Collaborator } from '../../validation/github/collaborator.validation';
+import { collaborator } from '../../validation/github/collaborator.validation';
 import { get, getById, post, postById, removeById } from '../../controller/github/collaborator.controller';
 
-const CollaboratorRouter = Router();
+const collaboratorRouter = Router();
 
-CollaboratorRouter.get(config.GITHUB_URL + config.CREATE + config.COLLABORATOR_URL, authentication, get);
-CollaboratorRouter.post(config.GITHUB_URL + config.CREATE + config.COLLABORATOR_URL, authentication, ...Collaborator, checkValidations, post);
+collaboratorRouter.get(config.GITHUB_URL + config.CREATE + config.COLLABORATOR_URL, authentication, get);
+collaboratorRouter.post(config.GITHUB_URL + config.CREATE + config.COLLABORATOR_URL, authentication, ...collaborator, checkValidations, post);
 
-CollaboratorRouter.get(config.GITHUB_URL + config.REMOVE + config.COLLABORATOR_URL + config.PARAM_ID, authentication, removeById);
+collaboratorRouter.get(config.GITHUB_URL + config.REMOVE + config.COLLABORATOR_URL + config.PARAM_ID, authentication, removeById);
 
-CollaboratorRouter.get(config.GITHUB_URL + config.UPDATE + config.COLLABORATOR_URL + config.PARAM_ID, authentication, getById);
-CollaboratorRouter.post(config.GITHUB_URL + config.UPDATE + config.COLLABORATOR_URL + config.PARAM_ID, authentication, ...Collaborator, checkValidations, postById);
+collaboratorRouter.get(config.GITHUB_URL + config.UPDATE + config.COLLABORATOR_URL + config.PARAM_ID, authentication, getById);
+collaboratorRouter.post(config.GITHUB_URL + config.UPDATE + config.COLLABORATOR_URL + config.PARAM_ID, authentication, ...collaborator, checkValidations, postById);
 
-export default CollaboratorRouter;
+export default collaboratorRouter;

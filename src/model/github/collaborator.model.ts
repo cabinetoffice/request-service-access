@@ -1,4 +1,4 @@
-export const CollaboratorKey = 'collaborator';
+export const CollaboratorKey = 'collaborators';
 
 export const CollaboratorMappingKeys: (keyof Collaborator)[] = [
     'id',

@@ -1,12 +1,12 @@
 {% set previousPageQueryParam = "?" + PARAMS.previousPage + "=" + ROUTES.CHECK_YOUR_REQUESTS_URL %}
 
-{% for collab in collaborator %}
+{% for collaborator in collaborators %}
 
-  {% set firstNameHref = "/github/update/collaborator/" + collab.id + previousPageQueryParam + "#first_name" %}
-  {% set lastNameHref = "/github/update/collaborator/" + collab.id + previousPageQueryParam + "#last_name" %}
-  {% set githubHandleHref = "/github/update/collaborator/" + collab.id + previousPageQueryParam + "#github_handle" %}
-  {% set emailAddressHref = "/github/update/collaborator/" + collab.id + previousPageQueryParam + "#email_address" %}
-  {% set repoHref = "/github/update/collaborator/" + collab.id + previousPageQueryParam + "#repo_name" %}
+  {% set firstNameHref = "/github/update/collaborator/" + collaborator.id + previousPageQueryParam + "#first_name" %}
+  {% set lastNameHref = "/github/update/collaborator/" + collaborator.id + previousPageQueryParam + "#last_name" %}
+  {% set githubHandleHref = "/github/update/collaborator/" + collaborator.id + previousPageQueryParam + "#github_handle" %}
+  {% set emailAddressHref = "/github/update/collaborator/" + collaborator.id + previousPageQueryParam + "#email_address" %}
+  {% set repoHref = "/github/update/collaborator/" + collaborator.id + previousPageQueryParam + "#repo_name" %}
 
   <br>
   {{ govukSummaryList({
@@ -16,7 +16,7 @@
           text: "First Name"
         },
         value: {
-          text: collab.first_name
+          text: collaborator.first_name
         },
         actions: {
           items: [
@@ -33,7 +33,7 @@
           text: "Last Name"
         },
         value: {
-          text: collab.last_name
+          text: collaborator.last_name
         },
         actions: {
           items: [
@@ -50,7 +50,7 @@
           text: "GitHub Handle"
         },
         value: {
-          text: collab.github_handle
+          text: collaborator.github_handle
         },
         actions: {
           items: [
@@ -67,7 +67,7 @@
           text: "Email Address"
         },
         value: {
-          text: collab.email_address
+          text: collaborator.email_address
         },
         actions: {
           items: [
@@ -84,7 +84,7 @@
           text: "Repository Name"
         },
         value: {
-          text: collab.repo_name
+          text: collaborator.repo_name
         },
         actions: {
           items: [
