@@ -39,9 +39,9 @@ export const MOCK_BY_ID_COLLABORATOR_RESPONSE = 'GitHub handle: example, Collabo
 
 // additional-requests mocks
 
-export const MOCK_GET_ADDITIONAL_REQUESTS_RESPONSE = 'Make an additional request that is not covered by the other options. For example, removal requests or permission changes';
-export const MOCK_POST_ADDITIONAL_REQUESTS_RESPONSE = 'Context: member, Additional Requests ID: ';
-export const MOCK_BY_ID_ADDITIONAL_REQUESTS_RESPONSE = 'Context: member, Additional Requests ID: ';
+export const MOCK_GET_ADDITIONAL_REQUEST_RESPONSE = 'Make an additional request that is not covered by the other options. For example, removal requests or permission changes';
+export const MOCK_POST_ADDITIONAL_REQUEST_RESPONSE = 'Context: member, Additional Request ID: ';
+export const MOCK_BY_ID_ADDITIONAL_REQUEST_RESPONSE = 'Context: member, Additional Request ID: ';
 
 export const MOCK_CHECK_YOUR_REQUESTS_TITLE = 'Check your requests before sending your application';
 
