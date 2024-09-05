@@ -1,0 +1,35 @@
+{% set additionalRequestSummaryData = [] %}
+
+{% for additional_request in additional_requests %}
+
+  {% set additionalRequestEditHref = "/github/update/additional-request/" + additional_request.id %}
+  {% set additionalRequestDeleteHref = "/github/remove/additional-request/" + additional_request.id %}
+
+  {% set additionalRequestSummaryData = (additionalRequestSummaryData.push({
+    key: { 
+      text: "Additional request context"
+    },
+    value: {
+      text: additional_request.context
+    },
+    actions: {
+      items: [
+        {
+          href: additionalRequestEditHref,
+          text: "Edit",
+          visuallyHiddenText: "Additional request context"
+        },
+        {
+          href: additionalRequestDeleteHref,
+          text: "Delete",
+          visuallyHiddenText: "Additional request context"
+        }
+      ]
+    }
+  }), additionalRequestSummaryData) %}
+
+{% endfor %}
+
+{{ govukSummaryList({
+  rows: additionalRequestSummaryData
+}) }}

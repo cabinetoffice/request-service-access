@@ -2,7 +2,7 @@ import { Member } from './github/member.model';
 import { Team } from './github/team.model';
 import { Repo } from './github/repo.model';
 import { TeamMember } from './github/team-member.model';
-import { AdditionalRequests } from './additional-requests.model';
+import { AdditionalRequest } from './github/additional-request.model';
 import { Collaborator } from './github/collaborator.model';
 
 /*
@@ -15,6 +15,6 @@ export interface ApplicationData {
   repos?: Repo[]
   team_members?: TeamMember[]
   collaborators?: Collaborator[]
-  additional_requests?: AdditionalRequests[]
+  additional_requests?: AdditionalRequest[]
 }
 

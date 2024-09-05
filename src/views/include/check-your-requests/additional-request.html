@@ -2,8 +2,8 @@
 
 {% for additional_request in additional_requests %}
 
-  {% set contextHref = "/additional-requests/" + additional_request.id + previousPageQueryParam + "#context" %}
-  {% set descriptionHref = "/additional-requests/" + additional_request.id + previousPageQueryParam + "#description" %}
+  {% set contextHref = "/github/update/additional-request/" + additional_request.id + previousPageQueryParam + "#context" %}
+  {% set descriptionHref = "/github/update/additional-request/" + additional_request.id + previousPageQueryParam + "#description" %}
 
   <br>
   {{ govukSummaryList({
