@@ -7,6 +7,8 @@ import {
 } from '@co-digital/login';
 import { v4 as uuidv4 } from 'uuid';
 
+import { createPullRequestWithFile } from '../../service/api';
+
 import * as config from '../../config';
 import { log } from '../../utils/logger';
 import { getPreviousPageUrl } from '../../utils/getPreviousPageUrl';
@@ -17,7 +19,7 @@ export const get = (_req: Request, res: Response) => {
     return res.render(config.MEMBER);
 };
 
-export const post = (req: Request, res: Response, next: NextFunction ) => {
+export const post = async (req: Request, res: Response, next: NextFunction ) => {
     try {
         const memberID = uuidv4();
         const firstName = req.body.first_name;
@@ -35,6 +37,15 @@ export const post = (req: Request, res: Response, next: NextFunction ) => {
             postSessionBody(req.body, memberID, contractType, contractEndDate),
             MemberKey
         );
+
+        const repoUrl = 'https://api.github.com/repos/cabinetoffice/poc_prototypes';
+        const branchName = 'test-branch-api';
+        const filePath = 'src/test.js';
+        const fileContent = 'console.log("Hello world");';
+        const commitMessage = 'test pr creation through api';
+        const prBody = 'This pr tests the creation of a branch, commit, pr through the github api.';
+
+        await createPullRequestWithFile(repoUrl, branchName, filePath, fileContent, commitMessage, prBody);
 
         return res.redirect(config.GITHUB_HOME_URL);
     } catch (err: any) {
